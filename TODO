@@ -1,0 +1,5 @@
+SERVER_TYPE="bukkit-nightly"
+README, INSTALL, LICENSE
+clicraft help [command]
+bash completion
+test/, contrib/
