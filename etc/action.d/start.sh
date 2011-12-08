@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 if status; then
 	echo "$SERVER_NAME is already running" >&2

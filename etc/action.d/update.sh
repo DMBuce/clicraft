@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 if [ -f "$SERVER_JAR" ]; then
 	echo "Backing up server jar to $(basename $SERVER_JAR).ccback"

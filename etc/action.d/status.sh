@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 tmux has -t "$SERVER_NAME" &>/dev/null
 retval=$?

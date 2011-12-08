@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 if [ -f "$SERVER_JAR" ]; then
 	echo "$SERVER_JAR already exists" >&2

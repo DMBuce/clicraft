@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 action cmd 'save-off'
 sleep 1

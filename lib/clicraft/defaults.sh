@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 BIN="${BIN-$CLICRAFT/bin}"
 ETC="${ETC-$CLICRAFT/etc}"

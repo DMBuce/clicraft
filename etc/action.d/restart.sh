@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 action stop
 sleep 2

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 
 exec tmux attach -t "$SERVER_NAME"
 
