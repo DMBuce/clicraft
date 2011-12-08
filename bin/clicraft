@@ -1,0 +1,22 @@
+#!/bin/bash
+
+PROG="$(basename $0)"
+
+#BIN="$(dirname $(which "$PROG" 2>/dev/null))"
+BIN="$(dirname $(readlink -f $0))"
+
+CLICRAFT="${CLICRAFT-$(dirname $BIN)}"
+ETC="${ETC-$CLICRAFT/etc}"
+LIB="${LIB-$CLICRAFT/lib/clicraft}"
+
+if [ -f "$CLICRAFT/etc/clicraft.conf" ]; then
+	. "$CLICRAFT/etc/clicraft.conf"
+fi
+
+. "$LIB/defaults.sh"
+. "$LIB/functions.sh"
+
+mkdir -p "$SRV"
+cd "$SRV"
+action "$@"
+
