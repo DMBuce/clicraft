@@ -8,5 +8,5 @@ fi
 echo "Downloading new $(basename $SERVER_JAR)"
 $DOWNLOAD_COMMAND
 
-action restart
+status && action restart
 
