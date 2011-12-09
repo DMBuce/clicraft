@@ -3,7 +3,7 @@
 tmux has -t "$SERVER_NAME" &>/dev/null
 retval=$?
 
-if [ "$retval" != 0 ]; then
+if [ "$retval" = 0 ]; then
 	echo "$SERVER_NAME is running"
 	return 0
 else
