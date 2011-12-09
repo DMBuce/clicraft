@@ -3,7 +3,6 @@
 SRV="${SRV-$CLICRAFT/srv}"
 
 BACKUP_DIR="${BACKUP_DIR-$SRV/backups}"
-DOWNLOADER="${DOWNLOADER-curl -# -o}"
 SERVER_NAME="${SERVER_NAME-minecraft}"
 
 case "$SERVER_TYPE" in
@@ -18,4 +17,5 @@ case "$SERVER_TYPE" in
 esac
 
 START_COMMAND="${START_COMMAND-java -jar '$SERVER_JAR' nogui}"
+DOWNLOAD_COMMAND="${DOWNLOAD_COMMAND-curl -# -o '$SERVER_JAR' '$SERVER_URL'}"
 

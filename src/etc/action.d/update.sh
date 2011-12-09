@@ -6,7 +6,7 @@ if [ -f "$SERVER_JAR" ]; then
 fi
 
 echo "Downloading new $(basename $SERVER_JAR)"
-download
+$DOWNLOAD_COMMAND
 
 action restart
 

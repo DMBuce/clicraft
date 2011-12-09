@@ -17,7 +17,3 @@ status() {
 	action status >/dev/null
 }
 
-download() {
-	$DOWNLOADER "$SERVER_JAR" "$SERVER_URL"
-}
-

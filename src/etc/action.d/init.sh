@@ -6,5 +6,5 @@ if [ -f "$SERVER_JAR" ]; then
 fi
 
 echo "Downloading $(basename $SERVER_JAR)"
-download
+$DOWNLOAD_COMMAND
 
