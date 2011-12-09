@@ -2,7 +2,6 @@
 
 SERVER_DIR="${SERVER_DIR-$CLICRAFT/srv}"
 
-BACKUP_DIR="${BACKUP_DIR-$SERVER_DIR/backups}"
 SERVER_NAME="${SERVER_NAME-minecraft}"
 
 case "$SERVER_TYPE" in
