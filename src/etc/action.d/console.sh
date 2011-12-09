@@ -1,4 +1,5 @@
 #!bash
 
-exec tmux attach -t "$SERVER_NAME"
+action status >/dev/null && \
+	exec tmux attach -t "$SERVER_NAME"
 
