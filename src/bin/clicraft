@@ -15,7 +15,7 @@ fi
 . "$LIB/defaults.sh"
 . "$LIB/functions.sh"
 
-mkdir -p "$SRV"
-cd "$SRV"
+mkdir -p "$SERVER_DIR"
+cd "$SERVER_DIR"
 action "$@"
 

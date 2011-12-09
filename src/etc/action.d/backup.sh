@@ -3,7 +3,7 @@
 action cmd 'save-off'
 sleep 1
 
-cd "$SRV"
+cd "$SERVER_DIR"
 mkdir -p "$BACKUP_DIR"
 
 WORLD=$(grep 'level-name=' server.properties | cut -d '=' -f 2)
