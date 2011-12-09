@@ -2,12 +2,11 @@
 
 PROG="$(basename $0)"
 
-#BIN="$(dirname $(which "$PROG" 2>/dev/null))"
+ETC="$CLICRAFT/etc"
+LIB="$CLICRAFT/lib"
 BIN="$(dirname $(readlink -f $0))"
 
 CLICRAFT="${CLICRAFT-$(dirname $BIN)}"
-ETC="${ETC-$CLICRAFT/etc}"
-LIB="${LIB-$CLICRAFT/lib}"
 
 if [ -f "$CLICRAFT/etc/clicraft.conf" ]; then
 	. "$CLICRAFT/etc/clicraft.conf"

@@ -1,8 +1,5 @@
 #!bash
 
-BIN="${BIN-$CLICRAFT/bin}"
-ETC="${ETC-$CLICRAFT/etc}"
-LIB="${LIB-$CLICRAFT/lib/clicraft}"
 SRV="${SRV-$CLICRAFT/srv}"
 
 BACKUP_DIR="${BACKUP_DIR-$SRV/backups}"
