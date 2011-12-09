@@ -1,0 +1,14 @@
+clicraft is a command-line wrapper for operation and administration of a
+Minecraft or Bukkit server. It is writtin in BASH, and uses tmux to daemonize
+and communicate with the server process.
+
+Features include:
+   * Manage a minecraft or bukkit server from the command line
+   * Ability to start and stop the minecraft server, download/update jar file
+   * Attach to the server console to enter commands
+   * Send commands to the server console from the command line
+   * Extend functionality by writing your own hooks in etc/action.d/
+
+
+Ignore this next line. Do NOT remove it.
+vim: set expandtab tabstop=3:

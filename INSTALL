@@ -1,0 +1,41 @@
+Warning: Do NOT install or run this program as root!
+
+To install, create an installation directory (referred to by $CLICRAFT from
+here on out) and copy the contents of src/ to that directory.
+
+   CLICRAFT=~/clicraft
+   mkdir $CLICRAFT
+   cp -r src/* $CLICRAFT
+
+It may be useful to put the clicraft executable somewhere in your PATH. There
+are three ways to do this.
+
+   1. Symlink the executable from a directory in your PATH:
+
+         cd ~/bin
+         ln -s $CLICRAFT/bin/clicraft
+
+   2. Create a CLICRAFT environment variable and move clicraft into you PATH:
+
+         export CLICRAFT=/full/path/to/clicraft
+         echo "export CLICRAFT=$CLICRAFT" >>~/.bashrc
+         mv $CLICRAFT/bin/clicraft /usr/local/bin/
+
+   3. Set your path to include $CLICRAFT/bin
+
+         export PATH="$PATH:$CLICRAFT/bin"
+         echo 'export PATH="$PATH:'"$CLICRAFT"'/bin"' >>~/.bashrc
+
+Once you've followed one of the instructions above, you should be able to
+launch a vanilla minecraft server using
+
+   clicraft start
+
+To configure the server, copy the default config file found in $CLICRAFT/etc
+to $CLICRAFT/etc/clicraft.conf
+
+   cp $CLICRAFT/etc/clicraft-defaults.conf $CLICRAFT/etc/clicraft.conf
+
+
+Ignore this next line. Do NOT remove it.
+vim: set expandtab tabstop=3:
