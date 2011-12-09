@@ -14,6 +14,6 @@ action() {
 }
 
 status() {
-	action status >/dev/null
+	action status &>/dev/null
 }
 
