@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PROG="$(basename $0)"
+VERSION="0.0.-9"
 
 BIN="$(dirname $(readlink -f $0))"
 CLICRAFT="${CLICRAFT-$(dirname $BIN)}"
@@ -19,6 +20,9 @@ mkdir -p "$SERVER_DIR"
 cd "$SERVER_DIR"
 
 case "$1" in
+  "--version")
+	action version "$@"
+  ;;
   "--help"|"-h")
 	shift
 	action help "$@"
