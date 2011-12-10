@@ -1,4 +1,9 @@
 #!bash
+#
+# Usage: clicraft backup
+#
+#    Backs up the world folder to backups/<world>-<date>-<time>.zip
+#
 
 BACKUP_DIR="$SERVER_DIR/backups"
 WORLD=$(grep 'level-name=' server.properties | cut -d '=' -f 2)
