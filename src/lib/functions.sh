@@ -1,31 +1,39 @@
 #!bash
 
 actionfile() {
-	ACTION="$1"
+	local ACTION="$1"
 	
 	if [ -f "$ETC/action.d/$ACTION.sh" ]; then
 		echo "$ETC/action.d/$ACTION.sh"
 	elif [ -f "$LIB/action.d/$ACTION.sh" ]; then
 		echo "$LIB/action.d/$ACTION.sh"
 	else
+		echo "$PROG: Unknown action: $ACTION" >&2
 		return 1
 	fi
 }
 
 action() {
-	ACTION="$1"
+	local ACTION="$1"
 	shift
 
-	FILE=$(actionfile "$ACTION")
-	if [ $? = 0 ]; then
+	local FILE=$(actionfile "$ACTION")
+	if [ "$FILE" != "" ]; then
 		. "$FILE" "$@"
 	else
-		echo "$PROG: Unknown action: $ACTION" >&2
 		action help
 	fi
 }
 
 status() {
 	action status &>/dev/null
+}
+
+usage() {
+	local FILE="$1"
+	sed -n "
+		/^# Usage:/,/^$|^[^#]/ {
+			s/^# \?//p
+		}" "$FILE"
 }
 
