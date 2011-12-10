@@ -1,4 +1,9 @@
 #!bash
+#
+# Usage: clicraft start
+#
+#    Starts the minecraft server.
+#
 
 if status; then
 	echo "$SERVER_NAME is already running" >&2

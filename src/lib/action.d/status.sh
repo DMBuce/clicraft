@@ -1,4 +1,10 @@
 #!bash
+#
+# Usage: clicraft status
+#
+#    Reports on whether the minecraft server is running or not. If the server
+#    is not running, returns a nonzero exit status.
+#
 
 tmux has -t "$SERVER_NAME" &>/dev/null
 retval=$?

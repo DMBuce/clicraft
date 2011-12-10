@@ -1,4 +1,9 @@
 #!bash
+#
+# Usage: clicraft restart
+#
+#    Restarts the minecraft server.
+#
 
 action stop
 sleep 2

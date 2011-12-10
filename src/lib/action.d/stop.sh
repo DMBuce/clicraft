@@ -1,4 +1,9 @@
 #!bash
+#
+# Usage: clicraft stop
+#
+#    Stops the minecraft server.
+#
 
 if ! status; then
 	echo "$SERVER_NAME is not running" >&2

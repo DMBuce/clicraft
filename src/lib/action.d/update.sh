@@ -1,4 +1,9 @@
 #!bash
+#
+# Usage: clicraft update
+#
+#    Updates the server jar file.
+#
 
 if [ -f "$SERVER_JAR" ]; then
 	echo "Backing up server jar to $(basename $SERVER_JAR).ccback"
