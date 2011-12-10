@@ -10,5 +10,9 @@ Features include:
    * Extend functionality by writing your own hooks in etc/action.d/
 
 
-Ignore this next line. Do NOT remove it.
-vim: set expandtab tabstop=3:
+See INSTALL for installation instructions, LICENSE for terms and conditions,
+and TODO for planned features.
+
+
+# Ignore this next line. Do NOT remove it.
+# vim: set expandtab tabstop=3:
