@@ -16,5 +16,5 @@ See INSTALL for installation instructions, LICENSE for terms and conditions,
 and TODO for planned features.
 
 
-# Ignore this next line. Do NOT remove it.
-# vim: set expandtab tabstop=3:
+Ignore this next line. Do NOT remove it.
+vim: set expandtab tabstop=3:

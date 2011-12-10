@@ -27,14 +27,15 @@ are three ways to do this.
          echo 'export PATH="$PATH:'"$CLICRAFT"'/bin"' >>~/.bashrc
 
 Once you've followed one of the instructions above, you should be able to
-launch a vanilla minecraft server using
+get usage info using
 
-   clicraft start
+   clicraft help
 
 To configure the server, copy the default config file found in $CLICRAFT/etc
-to $CLICRAFT/etc/clicraft.conf
+to $CLICRAFT/etc/clicraft.conf and edit to taste
 
    cp $CLICRAFT/etc/clicraft-defaults.conf $CLICRAFT/etc/clicraft.conf
+   vim $CLICRAFT/etc/clicraft.conf
 
 
 Ignore this next line. Do NOT remove it.
