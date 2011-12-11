@@ -1,3 +1,2 @@
 bash completion
 test/, scripts/
-Make vars available when clicraft.conf sourced
