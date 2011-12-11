@@ -2,7 +2,7 @@
 
 actionfile() {
 	local ACTION="$1"
-	
+
 	if [ -f "$ETC/action.d/$ACTION.sh" ]; then
 		echo "$ETC/action.d/$ACTION.sh"
 	elif [ -f "$LIB/action.d/$ACTION.sh" ]; then
@@ -31,9 +31,19 @@ status() {
 
 usage() {
 	local FILE="$1"
-	sed -n "
-		/^# Usage:/,/^$|^[^#]/ {
-			s/^# \?//p
-		}" "$FILE"
+	local USAGELINE='# Usage: '
+	local line
+
+	while read line; do
+		if [ "${line#$USAGELINE}" != "$line" ]; then
+			local PRINTUSAGE=TRUE
+		fi
+
+		if [ "$PRINTUSAGE" = 'TRUE' ]; then
+			[ "${line#'#'}" = "$line" ] && break
+			line="${line#'#'}"
+			echo "${line#' '}"
+		fi
+	done <"$FILE"
 }
 
