@@ -6,17 +6,8 @@
 #    clicraft usage is displayed instead.
 #
 
-__getactions() {
-	local FILE
-	for FILE in \
-	  $(ls $ETC/action.d/*.sh $LIB/action.d/*.sh 2>/dev/null)
-	do
-		basename ${FILE%.sh}
-	done | sort -u
-}
-
 __usage() {
-	local ACTIONS=( $(__getactions) )
+	local ACTIONS=( $(actions) )
 	cat <<EOF
 Usage: $PROG <action> [args]
 

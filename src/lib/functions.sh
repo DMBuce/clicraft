@@ -25,6 +25,15 @@ action() {
 	fi
 }
 
+actions() {
+	local FILE
+	for FILE in \
+	  $(ls $ETC/action.d/*.sh $LIB/action.d/*.sh 2>/dev/null)
+	do
+		basename ${FILE%.sh}
+	done | sort -u
+}
+
 status() {
 	action status &>/dev/null
 }
