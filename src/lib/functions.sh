@@ -56,3 +56,16 @@ usage() {
 	done <"$FILE"
 }
 
+serverprop() {
+	local PROP="$1"
+	local NAMEVAL="$(grep "^$PROP=" "$SERVER_DIR/server.properties")"
+	local VALUE="${NAMEVAL#*=}"
+
+	if [ "$VALUE" = "" ]; then
+		echo "Property \`$PROP' not defined in $SERVER_DIR/server.properties" >&2
+		return 1
+	fi
+
+	echo "$VALUE"
+}
+
