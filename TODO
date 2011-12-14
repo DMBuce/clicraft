@@ -1,5 +1,7 @@
+DOCUMENTATION
 started(), stopped()
 bash completion
 test/, scripts/
 canonicalize paths, make sure relative paths in config work okay
 make sure clicraft will work with minimal, cron-like PATH
+move DOWNLOAD_COMMAND options into DOWNLOAD_OPTS, same for START_COMMAND
