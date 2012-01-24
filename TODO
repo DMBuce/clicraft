@@ -1,6 +1,5 @@
 DOCUMENTATION
 started(), stopped()
-bash completion
 test/, scripts/
 canonicalize paths, make sure relative paths in config work okay
 make sure clicraft will work with minimal, cron-like PATH
