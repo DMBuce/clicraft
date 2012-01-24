@@ -1,20 +1,24 @@
 #!bash
 
+# Prints an info message to stdout
 msg() {
 	local mesg=$1; shift
 	printf "${mesg}\n" "$@"
 }
 
+# Prints a warning to stderr
 warn() {
 	local mesg=$1; shift
 	printf "${mesg}\n" "$@" >&2
 }
 
+# Prints an error to stderr
 err() {
 	local mesg=$1; shift
 	printf "${mesg}\n" "$@" >&2
 }
 
+# Finds the location of an action script
 actionfile() {
 	local ACTION="$1"
 
@@ -28,6 +32,7 @@ actionfile() {
 	fi
 }
 
+# Executes an action script
 action() {
 	local ACTION="$1"
 	shift
@@ -40,6 +45,7 @@ action() {
 	fi
 }
 
+# Returns a list of available actions
 actions() {
 	local FILE
 	for FILE in \
@@ -49,10 +55,12 @@ actions() {
 	done | sort -u
 }
 
+# Returns 0 if the server is running, 1 otherwise
 status() {
 	action status &>/dev/null
 }
 
+# Prints the usage of an action script
 usage() {
 	local FILE="$1"
 	local USAGELINE='# Usage: '
@@ -71,6 +79,7 @@ usage() {
 	done <"$FILE"
 }
 
+# Prints a value defined in server.properties
 serverprop() {
 	local PROP="$1"
 	local NAMEVAL="$(grep "^$PROP=" "$SERVER_DIR/server.properties")"
