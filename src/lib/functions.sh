@@ -1,5 +1,20 @@
 #!bash
 
+msg() {
+	local mesg=$1; shift
+	printf "${mesg}\n" "$@"
+}
+
+warn() {
+	local mesg=$1; shift
+	printf "${mesg}\n" "$@" >&2
+}
+
+err() {
+	local mesg=$1; shift
+	printf "${mesg}\n" "$@" >&2
+}
+
 actionfile() {
 	local ACTION="$1"
 
@@ -8,7 +23,7 @@ actionfile() {
 	elif [ -f "$LIB/action.d/$ACTION.sh" ]; then
 		echo "$LIB/action.d/$ACTION.sh"
 	else
-		echo "$PROG: Unknown action: $ACTION" >&2
+		warn "Unknown action: $ACTION"
 		return 1
 	fi
 }
@@ -51,7 +66,7 @@ usage() {
 		if [ "$PRINTUSAGE" = 'TRUE' ]; then
 			[ "${line#'#'}" = "$line" ] && break
 			line="${line#'#'}"
-			echo "${line#' '}"
+			msg "${line#' '}"
 		fi
 	done <"$FILE"
 }
@@ -62,7 +77,7 @@ serverprop() {
 	local VALUE="${NAMEVAL#*=}"
 
 	if [ "$VALUE" = "" ]; then
-		echo "Property \`$PROP' not defined in $SERVER_DIR/server.properties" >&2
+		warn "Property \`$PROP' not defined in $SERVER_DIR/server.properties"
 		return 1
 	fi
 

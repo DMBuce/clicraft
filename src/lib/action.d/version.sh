@@ -5,6 +5,6 @@
 #    Prints version information.
 #
 
-echo "$PROG $VERSION"
-echo "Copyright (c) 2011 DMBuce <dmbuce@gmail.com>"
+msg "$PROG $VERSION"
+msg "Copyright (c) 2011 DMBuce <dmbuce@gmail.com>"
 

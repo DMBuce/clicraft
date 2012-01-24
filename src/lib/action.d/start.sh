@@ -6,7 +6,7 @@
 #
 
 if status; then
-	echo "$SERVER_NAME is already running" >&2
+	err "$SERVER_NAME is already running"
 	return 1
 fi
 
@@ -14,7 +14,7 @@ if [ ! -f "$SERVER_JAR" ]; then
 	action init
 fi
 
-echo "Starting $SERVER_NAME"
+msg "Starting $SERVER_NAME"
 tmux new -d -n "$SERVER_NAME" -s "$SERVER_NAME" "$START_COMMAND"
 retval=$?
 

@@ -6,11 +6,11 @@
 #
 
 if ! status; then
-	echo "$SERVER_NAME is not running" >&2
+	err "$SERVER_NAME is not running"
 	return 1
 fi
 
-echo "Stopping $SERVER_NAME"
+msg "Stopping $SERVER_NAME"
 action cmd "stop"
 
 for i in {1..20}; do

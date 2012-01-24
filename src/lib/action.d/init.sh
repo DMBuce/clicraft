@@ -7,10 +7,10 @@
 #
 
 if [ -f "$SERVER_JAR" ]; then
-	echo "$SERVER_JAR already exists" >&2
+	err "$SERVER_JAR already exists"
 	return 1
 fi
 
-echo "Downloading $(basename $SERVER_JAR)"
+msg "Downloading $(basename $SERVER_JAR)"
 $DOWNLOAD_COMMAND
 
