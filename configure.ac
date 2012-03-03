@@ -35,4 +35,4 @@ AC_CONFIG_FILES([
 Makefile
 src/bin/clicraft
 ])
-AC_OUTPUT(, echo timestamp > stamp-h)
+AC_OUTPUT
