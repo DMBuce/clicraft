@@ -30,5 +30,6 @@ AC_PROG_LN_S
 AC_CONFIG_FILES([
 Makefile
 src/bin/clicraft
+scripts/bash_completion
 ])
 AC_OUTPUT
