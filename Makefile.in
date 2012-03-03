@@ -7,8 +7,6 @@ URL=@URL@
 SHELL=/bin/sh
 VPATH=@srcdir@
 
-prog=clicraft
-
 # root for installation
 prefix=@prefix@
 exec_prefix=@exec_prefix@
@@ -45,34 +43,34 @@ man9dir=$(mandir)/man9
 manext=.1
 srcdir=@srcdir@
 
-INSTALL=install
-INSTALL_PROGRAM=$(INSTALL)
-INSTALL_DATA=$(INSTALL) -m 644
+INSTALL=@INSTALL@
+INSTALL_PROGRAM=@INSTALL_PROGRAM@
+INSTALL_DATA=@INSTALL_DATA@
 
 all:
 
 clean:
 
 installdirs:
-	$(INSTALL) -d $(DESTDIR)$(datadir)/$(prog)/bin \
-	              $(DESTDIR)$(libdir)/$(prog)/action.d \
-	              $(DESTDIR)$(sysconfdir)/$(prog)/action.d \
+	$(INSTALL) -d $(DESTDIR)$(datadir)/$(PROG)/bin \
+	              $(DESTDIR)$(libdir)/$(PROG)/action.d \
+	              $(DESTDIR)$(sysconfdir)/$(PROG)/action.d \
 	              $(DESTDIR)$(bindir)
 
 install: installdirs
-	$(INSTALL_PROGRAM) $(srcdir)/src/bin/$(prog) $(DESTDIR)$(datadir)/$(prog)/bin/$(prog)
-	$(INSTALL_DATA) $(srcdir)/src/lib/*.sh       $(DESTDIR)$(libdir)/$(prog)/
-	$(INSTALL_DATA) $(srcdir)/src/lib/action.d/* $(DESTDIR)$(libdir)/$(prog)/action.d/
-	$(INSTALL_DATA) $(srcdir)/src/etc/*.conf     $(DESTDIR)$(sysconfdir)/$(prog)/
-	$(INSTALL_DATA) $(srcdir)/src/etc/action.d/* $(DESTDIR)$(sysconfdir)/$(prog)/action.d/
-	- ( cd $(DESTDIR)$(bindir); ln -s ../share/$(prog)/bin/$(prog) )
-	- ( cd $(DESTDIR)$(datadir)/$(prog); ln -s ../../lib/$(prog) lib; ln -s ../../etc/$(prog) etc; )
+	$(INSTALL_PROGRAM) $(srcdir)/src/bin/$(PROG) $(DESTDIR)$(datadir)/$(PROG)/bin/$(PROG)
+	$(INSTALL_DATA) $(srcdir)/src/lib/*.sh       $(DESTDIR)$(libdir)/$(PROG)/
+	$(INSTALL_DATA) $(srcdir)/src/lib/action.d/* $(DESTDIR)$(libdir)/$(PROG)/action.d/
+	$(INSTALL_DATA) $(srcdir)/src/etc/*.conf     $(DESTDIR)$(sysconfdir)/$(PROG)/
+	$(INSTALL_DATA) $(srcdir)/src/etc/action.d/* $(DESTDIR)$(sysconfdir)/$(PROG)/action.d/
+	- ( cd $(DESTDIR)$(bindir); ln -s ../share/$(PROG)/bin/$(PROG) )
+	- ( cd $(DESTDIR)$(datadir)/$(PROG); ln -s ../../lib/$(PROG) lib; ln -s ../../etc/$(PROG) etc; )
 
 uninstall:
-	rm     $(DESTDIR)$(bindir)/$(prog)
-	rm -rf $(DESTDIR)$(datadir)/$(prog)
-	rm -rf $(DESTDIR)$(libdir)/$(prog)/
-	#rm -rf $(DESTDIR)$(sysconfdir)/$(prog)/
+	rm     $(DESTDIR)$(bindir)/$(PROG)
+	rm -rf $(DESTDIR)$(datadir)/$(PROG)
+	rm -rf $(DESTDIR)$(libdir)/$(PROG)/
+	#rm -rf $(DESTDIR)$(sysconfdir)/$(PROG)/
 
 check:
 
