@@ -26,5 +26,8 @@ AC_PROG_LN_S
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([
+Makefile
+src/bin/clicraft
+])
 AC_OUTPUT(, echo timestamp > stamp-h)
