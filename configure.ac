@@ -16,6 +16,24 @@ AC_SUBST([CONFDIR], [$sysconfdir/$PROG])
 AC_SUBST([EXECDIR], [$libexecdir/$PROG])
 AC_SUBST([SERVER_DIR], [$localstatedir/lib/$PROG])
 
+dnl --with-mcexplore
+AC_ARG_WITH([mcexplore],
+	AS_HELP_STRING([--with-mcexplore], [Include mcexplore helper script]))
+
+AS_IF([test "x$with_mcexplore" = "xyes"],
+      AC_SUBST([WITH_MCEXPLORE], [yes]),
+      AC_SUBST([WITH_MCEXPLORE], [no])
+)
+
+dnl --with-c10t
+AC_ARG_WITH([c10t],
+	AS_HELP_STRING([--with-c10t], [Include c10t helper script]))
+
+AS_IF([test "x$with_c10t" = "xyes"],
+      AC_SUBST([WITH_C10T], [yes]),
+      AC_SUBST([WITH_C10T], [no])
+)
+
 # Checks for programs.
 AC_PROG_INSTALL
 AC_PROG_LN_S
@@ -34,6 +52,7 @@ src/Makefile
 src/bin/clicraft
 src/lib/defaults.sh
 src/etc/clicraft-defaults.conf
+scripts/Makefile
 scripts/bash_completion
 ])
 AC_OUTPUT
