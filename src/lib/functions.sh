@@ -22,10 +22,10 @@ err() {
 actionfile() {
 	local ACTION="$1"
 
-	if [ -f "$ETC/action.d/$ACTION.sh" ]; then
-		echo "$ETC/action.d/$ACTION.sh"
-	elif [ -f "$LIB/action.d/$ACTION.sh" ]; then
-		echo "$LIB/action.d/$ACTION.sh"
+	if [ -f "$CONFDIR/action.d/$ACTION.sh" ]; then
+		echo "$CONFDIR/action.d/$ACTION.sh"
+	elif [ -f "$EXECDIR/action.d/$ACTION.sh" ]; then
+		echo "$EXECDIR/action.d/$ACTION.sh"
 	else
 		warn "Unknown action: $ACTION"
 		return 1
@@ -49,7 +49,7 @@ action() {
 actions() {
 	local FILE
 	for FILE in \
-	  $(ls $ETC/action.d/*.sh $LIB/action.d/*.sh 2>/dev/null)
+	  $(ls $CONFDIR/action.d/*.sh $EXECDIR/action.d/*.sh 2>/dev/null)
 	do
 		basename ${FILE%.sh}
 	done | sort -u

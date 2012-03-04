@@ -3,17 +3,17 @@
 PROG="@PROG@"
 VERSION="@VERSION@"
 
-BIN="$(dirname $(readlink -f $0))"
-CLICRAFT="${CLICRAFT-$(dirname $BIN)}"
-ETC="$CLICRAFT/etc"
-LIB="$CLICRAFT/lib"
+BINDIR="$(dirname $(readlink -f $0))"
+CLICRAFT="${CLICRAFT-$(dirname $BINDIR)}"
+CONFDIR="$CLICRAFT/etc"
+EXECDIR="$CLICRAFT/lib"
 
 if [ -f "$CLICRAFT/etc/clicraft.conf" ]; then
 	. "$CLICRAFT/etc/clicraft.conf"
 fi
 
-. "$LIB/defaults.sh"
-. "$LIB/functions.sh"
+. "$EXECDIR/defaults.sh"
+. "$EXECDIR/functions.sh"
 
 
 mkdir -p "$SERVER_DIR"

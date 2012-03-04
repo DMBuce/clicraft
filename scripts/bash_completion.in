@@ -17,15 +17,15 @@ _clicraft_help() {
 }
 
 _clicraft() {
-	local BIN CLICRAFT ETC LIB
-	BIN="$(dirname $(readlink -f $(which clicraft)))"
-	CLICRAFT="${CLICRAFT-$(dirname $BIN)}"
-	ETC="$CLICRAFT/etc"
-	LIB="$CLICRAFT/lib"
+	local BINDIR CLICRAFT CONFDIR EXECDIR
+	BINDIR="$(dirname $(readlink -f $(which clicraft)))"
+	CLICRAFT="${CLICRAFT-$(dirname $BINDIR)}"
+	CONFDIR="$CLICRAFT/etc"
+	EXECDIR="$CLICRAFT/lib"
 
 	local SERVER_DIR SERVER_NAME SERVER_JAR SERVER_URL START_COMMAND DOWNLOAD_COMMAND
-	. "$LIB/defaults.sh"
-	. "$LIB/functions.sh"
+	. "$EXECDIR/defaults.sh"
+	. "$EXECDIR/functions.sh"
 	
 	if [ -f "$CLICRAFT/etc/clicraft.conf" ]; then
 	    . "$CLICRAFT/etc/clicraft.conf"
