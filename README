@@ -11,9 +11,19 @@ Features include:
    * Send commands to the server console from the command line
    * Extend functionality by writing your own hooks in etc/action.d/
 
-
 See INSTALL for installation instructions, LICENSE for terms and conditions,
 and TODO for planned features.
+
+Once you've followed the procedure outlined in INSTALL, you should be able to
+get usage info using
+
+   clicraft help
+
+To configure the server, copy the default config file found in $sysconfdir/clicraft/
+to $sysconfdir/clicraft/clicraft.conf and edit to taste
+
+   cp /etc/clicraft-defaults.conf /etc/clicraft.conf
+   vim /etc/clicraft.conf
 
 
 Ignore this next line. Do NOT remove it.
