@@ -56,7 +56,6 @@ install: installdirs all
 	$(INSTALL_DATA) lib/action.d/version.sh        $(DESTDIR)$(EXECDIR)/action.d/version.sh
 	$(INSTALL_DATA) lib/action.d/help.sh           $(DESTDIR)$(EXECDIR)/action.d/help.sh
 	$(INSTALL_DATA) lib/action.d/update.sh         $(DESTDIR)$(EXECDIR)/action.d/update.sh
-	$(INSTALL_DATA) lib/action.d/config.sh         $(DESTDIR)$(EXECDIR)/action.d/config.sh
 	$(INSTALL_DATA) lib/action.d/restart.sh        $(DESTDIR)$(EXECDIR)/action.d/restart.sh
 	$(INSTALL_DATA) lib/defaults.sh                $(DESTDIR)$(EXECDIR)/defaults.sh
 	$(INSTALL_DATA) etc/clicraft-defaults.conf     $(DESTDIR)$(CONFDIR)/clicraft-defaults.conf
