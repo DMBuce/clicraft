@@ -4,6 +4,9 @@ VERSION=@VERSION@
 BUGREPORT=@BUGREPORT@
 URL=@URL@
 
+CONFDIR=@CONFDIR@
+EXECDIR=@EXECDIR@
+
 SHELL=/bin/sh
 VPATH=@srcdir@
 
@@ -47,32 +50,32 @@ INSTALL=@INSTALL@
 INSTALL_PROGRAM=@INSTALL_PROGRAM@
 INSTALL_DATA=@INSTALL_DATA@
 
-all:
+#SUBDIRS = scripts src
+SUBDIRS = src
 
-clean:
+all: $(SUBDIRS)
 
-installdirs:
-	$(INSTALL) -d $(DESTDIR)$(datadir)/$(PROG)/bin \
-	              $(DESTDIR)$(libdir)/$(PROG)/action.d \
-	              $(DESTDIR)$(sysconfdir)/$(PROG)/action.d \
-	              $(DESTDIR)$(bindir)
+$(SUBDIRS):
+	$(MAKE) -C $@
 
-install: installdirs
-	$(INSTALL_PROGRAM) $(srcdir)/src/bin/$(PROG) $(DESTDIR)$(datadir)/$(PROG)/bin/$(PROG)
-	$(INSTALL_DATA) $(srcdir)/src/lib/*.sh       $(DESTDIR)$(libdir)/$(PROG)/
-	$(INSTALL_DATA) $(srcdir)/src/lib/action.d/* $(DESTDIR)$(libdir)/$(PROG)/action.d/
-	$(INSTALL_DATA) $(srcdir)/src/etc/*.conf     $(DESTDIR)$(sysconfdir)/$(PROG)/
-	$(INSTALL_DATA) $(srcdir)/src/etc/action.d/* $(DESTDIR)$(sysconfdir)/$(PROG)/action.d/
-	- ( cd $(DESTDIR)$(bindir); ln -s ../share/$(PROG)/bin/$(PROG) )
-	- ( cd $(DESTDIR)$(datadir)/$(PROG); ln -s ../../lib/$(PROG) lib; ln -s ../../etc/$(PROG) etc; )
+install: $(SUBDIRS)-install
 
-uninstall:
-	rm     $(DESTDIR)$(bindir)/$(PROG)
-	rm -rf $(DESTDIR)$(datadir)/$(PROG)
-	rm -rf $(DESTDIR)$(libdir)/$(PROG)/
-	#rm -rf $(DESTDIR)$(sysconfdir)/$(PROG)/
+$(SUBDIRS)-install:
+	$(MAKE) -C $(@:%-install=%) install
 
-check:
+#TODO
+#
+#clean:
+#
+#uninstall:
+#
+#check:
+#
+#dist:
+#
+#distclean:
+#
+#info:
 
-.PHONY: all clean installdirs install uninstall check
+.PHONY: all clean installdirs install uninstall check subdirs $(SUBDIRS)
 

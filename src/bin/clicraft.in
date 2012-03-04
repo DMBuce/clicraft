@@ -3,13 +3,13 @@
 PROG="@PROG@"
 VERSION="@VERSION@"
 
-BINDIR="$(dirname $(readlink -f $0))"
-CLICRAFT="${CLICRAFT-$(dirname $BINDIR)}"
-CONFDIR="$CLICRAFT/etc"
-EXECDIR="$CLICRAFT/lib"
+prefix="@prefix@"
+exec_prefix="@exec_prefix@"
+CONFDIR="@CONFDIR@"
+EXECDIR="@EXECDIR@"
 
-if [ -f "$CLICRAFT/etc/clicraft.conf" ]; then
-	. "$CLICRAFT/etc/clicraft.conf"
+if [ -f "$CONFDIR/clicraft.conf" ]; then
+	. "$CONFDIR/clicraft.conf"
 fi
 
 . "$EXECDIR/defaults.sh"

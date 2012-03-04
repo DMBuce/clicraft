@@ -8,25 +8,12 @@
 # without trouble. This behavior may change in future versions, however.
 
 
-# CLICRAFT
-# The directory that clicraft was installed to.
-#
-# Note that, though you can use it here in your variables, you can't actually
-# set it here. Rather, it must be set in the environment of the shell that
-# calls clicraft. If this variable is not found, it is determined from the
-# location of the clicraft binary.
-#
-# Default:
-# One directory up from where the clicraft executable sits, i.e.,
-#CLICRAFT="$(dirname $(dirname $(readlink -f $0)))"
-
-
 # SERVER_DIR
 # The directory that the minecraft server is launched from.
 # This is the directory that your world data (among other things) reside in.
 #
 # Default:
-#SERVER_DIR="$CLICRAFT/srv"
+#SERVER_DIR="@SERVER_DIR@"
 
 
 # SERVER_NAME

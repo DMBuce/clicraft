@@ -14,6 +14,7 @@ AC_SUBST([URL], [$PACKAGE_URL])
 dnl important dirs
 AC_SUBST([CONFDIR], [$sysconfdir/$PROG])
 AC_SUBST([EXECDIR], [$libexecdir/$PROG])
+AC_SUBST([SERVER_DIR], [$localstatedir/lib/$PROG])
 
 # Checks for programs.
 AC_PROG_INSTALL
@@ -29,7 +30,10 @@ AC_PROG_LN_S
 
 AC_CONFIG_FILES([
 Makefile
+src/Makefile
 src/bin/clicraft
+src/lib/defaults.sh
+src/etc/clicraft-defaults.conf
 scripts/bash_completion
 ])
 AC_OUTPUT
