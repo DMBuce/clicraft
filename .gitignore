@@ -1,0 +1,9 @@
+Makefile
+autom4te.cache/
+config.log
+config.status
+configure
+scripts/bash_completion
+src/bin/clicraft
+src/etc/clicraft-defaults.conf
+src/lib/defaults.sh
