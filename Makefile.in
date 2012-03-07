@@ -7,6 +7,9 @@ URL=@URL@
 CONFDIR=@CONFDIR@
 EXECDIR=@EXECDIR@
 
+WITH_MCEXPLORE = @WITH_MCEXPLORE@
+WITH_C10T = @WITH_C10T@
+
 SHELL=/bin/sh
 VPATH=@srcdir@
 
@@ -50,31 +53,6 @@ INSTALL=@INSTALL@
 INSTALL_PROGRAM=@INSTALL_PROGRAM@
 INSTALL_DATA=@INSTALL_DATA@
 
-SUBDIRS = scripts src
-
-all: $(SUBDIRS)
-
-$(SUBDIRS):
-	$(MAKE) -C $@
-
-install: $(SUBDIRS)-install
-
-$(SUBDIRS)-install:
-	$(MAKE) -C $(@:%-install=%) install
-
-#TODO
-#
-#clean:
-#
-#uninstall:
-#
-#check:
-#
-#dist:
-#
-#distclean:
-#
-#info:
-
-.PHONY: all clean installdirs install uninstall check subdirs $(SUBDIRS)
+# controls actual build
+include Makefile.inc
 
