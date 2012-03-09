@@ -1,3 +1,4 @@
+#!bash
 # this file is in the public domain
 
 _clicraft_cmd() {
