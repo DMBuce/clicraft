@@ -13,7 +13,7 @@
 # This is the directory that your world data (among other things) reside in.
 #
 # Default:
-#SERVER_DIR="@SERVER_DIR@"
+#SERVER_DIR="@DEFAULT_SERVER_DIR@"
 
 
 # SERVER_NAME

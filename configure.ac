@@ -14,7 +14,7 @@ AC_SUBST([URL], [$PACKAGE_URL])
 dnl important dirs
 AC_SUBST([CONFDIR], [$sysconfdir/$PROG])
 AC_SUBST([EXECDIR], [$libexecdir/$PROG])
-AC_SUBST([SERVER_DIR], [$localstatedir/lib/$PROG])
+AC_SUBST([DEFAULT_SERVER_DIR], [$localstatedir/lib/$PROG])
 
 dnl --with-mcexplore
 AC_ARG_WITH([mcexplore],
