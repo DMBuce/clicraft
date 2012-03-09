@@ -1,58 +1,58 @@
-PACKAGE=@PACKAGE@
-PROG=@PROG@
-VERSION=@VERSION@
-BUGREPORT=@BUGREPORT@
-URL=@URL@
-
-CONFDIR=@CONFDIR@
-EXECDIR=@EXECDIR@
-SERVER_DIR=@DEFAULT_SERVER_DIR@
-
-WITH_MCEXPLORE = @WITH_MCEXPLORE@
-WITH_C10T = @WITH_C10T@
-
-SHELL=/bin/sh
-VPATH=@srcdir@
+SHELL = /bin/sh
+VPATH = @srcdir@
 
 # root for installation
-prefix=@prefix@
-exec_prefix=@exec_prefix@
+prefix      = @prefix@
+exec_prefix = @exec_prefix@
 
 # executables
-bindir=@bindir@
-sbindir=@sbindir@
-libexecdir=@libexecdir@
+bindir     = @bindir@
+sbindir    = @sbindir@
+libexecdir = @libexecdir@
 
 # data
-datarootdir=@datarootdir@
-datadir=@datadir@
-sysconfdir=@sysconfdir@
-sharedstatedir=@sharedstatedir@
-localstatedir=@localstatedir@
+datarootdir    = @datarootdir@
+datadir        = @datadir@
+sysconfdir     = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir  = @localstatedir@
 
 # misc
-includedir=@includedir@
-oldincludedir=@oldincludedir@
-docdir=@docdir@
-infodir=@infodir@
-libdir=@libdir@
-localedir=@localedir@
-mandir=@mandir@
-man1dir=$(mandir)/man1
-man2dir=$(mandir)/man2
-man3dir=$(mandir)/man3
-man4dir=$(mandir)/man4
-man5dir=$(mandir)/man5
-man6dir=$(mandir)/man6
-man7dir=$(mandir)/man7
-man8dir=$(mandir)/man8
-man9dir=$(mandir)/man9
-manext=.1
-srcdir=@srcdir@
+includedir    = @includedir@
+oldincludedir = @oldincludedir@
+docdir        = @docdir@
+infodir       = @infodir@
+libdir        = @libdir@
+localedir     = @localedir@
+mandir        = @mandir@
+man1dir       = $(mandir)/man1
+man2dir       = $(mandir)/man2
+man3dir       = $(mandir)/man3
+man4dir       = $(mandir)/man4
+man5dir       = $(mandir)/man5
+man6dir       = $(mandir)/man6
+man7dir       = $(mandir)/man7
+man8dir       = $(mandir)/man8
+man9dir       = $(mandir)/man9
+manext        = .1
+srcdir        = @srcdir@
 
-INSTALL=@INSTALL@
-INSTALL_PROGRAM=@INSTALL_PROGRAM@
-INSTALL_DATA=@INSTALL_DATA@
+INSTALL         = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+
+PACKAGE   = @PACKAGE@
+PROG      = @PROG@
+VERSION   = @VERSION@
+BUGREPORT = @BUGREPORT@
+URL       = @URL@
+
+CONFDIR    = @CONFDIR@
+EXECDIR    = @EXECDIR@
+SERVER_DIR = @DEFAULT_SERVER_DIR@
+
+WITH_MCEXPLORE = @WITH_MCEXPLORE@
+WITH_C10T      = @WITH_C10T@
 
 # controls actual build
 include Makefile.inc

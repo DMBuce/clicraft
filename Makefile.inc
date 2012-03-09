@@ -1,13 +1,13 @@
 
 # get filled by Makefile.inc files
 TGT_TARGETS :=
-CLEAN :=
+CLEAN       :=
 TGT_INSTALL :=
 INSTALLDIRS :=
-UNINSTALL :=
-DIST := configure Makefile.in Makefile.inc \
-	INSTALL LICENSE README TODO
-DISTCLEAN := Makefile config.log config.status
+UNINSTALL   :=
+DIST        := configure Makefile.in Makefile.inc \
+               INSTALL LICENSE README TODO
+DISTCLEAN   := Makefile config.log config.status
 
 .PHONY: all
 all: targets

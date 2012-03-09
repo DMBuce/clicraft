@@ -1,29 +1,29 @@
 TGT_INSTALL := $(TGT_INSTALL) src-install
-DIST := $(DIST) src
+DIST        := $(DIST) src
 
 INSTALLDIRS := $(INSTALLDIRS) \
-	$(DESTDIR)${bindir} \
-	$(DESTDIR)${CONFDIR}/action.d \
-	$(DESTDIR)${EXECDIR}/action.d \
-	$(DESTDIR)${SERVER_DIR}
+               $(DESTDIR)${bindir} \
+               $(DESTDIR)${CONFDIR}/action.d \
+               $(DESTDIR)${EXECDIR}/action.d \
+               $(DESTDIR)${SERVER_DIR}
 
 UNINSTALL := $(UNINSTALL) \
-	$(DESTDIR)$(bindir)/clicraft \
-	$(DESTDIR)$(EXECDIR)/functions.sh \
-	$(DESTDIR)$(EXECDIR)/defaults.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/init.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/status.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/console.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/stop.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/start.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/cmd.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/version.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/help.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/update.sh \
-	$(DESTDIR)$(EXECDIR)/action.d/restart.sh \
-	$(DESTDIR)$(EXECDIR)/defaults.sh \
-	$(DESTDIR)$(CONFDIR)/clicraft-defaults.conf \
-	$(DESTDIR)$(CONFDIR)/action.d/backup.sh.example
+             $(DESTDIR)$(bindir)/clicraft \
+             $(DESTDIR)$(EXECDIR)/functions.sh \
+             $(DESTDIR)$(EXECDIR)/defaults.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/init.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/status.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/console.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/stop.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/start.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/cmd.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/version.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/help.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/update.sh \
+             $(DESTDIR)$(EXECDIR)/action.d/restart.sh \
+             $(DESTDIR)$(EXECDIR)/defaults.sh \
+             $(DESTDIR)$(CONFDIR)/clicraft-defaults.conf \
+             $(DESTDIR)$(CONFDIR)/action.d/backup.sh.example
 
 .PHONY: src-install
 src-install:
