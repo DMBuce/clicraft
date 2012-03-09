@@ -48,11 +48,9 @@ AC_PROG_LN_S
 
 AC_CONFIG_FILES([
 Makefile
-src/Makefile
 src/bin/clicraft
 src/lib/defaults.sh
 src/etc/clicraft-defaults.conf
-scripts/Makefile
 scripts/bash_completion
 ])
 AC_OUTPUT
