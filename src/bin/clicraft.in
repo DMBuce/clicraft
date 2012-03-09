@@ -2,6 +2,8 @@
 
 PROG="@PROG@"
 VERSION="@VERSION@"
+BUGREPORT="@BUGREPORT@"
+URL="@URL@"
 
 prefix="@prefix@"
 exec_prefix="@exec_prefix@"

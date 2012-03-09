@@ -15,6 +15,7 @@ Usage: $PROG <action> [args]
       ${ACTIONS[@]}
 
    To get usage for a particular action, run \`$PROG help <action>'.
+   For bug reports, use <$BUGREPORT>.
 
 EOF
 }
