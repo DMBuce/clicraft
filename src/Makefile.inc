@@ -1,4 +1,5 @@
 TGT_INSTALL := $(TGT_INSTALL) src-install
+DIST := $(DIST) src
 
 INSTALLDIRS := $(INSTALLDIRS) \
 	$(DESTDIR)${bindir} \

@@ -5,6 +5,9 @@ CLEAN :=
 TGT_INSTALL :=
 INSTALLDIRS :=
 UNINSTALL :=
+DIST := configure Makefile.in Makefile.inc \
+	INSTALL LICENSE README TODO
+DISTCLEAN := Makefile config.log config.status
 
 .PHONY: all
 all: targets
@@ -31,6 +34,18 @@ installdirs:
 .PHONY: uninstall
 uninstall:
 	rm -f $(UNINSTALL)
+
+.PHONY: dist
+dist:
+	autoconf
+	rm -rf $(PROG)-$(VERSION)
+	mkdir $(PROG)-$(VERSION)
+	cp -r $(DIST) $(PROG)-$(VERSION)
+	tar czvf $(PROG)-$(VERSION).tar.gz $(PROG)-$(VERSION)
+
+.PHONY: distclean
+distclean:
+	rm -f $(DISTCLEAN)
 
 .SECONDARY: $(CLEAN) $(UNINSTALL)
 
