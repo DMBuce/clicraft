@@ -11,10 +11,24 @@ AC_SUBST([VERSION],   [$PACKAGE_VERSION])
 AC_SUBST([BUGREPORT], [$PACKAGE_BUGREPORT])
 AC_SUBST([URL],       [$PACKAGE_URL])
 
-dnl important dirs
-AC_SUBST([CONFDIR],            [$sysconfdir/$PROG])
-AC_SUBST([EXECDIR],            [$libexecdir/$PROG])
-AC_SUBST([DEFAULT_SERVER_DIR], [$localstatedir/lib/$PROG])
+dnl --enable-shortdirs
+AC_ARG_ENABLE([shortdirs],
+	AS_HELP_STRING([--enable-shortdirs], [Use short paths for installation directories]))
+
+AS_IF([test "x$enable_shortdirs" = "xyes"],
+      AC_SUBST([CONFDIR], [$sysconfdir]),
+      AC_SUBST([CONFDIR], [$sysconfdir/$PROG])
+)
+
+AS_IF([test "x$enable_shortdirs" = "xyes"],
+      AC_SUBST([EXECDIR], [$libexecdir]),
+      AC_SUBST([EXECDIR], [$libexecdir/$PROG])
+)
+
+AS_IF([test "x$enable_shortdirs" = "xyes"],
+      AC_SUBST([DEFAULT_SERVER_DIR], [$localstatedir]),
+      AC_SUBST([DEFAULT_SERVER_DIR], [$localstatedir/lib/$PROG])
+)
 
 dnl --with-mcexplore
 AC_ARG_WITH([mcexplore],
