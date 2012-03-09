@@ -44,7 +44,7 @@ dist:
 	tar czvf $(PROG)-$(VERSION).tar.gz $(PROG)-$(VERSION)
 
 .PHONY: distclean
-distclean:
+distclean: clean
 	rm -f $(DISTCLEAN)
 
 .SECONDARY: $(CLEAN) $(UNINSTALL)
