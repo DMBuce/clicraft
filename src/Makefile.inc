@@ -4,7 +4,8 @@ DIST := $(DIST) src
 INSTALLDIRS := $(INSTALLDIRS) \
 	$(DESTDIR)${bindir} \
 	$(DESTDIR)${CONFDIR}/action.d \
-	$(DESTDIR)${EXECDIR}/action.d
+	$(DESTDIR)${EXECDIR}/action.d \
+	$(DESTDIR)${SERVER_DIR}
 
 UNINSTALL := $(UNINSTALL) \
 	$(DESTDIR)$(bindir)/clicraft \
