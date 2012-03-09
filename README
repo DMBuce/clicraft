@@ -11,11 +11,38 @@ Features include:
    * Send commands to the server console from the command line
    * Extend functionality by writing your own hooks in etc/action.d/
 
-See INSTALL for installation instructions, LICENSE for terms and conditions,
-and TODO for planned features.
+See LICENSE for terms and conditions and TODO for planned features.
 
-Once you've followed the procedure outlined in INSTALL, you should be able to
-get usage info using
+== QuickInstall ==
+
+If you don't have a ./configure file, generate one with
+
+   autoconf
+
+To install under $HOME, the recommended procedure is something like this:
+
+   ./configure --prefix=$HOME/clicraft \
+      --sysconfdir=$HOME/clicraft/etc \
+      --libexecdir=$HOME/clicraft/lib \
+      --localstatedir=$HOME/clicraft/srv \
+      --enable-shortdirs \
+      --with-c10t --with-mcexplore
+   make; make install
+
+For installing to a linux system, this will give a more typical setup:
+
+   ./configure --prefix=/usr \
+      --sysconfdir=/etc \
+      --libexecdir=/usr/lib \
+      --localstatedir=/var \
+      --with-c10t --with-mcexplore
+   make; make install
+
+For staged installs, you can use e.g. `make DESTDIR=/tmp/staging` instead.
+For more verbose installation instructions, see INSTALL.
+
+Once you've successfully installed clicraft, you should be able to get usage
+info using
 
    clicraft help
 
