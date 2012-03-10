@@ -1,0 +1,16 @@
+#!bash
+#
+# WARNING: Overriding clicraft's built-in action scripts may have unintended
+#          consequences. Proceed at your own risk!
+#
+# Usage: clicraft $ACTION
+#
+#    Overrides the default `clicraft $ACTION' with custom functionality.
+#
+
+# TODO: stuff before "$ACTION" action script
+
+sys_action $ACTION "$@"
+
+# TODO: stuff after "$ACTION" action script
+
