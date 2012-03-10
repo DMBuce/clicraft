@@ -11,7 +11,7 @@ if status; then
 fi
 
 if [ ! -f "$SERVER_JAR" ]; then
-	action init
+	action dl
 fi
 
 msg "Starting $SERVER_NAME"

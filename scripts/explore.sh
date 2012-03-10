@@ -16,7 +16,7 @@ if status; then
 fi
 
 if [ ! -f "$SERVER_JAR" ]; then
-	action init
+	action dl
 fi
 
 mcexplore -p "$SERVER_DIR" "$@"
