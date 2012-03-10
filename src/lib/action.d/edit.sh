@@ -47,13 +47,13 @@ edit_action() {
 	local ACTION ACTIONFILE TEMPLATE
 	ACTION="$1"
 
-	if ACTIONFILE="$(local_actionfile "$ACTION")"; then
+	if ACTIONFILE="$(local_actionfile "$ACTION" 2>/dev/null)"; then
 		edit_file "$ACTIONFILE"
 	else
 		ACTIONFILE="$CONFDIR/action.d/$ACTION.sh"
 
 		# figure out which template to use
-		if sys_actionfile "$ACTION" >/dev/null; then
+		if sys_actionfile "$ACTION" &>/dev/null; then
 			TEMPLATE="$CONFDIR/action.d/action-override.sh.example"
 		else
 			TEMPLATE="$CONFDIR/action.d/action.sh.example"
