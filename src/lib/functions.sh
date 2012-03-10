@@ -18,15 +18,31 @@ err() {
 	printf "${mesg}\n" "$@" >&2
 }
 
+# Finds the location of a system action script
+sys_actionfile() {
+	if [ -f "$EXECDIR/action.d/$ACTION.sh" ]; then
+		echo "$EXECDIR/action.d/$ACTION.sh"
+	else
+		return 1
+	fi
+}
+
+# Finds the location of a local action script
+local_actionfile() {
+	if [ -f "$CONFDIR/action.d/$ACTION.sh" ]; then
+		echo "$CONFDIR/action.d/$ACTION.sh"
+	else
+		return 1
+	fi
+}
+
 # Finds the location of an action script
 actionfile() {
 	local ACTION="$1"
 
-	if [ -f "$CONFDIR/action.d/$ACTION.sh" ]; then
-		echo "$CONFDIR/action.d/$ACTION.sh"
-	elif [ -f "$EXECDIR/action.d/$ACTION.sh" ]; then
-		echo "$EXECDIR/action.d/$ACTION.sh"
-	else
+	# try to find action script
+	if ! local_actionfile && \
+	   ! sys_actionfile; then
 		warn "Unknown action: $ACTION"
 		return 1
 	fi
