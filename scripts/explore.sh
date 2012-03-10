@@ -2,8 +2,6 @@
 #
 # This script requires mcexplore.
 #
-# Copy to clicraft/etc/action.d/ to install.
-#
 # Usage: clicraft explore <size> [args]
 #
 #    Generates a rectangle of land of a given size. The <size> argument, as
