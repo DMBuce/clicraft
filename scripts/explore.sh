@@ -15,9 +15,18 @@ if status; then
 	return 1
 fi
 
+# try to find mcexplore executable
+if ! MCEXPLORE=$(which mcexplore 2>/dev/null); then
+	if ! MCEXPLORE=$(which mcexplore.py 2>/dev/null); then
+		err "Cannot find mcexplore not in PATH";
+		return 1
+	fi
+fi
+
+# download server jar if needed
 if [ ! -f "$SERVER_JAR" ]; then
 	action dl
 fi
 
-mcexplore -p "$SERVER_DIR" "$@"
+$MCEXPLORE -p "$SERVER_DIR" "$@"
 
