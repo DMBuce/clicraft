@@ -31,10 +31,10 @@ To install under $HOME, the recommended procedure is something like this:
 
 For installing to a linux system, this will give a more typical setup:
 
-   ./configure --prefix=/usr \
-      --sysconfdir=/etc \
-      --libexecdir=/usr/lib \
-      --localstatedir=/var \
+   ./configure --prefix=/usr/local \
+      --sysconfdir=/usr/local/etc \
+      --libexecdir=/usr/local/lib \
+      --localstatedir=/var/local \
       --with-c10t --with-mcexplore
    make; make install
 
