@@ -1,5 +1,10 @@
 * complement DOWNLOAD_COMMAND and START_COMMAND with DOWNLOAD_OPTS / START_OPTS
 
+URGENT
+* PKGBUILD install file
+* Wiki page
+* Ubuntu speed-test
+
 DOCUMENTATION
 * syntax
 * config file
@@ -7,6 +12,12 @@ DOCUMENTATION
 ** variables
 ** functions
 ** examples
+
+COMPATIBILITY
+* CentOS
+* Debian
+* BSD?
+* Mac?
 
 UNIT TESTS
 * whitespace
