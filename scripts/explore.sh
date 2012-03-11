@@ -28,5 +28,5 @@ if [ ! -f "$SERVER_JAR" ]; then
 	action dl
 fi
 
-$MCEXPLORE -p "$SERVER_DIR" "$@"
+$MCEXPLORE -p "$SERVER_DIR" -c "$START_COMMAND" "$@"
 
