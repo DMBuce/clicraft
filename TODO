@@ -1,4 +1,6 @@
+FEATURES
 * complement DOWNLOAD_COMMAND and START_COMMAND with DOWNLOAD_OPTS / START_OPTS
+* multi-user support with $XDG_*
 
 URGENT
 * PKGBUILD install file
