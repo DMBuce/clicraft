@@ -36,9 +36,11 @@ edit_file_template() {
 
 		edit_file "$FILE"
 
-		if diff -q "$FILE" <(sed "$SUBST" "$TEMPLATE") &>/dev/null
-		then
+		if ! grep -q '^[ 	]*[^ 	#]' "$FILE"; then
+			warn "Aborting installation of $(basename "$FILE") because no non-comment lines found."
 			rm "$FILE"
+		else
+			msg "New file $(basename "$FILE") successfully installed."
 		fi
 	fi
 }
