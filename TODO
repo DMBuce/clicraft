@@ -1,6 +1,15 @@
+* complement DOWNLOAD_COMMAND and START_COMMAND with DOWNLOAD_OPTS / START_OPTS
+
 DOCUMENTATION
-started(), stopped()
-test/, scripts/
-canonicalize paths, make sure relative paths in config work okay
-make sure clicraft will work with minimal, cron-like PATH
-move DOWNLOAD_COMMAND options into DOWNLOAD_OPTS, same for START_COMMAND
+* syntax
+* config file
+* action scripts
+** variables
+** functions
+** examples
+
+UNIT TESTS
+* whitespace
+* relative paths
+* minimal (cronlike) path
+
