@@ -1,5 +1,6 @@
 TGT_INSTALL := $(TGT_INSTALL) scripts-install
 DIST        := $(DIST) scripts
+DISTCLEAN   := $(DISTCLEAN) scripts/bash_completion
 
 INSTALLDIRS := $(INSTALLDIRS) \
                $(DESTDIR)${sysconfdir}/bash_completion.d \

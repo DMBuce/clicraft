@@ -1,6 +1,11 @@
 TGT_INSTALL := $(TGT_INSTALL) src-install
 DIST        := $(DIST) src
 
+DISTCLEAN   := $(DISTCLEAN) \
+               src/bin/clicraft \
+               src/lib/defaults.sh \
+               src/etc/clicraft-defaults.conf
+
 INSTALLDIRS := $(INSTALLDIRS) \
                $(DESTDIR)${bindir} \
                $(DESTDIR)${CONFDIR}/action.d \
