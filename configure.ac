@@ -50,15 +50,6 @@ AS_IF([test "x$with_c10t" = "xyes"],
 
 # Checks for programs.
 AC_PROG_INSTALL
-AC_PROG_LN_S
-
-# Checks for libraries.
-
-# Checks for header files.
-
-# Checks for typedefs, structures, and compiler characteristics.
-
-# Checks for library functions.
 
 AC_CONFIG_FILES([
 Makefile
