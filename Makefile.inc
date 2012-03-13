@@ -47,7 +47,6 @@ dist:
 distclean: clean
 	rm -f $(DISTCLEAN)
 
-.PHONY: tags
 tags: distclean
 	ctags -R
 	ctags -a --language-force=Sh   `find . -name \*.in`
