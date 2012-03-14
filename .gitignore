@@ -7,3 +7,4 @@ scripts/bash_completion
 src/bin/clicraft
 src/etc/clicraft-defaults.conf
 src/lib/defaults.sh
+tags

@@ -1,6 +1,11 @@
 TGT_INSTALL := $(TGT_INSTALL) src-install
 DIST        := $(DIST) src
 
+DISTCLEAN   := $(DISTCLEAN) \
+               src/bin/clicraft \
+               src/lib/defaults.sh \
+               src/etc/clicraft-defaults.conf
+
 INSTALLDIRS := $(INSTALLDIRS) \
                $(DESTDIR)${bindir} \
                $(DESTDIR)${CONFDIR}/action.d \
@@ -14,7 +19,7 @@ UNINSTALL := $(UNINSTALL) \
              $(DESTDIR)$(EXECDIR)/action.d/*.sh \
              $(DESTDIR)$(EXECDIR)/defaults.sh \
              $(DESTDIR)$(CONFDIR)/clicraft-defaults.conf \
-             $(DESTDIR)$(CONFDIR)/action.d/backup.sh.example
+             $(DESTDIR)$(CONFDIR)/action.d/*.sh.example
 
 .PHONY: src-install
 src-install:
@@ -23,6 +28,6 @@ src-install:
 	$(INSTALL_DATA) src/lib/defaults.sh                $(DESTDIR)$(EXECDIR)/defaults.sh
 	$(INSTALL_DATA) src/lib/action.d/*.sh              $(DESTDIR)$(EXECDIR)/action.d/
 	$(INSTALL_DATA) src/etc/clicraft-defaults.conf     $(DESTDIR)$(CONFDIR)/clicraft-defaults.conf
-	$(INSTALL_DATA) src/etc/action.d/backup.sh.example $(DESTDIR)$(CONFDIR)/action.d/backup.sh.example
+	$(INSTALL_DATA) src/etc/action.d/*.sh.example      $(DESTDIR)$(CONFDIR)/action.d/
 	
 # vim: set ft=make:

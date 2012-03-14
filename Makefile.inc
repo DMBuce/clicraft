@@ -47,6 +47,11 @@ dist:
 distclean: clean
 	rm -f $(DISTCLEAN)
 
+tags: distclean
+	ctags -R
+	ctags -a --language-force=Sh   `find . -name \*.in`
+	ctags -a --language-force=Make `find . -name \*.inc` Makefile.in
+
 .SECONDARY: $(CLEAN) $(UNINSTALL)
 
 # vim: set ft=make:

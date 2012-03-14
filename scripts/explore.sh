@@ -2,8 +2,6 @@
 #
 # This script requires mcexplore.
 #
-# Copy to clicraft/etc/action.d/ to install.
-#
 # Usage: clicraft explore <size> [args]
 #
 #    Generates a rectangle of land of a given size. The <size> argument, as
@@ -17,9 +15,18 @@ if status; then
 	return 1
 fi
 
-if [ ! -f "$SERVER_JAR" ]; then
-	action init
+# try to find mcexplore executable
+if ! MCEXPLORE=$(which mcexplore 2>/dev/null); then
+	if ! MCEXPLORE=$(which mcexplore.py 2>/dev/null); then
+		err "Cannot find mcexplore not in PATH";
+		return 1
+	fi
 fi
 
-mcexplore -p "$SERVER_DIR" "$@"
+# download server jar if needed
+if [ ! -f "$SERVER_JAR" ]; then
+	action dl
+fi
+
+$MCEXPLORE -p "$SERVER_DIR" -c "$START_COMMAND" "$@"
 

@@ -1,0 +1,56 @@
+# Maintainer: DMBuce <dmbuce@gmail.com>
+pkgname=clicraft-devel-git
+pkgver=20120311
+pkgrel=1
+pkgdesc="A command-line wrapper for a minecraft or bukkit server."
+arch=("any")
+url="https://github.com/DMBuce/clicraft"
+license=('BSD')
+depends=("bash" "tmux")
+makedepends=("git")
+#checkdepends=()
+optdepends=("c10t: for map.sh action script" "mcexplore: for explore.sh action script")
+provides=('clicraft')
+conflicts=('clicraft')
+install="$pkgname.install"
+source=("$pkgname.install")
+md5sums=('f9c94624d9c5c4b93fb2e1de7e16299f')
+
+_gitname="clicraft"
+_gitroot="git://github.com/DMBuce/clicraft.git"
+#_gitroot="$HOME/src/clicraft"
+
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [[ -d "$_gitname" ]]; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone "$_gitroot" "$_gitname" --branch devel
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+
+  autoconf
+  ./configure --prefix=/usr \
+              --libexecdir=/usr/lib \
+              --sysconfdir=/etc \
+              --localstatedir=/var \
+              --with-mcexplore \
+              --with-c10t
+  make
+}
+
+package() {
+  cd "$srcdir/$_gitname-build"
+  make DESTDIR="$pkgdir" install
+}
+
+# vim:set ts=2 sw=2 et:

@@ -1,17 +1,18 @@
 #!bash
 #
-# Usage: clicraft update
+# Usage: clicraft dl
 #
-#    Updates the server jar file.
+#    Downloads the server jar file.
 #
 
 if [ -f "$SERVER_JAR" ]; then
 	msg "Backing up server jar to $(basename $SERVER_JAR).ccback"
 	mv "$SERVER_JAR" "$SERVER_JAR.ccback" || return $?
+
+	msg "Downloading new $(basename $SERVER_JAR)"
+else
+	msg "Downloading $(basename $SERVER_JAR)"
 fi
 
-msg "Downloading new $(basename $SERVER_JAR)"
 $DOWNLOAD_COMMAND
-
-status && action restart
 

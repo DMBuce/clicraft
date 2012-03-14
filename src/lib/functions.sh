@@ -20,18 +20,24 @@ err() {
 
 # Finds the location of a system action script
 sys_actionfile() {
+	local ACTION="$1"
+
 	if [ -f "$EXECDIR/action.d/$ACTION.sh" ]; then
 		echo "$EXECDIR/action.d/$ACTION.sh"
 	else
+		warn "Unknown action: $ACTION"
 		return 1
 	fi
 }
 
 # Finds the location of a local action script
 local_actionfile() {
+	local ACTION="$1"
+
 	if [ -f "$CONFDIR/action.d/$ACTION.sh" ]; then
 		echo "$CONFDIR/action.d/$ACTION.sh"
 	else
+		warn "Unknown action: $ACTION"
 		return 1
 	fi
 }
@@ -41,9 +47,34 @@ actionfile() {
 	local ACTION="$1"
 
 	# try to find action script
-	if ! local_actionfile && \
-	   ! sys_actionfile; then
-		warn "Unknown action: $ACTION"
+	if ! local_actionfile "$ACTION" 2>/dev/null && \
+	   ! sys_actionfile "$ACTION"; then
+		return 1
+	fi
+}
+
+# Executes a system action script
+sys_action() {
+	local ACTION="$1"
+	shift
+
+	local FILE="$(sys_actionfile "$ACTION")"
+	if [ "$FILE" != "" ]; then
+		. "$FILE" "$@"
+	else
+		return 1
+	fi
+}
+
+# Executes a local action script
+local_action() {
+	local ACTION="$1"
+	shift
+
+	local FILE="$(local_actionfile "$ACTION")"
+	if [ "$FILE" != "" ]; then
+		. "$FILE" "$@"
+	else
 		return 1
 	fi
 }
@@ -53,7 +84,7 @@ action() {
 	local ACTION="$1"
 	shift
 
-	local FILE=$(actionfile "$ACTION")
+	local FILE="$(actionfile "$ACTION")"
 	if [ "$FILE" != "" ]; then
 		. "$FILE" "$@"
 	else

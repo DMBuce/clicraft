@@ -2,8 +2,6 @@
 #
 # This script requires c10t.
 #
-# Copy to clicraft/etc/action.d/ to install.
-#
 # Usage: clicraft map [args]
 #
 #    Maps the world. Any additional <args> get passed to c10t. For valid

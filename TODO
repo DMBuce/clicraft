@@ -1,6 +1,29 @@
+FEATURES
+* complement DOWNLOAD_COMMAND and START_COMMAND with DOWNLOAD_OPTS / START_OPTS
+* multi-user support with $XDG_*
+* look into expect script as used by minecraft-server in AUR
+
+URGENT
+* Wiki page (for sudo)
+* Ubuntu speed-test
+
 DOCUMENTATION
-started(), stopped()
-test/, scripts/
-canonicalize paths, make sure relative paths in config work okay
-make sure clicraft will work with minimal, cron-like PATH
-move DOWNLOAD_COMMAND options into DOWNLOAD_OPTS, same for START_COMMAND
+* syntax
+* config file
+* troubleshooting
+* action scripts
+** variables
+** functions
+** examples
+
+COMPATIBILITY
+* CentOS
+* Debian
+* BSD?
+* Mac?
+
+UNIT TESTS
+* whitespace
+* relative paths
+* minimal (cronlike) path
+

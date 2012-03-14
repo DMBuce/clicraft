@@ -1,15 +1,15 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.68])
-AC_INIT([clicraft], [0.0.4], [https://github.com/DMBuce/clicraft/issues], [clicraft], [https://github.com/DMBuce/clicraft])
+AC_PREREQ([2.59])
+AC_INIT([clicraft], [0.0.4], [https://github.com/DMBuce/clicraft/issues], [clicraft])
 
 dnl package info
 AC_SUBST([PACKAGE],   [$PACKAGE_NAME])
 AC_SUBST([PROG],      [$PACKAGE_TARNAME])
 AC_SUBST([VERSION],   [$PACKAGE_VERSION])
 AC_SUBST([BUGREPORT], [$PACKAGE_BUGREPORT])
-AC_SUBST([URL],       [$PACKAGE_URL])
+AC_SUBST([URL],       [https://github.com/DMBuce/clicraft])
 
 dnl --enable-shortdirs
 AC_ARG_ENABLE([shortdirs],
@@ -50,15 +50,6 @@ AS_IF([test "x$with_c10t" = "xyes"],
 
 # Checks for programs.
 AC_PROG_INSTALL
-AC_PROG_LN_S
-
-# Checks for libraries.
-
-# Checks for header files.
-
-# Checks for typedefs, structures, and compiler characteristics.
-
-# Checks for library functions.
 
 AC_CONFIG_FILES([
 Makefile
