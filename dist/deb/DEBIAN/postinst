@@ -1,0 +1,33 @@
+#!/bin/sh -e
+
+# Copyright 2009, Noah Slater <nslater@tumbolia.org>
+# Copyright 2012, DMBuce <dmbuce@gmail.com>
+
+# Copying and distribution of this file, with or without modification, are
+# permitted in any medium without royalty provided the copyright notice and this
+# notice are preserved.
+
+case $1 in
+    configure)
+        if ! getent passwd minecraft > /dev/null; then
+            adduser --system --quiet \
+                --home /var/lib/clicraft --no-create-home \
+                --shell /bin/bash --group --gecos "Minecraft Administrator" minecraft
+        fi
+        if test "`id -u minecraft`" -eq 0; then
+            echo "The minecraft administrative user must not be root." >&2
+            false
+        fi
+        if test "`id -g minecraft`" -eq 0; then
+            echo "The minecraft administrative group must not be root." >&2
+            false
+        fi
+        chown -R minecraft:minecraft /etc/minecraft
+        chown -R minecraft:minecraft /var/lib/clicraft
+        #chmod 0775 /etc/minecraft
+        #chmod 0664 /etc/minecraft/default.ini
+        #chmod 0664 /etc/minecraft/local.ini
+        ;;
+esac
+
+

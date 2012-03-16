@@ -1,0 +1,11 @@
+Package: clicraft
+Version: 0.0.5-1
+Section: misc
+Priority: optional
+Architecture: all
+Depends: tmux, curl
+Pre-Depends: adduser
+Maintainer: D.M. Buce <dmbuce@gmail.com>
+Description: Command Line Minecraft Server
+ A command-line wrapper for operation and administration of a Minecraft
+ or Bukkit server.

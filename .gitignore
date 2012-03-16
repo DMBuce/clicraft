@@ -3,6 +3,10 @@ autom4te.cache/
 config.log
 config.status
 configure
+dist/deb/DEBIAN/conffiles
+dist/deb/etc
+dist/deb/usr
+dist/deb/var
 scripts/bash_completion
 src/bin/clicraft
 src/etc/clicraft-defaults.conf

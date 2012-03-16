@@ -14,6 +14,7 @@ all: targets
 
 include scripts/Makefile.inc
 include src/Makefile.inc
+include dist/Makefile.inc
 
 .PHONY: targets
 targets: $(TGT_TARGETS)
