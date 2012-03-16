@@ -22,7 +22,7 @@ case $1 in
             echo "The minecraft administrative group must not be root." >&2
             false
         fi
-        chown -R minecraft:minecraft /etc/minecraft
+        chown -R minecraft:minecraft /etc/clicraft
         chown -R minecraft:minecraft /var/lib/clicraft
         #chmod 0775 /etc/minecraft
         #chmod 0664 /etc/minecraft/default.ini
