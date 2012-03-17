@@ -11,7 +11,12 @@ if status; then
 fi
 
 if [ ! -f "$SERVER_JAR" ]; then
-	action dl
+	action dl || return $?
+fi
+
+if [ ! -w "$SERVER_DIR" ]; then
+	err "No write permissions in $SERVER_DIR"
+	return 1
 fi
 
 msg "Starting $SERVER_NAME"
