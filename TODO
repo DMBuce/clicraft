@@ -1,11 +1,6 @@
 FEATURES
-* complement DOWNLOAD_COMMAND and START_COMMAND with DOWNLOAD_OPTS / START_OPTS
 * multi-user support with $XDG_*
 * look into expect script as used by minecraft-server in AUR
-
-URGENT
-* Wiki page (for sudo)
-* Ubuntu speed-test
 
 DOCUMENTATION
 * syntax
