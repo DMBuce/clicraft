@@ -10,7 +10,14 @@ src/bin/clicraft
 src/etc/clicraft-defaults.conf
 src/lib/defaults.sh
 
-# debian build artifacts
+# distro build artifacts
+clicraft_*.deb
+dist/arch/[0-9].[0-9].[0-9]
+dist/arch/[0-9].[0-9].[0-9][0-9]
+dist/arch/clicraft-*.pkg.tar.xz
+dist/arch/clicraft-*.src.tar.gz
+dist/arch/pkg/
+dist/arch/src/
 dist/deb/DEBIAN/conffiles
 dist/deb/etc
 dist/deb/usr
