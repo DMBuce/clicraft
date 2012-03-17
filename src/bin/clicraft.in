@@ -23,8 +23,17 @@ if [ "$(id -u)" = "0" ]; then
 	exit 1
 fi
 
-mkdir -p "$SERVER_DIR"
-cd "$SERVER_DIR"
+# attempt to create SERVER_DIR
+# (failure caught in cd check)
+mkdir -p "$SERVER_DIR" 2>/dev/null
+
+# bail if we can't cd
+cd "$SERVER_DIR" 2>/dev/null
+retval="$?"
+if [ "$retval" != 0 ]; then
+	err "Could not change to directory $SERVER_DIR"
+	exit "$retval"
+fi
 
 case "$1" in
   "--version")
