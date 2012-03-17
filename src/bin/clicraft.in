@@ -17,6 +17,11 @@ fi
 . "$EXECDIR/defaults.sh"
 . "$EXECDIR/functions.sh"
 
+# bail if we're root
+if [ "$(id -u)" = "0" ]; then
+	err "You cannot run this program as root"
+	exit 1
+fi
 
 mkdir -p "$SERVER_DIR"
 cd "$SERVER_DIR"
