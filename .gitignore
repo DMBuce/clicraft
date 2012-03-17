@@ -1,14 +1,21 @@
+
+# autoconf cruft
 Makefile
 autom4te.cache/
 config.log
 config.status
 configure
-dist/deb/DEBIAN/conffiles
-dist/deb/etc
-dist/deb/usr
-dist/deb/var
 scripts/bash_completion
 src/bin/clicraft
 src/etc/clicraft-defaults.conf
 src/lib/defaults.sh
+
+# debian build artifacts
+dist/deb/DEBIAN/conffiles
+dist/deb/etc
+dist/deb/usr
+dist/deb/var
+
+# from ctags
 tags
+
