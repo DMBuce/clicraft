@@ -3,7 +3,7 @@ Version: 0.0.5-1
 Section: misc
 Priority: optional
 Architecture: all
-Depends: tmux, curl
+Depends: bash, tmux, curl, java-runtime
 Pre-Depends: adduser
 Maintainer: D.M. Buce <dmbuce@gmail.com>
 Description: Command Line Minecraft Server
