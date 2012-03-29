@@ -14,9 +14,11 @@ backup=("etc/action.d/explore.sh"
         "etc/action.d/map.sh")
 install="$pkgname.install"
 source=("https://github.com/DMBuce/clicraft/tarball/$pkgver"
-        "$pkgname.install")
+        "$pkgname.install"
+        "$pkgname.rc")
 md5sums=('0892fa4e3b96919e8da10955384233f4'
-         '631669f302dffa059b4bdc915374d3d6')
+         '631669f302dffa059b4bdc915374d3d6'
+         '224808a3c360c6c3bff8f05d6007e1aa')
 
 build() {
   cd $srcdir/DMBuce-clicraft-*
@@ -35,6 +37,7 @@ package() {
   cd $srcdir/DMBuce-clicraft-*
   make DESTDIR="$pkgdir" install
 
+  install -Dm755 "$startdir/$pkgname.rc" "${pkgdir}/etc/rc.d/$pkgname"
 }
 
 # vim:set ts=2 sw=2 et:
