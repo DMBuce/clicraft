@@ -35,3 +35,5 @@ case "$1" in
         echo "usage: $0 {start|stop|restart}"
 esac
 exit 0
+
+# vim: set ft=sh:
