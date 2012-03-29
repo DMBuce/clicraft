@@ -10,8 +10,8 @@ depends=("bash" "tmux" "curl" "java-runtime")
 makedepends=("git")
 #checkdepends=()
 optdepends=("c10t: for map.sh action script" "mcexplore: for explore.sh action script")
-backup=("etc/action.d/explore.sh"
-        "etc/action.d/map.sh")
+backup=("etc/clicraft/action.d/explore.sh"
+        "etc/clicraft/action.d/map.sh")
 install="$pkgname.install"
 source=("https://github.com/DMBuce/clicraft/tarball/$pkgver"
         "$pkgname.install"
