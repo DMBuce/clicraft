@@ -1,15 +1,19 @@
+The clicraft project page is located at <{URL}>.
 
 Bugs
 ----
 
-Report any and all bugs to the issue tracker at
-<https://github.com/DMBuce/clicraft/issues> with
+Report any and all bugs to the clicraft
+{BUGREPORT}[issue tracker] with
 as much detail as possible.
 
 Authors
 -------
 
 * DMBuce <dmbuce@gmail.com>
+
+To see a full list of contributes, use `git shortlog -s` in the clicraft
+{URL}[git repository].
 
 /////
 vim: set syntax=asciidoc ts=4 sw=4 noet:
