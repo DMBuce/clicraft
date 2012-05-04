@@ -1,0 +1,101 @@
+clicraft.conf(5)
+================
+
+Name
+----
+clicraft.conf - clicraft server wrapper configuration file
+
+Synopsis
+--------
+{CONFDIR}/clicraft.conf
+
+Description
+-----------
+Configuration options for clicraft are stored in {CONFDIR}/clicraft.conf. The
+format is bash, so configuration options take the form +OPTION="value"+ (with
+no whitespace between the equals sign (`=`) ). This file is sourced from
+within clicraft, so you can include any extra variables you wish to use in
+custom action scripts. You can also embed shell logic without trouble; this
+behavior may change in future versions, however.
+
+An example default file is located at {CONFDIR}/clicraft-defaults.conf. It
+is fairly well-commented, so it may be easiest to simply copy it to
+{CONFDIR}/clicraft.conf and follow the directions inside for customization.
+
+Options
+-------
+**SERVER_DIR=**"/path/to/server/directory"::
+	The directory that the server is launched from.
+	Clicraft switches to this directory before performing any action, so
+	this is the directory that your world data, server.properties, and
+	server.log (among other things) resides in. Most relative paths are taken
+	ith respect to this directory.
++
+Default: "{DEFAULT_SERVER_DIR}"
+
+
+**SERVER_NAME=**"name"::
+	An identifier for the server. This is the value used to set tmux's
+	window and session names when starting the server. It is also used in some
+	informational messages.
++
+Default: "minecraft"
+
+
+**SERVER_JAR=**"/path/to/server/jar"::
+	The location of the server jar on disk.
++
+Default: "$SERVER_DIR/minecraft_server.jar" (but see +SERVER_TYPE+, below)
+
+
+**SERVER_URL=**"url"::
+	The url to download +SERVER_JAR+ from.
++
+Default:
+"https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"
+(but see +SERVER_TYPE+, below)
+
+
+**SERVER_TYPE=**"type"::
+	If this option is set to "bukkit", +SERVER_JAR+ and +SERVER_URL+ will take on
+	default values such that the server uses Bukkit Recommended Builds, instead
+	of the vanilla minecraft jar. That is, they will have these default values:
++
+-----
+SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
+SERVER_URL="http://cbukk.it/craftbukkit.jar"
+-----
++
+Default: <empty>
+
+
+**START_COMMAND=**"/path/to/command [options]"::
+	The command that should be used to launch the server.
++
+The shell expands this option twice, so care must be taken to protect
+whitespace and special characters.
++
+Default: "java -jar \'$SERVER_JAR' nogui"
+
+
+**DOWNLOAD_COMMAND=**"/path/to/command [options]"::
+	The command used to download or update the server jar. Running this
+	command should result in +SERVER_URL+ being downloaded and saved to
+	+SERVER_JAR+.
++
+The shell expands this option twice, so care must be taken to protect
+whitespace and special characters.
++
+Default: "curl -#L -o $SERVER_JAR $SERVER_URL"
+
+
+See Also
+--------
+
+linkman:clicraft[1], linkman:clicraft-actions[5]
+
+include::footer.txt[]
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////

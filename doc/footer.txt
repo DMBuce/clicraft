@@ -1,0 +1,16 @@
+
+Bugs
+----
+
+Report any and all bugs to the issue tracker at
+<https://github.com/DMBuce/clicraft/issues> with
+as much detail as possible.
+
+Authors
+-------
+
+* DMBuce <dmbuce@gmail.com>
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////

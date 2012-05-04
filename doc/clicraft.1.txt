@@ -1,0 +1,139 @@
+clicraft(1)
+===========
+
+Name
+----
+clicraft - command-line minecraft server wrapper
+
+Synopsis
+--------
+'clicraft' <action> [args]
+
+Description
+-----------
+Clicraft is a command-line wrapper for operation and administration of a
+minecraft-compatible server. It is written in linkman:bash[1] and uses
+linkman:tmux[1] to daemonize and communicate with the server process.
+
+The 'action' is an action to perform on the server, such as starting it,
+stopping it, or sending a command to the server console. Actions are
+implemented with action scripts, which can be provided by the clicraft package
+or written by the user. For more information on writing action scripts, see
+linkman:clicraft-actions[5]. The actions that ship with a typical clicraft
+install are described below.
+
+Actions
+-------
+
+*cmd* <command>::
+	Sends 'command'
+	to the server console. The command should not be preceded by a slash (`/`).
+	For instance, to broadcast a message to logged-in users, you would use
+	`clicraft cmd say Hello world`, not `clicraft cmd /say Hello world`
+
+*console*::
+	Attach to the server console. This places you in the linkman:tmux[1]
+	session that the server is running in. All normal tmux keybindings (like
+	`Ctrl-b d` to detach) should work.
+
+*dl*::
+	Downloads the server jar file. The jar file is downloaded from
+	`SERVER_URL` and saved to location `SERVER_JAR`. If `SERVER_JAR` already
+	exists, it is backed up to `SERVER_JAR.ccback` before being overwritten.
++
+For information regarding `SERVER_URL` and `SERVER_JAR`, see
+linkman:clicraft.conf[5].
+
+*edit* [file|action]::
+	Edit 'file' in the server directory. If 'file' does not exist,
+	edit the action script for 'action' instead. If an action script for
+	'action' does not exist, create it with a useful template.
++
+When no 'file' or 'action' is present, edit linkman:clicraft.conf[5].
++
+This usage of clicraft launches `EDITOR` to edit files, or linkman:vi[1] if
+the `EDITOR` variable is not defined in your environment.
+
+*explore* <size> [args]::
+	Generates a rectangle of land of a given 'size' using
+	linkman:mcexplore[1]. By default, 'size' is measured in chunks. Any
+	additional 'args' get passed to `mcexplore` or `mcexplore.py`, which must
+	be in your `PATH`. For valid 'args', see `mcexplore --help`.
++
+Using this action is equivalent to running
++mcexplore -p SERVER_DIR -c START_COMMAND 'size' ['args']+.
+For information regarding `SERVER_DIR` and `START_COMMAND`, see
+linkman:clicraft.conf[5].
++
+This action is only available if clicraft was built using `--with-mcexplore`.
+
+*help* [action]::
+	Displays usage information for 'action'. If no 'action' is given, clicraft
+	usage is displayed instead.
+
+*map* [args]::
+	Maps the world using linkman:c10t[1]. Any additional 'args' get passed to
+	`c10t`, which must be in your `PATH`. For valid 'args', see `c10t --help`.
++
+With a default install of minecraft, using this action is equivalent to
+running +c10t -w SERVER_DIR/'world' -o $HOME/maps/'world'-'date'.png ['args']+,
+where +'date'+ is today's
+date in YYYY-MM-DD format and +'world'+ is the value of +level-name+ in
++server.properties+. For information regarding `SERVER_DIR`, see
+linkman:clicraft.conf[5]. If the `$HOME/maps` directory does not exist, it is
+created.
++
+This action is only available if clicraft was built using `--with-c10t`.
+
+*restart*::
+	Restarts the server.
+
+*start*::
+	Starts the server.
+
+*status*::
+	Reports on whether the server is running or not. If the server
+	is not running, returns a nonzero exit status.
+
+*stop*::
+	Stops the server.
+
+*version*::
+	Prints version information.
+
+Examples
+--------
+
+clicraft cmd save-off::
+	Prepare for a backup by disabling writes to the world files.
+
+clicraft cmd save-on::
+	Re-enable writes to the world files.
+
+clicraft edit server.properties::
+	Edit the server properties file.
+
+clicraft explore 10 20 -x 500 -z 500::
+	Generate a 160x320 region (10 by 20 chunks) centered on (x=500, z=500).
+
+clicraft map -R 250 -r 270::
+	Generate a map centered on spawn out to a radius of 250 chunks, and rotate
+	it 270 degrees.
+
+Configuration
+-------------
+
+See linkman:clicraft.conf[5] for details on configuring clicraft and
+linkman:clicraft-actions[5] for writing custom action scripts.
+
+See Also
+--------
+
+linkman:clicraft.conf[5], linkman:clicraft-actions[5], linkman:tmux[1],
+linkman:mcexplore[1], linkman:c10t[1]
+
+include::footer.txt[]
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////
