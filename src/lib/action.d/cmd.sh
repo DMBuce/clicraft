@@ -2,7 +2,7 @@
 #
 # Usage: clicraft cmd <command>
 #
-#    Sends <command> to the minecraft server.
+#    Sends <command> to the server console.
 #
 
 action status >/dev/null && \

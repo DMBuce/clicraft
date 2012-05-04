@@ -2,7 +2,9 @@
 #
 # Usage: clicraft console
 #
-#    Attaches to the clicraft console. Use `Ctrl-b d' to detach.
+#    Attach to the server console. This places you in the tmux session that the
+#    server is running in. All normal tmux key-bindings (like `Ctrl-b d' to
+#    detach) should work.
 #
 
 action status >/dev/null && \

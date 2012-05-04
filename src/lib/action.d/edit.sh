@@ -2,13 +2,14 @@
 #
 # Usage: clicraft edit [file|action]
 #
-#    Edit <file> in the minecraft server directory. If <file> does not exist,
-#    edit the <action>.sh script instead. If <action>.sh does not exist, create
-#    it with a useful template.
+#    Edit <file> in the server directory. If <file> does not exist, edit the
+#    action script for <action> instead. If an action script for <action> does
+#    not exist, create it with a useful template.
 #
-#    When no <file> or <action> is present, edit clicraft's configuration file.
+#    When no <file> or <action> is present, edit clicraft.conf.
 #
-#    Uses $EDITOR to edit files, or vi if $EDITOR is undefined.
+#    This command launches EDITOR to edit files, or vi if the EDITOR variable
+#    is not defined in your environment.
 #
 
 edit_file() {

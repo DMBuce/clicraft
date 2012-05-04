@@ -2,7 +2,7 @@
 #
 # Usage: clicraft stop
 #
-#    Stops the minecraft server.
+#    Stops the server.
 #
 
 if ! status; then

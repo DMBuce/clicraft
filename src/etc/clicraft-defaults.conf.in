@@ -1,23 +1,23 @@
 #!bash
-# This is the default clicraft configuration file.
-# Configuration options take the form:
-#     OPTION="value"
-# Note that there can't be spaces between the equals sign.
-#
-# This file is actually sourced from bash, so you can embed shell logic here
-# without trouble. This behavior may change in future versions, however.
+# This is the default clicraft configuration file. The format is bash, so
+# configuration options take the form OPTION="value" (with no whitespace
+# between the equals sign (=) ). This file is sourced from within clicraft,
+# so you can include any extra variables you wish to use in custom action
+# scripts. You can also embed shell logic without trouble; this behavior may
+# change in future versions, however.
 
 
 # SERVER_DIR
-# The directory that the minecraft server is launched from.
-# This is the directory that your world data (among other things) reside in.
+# The directory that the server is launched from.
+# This is the directory that your world data, server.properties, and server.log
+# (among other things) resides in.
 #
 # Default:
 #SERVER_DIR="@DEFAULT_SERVER_DIR@"
 
 
 # SERVER_NAME
-# An identifier for the minecraft server. This is the value used to set tmux's
+# An identifier for the server. This is the value used to set tmux's
 # window and session names when starting the server. It is also used in some
 # informational messages.
 #
@@ -34,7 +34,7 @@
 
 
 # SERVER_TYPE
-# If this variable is set to "bukkit", SERVER_JAR and SERVER_URL will take on
+# If this option is set to "bukkit", SERVER_JAR and SERVER_URL will take on
 # default values such that the server uses Bukkit Recommended Builds, instead
 # of the vanilla minecraft jar. That is, they will have these default values:
 #SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
@@ -52,7 +52,9 @@
 
 
 # DOWNLOAD_COMMAND
-# The command used to download or update the server jar.
+# The command used to download or update the server jar. Running this
+# command should result in SERVER_URL being downloaded and saved to
+# SERVER_JAR.
 #
 # Default:
 #DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"

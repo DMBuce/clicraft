@@ -2,7 +2,7 @@
 #
 # Usage: clicraft start
 #
-#    Starts the minecraft server.
+#    Starts the server.
 #
 
 if status; then

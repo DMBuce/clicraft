@@ -1,7 +1,7 @@
 This is EXPERIMENTAL software. Use at your own risk!
 
 clicraft is a command-line wrapper for operation and administration of a
-Minecraft or Bukkit server. It is writtin in BASH, and uses tmux to daemonize
+minecraft-compatible server. It is writtin in bash, and uses tmux to daemonize
 and communicate with the server process.
 
 Features include:

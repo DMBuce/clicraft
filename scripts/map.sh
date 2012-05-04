@@ -4,8 +4,8 @@
 #
 # Usage: clicraft map [args]
 #
-#    Maps the world. Any additional <args> get passed to c10t. For valid
-#    <args>, see `c10t --help'.
+#    Maps the world using c10t. Any additional <args> get passed to c10t.
+#    For valid <args>, see `c10t --help`.
 #
 
 # abort with an error if the server is already running

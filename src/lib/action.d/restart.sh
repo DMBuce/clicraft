@@ -2,7 +2,7 @@
 #
 # Usage: clicraft restart
 #
-#    Restarts the minecraft server.
+#    Restarts the server.
 #
 
 action stop

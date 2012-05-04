@@ -4,9 +4,9 @@
 #
 # Usage: clicraft explore <size> [args]
 #
-#    Generates a rectangle of land of a given size. The <size> argument, as
-#    well as all additional <args>, get passed directly to mcexplore. See
-#    `mcexplore --help' for details.
+#    Generates a rectangle of land of a given <size> using mcexplore. By
+#    default, <size> is measured in chunks. Any additional <args> get passed to
+#    mcexplore. For valid <args>, see `mcexplore --help`.
 #
 
 # abort with an error if the server is already running
