@@ -1,25 +1,33 @@
-This is EXPERIMENTAL software. Use at your own risk!
+Clicraft Project Page
+=====================
 
-clicraft is a command-line wrapper for operation and administration of a
-minecraft-compatible server. It is writtin in bash, and uses tmux to daemonize
+WARNING: This is EXPERIMENTAL software. Use at your own risk!
+
+Overview
+--------
+
+Clicraft is a command-line wrapper for operation and administration of a
+minecraft-compatible server. It is written in bash, and uses tmux to daemonize
 and communicate with the server process.
 
 Features include:
-   * Manage a minecraft or bukkit server from the command line
-   * Ability to start and stop the minecraft server, download/update jar file
-   * Attach to the server console to enter commands
-   * Send commands to the server console from the command line
-   * Extend functionality by writing your own hooks in etc/action.d/
 
-See LICENSE for terms and conditions and TODO for planned features.
+* Manage a minecraft or bukkit server from the command line
+* Ability to start and stop the minecraft server, download/update jar file
+* Attach to the server console to enter commands
+* Send commands to the server console from the command line
+* Extend functionality by writing your own hooks in +etc/action.d/+
 
-== QuickInstall ==
+See +LICENSE+ for terms and conditions and +TODO+ for planned features.
 
-If you don't have a ./configure file, generate one with
+QuickInstall
+------------
+
+If you don't have a `./configure` script, generate one with
 
    autoconf
 
-To install under $HOME, the recommended procedure is something like this:
+To install under +$HOME+, the recommended procedure is something like this:
 
    ./configure --prefix=$HOME/clicraft \
       --sysconfdir=$HOME/clicraft/etc \
@@ -39,19 +47,19 @@ For installing to a linux system, this will give a more typical setup:
    make; make install
 
 For staged installs, you can use e.g. `make DESTDIR=/tmp/staging` instead.
-For more verbose installation instructions, see INSTALL.
+For more verbose installation instructions, see +INSTALL+.
 
 Once you've successfully installed clicraft, you should be able to get usage
 info using
 
    clicraft help
 
-To configure the server, copy the default config file found in $sysconfdir/clicraft/
-to $sysconfdir/clicraft/clicraft.conf and edit to taste
+To configure the server, copy the default config file found in +$sysconfdir/clicraft/+
+to +$sysconfdir/clicraft/clicraft.conf+ and edit to taste
 
    cp /etc/clicraft-defaults.conf /etc/clicraft.conf
    vim /etc/clicraft.conf
 
-
-Ignore this next line. Do NOT remove it.
-vim: set expandtab tabstop=3:
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////
