@@ -31,7 +31,7 @@ Options
 	server.log (among other things) resides in. Most relative paths are taken
 	ith respect to this directory.
 +
-Default: "{SERVER_DIR}"
+*Default*: +"{SERVER_DIR}"+
 
 
 **SERVER_NAME=**"name"::
@@ -39,20 +39,20 @@ Default: "{SERVER_DIR}"
 	window and session names when starting the server. It is also used in some
 	informational messages.
 +
-Default: "minecraft"
+*Default*: +"minecraft"+
 
 
 **SERVER_JAR=**"/path/to/server/jar"::
 	The location of the server jar on disk.
 +
-Default: "$SERVER_DIR/minecraft_server.jar" (but see +SERVER_TYPE+, below)
+*Default*: +"$SERVER_DIR/minecraft_server.jar"+ (but see +SERVER_TYPE+, below)
 
 
 **SERVER_URL=**"url"::
 	The url to download +SERVER_JAR+ from.
 +
-Default:
-"https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"
+*Default*:
++"https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"+
 (but see +SERVER_TYPE+, below)
 
 
@@ -66,7 +66,7 @@ SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
 SERVER_URL="http://cbukk.it/craftbukkit.jar"
 -----
 +
-Default: <empty>
+*Default*: <empty>
 
 
 **START_COMMAND=**"/path/to/command [options]"::
@@ -75,7 +75,7 @@ Default: <empty>
 The shell expands this option twice, so care must be taken to protect
 whitespace and special characters.
 +
-Default: "java -jar \'$SERVER_JAR' nogui"
+*Default*: +"java -jar \'$SERVER_JAR' nogui"+
 
 
 **DOWNLOAD_COMMAND=**"/path/to/command [options]"::
@@ -86,7 +86,7 @@ Default: "java -jar \'$SERVER_JAR' nogui"
 The shell expands this option twice, so care must be taken to protect
 whitespace and special characters.
 +
-Default: "curl -#L -o $SERVER_JAR $SERVER_URL"
+*Default*: +"curl -#L -o $SERVER_JAR $SERVER_URL"+
 
 
 See Also

@@ -65,7 +65,8 @@ Using this action is equivalent to running
 For information regarding `SERVER_DIR` and `START_COMMAND`, see
 linkman:clicraft.conf[5].
 +
-This action is only available if clicraft was built using `--with-mcexplore`.
+NOTE: This action is only available if clicraft was built using
+`--with-mcexplore`.
 
 *help* [action]::
 	Displays usage information for 'action'. If no 'action' is given, clicraft
@@ -83,7 +84,7 @@ date in YYYY-MM-DD format and +'world'+ is the value of +level-name+ in
 linkman:clicraft.conf[5]. If the `$HOME/maps` directory does not exist, it is
 created.
 +
-This action is only available if clicraft was built using `--with-c10t`.
+NOTE: This action is only available if clicraft was built using `--with-c10t`.
 
 *restart*::
 	Restarts the server.
