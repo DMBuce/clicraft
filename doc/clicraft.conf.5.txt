@@ -31,7 +31,7 @@ Options
 	server.log (among other things) resides in. Most relative paths are taken
 	ith respect to this directory.
 +
-Default: "{DEFAULT_SERVER_DIR}"
+Default: "{SERVER_DIR}"
 
 
 **SERVER_NAME=**"name"::

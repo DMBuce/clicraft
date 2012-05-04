@@ -23,6 +23,12 @@ dist/deb/etc
 dist/deb/usr
 dist/deb/var
 
+# doc build artifacts
+doc/clicraft.1
+doc/clicraft.1.html
+doc/clicraft.conf.5
+doc/clicraft.conf.5.html
+
 # from ctags
 tags
 
