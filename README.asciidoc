@@ -29,22 +29,26 @@ If you don't have a `./configure` script, generate one with
 
 To install under +$HOME+, the recommended procedure is something like this:
 
-   ./configure --prefix=$HOME/clicraft \
-      --sysconfdir=$HOME/clicraft/etc \
-      --libexecdir=$HOME/clicraft/lib \
-      --localstatedir=$HOME/clicraft/srv \
-      --enable-shortdirs \
-      --with-c10t --with-mcexplore
-   make; make install
+-----
+./configure --prefix=$HOME/clicraft \
+   --sysconfdir=$HOME/clicraft/etc \
+   --libexecdir=$HOME/clicraft/lib \
+   --localstatedir=$HOME/clicraft/srv \
+   --enable-shortdirs \
+   --with-c10t --with-mcexplore
+make; make install
+-----
 
 For installing to a linux system, this will give a more typical setup:
 
-   ./configure --prefix=/usr/local \
-      --sysconfdir=/usr/local/etc \
-      --libexecdir=/usr/local/lib \
-      --localstatedir=/var/local \
-      --with-c10t --with-mcexplore
-   make; make install
+-----
+./configure --prefix=/usr/local \
+   --sysconfdir=/usr/local/etc \
+   --libexecdir=/usr/local/lib \
+   --localstatedir=/var/local \
+   --with-c10t --with-mcexplore
+make; make install
+-----
 
 For staged installs, you can use e.g. `make DESTDIR=/tmp/staging` instead.
 For more verbose installation instructions, see +INSTALL+.
