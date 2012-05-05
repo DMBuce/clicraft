@@ -12,7 +12,7 @@ Authors
 
 * DMBuce <dmbuce@gmail.com>
 
-To see a full list of contributes, use `git shortlog -s` in the clicraft
+To see a full list of contributors, use `git shortlog -s` in the clicraft
 {URL}[git repository].
 
 /////
