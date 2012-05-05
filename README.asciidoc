@@ -29,7 +29,6 @@ If you don't have a `./configure` script, generate one with
 
 To install under +$HOME+, the recommended procedure is something like this:
 
-[source]
 -----
 ./configure --prefix=$HOME/clicraft \
    --sysconfdir=$HOME/clicraft/etc \
@@ -42,7 +41,6 @@ make; make install
 
 For installing to a linux system, this will give a more typical setup:
 
-[source]
 -----
 ./configure --prefix=/usr/local \
    --sysconfdir=/usr/local/etc \
