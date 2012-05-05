@@ -33,3 +33,6 @@ doc/clicraft.conf.5.html
 # from ctags
 tags
 
+# vi/vim swap files
+.*.swp
+
