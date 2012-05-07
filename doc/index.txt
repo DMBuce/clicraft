@@ -1,0 +1,113 @@
+Clicraft Home Page
+==================
+
+A command-line minecraft server wrapper.
+
+WARNING: This is *EXPERIMENTAL* software. Use at your own risk!
+
+Overview
+--------
+Clicraft is a command-line wrapper for operation and administration of a
+minecraft-compatible server. It is written in
+http://www.gnu.org/software/bash/[bash] and uses
+http://tmux.sourceforge.net/[tmux] to daemonize and communicate with the
+server process.
+
+Clicraft strives to be simple, robust, and useful. With it, you can:
+
+* Manage (start, stop, update) a minecraft-compatible server from the command line
+* Easily use third-party minecraft utilities (stop referring to `--help` output for basic options)
+* Programmatically or interactively send commands to the server console
+* Extend functionality by writing your own hooks called link:clicraft-actions.html[action scripts]
+
+Documentation
+-------------
+The full documentation for clicraft is kept in
+link:http://www.methods.co.nz/asciidoc/[AsciiDoc] format under the +doc/+
+directory in the source distribution.
+You are viewing this documentation right now.
+
+Guides
+~~~~~~
+There are several guides and tutorials for using clicraft.
+
+* link:install.html[Install Guide]
+* link:contribute.html[Contributor's Guide]
+
+Man Pages
+~~~~~~~~~
+There are several man pages available for clicraft and its configuration files.
+
+* linkman:clicraft[1]
+* linkman:clicraft.conf[5]
+* linkman:clicraft-actions[5]
+
+Development
+-----------
+Clicraft is under active development. The latest version, {VERSION}, is an alpha release.
+To get a sense of the direction of clicraft development, take a look at the
+link:https://github.com/DMBuce/clicraft/issues/milestones[Milestones] page and
+related issues in the issue tracker.
+
+Source Code
+~~~~~~~~~~~
+Clicraft source code is maintained in a
+link:{REPO}[GitHub repository] in two
+branches. The 'master' branch contains the latest stable release, while the
+'devel' branch contains unstable code for bugfixes and new features. To
+install, refer to the link:install.html[Install Guide]. If you are interested
+in submitting code to clicraft, it is highly recommended you read the
+link:contribute.html[Contributors] page.
+
+Releases
+~~~~~~~~
+Each clicraft release has an annotated tag in the git repository. Past
+releases of clicraft are available on the GitHub
+link:https://github.com/DMBuce/clicraft/tags[tags page], or by using
++git checkout 'tag'+.
+
+Changelog
+~~~~~~~~~
+To view the full changelog for all releases, use `git tag -l -n100` in the
+link:{REPO}[GitHub repository].
+
+Versions
+~~~~~~~~
+Clicraft's alpha or beta status is indicated by its version. Versions are
+denoted using a standard triplet of numbers of the form
+'major'.'minor'.'revision'. Internal pre-alpha releases have version number
++0.0.'z'+, where 'z' is negative. Alpha releases use the
+same convention, except 'z' is positive. Beta releases have
+version number +0.'y'.'z'+, where 'y' is positive, and regular full releases
+have version number +'x'.'y'.'z'+ with 'x' positive. This convention is
+summarized below.
+
+-----
+Release       Versions
+=======       ========
+Internal      0.0.-9, 0.0.-8, 0.0.-7, ... 0.0.-z
+Alpha         0.0.1, 0.0.2, 0.0.3, ... 0.0.z
+Beta          0.1.0, 0.1.1, 0.1.2, ... 0.2.0, 0.2.1, 0.2.2, ... 0.y.z
+Full          1.0.0, 1.0.1, 1.0.2, ... 1.1.0, ... 2.3.4, ... x.y.z
+-----
+
+Within full releases, a revision will only change function implementations.
+Minor releases may additionally add new functions, options, and actions, so
+long as they don't impact or change existing functionality. Major releases can
+change anything at all.
+
+Bugs
+----
+If you find a bug, you can submit it to the
+link:https://github.com/DMBuce/clicraft/issues[issues tracker].
+For more detailed instructions, please refer to the
+link:contribute.html[Contributors] page.
+
+Copyright
+---------
+Clicraft is Copyright (C) 2011-2012 DMBuce <dmbuce@gmail.com>
+and is distributed under a BSD License.
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////

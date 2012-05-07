@@ -1,67 +1,34 @@
-Clicraft Project Page
-=====================
+Clicraft ReadMe
+===============
 
-WARNING: This is EXPERIMENTAL software. Use at your own risk!
+A command-line minecraft server wrapper.
+
+WARNING: This is *EXPERIMENTAL* software. Use at your own risk!
 
 Overview
 --------
-
 Clicraft is a command-line wrapper for operation and administration of a
-minecraft-compatible server. It is written in bash, and uses tmux to daemonize
-and communicate with the server process.
+minecraft-compatible server. It is written in bash and uses tmux to
+daemonize and communicate with the server process.
 
-Features include:
+Clicraft strives to be simple, robust, and useful. With it, you can:
 
-* Manage a minecraft or bukkit server from the command line
-* Ability to start and stop the minecraft server, download/update jar file
-* Attach to the server console to enter commands
-* Send commands to the server console from the command line
-* Extend functionality by writing your own hooks in +etc/action.d/+
+* Manage (start, stop, update) a minecraft-compatible server from the command line
+* Easily use third-party minecraft utilities (stop referring to `--help` output for basic options)
+* Programmatically or interactively send commands to the server console
+* Extend functionality by writing your own hooks called action scripts
 
-See +LICENSE+ for terms and conditions and +TODO+ for planned features.
+Documentation
+-------------
+The full documentation for clicraft is kept in AsciiDoc format under the doc/ directory in the source distribution.
+It can be viewed at <https://DMBuce.github.com/clicraft>.
 
-QuickInstall
-------------
+Basic documentation can be found in these files:
 
-NOTE: If you're viewing this page on GitHub, the formatting of block code
-below won't preserve line breaks. Sorry about that.
-
-If you don't have a `./configure` script, generate one with
-
-	autoconf
-
-To install under +$HOME+, the recommended procedure is something like this:
-
-	./configure --prefix=$HOME/clicraft \
-	   --sysconfdir=$HOME/clicraft/etc \
-	   --libexecdir=$HOME/clicraft/lib \
-	   --localstatedir=$HOME/clicraft/srv \
-	   --enable-shortdirs \
-	   --with-c10t --with-mcexplore
-	make; make install
-
-For installing to a linux system, this will give a more typical setup:
-
-	./configure --prefix=/usr/local \
-	   --sysconfdir=/usr/local/etc \
-	   --libexecdir=/usr/local/lib \
-	   --localstatedir=/var/local \
-	   --with-c10t --with-mcexplore
-	make; make install
-
-For staged installs, you can use e.g. `make DESTDIR=/tmp/staging` instead.
-For more verbose installation instructions, see +INSTALL+.
-
-Once you've successfully installed clicraft, you should be able to get usage
-info using
-
-	clicraft help
-
-To configure the server, copy the default config file found in +$sysconfdir/clicraft/+
-to +$sysconfdir/clicraft/clicraft.conf+ and edit to taste
-
-	cp /etc/clicraft-defaults.conf /etc/clicraft.conf
-	vim /etc/clicraft.conf
+* INSTALL - Basic installation instructions. For full instructions, refer to <https://DMBuce.github.com/clicraft/install.html>
+* LICENSE - Terms and conditions
+* README  - This document
+* TODO    - Planned features, notes to self
 
 /////
 vim: set syntax=asciidoc ts=4 sw=4 noet:

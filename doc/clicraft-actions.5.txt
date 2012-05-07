@@ -1,0 +1,165 @@
+clicraft-actions(5)
+===================
+
+Name
+----
+
+clicraft-actions - clicraft shell hooks a.k.a "action scripts"
+
+Synopsis
+--------
+
+$CONFDIR/action.d/'action'.sh, $EXECDIR/action.d/'action'.sh
+
+Description
+-----------
+
+linkman:Clicraft[1] provides a way to extend functionality through 'action scripts',
+which are bash scripts that get called by clicraft in a modified environment.
+To create an action script, simply set your +EDITOR+ variable and use
+clicraft's edit action. For instance:
+
+	EDITOR=nano clicraft edit foo
+
+An action script created in this way will get executed when running
++clicraft foo ['args']+.
+
+Alternately, you can accomplish the same thing by writing a script with
+filename +foo.sh+ and placing it in +$CONFDIR/action.d+. See the
+<<vars,Variables>> section for the value of +$CONFDIR+.
+
+There are also action
+scripts in +$EXECDIR/action.d+, but these are system action scripts and may be
+overwritten when updating clicraft. They can be overridden by creating new
+action files in the manner described above.
+
+Action scripts get sourced from within clicraft using something similar to
++. 'action'.sh+. They therefore have access to all of clicraft's internal
+<<vars,variables>> and <<funcs,functions>>, described below.
+
+[[vars]]
+Variables
+---------
+
+*$1, $2, $3, ... $9*::
+	Clicraft's positional parameters are available, but are shifted once to
+	the left. Thus, when an action script +foo.sh+ is invoked with
+	+clicraft foo bar baz+, +$1+ is +"bar"+ and +$2+ is +"baz"+.
+
+*ACTION*::
+	The name of this action. For an action script +foo.sh+ invoked with
+	+clicraft foo bar baz+, +$ACTION+ is +"foo"+.
+
+*SERVER_DIR, SERVER_NAME, SERVER_JAR, SERVER_URL*::
+*SERVER_TYPE, START_COMMAND, DOWNLOAD_COMMAND*::
+	Configuration options are stored in variables by the same name as the
+	option. For a description of these options and their default values, see
+	linkman:clicraft.conf[5].
++
+In addition to these variables, any extra user-defined options in
+linkman:clicraft.conf[5] will be set in the environment. Unlike these
+variables, however, they are not guaranteed to be set and will not have a
+default value, so care must be taken to ensure that no undesirable behavior
+occurs if they are not set in clicraft.conf.
+
+*CONFDIR*={CONFDIR}::
+	The directory where clicraft stores its configuration files. This is where
+	linkman:clicraft.conf[5] is located. User action scripts are located in
+	this directory under +$CONFDIR/action.d+.
+
+*EXECDIR*={EXECDIR}::
+	The directory for scripts used internally by clicraft. System action
+	scripts are located in this directory under +$EXECDIR/action.d+.
++
+WARNING: In most circumstances, files under this directory should not be removed
+or modified, and no new files should be created.
+
+*VERSION*::
+	Clicraft's version number.
+
+[[funcs]]
+Functions
+---------
+
+*msg* <message>::
+	Print a formatted informational message to stdout. 'message' can be split
+	into multiple arguments.
+
+*warn* <message>::
+	Print a formatted warning message to stderr. 'message' can be split into
+	multiple arguments.
+
+*err* <message>::
+	Print a formatted error message to stderr. 'message' can be split into
+	multiple arguments.
+
+*actionfile* <action>:: 
+	Print the location of the action script for 'action'. If a system
+	action script and user action script share the same name, print the value
+	of the user action script. If no action script can be found, print an
+	error to stderr and return nonzero.
++
+Use this to find action scripts in a system-agnostic way. The full path to an
+action script depends on the settings of `--prefix`, `--sysconfdir`, and/or
+`--libexecdir` at install time, and so varies from system to system. Because
+of this, it is preferred to use this function (or its `local_` or `system_`
+variants) in action scripts you plan to publish.
+
+*local_actionfile* <action>:: 
+	Like +action+, but will only print the location of a user action.
+
+*sys_actionfile* <action>::
+	Like +action+, but will only print the location of a system action.
+
+*action* <action> [args]::
+	Execute the action script for 'action' with arguments 'args'. If
+	a system action and user action share the same name, run the user action
+	script. If an action script cannot be found for 'action', print an error
+	to stderr and return nonzero.
++
+Using this function is similar to running +. 'action'.sh ['args']+.
+
+*local_action* <action> [args]::
+	Like +action+, but will only execute a user action.
+
+*sys_action* <action> [args]::
+	Like +action+, but will only execute a system action.
+
+*actions*::
+	Print a list of available actions to stdout.
+
+*status*::
+	Return zero if the server is running, or nonzero otherwise.
+
+*usage* <file>::
+	Print the usage message in 'file' to stdout.
+
+*serverprop* <property>::
+	Print the value of 'property' in +server.properties+ to stdout. If the
+	property cannot be found, print an error message to stderr and return
+	nonzero.
+
+Examples
+--------
+
+These example action scripts can be found in +$CONFDIR/action.d/+:
+
+* backup.sh.example
+* action.sh.example
+* action-override.sh.example
+
+The first example is a simple script for backing up the world directory.
+The last two example scripts are used internally by the edit action to create
+new action scripts. You can use them as templates by invoking
++clicraft edit 'action'+.
+
+See Also
+--------
+
+linkman:clicraft[5], linkman:clicraft.conf[5]
+
+include::footer.txt[]
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////

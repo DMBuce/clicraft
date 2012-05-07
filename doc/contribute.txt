@@ -1,0 +1,76 @@
+Clicraft Contributor's Guide
+============================
+
+If you wish to contribute to clicraft and aren't sure how, this is a good
+place to start.
+
+Bugs
+----
+If you find a bug, please report it to the link:{BUGREPORT}[issue tracker]
+with as much relevant information as possible, such as:
+
+* Operating system and distribution
+* Method of installation
+* The command that gave the error
+* Configuration files
+* Server logs
+* Custom action scripts used
+
+When filing bug reports, please mark their severity using one of the "Bug",
+"Minor Bug", or "Critical Bug" labels.
+
+Feature Requests
+----------------
+Feature requests can be filed either with a
+link:https://github.com/DMBuce/clicraft/pull/new[pull request] that includes a
+proposed implementation of the feature, as an issue labeled as "Feature
+Request" on the
+link:{BUGREPORT}[issue tracker], or both.
+
+Development
+-----------
+If you're interested in developing against clicraft but don't know where to
+start, take a look at the bugs and feature requests on the
+link:{BUGREPORT}[issue tracker]. Maybe something will attract your interest.
+
+All patches should be submitted as pull requests.
+
+Coding Conventions
+~~~~~~~~~~~~~~~~~~
+
+When developing against clicraft, try to follow established coding
+conventions. In particular:
+
+. Quote variables whenever possible.
+. Use tabs for indentation and spaces for formatting.
+. Use posix-style test commands (`[ ... ]`), not extended test commands
+(`[[ ... ]]`).
+. Don't use the `[ ... ] && command` or `[ ... ] || command` constructs.
+Expand them to full `if` statements.
+. When opening new code blocks for +while+, +if+, or +for+ loops, place the
+subsequent +do+ or +then+ on the same line.
++
+-----
+for i in {1..5}; do
+	echo "$i"
+done
+
+if [ -f "$file" ]; then
+	cat "$file"
+fi
+
+-----
++
+. When declaring functions, use parenthesis instead of the +function+ keyword and put the
+opening brace on the same line as the function declaration.
++
+-----
+msg() {
+	local mesg=$1; shift
+	printf "${mesg}\n" "$@"
+}
+-----
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////

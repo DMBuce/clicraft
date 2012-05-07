@@ -13,7 +13,7 @@ Authors
 * DMBuce <dmbuce@gmail.com>
 
 To see a full list of contributors, use `git shortlog -s` in the clicraft
-{URL}[git repository].
+{REPO}[git repository].
 
 /////
 vim: set syntax=asciidoc ts=4 sw=4 noet:

@@ -45,9 +45,16 @@ For information regarding `SERVER_URL` and `SERVER_JAR`, see
 linkman:clicraft.conf[5].
 
 *edit* [file|action]::
-	Edit 'file' in the server directory. If 'file' does not exist,
-	edit the action script for 'action' instead. If an action script for
-	'action' does not exist, create it with a useful template.
+	Edit 'file' in the server directory.
++
+If 'file' does not exist,
+edit the action script for 'action' instead. When editing a new action or
+overriding a system action, clicraft will create a new user action using one
+of these templates:
++
+* {CONFDIR}/action.d/action.sh.example
+* {CONFDIR}/action.d/action-override.sh.example
+
 +
 When no 'file' or 'action' is present, edit linkman:clicraft.conf[5].
 +

@@ -1,0 +1,217 @@
+Clicraft Install Guide
+======================
+
+WARNING: This is *EXPERIMENTAL* software. Use at your own risk!
+
+Requirements
+------------
+There are several things you need to build and run clicraft.
+These dependencies are described below.
+
+The versions and implementations of tools described in this section are known
+to work with clicraft. If you successfully build and run clicraft with a
+different set of tools, we'd love to hear about it so we can update this
+document.
+
+Build Dependencies
+~~~~~~~~~~~~~~~~~~
+To build clicraft from source, you need the following:
+
+* link:http://www.gnu.org/software/autoconf/[GNU autoconf] version 2.59 or greater
+* link:http://www.gnu.org/software/make/[GNU make]
+* A reasonably compliant shell
+
+In order to build documentation for clicraft using `make doc` or `make html`,
+you will also need the link:http://www.methods.co.nz/asciidoc/[AsciiDoc]
+toolchain.
+
+Runtime Dependencies
+~~~~~~~~~~~~~~~~~~~~
+Clicraft needs these programs in order to successfully run:
+
+* link:http://www.gnu.org/software/bash/[bash]
+* link:http://tmux.sourceforge.net/[tmux]
+* A working java implementation
+* link:http://curl.haxx.se/[curl] or another download utility
+
+Clicraft has several optional features with these additional dependencies:
+
+* link:https://gist.github.com/854679[mcexplore] if installed using `--with-mcexplore`
+* link:http://toolchain.eu/project/c10t[c10t] if installed using `--with-c10t`
+
+[[quick]]
+Quick Install
+-------------
+The procedure for installing from source, briefly, is
+
+	./configure && make && make install
+
+If a <<package,package for your distribution>> is available, you should
+probably use that instead. If no package is available for your system and you
+are unable to create one, you may want to read the detailed instructions below
+for <<source,installing from source>>.
+
+Install
+-------
+
+[[package]]
+From A Package
+~~~~~~~~~~~~~~
+
+Installing from a package with your distribution's package manager is the
+recommended and preferred way of installing clicraft. Listed below are the
+distributions that packages are available for.
+
+*Arch Linux* (pacman pkg)::
+	Several `PKGBUILD` scripts are available in the
+	link:http://aur.archlinux.org/packages.php?O=0&K=clicraft&do_Search=Go[AUR].
+	Instructions for creating pacman packages from a `PKGBUILD` using
+	`makepkg` can be found on
+	link:https://wiki.archlinux.org/index.php/AUR[this ArchWiki page].
+
+*Debian, Ubuntu* (dpkg/apt deb)::
+	A .deb package of the latest version should be available on the GitHub
+	link:https://github.com/DMBuce/clicraft/downloads[downloads page].
+	You can install it with +dpkg -i clicraft_*_all.deb+.
+
+*RHEL, CentOS* (yum/rpm)::
+	Clicraft is currently not available in rpm format, but it just so happens
+	that the developer knows how to write spec files for building rpms. If you
+	are interested in installing clicraft on a RHEL-based distribution, please
+	file a feature request, and I'll do my best to accomodate you.
+
+*Other Distributions*::
+	If your distribution is not listed above, a package is unfortunately not
+	available for you. If are willing and able to package clicraft for your
+	distribution, patches for including your build script in the clicraft
+	source repository are most welcome. Otherwise, you'll most likely have to
+	<<source,install from source>>.
+
+[[source]]
+From Source
+~~~~~~~~~~~
+NOTE: Commands in this section are preceded with a `$` if they should be run
+as a regular unprivileged user, or `#` if they should be run as root
+
+The current clicraft codebase can be fetched with
+
+	$ git clone git://github.com/DMBuce/clicraft.git
+
+In order to build from a specific branch, you can use
+
+	$ git checkout branch
+
+To build a specific version, you can use
+
+	$ git checkout version
+
+or link:https://github.com/DMBuce/clicraft/tags[download]
+the zip or tarball from GitHub and extract it into a directory named
++clicraft+. If you don't know what branch or version to use, you can safely
+ignore the previous two commands.
+
+For the rest of these instructions, you'll need to switch directories into the
+source distribution.
+
+	$ cd clicraft
+
+Next, you'll need to generate a `configure` script. This is easily
+accomplished with
+
+	$ autoconf
+
+At this point, you could install clicraft with these three commands
+
+	$ ./configure
+	$ make
+	# make install
+
+You may, however, want to read the output of `./configure --help` in order to
+set appropriate paths and options for your system. You may also want to make
+use of the +DESTDIR+ make variable in order to perform a staged install. The
+procedure for using these features is described for several common scenarios
+below.
+
+[[user]]
+User installation under $HOME
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To install clicraft as a regular user, you should choose an empty directory
+under +$HOME+ that you have write access to.
+
+In this example, I have chosen to install clicraft to the `$HOME/clicraft`
+directory. If that directory does not exist, you can create it using
+
+	$ mkdir $HOME/clicraft
+
+Then, you can configure clicraft to be installed to that directory using
+
+	$ ./configure --prefix=$HOME/clicraft \
+		--sysconfdir=$HOME/clicraft/etc \
+		--libexecdir=$HOME/clicraft/lib \
+		--localstatedir=$HOME/clicraft/srv \
+		--enable-shortdirs \
+		--with-c10t --with-mcexplore
+
+You can leave out the `--with-c10t` and/or `--with-mcexplore` options if you
+don't intend to use the +map+ and/or +explore+ actions, respectively. For more
+information on these actions, refer to the linkman:clicraft[1] man page.
+
+Finally, you can install clicraft with
+
+	$ make && make install
+
+Install as an Admin to /usr/local
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+CAUTION: Installing clicraft using this method is not recommended. In most
+circumstances, installing <<user,as a user>> or <<package,with your
+package manager>> is the preferred procedure.
+
+If you are an administrator with root privileges, you can choose to install
+clicraft to the system. In most linux distributions, +/usr/local+ is reserved
+for software installed by the administrator, so it is recommended you install
+clicraft to this directory. The rest of this section assumes that this is the
+directory where you are installing to.
+
+As a regular, unprivileged user (NOT root), run
+
+	$ ./configure --prefix=/usr/local \
+		--sysconfdir=/usr/local/etc \
+		--libexecdir=/usr/local/lib \
+		--localstatedir=/var/local \
+		--with-c10t --with-mcexplore
+
+You can leave out the `--with-c10t` and/or `--with-mcexplore` options if you
+don't intend to use the +map+ and/or +explore+ actions, respectively. For more
+information on these actions, refer to the linkman:clicraft[1] man page.
+
+Clicraft's Makefile supports the `DESTDIR` make variable, so you can stage the
+installation. To do this, choose a staging directory that you have write
+access to. In this example, I have chosen `/tmp/staging`. If that directory
+does not exist, you can create it using
+
+	$ mkdir /tmp/staging
+
+Then, you can stage clicraft for installation. As a regular, unprivileged user
+(NOT root), run
+
+	$ make && make DESTDIR=/tmp/staging install
+
+Now, you can inspect the contents of `/tmp/staging` for sanity. Note that at
+this time, the clicraft executable won't actually work. Once you are
+satisfied, you can copy the contents of this directory to your system in order
+to complete the installation. As root, run something like the following
+
+	# cp -R /tmp/staging/* /usr/local
+
+Configuration
+-------------
+
+At this point, clicraft should be installed and working. If it is, you can get
+basic usage info by running `clicraft help`. For information on clicraft usage
+and configuration, refer to the linkman:clicraft[1] and
+linkman:clicraft.conf[5] man pages.
+
+/////
+vim: set syntax=asciidoc ts=4 sw=4 noet:
+/////
