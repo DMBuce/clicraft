@@ -36,3 +36,6 @@ tags
 # vi/vim swap files
 .*.swp
 
+# personal todo lists
+TODO
+
