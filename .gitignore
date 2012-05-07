@@ -25,10 +25,8 @@ dist/deb/var
 
 # doc build artifacts
 README.html
-doc/clicraft.1
-doc/clicraft.1.html
-doc/clicraft.conf.5
-doc/clicraft.conf.5.html
+doc/*.[15]
+doc/*.html
 
 # from ctags
 tags
