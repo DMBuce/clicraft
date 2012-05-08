@@ -18,14 +18,14 @@ Clicraft strives to be simple, robust, and useful. With it, you can:
 * Manage (start, stop, update) a minecraft-compatible server from the command line
 * Easily use third-party minecraft utilities (stop referring to `--help` output for basic options)
 * Programmatically or interactively send commands to the server console
-* Extend functionality by writing your own hooks called link:clicraft-actions.html[action scripts]
+* Extend functionality by writing your own hooks called
+link:clicraft-actions.5.html[action scripts]
 
 Documentation
 -------------
 The full documentation for clicraft is kept in
 link:http://www.methods.co.nz/asciidoc/[AsciiDoc] format under the +doc/+
 directory in the source distribution.
-You are viewing this documentation right now.
 
 Guides
 ~~~~~~
@@ -36,7 +36,9 @@ There are several guides and tutorials for using clicraft.
 
 Man Pages
 ~~~~~~~~~
-There are several man pages available for clicraft and its configuration files.
+There are several man pages available for clicraft and its configuration
+files. Note that the paths given in the online man pages may differ from
+what's on your system.
 
 * linkman:clicraft[1]
 * linkman:clicraft.conf[5]
