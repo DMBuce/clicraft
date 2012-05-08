@@ -28,7 +28,6 @@ Basic documentation can be found in these files:
 * INSTALL - Basic installation instructions. For full instructions, refer to <https://DMBuce.github.com/clicraft/install.html>
 * LICENSE - Terms and conditions
 * README  - This document
-* TODO    - Planned features, notes to self
 
 /////
 vim: set syntax=asciidoc ts=4 sw=4 noet:

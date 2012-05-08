@@ -6,7 +6,7 @@ TGT_INSTALL :=
 INSTALLDIRS :=
 UNINSTALL   :=
 DIST        := configure Makefile.in Makefile.inc \
-               INSTALL LICENSE README TODO
+               INSTALL LICENSE README
 DISTCLEAN   := Makefile config.log config.status
 
 .PHONY: all
