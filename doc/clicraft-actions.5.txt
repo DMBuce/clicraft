@@ -9,7 +9,7 @@ clicraft-actions - clicraft shell hooks a.k.a "action scripts"
 Synopsis
 --------
 
-$CONFDIR/action.d/'action'.sh, $EXECDIR/action.d/'action'.sh
+{CONFDIR}/action.d/'action'.sh, {EXECDIR}/action.d/'action'.sh
 
 Description
 -----------

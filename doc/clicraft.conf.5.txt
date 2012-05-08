@@ -11,15 +11,15 @@ Synopsis
 
 Description
 -----------
-Configuration options for clicraft are stored in {CONFDIR}/clicraft.conf. The
-format is bash, so configuration options take the form +OPTION="value"+ (with
-no whitespace between the equals sign (`=`) ). This file is sourced from
+Configuration options for clicraft are stored in +{CONFDIR}/clicraft.conf+.
+The format is bash, so configuration options take the form +OPTION="value"+
+(with no whitespace between the equals sign (`=`) ). This file is sourced from
 within clicraft, so you can include any extra variables you wish to use in
 custom action scripts.
 
-An example default file is located at {CONFDIR}/clicraft-defaults.conf. It
+An example default file is located at +{CONFDIR}/clicraft-defaults.conf+. It
 is fairly well-commented, so it may be easiest to simply copy it to
-{CONFDIR}/clicraft.conf and follow the directions inside for customization.
++{CONFDIR}/clicraft.conf+ and follow the directions inside for customization.
 
 Options
 -------
