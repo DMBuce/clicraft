@@ -1,3 +1,19 @@
+SRC_BINFILES  := src/bin/clicraft
+SRC_EXECFILES := src/lib/functions.sh src/lib/defaults.sh \
+                 $(wildcard src/lib/action.d/*.sh)
+SRC_CONFFILES := src/etc/clicraft-defaults.conf \
+                 $(wildcard src/etc/action.d/*.sh.example)
+
+SRC_BINFILES_INSTALL  := $(SRC_BINFILES:src/bin/%=$(DESTDIR)$(bindir)/%)
+SRC_EXECFILES_INSTALL := $(SRC_EXECFILES:src/lib/%=$(DESTDIR)$(EXECDIR)/%)
+SRC_CONFFILES_INSTALL := $(SRC_CONFFILES:src/etc/%=$(DESTDIR)$(CONFDIR)/%)
+
+SRC_FILES_INSTALL := $(SRC_BINFILES_INSTALL) \
+                     $(SRC_EXECFILES_INSTALL) \
+                     $(SRC_CONFFILES_INSTALL)
+
+
+
 TGT_INSTALL := $(TGT_INSTALL) src-install
 DIST        := $(DIST) src
 
@@ -12,22 +28,32 @@ INSTALLDIRS := $(INSTALLDIRS) \
                $(DESTDIR)${EXECDIR}/action.d \
                $(DESTDIR)${SERVER_DIR}
 
-UNINSTALL := $(UNINSTALL) \
-             $(DESTDIR)$(bindir)/clicraft \
-             $(DESTDIR)$(EXECDIR)/functions.sh \
-             $(DESTDIR)$(EXECDIR)/defaults.sh \
-             $(DESTDIR)$(EXECDIR)/action.d/*.sh \
-             $(DESTDIR)$(EXECDIR)/defaults.sh \
-             $(DESTDIR)$(CONFDIR)/clicraft-defaults.conf \
-             $(DESTDIR)$(CONFDIR)/action.d/*.sh.example
+UNINSTALL := $(UNINSTALL) $(SRC_FILES_INSTALL)
+
+
+
+# install files
+
+$(DESTDIR)$(bindir)/%: src/bin/%
+	$(INSTALL_PROGRAM) $< $@
+
+$(DESTDIR)$(EXECDIR)/%: src/lib/%
+	$(INSTALL_DATA) $< $@
+
+$(DESTDIR)$(EXECDIR)/action.d/%.sh: src/lib/action.d/%.sh
+	$(INSTALL_DATA) $< $@
+
+$(DESTDIR)$(CONFDIR)/%: src/etc/%
+	$(INSTALL_DATA) $< $@
+
+$(DESTDIR)$(CONFDIR)/action.d/%.sh.example: src/etc/action.d/%.sh.example
+	$(INSTALL_DATA) $< $@
+
+
+
+# phony targets
 
 .PHONY: src-install
-src-install:
-	$(INSTALL_PROGRAM) src/bin/clicraft                $(DESTDIR)$(bindir)/clicraft
-	$(INSTALL_DATA) src/lib/functions.sh               $(DESTDIR)$(EXECDIR)/functions.sh
-	$(INSTALL_DATA) src/lib/defaults.sh                $(DESTDIR)$(EXECDIR)/defaults.sh
-	$(INSTALL_DATA) src/lib/action.d/*.sh              $(DESTDIR)$(EXECDIR)/action.d/
-	$(INSTALL_DATA) src/etc/clicraft-defaults.conf     $(DESTDIR)$(CONFDIR)/clicraft-defaults.conf
-	$(INSTALL_DATA) src/etc/action.d/*.sh.example      $(DESTDIR)$(CONFDIR)/action.d/
+src-install: $(SRC_FILES_INSTALL)
 	
 # vim: set ft=make:

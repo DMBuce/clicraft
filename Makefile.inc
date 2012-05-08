@@ -30,8 +30,10 @@ install: $(TGT_INSTALL)
 $(TGT_INSTALL): installdirs
 
 .PHONY: installdirs
-installdirs:
-	$(INSTALL) -d $(INSTALLDIRS)
+installdirs: $(INSTALLDIRS)
+
+$(INSTALLDIRS):
+	$(INSTALL) -d $@
 
 .PHONY: uninstall
 uninstall:

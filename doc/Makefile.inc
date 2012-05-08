@@ -7,7 +7,10 @@ TXTFILES  := doc/clicraft.1.txt doc/clicraft.conf.5.txt doc/clicraft-actions.5.t
              doc/index.txt doc/install.txt doc/contribute.txt
 HTMLPAGES := $(TXTFILES:.txt=.html)
 
+
+
 TGT_INSTALL := $(TGT_INSTALL) doc-install
+CLEAN       := $(MANPAGES) $(HTMLPAGES)
 DIST        := $(DIST) doc
 
 DISTCLEAN := $(DISTCLEAN) \
