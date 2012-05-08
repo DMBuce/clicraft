@@ -9,28 +9,29 @@ There are several things you need to build and run clicraft.
 These dependencies are described below.
 
 The versions and implementations of tools described in this section are known
-to work with clicraft. If you successfully build and run clicraft with a
-different set of tools, we'd love to hear about it so we can update this
-document.
+to work with clicraft. If you have these requirements and are unable to build
+or run clicraft, please file a link:{BUG}[bug report]. If you successfully
+build and run clicraft with a different or older set of tools, I'd love to
+hear about it so I can update this document.
 
 Build Dependencies
 ~~~~~~~~~~~~~~~~~~
 To build clicraft from source, you need the following:
 
-* link:http://www.gnu.org/software/autoconf/[GNU autoconf] version 2.59 or greater
-* link:http://www.gnu.org/software/make/[GNU make]
+* link:http://www.gnu.org/software/autoconf/[autoconf] version 2.59 or greater
+* link:http://www.gnu.org/software/make/[GNU make] version 3.81 or greater
 * A reasonably compliant shell
 
-In order to build documentation for clicraft using `make doc` or `make html`,
-you will also need the link:http://www.methods.co.nz/asciidoc/[AsciiDoc]
-toolchain.
+In order to build the documentation, you will also need this optional
+dependency:
+* link:http://www.methods.co.nz/asciidoc/[AsciiDoc] version 8.8.6 or greater
 
 Runtime Dependencies
 ~~~~~~~~~~~~~~~~~~~~
 Clicraft needs these programs in order to successfully run:
 
-* link:http://www.gnu.org/software/bash/[bash]
-* link:http://tmux.sourceforge.net/[tmux]
+* link:http://www.gnu.org/software/bash/[bash] 3.2.25 or greater
+* link:http://tmux.sourceforge.net/[tmux] version 1.4 or greater
 * A working java implementation
 * link:http://curl.haxx.se/[curl] or another download utility
 
@@ -163,7 +164,7 @@ Finally, you can install clicraft with
 Install as an Admin to /usr/local
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-CAUTION: Installing clicraft using this method is not recommended. In most
+WARNING: Installing clicraft using this method is not recommended. In most
 circumstances, installing <<user,as a user>> or <<package,with your
 package manager>> is the preferred procedure.
 
