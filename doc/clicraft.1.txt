@@ -26,10 +26,10 @@ Actions
 -------
 
 *cmd* <command>::
-	Sends 'command'
-	to the server console. The command should not be preceded by a slash (`/`).
-	For instance, to broadcast a message to logged-in users, you would use
-	`clicraft cmd say Hello world`, not `clicraft cmd /say Hello world`
+	Sends 'command' to the server console. If 'command' starts with a leading
+	slash (`/`), it will be stripped before being sent to the server console.
+	Thus, to broadcast a message to logged-in users, you could use
+	`clicraft cmd say Hello world` or `clicraft cmd /say Hello world`
 
 *console*::
 	Attach to the server console. This places you in the linkman:tmux[1]
