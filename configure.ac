@@ -9,7 +9,7 @@ AC_SUBST([PACKAGE],   [$PACKAGE_NAME])
 AC_SUBST([PROG],      [$PACKAGE_TARNAME])
 AC_SUBST([VERSION],   [$PACKAGE_VERSION])
 AC_SUBST([BUGREPORT], [$PACKAGE_BUGREPORT])
-AC_SUBST([URL],       [https://github.com/DMBuce/clicraft])
+AC_SUBST([URL],       [http://dmbuce.github.com/clicraft/])
 
 dnl --enable-shortdirs
 AC_ARG_ENABLE([shortdirs],
