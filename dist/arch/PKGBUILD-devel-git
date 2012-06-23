@@ -33,11 +33,15 @@ build() {
     msg "The local files are updated."
   else
     git clone "$_gitroot" "$_gitname" --branch devel
-    cd "$_gitname"
   fi
 
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+  git checkout devel
 
   autoconf
   ./configure --prefix=/usr \
@@ -50,7 +54,7 @@ build() {
 }
 
 package() {
-  cd "$srcdir/$_gitname"
+  cd "$srcdir/$_gitname-build"
   make DESTDIR="$pkgdir" install
 
   install -Dm755 "$startdir/$pkgname.rc" "${pkgdir}/etc/rc.d/$pkgname"
