@@ -8,11 +8,9 @@
 #    Overrides the default `clicraft $ACTION' with custom functionality.
 #
 
-## Recommended way of overriding system action scripts:
-#
-## do stuff before system "$ACTION" action script
-#
-#sys_action $ACTION "$@"
-#
-## do stuff after system "$ACTION" action script
+# TODO: stuff before system "$ACTION" action script
+
+sys_action $ACTION "$@"
+
+# TODO: stuff after system "$ACTION" action script
 
