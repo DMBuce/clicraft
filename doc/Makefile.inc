@@ -45,10 +45,10 @@ $(DESTDIR)$(man5dir)/%: doc/%
 # compile man pages with asciidoc
 
 doc/%.1: doc/%.1.txt
-	a2x --no-xmllint -d manpage -f manpage --asciidoc-opts="${ASCIIDOC_OPTS} -d manpage" $<
+	- a2x --no-xmllint -d manpage -f manpage --asciidoc-opts="${ASCIIDOC_OPTS} -d manpage" $<
 
 doc/%.5: doc/%.5.txt
-	a2x --no-xmllint -d manpage -f manpage --asciidoc-opts="${ASCIIDOC_OPTS} -d manpage" $<
+	- a2x --no-xmllint -d manpage -f manpage --asciidoc-opts="${ASCIIDOC_OPTS} -d manpage" $<
 
 
 
