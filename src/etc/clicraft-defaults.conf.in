@@ -1,17 +1,23 @@
 #!bash
 # This is the default clicraft configuration file. The format is bash, so
 # configuration options take the form OPTION="value" (with no whitespace
-# between the equals sign (=) ). This file is sourced from within clicraft,
-# so you can include any extra variables you wish to use in custom action
-# scripts. You can also embed shell logic without trouble; this behavior may
+# between the equals sign (=) ).
+#
+# This file is sourced from within clicraft before the default values are set,
+# so you must take care to initialize any options that another option depends
+# on. For example, if you set SERVER_JAR=$SERVER_DIR/custom_server.jar without
+# setting SERVER_DIR first, clicraft will look for /custom_server.jar, which
+# is probably not what you want.
+#
+# You can include any extra variables you wish to use in custom action
+# scripts here. You can also embed shell logic without trouble; this behavior may
 # change in future versions, however.
 
 
 # MULTIPLEXER
 # The terminal multiplexer to use. Valid values are "tmux" and "screen".
 #
-# Default:
-#MULTIPLEXER="tmux"
+MULTIPLEXER="tmux"
 
 
 # SERVER_DIR
@@ -19,8 +25,7 @@
 # This is the directory that your world data, server.properties, and server.log
 # (among other things) resides in.
 #
-# Default:
-#SERVER_DIR="@DEFAULT_SERVER_DIR@"
+SERVER_DIR="@DEFAULT_SERVER_DIR@"
 
 
 # SERVER_NAME
@@ -28,16 +33,14 @@
 # window and session names when starting the server. It is also used in some
 # informational messages.
 #
-# Default:
-#SERVER_NAME="minecraft"
+SERVER_NAME="minecraft"
 
 
 # SERVER_JAR, SERVER_URL
 # The location of the server jar on disk and on the web, respectively
 #
-# Default:
-#SERVER_JAR="$SERVER_DIR/minecraft_server.jar"
-#SERVER_URL="https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"
+SERVER_JAR="$SERVER_DIR/minecraft_server.jar"
+SERVER_URL="https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"
 
 
 # SERVER_TYPE
@@ -47,15 +50,13 @@
 #SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
 #SERVER_URL="http://cbukk.it/craftbukkit.jar"
 #
-# Default:
-#SERVER_TYPE=""
+SERVER_TYPE=""
 
 
 # START_COMMAND
 # The command that should be used to launch the server.
 #
-# Default:
-#START_COMMAND="java -jar $SERVER_JAR nogui"
+START_COMMAND="java -jar $SERVER_JAR nogui"
 
 
 # DOWNLOAD_COMMAND
@@ -63,6 +64,5 @@
 # command should result in SERVER_URL being downloaded and saved to
 # SERVER_JAR.
 #
-# Default:
-#DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"
+DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"
 

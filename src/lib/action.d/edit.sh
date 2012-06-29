@@ -37,8 +37,11 @@ edit_file_template() {
 
 		edit_file "$FILE"
 
-		if ! grep -q '^[ 	]*[^ 	#]' "$FILE"; then
-			warn "Aborting installation of $(basename "$FILE") because no non-comment lines found."
+		# if any non-comment, non-whitespace changes were made
+		if [ -f "$TEMPLATE" ] && \
+		   diff -q <(grep "^[ 	]*[^ 	#]" "$FILE") \
+		           <(grep "^[ 	]*[^ 	#]" "$TEMPLATE" | sed "$SUBST") >/dev/null; then
+			warn "Aborting installation of $(basename "$FILE"): No changes made to template."
 			rm "$FILE"
 		else
 			msg "New file $(basename "$FILE") successfully installed."

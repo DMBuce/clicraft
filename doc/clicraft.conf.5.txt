@@ -13,9 +13,13 @@ Description
 -----------
 Configuration options for clicraft are stored in +{CONFDIR}/clicraft.conf+.
 The format is bash, so configuration options take the form +OPTION="value"+
-(with no whitespace between the equals sign (`=`) ). This file is sourced from
-within clicraft, so you can include any extra variables you wish to use in
-custom action scripts.
+(with no whitespace between the equals sign (`=`) ).
+
+This file is sourced from within clicraft before the default values are set,
+so you must take care to initialize any options that another option depends
+on. For example, if you set `SERVER_JAR=$SERVER_DIR/custom_server.jar` without
+setting +SERVER_DIR+ first, clicraft will look for +/custom_server.jar+, which
+is probably not what you want.
 
 An example default file is located at +{CONFDIR}/clicraft-defaults.conf+. It
 is fairly well-commented, so it may be easiest to simply copy it to
@@ -23,6 +27,10 @@ is fairly well-commented, so it may be easiest to simply copy it to
 
 Options
 -------
+In addition to the options listed below, +clicraft.conf+ can include any extra
+variables you wish to use in custom action scripts.
+
+
 **MULTIPLEXER=**"multiplexer"::
 	The terminal multiplexer to use. Valid values are "tmux" and "screen".
 +
