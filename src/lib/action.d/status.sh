@@ -6,7 +6,7 @@
 #    is not running, returns a nonzero exit status.
 #
 
-tmux has -t "$SERVER_NAME" &>/dev/null
+multiplex_status
 retval=$?
 
 if [ "$retval" = 0 ]; then

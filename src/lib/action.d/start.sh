@@ -20,7 +20,7 @@ if [ ! -w "$SERVER_DIR" ]; then
 fi
 
 msg "Starting $SERVER_NAME"
-tmux new -d -n "$SERVER_NAME" -s "$SERVER_NAME" "$START_COMMAND"
+multiplex_start
 retval=$?
 
 if [ "$?" != 0 ]; then

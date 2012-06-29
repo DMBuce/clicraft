@@ -7,6 +7,13 @@
 # change in future versions, however.
 
 
+# MULTIPLEXER
+# The terminal multiplexer to use. Valid values are "tmux" and "screen".
+#
+# Default:
+#MULTIPLEXER="tmux"
+
+
 # SERVER_DIR
 # The directory that the server is launched from.
 # This is the directory that your world data, server.properties, and server.log
@@ -17,7 +24,7 @@
 
 
 # SERVER_NAME
-# An identifier for the server. This is the value used to set tmux's
+# An identifier for the server. This is the value used to set the multiplexer's
 # window and session names when starting the server. It is also used in some
 # informational messages.
 #

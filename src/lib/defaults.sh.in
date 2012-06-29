@@ -4,6 +4,8 @@ SERVER_DIR="${SERVER_DIR-@DEFAULT_SERVER_DIR@}"
 
 SERVER_NAME="${SERVER_NAME-minecraft}"
 
+MULTIPLEXER="${MULTIPLEXER-tmux}"
+
 if [ "$SERVER_TYPE" = "bukkit" ]; then
 	SERVER_JAR="${SERVER_JAR-$SERVER_DIR/craftbukkit.jar}"
 	SERVER_URL="${SERVER_URL-http://cbukk.it/craftbukkit.jar}"

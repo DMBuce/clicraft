@@ -8,5 +8,5 @@
 CMD="$*"
 
 action status >/dev/null && \
-	tmux send -t "$SERVER_NAME" "${CMD#/}" C-m
+	multiplex_cmd "${CMD#/}"
 

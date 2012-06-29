@@ -16,6 +16,13 @@ fi
 
 . "$EXECDIR/defaults.sh"
 . "$EXECDIR/functions.sh"
+if [ ! -f "$EXECDIR/$MULTIPLEXER.sh" ] || \
+   ! which "$MULTIPLEXER" &>/dev/null; then
+	err "Invalid multiplexer: $MULTIPLEXER"
+	exit 1
+else
+	. "$EXECDIR/$MULTIPLEXER.sh"
+fi
 
 # bail if we're root
 if [ "$(id -u)" = "0" ]; then
