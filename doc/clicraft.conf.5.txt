@@ -23,6 +23,12 @@ is fairly well-commented, so it may be easiest to simply copy it to
 
 Options
 -------
+**MULTIPLEXER=**"multiplexer"::
+	The terminal multiplexer to use. Valid values are "tmux" and "screen".
++
+*Default*: +"tmux"+
+
+
 **SERVER_DIR=**"/path/to/server/directory"::
 	The directory that the server is launched from.
 	Clicraft switches to this directory before performing any action, so
@@ -34,7 +40,7 @@ Options
 
 
 **SERVER_NAME=**"name"::
-	An identifier for the server. This is the value used to set tmux's
+	An identifier for the server. This is the value used to set the multiplexer's
 	window and session names when starting the server. It is also used in some
 	informational messages.
 +

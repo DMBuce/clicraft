@@ -13,7 +13,8 @@ Description
 -----------
 Clicraft is a command-line wrapper for operation and administration of a
 minecraft-compatible server. It is written in linkman:bash[1] and uses
-linkman:tmux[1] to daemonize and communicate with the server process.
+linkman:tmux[1] or linkman:screen[1] to daemonize and communicate with the
+server process.
 
 The 'action' is an action to perform on the server, such as starting it,
 stopping it, or sending a command to the server console. Actions are
@@ -32,9 +33,9 @@ Actions
 	`clicraft cmd say Hello world` or `clicraft cmd /say Hello world`
 
 *console*::
-	Attach to the server console. This places you in the linkman:tmux[1]
-	session that the server is running in. All normal tmux keybindings (like
-	`Ctrl-b d` to detach) should work.
+	Attach to the server console. This places you in the multiplexer shell
+	session that the server is running in. All normal multiplexer key-bindings
+	(like `Ctrl-b d` or `Ctrl-a d` to detach) should work.
 
 *dl*::
 	Downloads the server jar file. The jar file is downloaded from
@@ -138,7 +139,7 @@ See Also
 --------
 
 linkman:clicraft.conf[5], linkman:clicraft-actions[5], linkman:tmux[1],
-linkman:mcexplore[1], linkman:c10t[1]
+linkman:screen[1], linkman:mcexplore[1], linkman:c10t[1]
 
 include::footer.txt[]
 
