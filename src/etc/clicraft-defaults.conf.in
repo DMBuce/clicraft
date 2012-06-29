@@ -55,7 +55,7 @@
 # The command that should be used to launch the server.
 #
 # Default:
-#START_COMMAND="java -jar '$SERVER_JAR' nogui"
+#START_COMMAND="java -jar $SERVER_JAR nogui"
 
 
 # DOWNLOAD_COMMAND

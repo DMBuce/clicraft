@@ -74,7 +74,7 @@ SERVER_URL="http://cbukk.it/craftbukkit.jar"
 The shell expands this option twice, so care must be taken to protect
 whitespace and special characters.
 +
-*Default*: +"java -jar \'$SERVER_JAR' nogui"+
+*Default*: +"java -jar $SERVER_JAR nogui"+
 
 
 **DOWNLOAD_COMMAND=**"/path/to/command [options]"::
