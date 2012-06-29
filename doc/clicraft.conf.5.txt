@@ -42,7 +42,7 @@ variables you wish to use in custom action scripts.
 	Clicraft switches to this directory before performing any action, so
 	this is the directory that your world data, server.properties, and
 	server.log (among other things) resides in. Most relative paths are taken
-	ith respect to this directory.
+	with respect to this directory.
 +
 *Default*: +"{SERVER_DIR}"+
 
