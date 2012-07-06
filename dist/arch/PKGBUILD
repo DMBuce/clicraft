@@ -18,7 +18,7 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/DMBuce/clicraft/tarball/$pk
         "$pkgname.rc")
 md5sums=('4fdcbfd43e02e1537c5d10c1dbdde941'
          '631669f302dffa059b4bdc915374d3d6'
-         'fbd593f78d04be79bf4b884c6b747379')
+         'dce883d9854859651b62b3477d0b5d4a')
 
 
 
