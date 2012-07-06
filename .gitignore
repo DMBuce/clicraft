@@ -11,17 +11,17 @@ src/etc/clicraft-defaults.conf
 src/lib/defaults.sh
 
 # distro build artifacts
-clicraft_*.deb
+clicraft-[0-9]*
+clicraft_[0-9]*.deb
+clicraft_[0-9]*.tar.gz
+clicraft_[0-9]*.dsc
+clicraft_[0-9]*.changes
 dist/arch/[0-9].[0-9].[0-9]
 dist/arch/[0-9].[0-9].[0-9][0-9]
 dist/arch/clicraft-*.pkg.tar.xz
 dist/arch/clicraft-*.src.tar.gz
 dist/arch/pkg/
 dist/arch/src/
-dist/deb/DEBIAN/conffiles
-dist/deb/etc
-dist/deb/usr
-dist/deb/var
 
 # doc build artifacts
 README.html
