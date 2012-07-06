@@ -1,3 +1,9 @@
+clicraft (0.0.6-1) lucid; urgency=low
+
+  * New upstream release
+
+ -- D.M. Buce <dmbuce@gmail.com>  Fri, 06 Jul 2012 15:05:11 -0500
+
 clicraft (0.0.5-1) unstable; urgency=low
 
   * Initial release, local package
