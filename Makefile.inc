@@ -8,6 +8,7 @@ UNINSTALL   :=
 DIST        := configure install-sh Makefile.in Makefile.inc \
                INSTALL LICENSE README.asciidoc
 DISTCLEAN   := Makefile config.log config.status
+MAINTCLEAN  := autom4te.cache $(PROG)-$(VERSION) $(PROG)-$(VERSION).tar.gz
 
 .PHONY: all
 all: targets
@@ -52,6 +53,12 @@ dist:
 .PHONY: distclean
 distclean: clean
 	rm -f $(DISTCLEAN)
+
+.PHONY: maintainer-clean
+maintainer-clean: clean distclean
+	@echo 'This command is intended for maintainers to use; it'
+	@echo 'deletes files that may need special tools to rebuild.'
+	rm -rf $(MAINTCLEAN)
 
 tags: distclean
 	ctags -R
