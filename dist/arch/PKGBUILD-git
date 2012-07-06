@@ -1,13 +1,13 @@
 # Maintainer: DMBuce <dmbuce@gmail.com>
 pkgname=clicraft-git
-pkgver=20120316
+pkgver=20120706
 pkgrel=1
 pkgdesc="A command-line wrapper for a minecraft or bukkit server."
 arch=("any")
 url="https://github.com/DMBuce/clicraft"
 license=('BSD')
 depends=("bash" "tmux" "curl" "java-runtime")
-makedepends=("git")
+makedepends=("git" "asciidoc")
 #checkdepends=()
 optdepends=("c10t: for map.sh action script" "mcexplore: for explore.sh action script")
 provides=('clicraft')
