@@ -5,8 +5,8 @@ CLEAN       :=
 TGT_INSTALL :=
 INSTALLDIRS :=
 UNINSTALL   :=
-DIST        := configure Makefile.in Makefile.inc \
-               INSTALL LICENSE README
+DIST        := configure install-sh Makefile.in Makefile.inc \
+               INSTALL LICENSE README.asciidoc
 DISTCLEAN   := Makefile config.log config.status
 
 .PHONY: all
