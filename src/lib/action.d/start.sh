@@ -21,9 +21,13 @@ fi
 
 msg "Starting $SERVER_NAME"
 multiplex_start
-retval=$?
 
-if [ "$?" != 0 ]; then
-	return $retval
+sleep 1
+
+if ! status; then
+	err "$SERVER_NAME failed to start"
+	return 1
+else
+	return 0
 fi
 
