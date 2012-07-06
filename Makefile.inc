@@ -45,7 +45,9 @@ dist:
 	rm -rf $(PROG)-$(VERSION)
 	mkdir $(PROG)-$(VERSION)
 	cp -r $(DIST) $(PROG)-$(VERSION)
-	tar czvf $(PROG)-$(VERSION).tar.gz $(PROG)-$(VERSION)
+	rm -f $(PROG)-$(VERSION)/debian/post*
+	sed -i '/include dist\/Makefile.inc/d' $(PROG)-$(VERSION)/Makefile.inc
+	tar czf $(PROG)-$(VERSION).tar.gz $(PROG)-$(VERSION)
 
 .PHONY: distclean
 distclean: clean
