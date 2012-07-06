@@ -1,0 +1,16 @@
+Source: clicraft
+Section: misc
+Priority: optional
+Maintainer: D.M. Buce <dmbuce@gmail.com>
+Build-Depends: debhelper (>= 7.0.50), autotools-dev, asciidoc
+Standards-Version: 3.8.4
+Vcs-Git: git://github.com/DMBuce/clicraft.git
+Vcs-browser: https://github.com/DMBuce/clicraft
+Homepage: http://dmbuce.github.com/clicraft/
+
+Package: clicraft
+Architecture: all
+Depends: ${misc:Depends}, tmux|screen, curl, default-jre|java-runtime
+Description: Command Line Minecraft Server
+ A command-line wrapper for operation and administration of a Minecraft
+ or Bukkit server.

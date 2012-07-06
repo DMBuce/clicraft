@@ -1,10 +1,8 @@
-RELEASE := 1
+DIST     := $(DIST) dist/debian
 
 .PHONY: deb
-deb: all
-	make DESTDIR="${PWD}/dist/deb" install
-	find dist/deb/etc -type f | sed 's#^dist/deb##' >dist/deb/DEBIAN/conffiles
-	which dpkg
-	fakeroot dpkg --build dist/deb clicraft_$(VERSION)-$(RELEASE)_all.deb
+deb: dist
+	mv $(PROG)-$(VERSION).tar.gz $(PROG)_$(VERSION).orig.tar.gz
+	cd $(PROG)-$(VERSION) && dpkg-buildpackage
 
 # vim: set ft=make:
