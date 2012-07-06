@@ -17,6 +17,8 @@ DISTCLEAN := $(DISTCLEAN) \
              $(MANPAGES) \
              $(HTMLPAGES)
 
+INSTALLDIRS := $(INSTALLDIRS) $(DESTDIR)$(man1dir) $(DESTDIR)$(man5dir)
+
 UNINSTALL := $(UNINSTALL) \
              $(MAN1PAGES_INSTALL) \
              $(MAN5PAGES_INSTALL)
