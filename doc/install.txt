@@ -24,6 +24,7 @@ To build clicraft from source, you need the following:
 
 In order to build the documentation, you will also need this optional
 dependency:
+
 * link:http://www.methods.co.nz/asciidoc/[AsciiDoc] version 8.8.6 or greater
 
 Runtime Dependencies
