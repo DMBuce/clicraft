@@ -140,3 +140,62 @@ serverprop() {
 	echo "$VALUE"
 }
 
+# Usage: serverlog <condition> <command>
+#
+# Run <command> and print server.log to stdout until a <condition> is reached or
+# TIMEOUT seconds have passed, whichever comes first.
+#
+# If <condition> is an integer, it will be interpreted as the maximum number
+# of lines to print. Otherwise, <condition> will be used as an extended regular
+# expression, and serverlog() will return as soon as it prints a matching line.
+serverlog() {
+	local TIMERPID CONDITION RE_TIMESTAMP retval
+
+	CONDITION="$1"
+	shift
+
+	if [ $# = 0 ]; then
+		warn "Usage: serverlog <condition> <command>"
+	fi
+
+	# make sure server.log exists, we're gonna need it
+	if [ ! -f "$SERVER_DIR/server.log" ]; then
+		touch "$SERVER_DIR/server.log"
+	fi
+
+	# launch a process in the background that will time out eventually
+	sleep "$TIMEOUT" &
+	TIMERPID="$!"
+
+	# if CONDITION is an integer
+	if [ "$CONDITION" -eq "$CONDITION" ] 2>/dev/null; then
+		# print server.log to stdout and quit after CONDITION lines
+		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
+			head -n "$CONDITION"
+			retval=0
+			kill "$TIMERPID" 2>/dev/null
+		} &
+	else
+
+		# print server.log to stdout
+		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" &
+
+		# kill timeout process when we see CONDITION in server.log
+		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
+			egrep -ql "$CONDITION"
+			retval=$?
+			kill "$TIMERPID" 2>/dev/null
+		} &
+	fi
+
+	# run command
+	"$@"
+
+	# wait until the backgrounded timeout process exits
+	{
+		wait "$TIMERPID"
+	} &>/dev/null
+
+	return $retval
+}
+
