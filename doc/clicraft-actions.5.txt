@@ -51,7 +51,7 @@ Variables
 	+clicraft foo bar baz+, +$ACTION+ is +"foo"+.
 
 *SERVER_DIR, SERVER_NAME, SERVER_JAR, SERVER_URL*::
-*SERVER_TYPE, START_COMMAND, DOWNLOAD_COMMAND*::
+*SERVER_TYPE, START_COMMAND, DOWNLOAD_COMMAND, TIMEOUT*::
 	Configuration options are stored in variables by the same name as the
 	option. For a description of these options and their default values, see
 	linkman:clicraft.conf[5].
@@ -138,6 +138,17 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 	Print the value of 'property' in +server.properties+ to stdout. If the
 	property cannot be found, print an error message to stderr and return
 	nonzero.
+
+*serverlog* <condition> <command>::
+	Start printing +server.log+ to stdout, run 'command', and wait until
+	'condition' is reached or +TIMEOUT+ seconds have passed before stopping
+	output and returning. See linkman:clicraft.conf[5] for a description of
+	the +TIMEOUT+ option.
++
+If 'condition' is an integer, it is interpreted as the maximum number of lines
+to print. Otherwise, 'condition' will be used as an extended regular
+expression, and this function will return as soon as it prints a matching
+line.
 
 Examples
 --------

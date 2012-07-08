@@ -140,14 +140,18 @@ serverprop() {
 	echo "$VALUE"
 }
 
-# Usage: serverlog <condition> <command>
+
+# Dear Drunk Me,
 #
-# Run <command> and print server.log to stdout until a <condition> is reached or
-# TIMEOUT seconds have passed, whichever comes first.
+#     Please don't touch any of the code below. You'll likely just make the
+#     situation worse for both of us.
 #
-# If <condition> is an integer, it will be interpreted as the maximum number
-# of lines to print. Otherwise, <condition> will be used as an extended regular
-# expression, and serverlog() will return as soon as it prints a matching line.
+# Sincerely,
+# -Sober Me
+#
+
+
+# Prints server.log, runs a command, and waits until it's safe to continue
 serverlog() {
 	local TIMERPID CONDITION RE_TIMESTAMP retval
 
