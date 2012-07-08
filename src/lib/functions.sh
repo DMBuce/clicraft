@@ -153,7 +153,7 @@ serverprop() {
 
 # Prints server.log, runs a command, and waits until it's safe to continue
 serverlog() {
-	local TIMERPID CONDITION RE_TIMESTAMP retval
+	local TIMERPID CONDITION retval
 
 	CONDITION="$1"
 	shift
