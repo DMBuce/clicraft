@@ -66,3 +66,9 @@ START_COMMAND="java -jar $SERVER_JAR nogui"
 #
 DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"
 
+# TIMEOUT
+# The amount of time, in seconds, that clicraft will wait for critical
+# operations to finish.
+#
+TIMEOUT=20
+

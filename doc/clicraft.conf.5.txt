@@ -102,6 +102,13 @@ whitespace and special characters.
 *Default*: +"curl -#L -o $SERVER_JAR $SERVER_URL"+
 
 
+**TIMEOUT=**"seconds"::
+	The amount of time, in seconds, that clicraft will wait for critical
+	operations to finish.
++
+*Default*: +"20"+
+
+
 See Also
 --------
 

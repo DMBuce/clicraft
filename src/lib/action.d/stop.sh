@@ -13,7 +13,7 @@ fi
 msg "Stopping $SERVER_NAME"
 action cmd "stop"
 
-for i in {1..20}; do
+for ((i=0; i<TIMEOUT; i++)); do
 	sleep 1
 	if ! status; then
 		break
