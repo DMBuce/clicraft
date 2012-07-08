@@ -104,7 +104,7 @@ actions() {
 
 # Returns 0 if the server is running, 1 otherwise
 status() {
-	action status &>/dev/null
+	multiplex_status
 }
 
 # Prints the usage of an action script
