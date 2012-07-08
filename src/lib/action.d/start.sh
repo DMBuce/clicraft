@@ -5,6 +5,8 @@
 #    Starts the server.
 #
 
+local RE_START='Done \([0-9.]+s\)! For help, type "help" or "\?"$'
+
 if status; then
 	err "$SERVER_NAME is already running"
 	return 1
@@ -20,9 +22,8 @@ if [ ! -w "$SERVER_DIR" ]; then
 fi
 
 msg "Starting $SERVER_NAME"
-multiplex_start
 
-sleep 1
+serverlog "$RE_START" multiplex_start >/dev/null
 
 if ! status; then
 	err "$SERVER_NAME failed to start"

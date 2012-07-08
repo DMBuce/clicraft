@@ -9,18 +9,22 @@ BACKUP_DIR="$SERVER_DIR/backups"
 WORLD=$(grep 'level-name=' server.properties | cut -d '=' -f 2)
 DATE=$(date +%Y%m%d-%H%M%S)
 
+RE_SAVE_OFF='CONSOLE: Disabling level saving\.\.$'
+RE_SAVE_ON='CONSOLE: Enabling level saving\.\.$'
+RE_SAVE_ALL='CONSOLE: Save complete\.$'
+
 cd "$SERVER_DIR"
 mkdir -p "$BACKUP_DIR"
 
 if status; then
-	action cmd 'save-off'
-	action cmd 'save-all'
-	sleep 1
+	serverlog "$RE_SAVE_OFF" action cmd 'save-off' >/dev/null
+
+	serverlog "$RE_SAVE_ALL" action cmd 'save-all' >/dev/null
 fi
 
 zip -r "$BACKUP_DIR/$WORLD-$DATE.zip" "$WORLD"
 
 if status; then
-	action cmd 'save-on'
+	serverlog "$RE_SAVE_ON" action cmd 'save-on' >/dev/null
 fi
 

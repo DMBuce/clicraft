@@ -6,6 +6,5 @@
 #
 
 action stop
-sleep 2
 action start
 
