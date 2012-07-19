@@ -6,7 +6,7 @@
 #
 
 BACKUP_DIR="$SERVER_DIR/backups"
-WORLD=$(grep 'level-name=' server.properties | cut -d '=' -f 2)
+WORLD=$(serverprop 'level-name')
 DATE=$(date +%Y%m%d-%H%M%S)
 
 RE_SAVE_OFF="$(redb_lookup cmd/save-off "$(redb_lookup timestamp)")"
