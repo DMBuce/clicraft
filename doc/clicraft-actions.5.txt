@@ -134,6 +134,42 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 *usage* <file>::
 	Print the usage message in 'file' to stdout.
 
+*redb_lookup* <key> [prefix]::
+	Look up 'key' in the regex database and print the corresponding value
+	to stdout. If the value of 'key' has a leading start-of-line character
+	(+\^+) and 'prefix' is given, insert 'prefix' after +^+ before printing.
+	If a regex for 'key' does not exist, print an error message to stderr and
+	return nonzero.
++
+The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
+linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
+the <<vars,Variables>> section for a description of +CONFDIR+.
+
+*redb_insert* <key> <value>::
+	Insert a new 'key' and 'value' into the regex database. If a regex for
+	'key' already exists, print an error message to stderr and return nonzero.
++
+The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
+linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
+the <<vars,Variables>> section for a description of +CONFDIR+.
+
+*redb_update* <key> <value>::
+	Change the value for 'key' to 'value' in the regex database. If a regex
+	for 'key' does not exist, print an error message to stderr and return
+	nonzero.
++
+The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
+linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
+the <<vars,Variables>> section for a description of +CONFDIR+.
+
+*redb_delete* <key>::
+	Delete the regex for 'key' from the regex database. If a regex for 'key'
+	does not exist, print an error message to stderr and return nonzero.
++
+The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
+linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
+the <<vars,Variables>> section for a description of +CONFDIR+.
+
 *serverprop* <property>::
 	Print the value of 'property' in +server.properties+ to stdout. If the
 	property cannot be found, print an error message to stderr and return

@@ -126,6 +126,81 @@ usage() {
 	done <"$FILE"
 }
 
+# Look up a regex in the db
+redb_lookup() {
+	local KEY PREFIX DB KEYVAL VALUE
+	KEY="$1"
+	PREFIX="$2"
+	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
+	KEYVAL="$(grep "^$KEY " "$DB")"
+	VALUE="${KEYVAL#$KEY }"
+
+	if [ "$VALUE" = "" ]; then
+		warn "Key not found in database: $KEY"
+		return 1
+	fi
+
+	# if given a prefix, prepend it to the regex after start-of-line
+	if [ "$PREFIX" != "" ] && [ "${VALUE:0:1}" = '^' ]; then
+		VALUE="^${PREFIX}${VALUE:1}"
+	fi
+
+	echo "$VALUE"
+}
+
+# Insert a regex into the db
+redb_insert() {
+	local KEY NEWVALUE DB VALUE
+	KEY="$1"
+	shift
+	NEWVALUE="$*"
+	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
+	VALUE="$(redb_lookup "$KEY" 2>/dev/null)"
+
+	if [ "$VALUE" != "" ]; then
+		warn "Key already in database: $KEY"
+		return 1
+	fi
+
+	echo "$KEY $NEWVALUE" >>"$DB"
+}
+
+# Update a regex in the db
+redb_update() {
+	local KEY NEWVALUE DB VALUE
+	KEY="$1"
+	shift
+	NEWVALUE="$*"
+	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
+	VALUE="$(redb_lookup "$KEY")"
+	retval=$?
+
+	if [ "$retval" != 0 ]; then
+		return $retval
+	fi
+
+	KEY="${KEY//\//\\/}"
+	NEWVALUE="${NEWVALUE//\//\\/}"
+	sed -i "/^$KEY / s/ .*/ $NEWVALUE/" "$DB"
+}
+
+# Remove a regex from the db
+redb_delete() {
+	local KEY DB VALUE
+	KEY="$1"
+	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
+	VALUE="$(redb_lookup "$KEY")"
+	retval=$?
+
+	if [ "$retval" != 0 ]; then
+		return $retval
+	fi
+
+	KEY="${KEY//\//\\/}"
+	NEWVALUE="${NEWVALUE//\//\\/}"
+	sed -i "/^$KEY / d" "$DB"
+}
+
 # Prints a value defined in server.properties
 serverprop() {
 	local PROP="$1"
