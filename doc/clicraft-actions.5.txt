@@ -131,6 +131,9 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 *status*::
 	Return zero if the server is running, or nonzero otherwise.
 
+*cmd* <command>::
+	Sends 'command' to the server.
+
 *usage* <file>::
 	Print the usage message in 'file' to stdout.
 

@@ -107,6 +107,11 @@ status() {
 	multiplex_status
 }
 
+# Sends command to server
+cmd() {
+	multiplex_cmd "$@"
+}
+
 # Prints the usage of an action script
 usage() {
 	local FILE="$1"
