@@ -173,6 +173,18 @@ The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
 linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
 the <<vars,Variables>> section for a description of +CONFDIR+.
 
+*save-off*::
+	Run `/save-off` on the server and wait for it to finish.
+
+*save-on*::
+	Run `/save-on` on the server and wait for it to finish.
+
+*save-all*::
+	Run `/save-all` on the server and wait for it to finish.
+
+*list*::
+	Print a space-delimited list of logged in players to stdout.
+
 *serverprop* <property>::
 	Print the value of 'property' in +server.properties+ to stdout. If the
 	property cannot be found, print an error message to stderr and return

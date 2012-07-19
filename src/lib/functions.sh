@@ -206,6 +206,34 @@ redb_delete() {
 	sed -i "/^$KEY / d" "$DB"
 }
 
+# Runs /save-off on the server
+save-off() {
+	local RE_SAVE_OFF="$(redb_lookup cmd/save-off "$(redb_lookup timestamp)")"
+	serverlog "$RE_SAVE_OFF" cmd 'save-off' >/dev/null
+}
+
+# Runs /save-on on the server
+save-on() {
+	local RE_SAVE_ON="$(redb_lookup cmd/save-on "$(redb_lookup timestamp)")"
+	serverlog "$RE_SAVE_ON" cmd 'save-on' >/dev/null
+}
+
+# Runs /save-all on the server
+save-all() {
+	local RE_SAVE_ALL="$(redb_lookup cmd/save-all "$(redb_lookup timestamp)")"
+	serverlog "$RE_SAVE_ALL" cmd 'save-all' >/dev/null
+}
+
+# Prints the list of connected players to stdout
+list() {
+	local RE_TIMESTAMP RE_PATTERN
+	RE_TIMESTAMP="$(redb_lookup timestamp)"
+	RE_PATTERN="$(redb_lookup "cmd/list" "$RE_TIMESTAMP")"
+
+	serverlog "$RE_PATTERN" cmd "list" | \
+		sed -nr "/$RE_PATTERN/ s/$RE_PATTERN//p"
+}
+
 # Prints a value defined in server.properties
 serverprop() {
 	local PROP="$1"
