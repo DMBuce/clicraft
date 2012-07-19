@@ -205,7 +205,7 @@ redb_delete() {
 serverprop() {
 	local PROP="$1"
 	local NAMEVAL="$(grep "^$PROP=" "$SERVER_DIR/server.properties")"
-	local VALUE="${NAMEVAL#*=}"
+	local VALUE="${NAMEVAL#$PROP=}"
 
 	if [ "$VALUE" = "" ]; then
 		warn "Property \`$PROP' not defined in $SERVER_DIR/server.properties"
