@@ -9,9 +9,9 @@ BACKUP_DIR="$SERVER_DIR/backups"
 WORLD=$(grep 'level-name=' server.properties | cut -d '=' -f 2)
 DATE=$(date +%Y%m%d-%H%M%S)
 
-RE_SAVE_OFF='CONSOLE: Disabling level saving\.\.(:?...)$'
-RE_SAVE_ON='CONSOLE: Enabling level saving\.\.(:?...)$'
-RE_SAVE_ALL='CONSOLE: Save complete\.(:?...)$'
+RE_SAVE_OFF="$(redb_lookup cmd/save-off "$(redb_lookup timestamp)")"
+RE_SAVE_ON="$(redb_lookup cmd/save-on "$(redb_lookup timestamp)")"
+RE_SAVE_ALL="$(redb_lookup cmd/save-all "$(redb_lookup timestamp)")"
 
 cd "$SERVER_DIR"
 mkdir -p "$BACKUP_DIR"
