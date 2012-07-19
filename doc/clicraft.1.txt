@@ -104,6 +104,28 @@ created.
 +
 NOTE: This action is only available if clicraft was built using `--with-c10t`.
 
+*redb* [operation] [args]::
+	Manipulate the regex database. Exact usage depends on 'operation':
++
+*redb* lookup <key>:::
+	Prints the regex for 'key' from the regex database. If a regex for 'key'
+	does not exist, returns a nonzero exit status.
++
+*redb* insert <key> <value>:::
+	Inserts a new 'key' and 'value' into the regex database. If a regex for
+	'key' already exists, returns a nonzero exit status.
++
+*redb* update <key> <value>:::
+	Changes the regex for 'key' to 'value' in the regex database. If a regex
+	for 'key' does not exist, returns a nonzero exit status.
++
+*redb* delete <key>:::
+	Deletes the regex for 'key' from the regex database. If a regex for 'key'
+	does not exist, returns a nonzero exit status.
+
++
+If no 'operation' or 'args' are supplied, they are read from stdin.
+
 *restart*::
 	Restarts the server.
 
