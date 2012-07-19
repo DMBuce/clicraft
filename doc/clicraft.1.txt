@@ -26,11 +26,21 @@ install are described below.
 Actions
 -------
 
-*cmd* <command>::
-	Sends 'command' to the server console. If 'command' starts with a leading
-	slash (`/`), it will be stripped before being sent to the server console.
-	Thus, to broadcast a message to logged-in users, you could use
-	`clicraft cmd say Hello world` or `clicraft cmd /say Hello world`
+*cmd* [-v|--verbose] [-q|--quiet] <command>::
+	Sends 'command' to the server console. If clicraft recognizes 'command',
+	it will wait until the command finishes or +TIMEOUT+ seconds, whichever
+	comes first, before returning. If 'command' starts with a leading slash
+	(`/`), it will be stripped before being sent to the server console. Thus,
+	to broadcast a message to logged-in users, you could use `clicraft cmd say
+	Hello world` or `clicraft cmd /say Hello world`.
++
+With +-v+ or +--verbose+, print server.log to stdout. If clicraft recognizes
+the command, it will attempt to print until the command finishes. Otherwise,
+it will print for 2 seconds.
++
+With +-q+ or +--quiet+, suppress +-v+ output.
++
+See linkman:clicraft.conf[5] for a description of the +TIMEOUT+ option.
 
 *console*::
 	Attach to the server console. This places you in the multiplexer shell
