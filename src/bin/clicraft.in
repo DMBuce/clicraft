@@ -24,6 +24,11 @@ else
 	. "$EXECDIR/$MULTIPLEXER.sh"
 fi
 
+if [ ! -f "$CONFDIR/redb/$SERVER_TYPE.tab" ]; then
+	err "Invalid server type: $SERVER_TYPE"
+	exit 1
+fi
+
 # bail if we're root
 if [ "$(id -u)" = "0" ]; then
 	err "You cannot run this program as root"

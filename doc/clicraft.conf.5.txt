@@ -70,16 +70,20 @@ variables you wish to use in custom action scripts.
 
 
 **SERVER_TYPE=**"type"::
-	If this option is set to "bukkit", +SERVER_JAR+ and +SERVER_URL+ will take on
-	default values such that the server uses Bukkit Recommended Builds, instead
-	of the vanilla minecraft jar. That is, they will have these default values:
+	The minecraft implementation this server uses. Valid values are
+	"minecraft" and "bukkit".
++
+For convenience, if this option is set to "bukkit", +SERVER_JAR+ and
++SERVER_URL+ will take on default values such that the server uses Bukkit
+Recommended Builds, instead of the vanilla minecraft jar. That is, they will
+have these default values:
 +
 -----
 SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
 SERVER_URL="http://cbukk.it/craftbukkit.jar"
 -----
 +
-*Default*: <empty>
+*Default*: "minecraft"
 
 
 **START_COMMAND=**"/path/to/command [options]"::

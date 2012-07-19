@@ -6,6 +6,7 @@ SERVER_NAME="${SERVER_NAME-minecraft}"
 
 MULTIPLEXER="${MULTIPLEXER-tmux}"
 
+SERVER_TYPE="${SERVER_TYPE-minecraft}"
 if [ "$SERVER_TYPE" = "bukkit" ]; then
 	SERVER_JAR="${SERVER_JAR-$SERVER_DIR/craftbukkit.jar}"
 	SERVER_URL="${SERVER_URL-http://cbukk.it/craftbukkit.jar}"
