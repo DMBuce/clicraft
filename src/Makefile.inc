@@ -3,7 +3,8 @@ SRC_EXECFILES := src/lib/functions.sh src/lib/defaults.sh \
                  src/lib/tmux.sh src/lib/screen.sh \
                  $(wildcard src/lib/action.d/*.sh)
 SRC_CONFFILES := src/etc/clicraft-defaults.conf \
-                 $(wildcard src/etc/action.d/*.sh.example)
+                 $(wildcard src/etc/action.d/*.sh.example) \
+                 $(wildcard src/etc/redb/*.tab)
 
 SRC_BINFILES_INSTALL  := $(SRC_BINFILES:src/bin/%=$(DESTDIR)$(bindir)/%)
 SRC_EXECFILES_INSTALL := $(SRC_EXECFILES:src/lib/%=$(DESTDIR)$(EXECDIR)/%)
@@ -27,6 +28,7 @@ INSTALLDIRS := $(INSTALLDIRS) \
                $(DESTDIR)${bindir} \
                $(DESTDIR)${CONFDIR}/action.d \
                $(DESTDIR)${EXECDIR}/action.d \
+               $(DESTDIR)${CONFDIR}/redb \
                $(DESTDIR)${SERVER_DIR}
 
 UNINSTALL := $(UNINSTALL) $(SRC_FILES_INSTALL)

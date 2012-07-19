@@ -1,0 +1,6 @@
+cmd/say ^\[INFO\] \[CONSOLE\] 
+cmd/save-off ^\[INFO\] CONSOLE: Disabling level saving\.\.$
+cmd/save-on ^\[INFO\] CONSOLE: Enabling level saving\.\.$
+cmd/save-all ^\[INFO\] CONSOLE: Save complete\.$
+start/start ^\[INFO\] Done \([0-9.]+s\)! For help, type "help" or "\?"$
+timestamp [0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} 
