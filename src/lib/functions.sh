@@ -228,7 +228,7 @@ serverprop() {
 
 # Prints server.log, runs a command, and waits until it's safe to continue
 serverlog() {
-	local TIMERPID CONDITION retval
+	local TIMERPID CONDITION
 
 	CONDITION="$1"
 	shift
@@ -251,7 +251,6 @@ serverlog() {
 		# print server.log to stdout and quit after CONDITION lines
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
 			head -n "$CONDITION"
-			retval=0
 			kill "$TIMERPID" 2>/dev/null
 		} &
 	else
@@ -262,7 +261,6 @@ serverlog() {
 		# kill timeout process when we see CONDITION in server.log
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
 			egrep -ql "$CONDITION"
-			retval=$?
 			kill "$TIMERPID" 2>/dev/null
 		} &
 	fi
@@ -275,6 +273,8 @@ serverlog() {
 		wait "$TIMERPID"
 	} &>/dev/null
 
-	return $retval
+	# return inverted return value of wait
+	test $? != 0
+
 }
 

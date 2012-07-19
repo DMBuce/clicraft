@@ -178,8 +178,8 @@ the <<vars,Variables>> section for a description of +CONFDIR+.
 *serverlog* <condition> <command>::
 	Start printing +server.log+ to stdout, run 'command', and wait until
 	'condition' is reached or +TIMEOUT+ seconds have passed before stopping
-	output and returning. See linkman:clicraft.conf[5] for a description of
-	the +TIMEOUT+ option.
+	output and returning. If +TIMEOUT+ is reached, return nonzero. See
+	linkman:clicraft.conf[5] for a description of the +TIMEOUT+ option.
 +
 If 'condition' is an integer, it is interpreted as the maximum number of lines
 to print. Otherwise, 'condition' will be used as an extended regular
