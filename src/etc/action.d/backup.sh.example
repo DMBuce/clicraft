@@ -9,22 +9,17 @@ BACKUP_DIR="$SERVER_DIR/backups"
 WORLD=$(serverprop 'level-name')
 DATE=$(date +%Y%m%d-%H%M%S)
 
-RE_SAVE_OFF="$(redb_lookup cmd/save-off "$(redb_lookup timestamp)")"
-RE_SAVE_ON="$(redb_lookup cmd/save-on "$(redb_lookup timestamp)")"
-RE_SAVE_ALL="$(redb_lookup cmd/save-all "$(redb_lookup timestamp)")"
-
 cd "$SERVER_DIR"
 mkdir -p "$BACKUP_DIR"
 
 if status; then
-	serverlog "$RE_SAVE_OFF" action cmd 'save-off' >/dev/null
-
-	serverlog "$RE_SAVE_ALL" action cmd 'save-all' >/dev/null
+	save-off
+	save-all
 fi
 
 zip -r "$BACKUP_DIR/$WORLD-$DATE.zip" "$WORLD"
 
 if status; then
-	serverlog "$RE_SAVE_ON" action cmd 'save-on' >/dev/null
+	save-on
 fi
 
