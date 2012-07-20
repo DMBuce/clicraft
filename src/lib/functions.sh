@@ -109,7 +109,7 @@ status() {
 
 # Sends command to server
 cmd() {
-	multiplex_cmd "$@"
+	multiplex_cmd "$*"
 }
 
 # Prints the usage of an action script
