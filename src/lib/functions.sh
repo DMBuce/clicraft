@@ -313,7 +313,7 @@ serverprop() {
 
 # Prints server.log, runs a command, and waits until it's safe to continue
 serverlog() {
-	local TIMERPID CONDITION
+	local TIMERPID TAILPID CONDITION
 
 	CONDITION="$1"
 	shift
@@ -342,11 +342,12 @@ serverlog() {
 
 		# print server.log to stdout
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" &
+		TAILPID="$!"
 
 		# kill timeout process when we see CONDITION in server.log
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
 			egrep -ql "$CONDITION"
-			kill "$TIMERPID" 2>/dev/null
+			kill "$TAILPID" "$TIMERPID" 2>/dev/null
 		} &
 	fi
 
@@ -355,7 +356,7 @@ serverlog() {
 
 	# wait until the backgrounded timeout process exits
 	{
-		wait "$TIMERPID"
+		wait "$TAILPID" "$TIMERPID"
 	} &>/dev/null
 
 	# return inverted return value of wait
