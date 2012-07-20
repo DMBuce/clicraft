@@ -234,6 +234,58 @@ list() {
 		sed -nr "/$RE_PATTERN/ s/$RE_PATTERN//p"
 }
 
+# Kicks a player from the server
+kick() {
+	local RE_TIMESTAMP RE_PATTERN OUTPUT PLAYER
+	PLAYER="$1"
+	RE_TIMESTAMP="$(redb_lookup timestamp)"
+	RE_PATTERN="$(redb_lookup "cmd/kick" "$RE_TIMESTAMP")"
+	RE_SUCCESS="$(redb_lookup "cmd/kick/success" "$RE_TIMESTAMP")"
+
+	OUTPUT="$(serverlog "$RE_PATTERN" cmd "kick $PLAYER")"
+	egrep -q "$RE_SUCCESS" <<<"$OUTPUT"
+}
+
+# Bans a player or ip from the server
+ban() {
+	local PLAYER RE_TIMESTAMP RE_PATTERN RE_IP CMD
+	PLAYER="$1"
+	RE_IP="$(redb_lookup ip-address)"
+
+	if egrep -q "$RE_IP" <<<"$PLAYER"; then
+		CMD='ban-ip'
+	else
+		CMD='ban'
+	fi
+
+	RE_TIMESTAMP="$(redb_lookup timestamp)"
+	RE_PATTERN="$(redb_lookup "cmd/$CMD" "$RE_TIMESTAMP")"
+
+	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null
+}
+
+# Pardons a banned player or ip
+pardon() {
+	local PLAYER RE_TIMESTAMP RE_PATTERN RE_IP CMD BANLIST NUMBANS
+	PLAYER="$1"
+	RE_IP="$(redb_lookup ip-address)"
+
+	if egrep -q "$RE_IP" <<<"$PLAYER"; then
+		CMD='pardon-ip'
+		BANLIST="$SERVER_DIR/banned-ips.txt"
+	else
+		CMD='pardon'
+		BANLIST="$SERVER_DIR/banned-players.txt"
+	fi
+
+	RE_TIMESTAMP="$(redb_lookup timestamp)"
+	RE_PATTERN="$(redb_lookup "cmd/$CMD" "$RE_TIMESTAMP")"
+	NUMBANS="$(wc -w "$BANLIST" | cut -d ' ' -f 1)"
+
+	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null
+	test "$(wc -w "$BANLIST" | cut -d ' ' -f 1)" -lt "$NUMBANS"
+}
+
 # Prints a value defined in server.properties
 serverprop() {
 	local PROP="$1"
