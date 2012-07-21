@@ -313,7 +313,7 @@ serverprop() {
 
 # Prints server.log, runs a command, and waits until it's safe to continue
 serverlog() {
-	local TIMERPID TAILPID CONDITION
+	local TIMERPID TAILPID CONDITION OLDTRAP retval
 
 	CONDITION="$1"
 	shift
@@ -331,6 +331,11 @@ serverlog() {
 	sleep "$TIMEOUT" &
 	TIMERPID="$!"
 
+	# save old EXIT trap and set a new one
+	OLDTRAP="$(trap -p EXIT)"
+	OLDTRAP="${OLDTRAP:-trap - EXIT}"
+	trap "kill '$TIMERPID' 2>/dev/null" EXIT
+
 	# if CONDITION is an integer
 	if [ "$CONDITION" -eq "$CONDITION" ] 2>/dev/null; then
 		# print server.log to stdout and quit after CONDITION lines
@@ -343,6 +348,7 @@ serverlog() {
 		# print server.log to stdout
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" &
 		TAILPID="$!"
+		trap "kill '$TAILPID' '$TIMERPID' 2>/dev/null" EXIT
 
 		# kill timeout process when we see CONDITION in server.log
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
@@ -358,9 +364,13 @@ serverlog() {
 	{
 		wait "$TAILPID" "$TIMERPID"
 	} &>/dev/null
+	retval=$?
+
+	# set original EXIT trap
+	$OLDTRAP
 
 	# return inverted return value of wait
-	test $? != 0
+	test $retval != 0
 
 }
 
