@@ -13,6 +13,9 @@ cd "$SERVER_DIR"
 mkdir -p "$BACKUP_DIR"
 
 if status; then
+	OLDTRAP="$(trap -p EXIT)"
+	OLDTRAP="${OLDTRAP:-trap - EXIT}"
+	trap "cmd save-on" EXIT
 	save-off
 	save-all
 fi
@@ -21,5 +24,6 @@ zip -r "$BACKUP_DIR/$WORLD-$DATE.zip" "$WORLD"
 
 if status; then
 	save-on
+	$OLDTRAP
 fi
 
