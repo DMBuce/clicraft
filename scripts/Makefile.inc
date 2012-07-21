@@ -1,4 +1,6 @@
-SCRIPTS_INSTALL := $(DESTDIR)$(sysconfdir)/bash_completion.d/$(PROG)
+SCRIPTS_INSTALL := $(DESTDIR)$(sysconfdir)/bash_completion.d/$(PROG) \
+                   $(DESTDIR)$(sysconfdir)/logrotate.d/$(PROG) \
+                   $(DESTDIR)$(sysconfdir)/cron.d/$(PROG)
 ifeq ($(WITH_C10T), yes)
 SCRIPTS_INSTALL := $(SCRIPTS_INSTALL) $(DESTDIR)$(CONFDIR)/action.d/map.sh
 endif
@@ -10,10 +12,13 @@ endif
 
 TGT_INSTALL := $(TGT_INSTALL) scripts-install
 DIST        := $(DIST) scripts
-DISTCLEAN   := $(DISTCLEAN) scripts/bash_completion
+DISTCLEAN   := $(DISTCLEAN) scripts/bash_completion scripts/logrotate \
+               scripts/cron
 
 INSTALLDIRS := $(INSTALLDIRS) \
-               $(DESTDIR)${sysconfdir}/bash_completion.d
+               $(DESTDIR)${sysconfdir}/bash_completion.d \
+               $(DESTDIR)${sysconfdir}/logrotate.d \
+               $(DESTDIR)${sysconfdir}/cron.d
                #$(DESTDIR)${CONFDIR}/action.d
                # ^ already provided by src/Makefile.inc
 
@@ -29,6 +34,16 @@ $(DESTDIR)$(CONFDIR)/action.d/%.sh: scripts/%.sh
 # install bash completion
 
 $(DESTDIR)$(sysconfdir)/bash_completion.d/$(PROG): scripts/bash_completion
+	$(INSTALL_DATA) $< $@
+
+# install logrotate script
+
+$(DESTDIR)$(sysconfdir)/logrotate.d/$(PROG): scripts/logrotate
+	$(INSTALL_DATA) $< $@
+
+# install crontab
+
+$(DESTDIR)$(sysconfdir)/cron.d/$(PROG): scripts/cron
 	$(INSTALL_DATA) $< $@
 
 

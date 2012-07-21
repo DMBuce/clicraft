@@ -13,7 +13,9 @@ optdepends=("c10t: for map.sh action script" "mcexplore: for explore.sh action s
 provides=('clicraft')
 conflicts=('clicraft')
 backup=("etc/clicraft/action.d/explore.sh"
-        "etc/clicraft/action.d/map.sh")
+        "etc/clicraft/action.d/map.sh"
+        "etc/cron.d/clicraft"
+        "etc/logrotate.d/clicraft")
 install="$pkgname.install"
 source=("$pkgname.install"
         "$pkgname.rc")

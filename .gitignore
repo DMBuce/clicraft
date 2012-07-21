@@ -6,6 +6,8 @@ config.log
 config.status
 configure
 scripts/bash_completion
+scripts/cron
+scripts/logrotate
 src/bin/clicraft
 src/etc/clicraft-defaults.conf
 src/lib/defaults.sh

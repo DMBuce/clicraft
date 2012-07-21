@@ -1,0 +1,5 @@
+@DEFAULT_SERVER_DIR@/server.log {
+	missingok
+	copytruncate
+}
+

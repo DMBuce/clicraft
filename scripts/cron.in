@@ -1,0 +1,19 @@
+## this is an example crontab for clicraft
+## use it as a starting point
+
+## save world to disk every half hour
+#4,34 * * * * @bindir@/clicraft cmd save-all
+
+## restart once a day to combat memory leaks
+#30 1 * * * @bindir@/clicraft cmd say "The server will restart in 30 minutes."
+#45 1 * * * @bindir@/clicraft cmd say "The server will restart in 15 minutes."
+#55 1 * * * @bindir@/clicraft cmd say "The server will restart in 5 minutes."
+#59 1 * * * @bindir@/clicraft cmd say "The server will restart in 1 minute."
+#00 2 * * * @bindir@/clicraft restart
+
+## do a daily backup
+#30 06 * * * @bindir@/clicraft backup
+
+## regularly enable level saving in case it gets accidentally disabled.
+#18,48 * * * * @bindir@/clicraft cmd save-on
+

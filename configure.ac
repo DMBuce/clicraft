@@ -57,5 +57,7 @@ src/bin/clicraft
 src/lib/defaults.sh
 src/etc/clicraft-defaults.conf
 scripts/bash_completion
+scripts/cron
+scripts/logrotate
 ])
 AC_OUTPUT
