@@ -134,8 +134,8 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 *cmd* <command>::
 	Sends 'command' to the server.
 
-*usage* <file>::
-	Print the usage message in 'file' to stdout.
+*usage* <action>::
+	Print the usage message for 'action' to stdout.
 
 *redb_lookup* <key> [prefix]::
 	Look up 'key' in the regex database and print the corresponding value

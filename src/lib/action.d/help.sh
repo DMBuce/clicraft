@@ -20,8 +20,8 @@ Usage: $PROG <action> [args]
 EOF
 }
 
-if [ $# != 0 ] && FILE=$(actionfile "$1"); then
-	usage "$FILE"
+if [ $# != 0 ]; then
+	usage "$1"
 else
 	__usage
 fi

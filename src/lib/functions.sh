@@ -114,13 +114,17 @@ cmd() {
 
 # Prints the usage of an action script
 usage() {
-	local FILE="$1"
-	local USAGELINE='# Usage: '
-	local line
+	local FILE USAGELINE PRINTUSAGE line
+	USAGELINE="# Usage: clicraft $1"
+	FILE="$(actionfile "$1")"
+	if [ $? != 0 ]; then
+		action help
+		return 1
+	fi
 
 	while read line; do
 		if [ "${line#$USAGELINE}" != "$line" ]; then
-			local PRINTUSAGE=TRUE
+			PRINTUSAGE=TRUE
 		fi
 
 		if [ "$PRINTUSAGE" = 'TRUE' ]; then
