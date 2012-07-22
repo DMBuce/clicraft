@@ -50,7 +50,7 @@ SERVER_URL="https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server
 #SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
 #SERVER_URL="http://cbukk.it/craftbukkit.jar"
 #
-SERVER_TYPE=""
+SERVER_TYPE="minecraft"
 
 
 # START_COMMAND
