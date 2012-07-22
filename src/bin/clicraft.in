@@ -14,20 +14,9 @@ if [ -f "$CONFDIR/clicraft.conf" ]; then
 	. "$CONFDIR/clicraft.conf"
 fi
 
-. "$EXECDIR/defaults.sh"
 . "$EXECDIR/functions.sh"
-if [ ! -f "$EXECDIR/$MULTIPLEXER.sh" ] || \
-   ! which "$MULTIPLEXER" &>/dev/null; then
-	err "Invalid multiplexer: $MULTIPLEXER"
-	exit 1
-else
-	. "$EXECDIR/$MULTIPLEXER.sh"
-fi
-
-if [ ! -f "$CONFDIR/redb/$SERVER_TYPE.tab" ]; then
-	err "Invalid server type: $SERVER_TYPE"
-	exit 1
-fi
+. "$EXECDIR/defaults.sh"
+. "$EXECDIR/$MULTIPLEXER.sh"
 
 # bail if we're root
 if [ "$(id -u)" = "0" ]; then

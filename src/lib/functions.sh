@@ -137,10 +137,9 @@ usage() {
 
 # Look up a regex in the db
 redb_lookup() {
-	local KEY PREFIX DB KEYVAL VALUE
+	local KEY PREFIX KEYVAL VALUE
 	KEY="$1"
 	PREFIX="$2"
-	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
 	KEYVAL="$(grep "^$KEY " "$DB")"
 	VALUE="${KEYVAL#$KEY }"
 
@@ -159,11 +158,10 @@ redb_lookup() {
 
 # Insert a regex into the db
 redb_insert() {
-	local KEY NEWVALUE DB VALUE
+	local KEY NEWVALUE VALUE
 	KEY="$1"
 	shift
 	NEWVALUE="$*"
-	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
 	VALUE="$(redb_lookup "$KEY" 2>/dev/null)"
 
 	if [ "$VALUE" != "" ]; then
@@ -176,11 +174,10 @@ redb_insert() {
 
 # Update a regex in the db
 redb_update() {
-	local KEY NEWVALUE DB VALUE
+	local KEY NEWVALUE VALUE
 	KEY="$1"
 	shift
 	NEWVALUE="$*"
-	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
 	VALUE="$(redb_lookup "$KEY")"
 	retval=$?
 
@@ -195,9 +192,8 @@ redb_update() {
 
 # Remove a regex from the db
 redb_delete() {
-	local KEY DB VALUE
+	local KEY VALUE
 	KEY="$1"
-	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
 	VALUE="$(redb_lookup "$KEY")"
 	retval=$?
 
