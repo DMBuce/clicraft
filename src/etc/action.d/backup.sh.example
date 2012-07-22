@@ -2,28 +2,72 @@
 #
 # Usage: clicraft backup
 #
-#    Backs up the world folder to backups/<world>-<date>-<time>.zip
+#    Backs up world data.
 #
 
-BACKUP_DIR="$SERVER_DIR/backups"
-WORLD=$(serverprop 'level-name')
-DATE=$(date +%Y%m%d-%H%M%S)
+# Usage: clicraft restore [file.zip] [files]
+#
+#    Restores world data.
+#
 
-cd "$SERVER_DIR"
+WORLD=$(serverprop 'level-name')
+BACKUP_DIR="${BACKUP_DIR-$SERVER_DIR/backups}"
+BACKUP_TARGETS="${BACKUP_TARGETS-"$WORLD ${WORLD}_*"}"
+BACKUP_FORMAT="${BACKUP_FORMAT-$WORLD-%Y%m%d-%H%M%S.zip}"
+
+# expand globs
+TARGETS=()
+for TARGET in "${BACKUP_TARGETS[@]}"; do
+	if [ "${TARGET:0:1}" = '/' ]; then
+		warn "Absolute path in BACKUP_TARGETS detected: $TARGET"
+		warn "Restoring this backup may fail"
+	fi
+	TARGETS=( "${TARGETS[@]}" $TARGET )
+done
+
 mkdir -p "$BACKUP_DIR"
 
-if status; then
-	OLDTRAP="$(trap -p EXIT)"
-	OLDTRAP="${OLDTRAP:-trap - EXIT}"
-	trap "cmd save-on" EXIT
-	save-off
-	save-all
-fi
+backup() {
+	local OLDTRAP
 
-zip -r "$BACKUP_DIR/$WORLD-$DATE.zip" "$WORLD"
+	if status; then
+		OLDTRAP="$(trap -p EXIT)"
+		OLDTRAP="${OLDTRAP:-trap - EXIT}"
+		trap "cmd save-on" EXIT
+		save-off
+		save-all
+	fi
 
-if status; then
-	save-on
-	$OLDTRAP
-fi
+	zip -r "$BACKUP_DIR/$(date "+$BACKUP_FORMAT")" "${TARGETS[@]}"
+
+	if status; then
+		save-on
+		$OLDTRAP
+	fi
+}
+
+restore() {
+	local dir FILE
+
+	if [ "$1" = "" ]; then
+		pushd "$BACKUP_DIR" >/dev/null
+		ls
+		popd "$BACKUP_DIR" >/dev/null
+	else
+		FILE="$1"
+		shift
+
+		if action status >&2 2>/dev/null; then
+			return 1
+		fi
+
+		# prompts for file collisions
+		unzip "$BACKUP_DIR/$FILE" "$@"
+	fi
+}
+
+case "$ACTION" in
+  backup) backup ;;
+  restore) restore "$@" ;;
+esac
 
