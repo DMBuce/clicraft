@@ -1,26 +1,26 @@
 cmd/say ^\[INFO\] ..35;1m\[Server\] 
-cmd/tell ^\[INFO\] (§7CONSOLE whispers |There's no player by that name online\.)
+cmd/tell ^\[INFO\] (\[CONSOLE->|There's no player by that name online\.)
 cmd/me ^\[INFO\] \* CONSOLE 
-cmd/save-off ^\[INFO\] CONSOLE: Disabling level saving\.\...m$
-cmd/save-on ^\[INFO\] CONSOLE: Enabling level saving\.\...m$
+cmd/save-off ^\[INFO\] CONSOLE: Disabled level saving\.\...m$
+cmd/save-on ^\[INFO\] CONSOLE: Enabled level saving\.\...m$
 cmd/save-all ^\[INFO\] CONSOLE: Save complete\...m$
-cmd/list ^\[INFO\] Connected players: 
-cmd/kick ^\[INFO\] (CONSOLE: Kicking [0-9a-zA-Z_]*..m|Can't find user .*\. No kick\...m)$
-cmd/kick/success ^\[INFO\] CONSOLE: Kicking [0-9a-zA-Z_]*..m
-cmd/ban ^\[INFO\] CONSOLE: Banning 
-cmd/ban-ip ^\[INFO\] CONSOLE: Banning ip 
-cmd/pardon ^\[INFO\] CONSOLE: Pardoning 
-cmd/pardon-ip ^\[INFO\] CONSOLE: Pardoning ip 
-cmd/op ^\[INFO\] CONSOLE: Opping 
-cmd/deop ^\[INFO\] CONSOLE: De-opping 
-cmd/tp ^\[INFO\] (CONSOLE: Teleporting [0-9a-zA-Z_]* to [0-9a-zA-Z_]*|Can't find user .*\. No tp\.|..31;1mUsage: /tp <player> <target>)..m$
-cmd/give ^\[INFO\] (CONSOLE: Giving [0-9a-zA-Z_]* some [0-9]* \(.*\)|Can't find user .*|There's no item called .*)..m$
-cmd/time ^\[INFO\] (Unable to convert time value, .*|CONSOLE: Added -?[0-9]* to time|CONSOLE: Set time to -?[0-9]*)..m$
-cmd/gamemode ^\[INFO\] (CONSOLE: Setting [0-9a-zA-Z_]* to game mode [0-9]|Can't find user .*|There is no game mode with id .*|[0-9a-zA-Z_]* already has game mode [0-9])..m$
+cmd/list ^[^:/]*$
+cmd/kick ^\[INFO\] (CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:|.* not found\...m)$
+cmd/kick/success ^\[INFO\] CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:$
+cmd/ban ^\[INFO\] CONSOLE: Banned player 
+cmd/ban-ip ^\[INFO\] CONSOLE: Banned IP Address 
+cmd/pardon ^\[INFO\] CONSOLE: Pardoned 
+cmd/pardon-ip ^\[INFO\] CONSOLE: Pardoned ip 
+cmd/op ^\[INFO\] CONSOLE: Opped 
+cmd/deop ^\[INFO\] De-opped 
+cmd/tp ^\[INFO\] (CONSOLE: Teleported [0-9a-zA-Z_]* to [0-9a-zA-Z_,]*|Can't find user .*\. No tp\.|Please provide a player!)..m$
+cmd/give ^\[INFO\] (CONSOLE: Gave [0-9a-zA-Z_]* some [0-9]* \(.*\)|Can't find user .*|There's no item called .*)..m$
+cmd/time ^\[INFO\] CONSOLE: (Added ?[0-9]* to time|Set time to ?[0-9]*)..m$
+cmd/gamemode ^\[INFO\] (CONSOLE: Set [0-9a-zA-Z_]*'s game mode to .*|Can't find user .*|There is no game mode with id .*)..m$
 cmd/toggledownfall ^\[INFO\] CONSOLE: Toggling downfall (on|off) for world '.*'..m$
-cmd/xp ^\[INFO\] (CONSOLE: Giving [0-9]* exp to [0-9a-zA-Z_]*|Can't find user .*|Invalid exp count: .*)..m$
-cmd/banlist ^\[INFO\] ..37;22mBan list:
-cmd/whitelist ^\[INFO\] CONSOLE: ((Added|Removed) .* (to|from) white-list|Turned (on|off) white-listing|Reloaded white-list from file)..m$
+cmd/xp ^\[INFO\] (CONSOLE: Given [0-9]* exp to [0-9a-zA-Z_]*..m|Can't find user, was one provided\?)$
+cmd/banlist ^\[INFO\][^:]*$
+cmd/whitelist ^\[INFO\] (CONSOLE: (Added|Removed) .* (to|from) white-list|CONSOLE: Turned (on|off) white-listing|CONSOLE: Reloaded white-list from file|White-listed players: .*)..m$
 cmd/plugins ^\[INFO\] Plugins \([0-9]*\): 
 cmd/reload ^\[INFO\] ..32;1mReload complete\...m$
 cmd/version ^\[INFO\] This server is running 
