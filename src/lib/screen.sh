@@ -15,7 +15,7 @@ multiplex_console() {
 
 multiplex_status() {
 	screen -q -ls "$SERVER_NAME"
-	test $? = 10
+	test $? -gt 9
 	return $?
 }
 
