@@ -353,10 +353,8 @@ serverlog() {
 	sleep "$TIMEOUT" &
 	TIMERPID="$!"
 
-	# save old EXIT trap and set a new one
-	OLDTRAP="$(trap -p EXIT)"
-	OLDTRAP="${OLDTRAP:-trap - EXIT}"
-	trap "kill '$TIMERPID' 2>/dev/null" EXIT
+	# kill timeout process if we exit abnormally
+	pushtrap "kill '$TIMERPID' 2>/dev/null"
 
 	# if CONDITION is an integer
 	if [ "$CONDITION" -eq "$CONDITION" ] 2>/dev/null; then
@@ -370,7 +368,7 @@ serverlog() {
 		# print server.log to stdout
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" &
 		TAILPID="$!"
-		trap "kill '$TAILPID' '$TIMERPID' 2>/dev/null" EXIT
+		pushtrap "kill '$TAILPID' 2>/dev/null"
 
 		# kill timeout process when we see CONDITION in server.log
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
@@ -388,8 +386,9 @@ serverlog() {
 	} &>/dev/null
 	retval=$?
 
-	# set original EXIT trap
-	$OLDTRAP
+	# clear the traps we set earlier
+	poptrap "kill '$TAILPID' 2>/dev/null" 2>/dev/null
+	poptrap "kill '$TIMERPID' 2>/dev/null"
 
 	# return inverted return value of wait
 	test $retval != 0

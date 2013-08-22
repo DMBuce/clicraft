@@ -31,9 +31,7 @@ backup() {
 	local OLDTRAP
 
 	if status; then
-		OLDTRAP="$(trap -p EXIT)"
-		OLDTRAP="${OLDTRAP:-trap - EXIT}"
-		trap "cmd save-on" EXIT
+		pushtrap "cmd save-on"
 		save-off
 		save-all
 	fi
@@ -42,7 +40,7 @@ backup() {
 
 	if status; then
 		save-on
-		$OLDTRAP
+		poptrap "cmd save-on"
 	fi
 }
 
