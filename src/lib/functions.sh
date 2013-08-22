@@ -300,6 +300,28 @@ serverprop() {
 	echo "$VALUE"
 }
 
+# run every command in the exit trap stack
+exithandler() {
+	local i
+	for ((i=${#TRAPSTACK[@]}-1; i>=0; i--)); do
+		${TRAPSTACK[i]}
+	done
+}
+TRAPSTACK=()
+
+# push command onto exit trap stack
+pushtrap() {
+	TRAPSTACK=("${TRAPSTACK[@]}" "$1")
+}
+
+# pop last command from exit trap stack
+poptrap() {
+	if [[ "${TRAPSTACK[${#TRAPSTACK[@]}-1]}" != "$1" ]]; then
+		warn "Attempt to remove last exit trap failed: $1"
+		return 1
+	fi
+	unset TRAPSTACK[${#TRAPSTACK[@]}-1]
+}
 
 # Dear Drunk Me,
 #
