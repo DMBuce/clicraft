@@ -18,6 +18,9 @@ fi
 . "$EXECDIR/defaults.sh"
 . "$EXECDIR/$MULTIPLEXER.sh"
 
+# run exithandler function on exit
+trap "exithandler" EXIT
+
 # bail if we're root
 if [ "$(id -u)" = "0" ]; then
 	err "You cannot run this program as root"
