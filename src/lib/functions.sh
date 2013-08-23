@@ -314,7 +314,7 @@ serverprop() {
 exithandler() {
 	local i
 	for ((i=${#TRAPSTACK[@]}-1; i>=0; i--)); do
-		${TRAPSTACK[i]}
+		eval "${TRAPSTACK[i]}"
 	done
 }
 TRAPSTACK=()
