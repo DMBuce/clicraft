@@ -323,6 +323,37 @@ poptrap() {
 	unset TRAPSTACK[${#TRAPSTACK[@]}-1]
 }
 
+# Create a lock
+mklock()
+{
+	TMPDIR="${TMPDIR-/tmp}"
+	local lockfile="$TMPDIR/clicraft-$1.lock"
+
+	if (set -o noclobber && echo $$>"$lockfile") 2>/dev/null; then
+		pushtrap "rm -f '$lockfile'"
+		return 0
+	fi
+
+	warn "Lock $lockfile held by pid $(<"$lockfile")"
+	return 1
+}
+
+# Remove a lock
+rmlock() {
+	TMPDIR="${TMPDIR-/tmp}"
+	local lockfile="$TMPDIR/clicraft-$1.lock"
+
+	rm "$lockfile" 2>/dev/null
+	retval=$?
+	poptrap "rm -f '$TMPDIR/$lockname'" &>/dev/null
+
+	if [[ "$retval" != 0 ]]; then
+		warn "Lock $lockfile not found"
+	fi
+	return retval
+}
+
+
 # Dear Drunk Me,
 #
 #     Please don't touch any of the code below. You'll likely just make the
