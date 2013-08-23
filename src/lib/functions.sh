@@ -353,14 +353,18 @@ rmlock() {
 	TMPDIR="${TMPDIR-/tmp}"
 	local lockfile="$TMPDIR/clicraft-$1.lock"
 
+	if [[ ! -f "$lockfile" ]]; then
+		warn "Lock $lockfile not found"
+	elif [[ "$(<"$lockfile")" != $$ ]]; then
+		warn "Lock $lockfile held by pid $(<"$lockfile")"
+		return 1
+	fi
+
 	rm "$lockfile" 2>/dev/null
 	retval=$?
-	poptrap "rm -f '$TMPDIR/$lockname'" &>/dev/null
+	poptrap "rm -f '$lockfile'" &>/dev/null
 
-	if [[ "$retval" != 0 ]]; then
-		warn "Lock $lockfile not found"
-	fi
-	return retval
+	return $retval
 }
 
 
