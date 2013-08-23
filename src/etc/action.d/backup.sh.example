@@ -28,25 +28,25 @@ done
 mkdir -p "$BACKUP_DIR"
 
 backup() {
-	if status; then
-		pushtrap "cmd save-on"
-		save-off
-		save-all
-	fi
-
 	if ! mklock save; then
 		err "Could not lock the save state, is another clicraft process running?"
 		exit 1
 	fi
 
+	if status; then
+		pushtrap "cmd save-on"
+		cmd save-off
+		cmd save-all
+	fi
+
 	zip -r "$BACKUP_DIR/$(date "+$BACKUP_FORMAT")" "${TARGETS[@]}"
 
-	rmlock save
-
 	if status; then
-		save-on
+		cmd save-on
 		poptrap "cmd save-on"
 	fi
+
+	rmlock save
 }
 
 restore() {
