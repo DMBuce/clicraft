@@ -58,5 +58,5 @@ $(DESTDIR)$(CONFDIR)/action.d/%.sh.example: src/etc/action.d/%.sh.example
 
 .PHONY: src-install
 src-install: $(SRC_FILES_INSTALL)
-	
+
 # vim: set ft=make:
