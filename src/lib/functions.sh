@@ -337,7 +337,13 @@ poptrap() {
 mklock()
 {
 	TMPDIR="${TMPDIR-/tmp}"
-	local lockfile="$TMPDIR/clicraft-$1.lock"
+	local lockdir="$TMPDIR/clicraft.$USER"
+	local lockfile="$lockdir/$1.lock"
+	mkdir -p -m 0700 "$(dirname "$lockfile")"
+	if [[ "$(stat -Lc "%a %U" "$lockdir")" != "700 $USER" ]]; then
+		warn "Lock directory $lockdir does not have user/mode $USER/700"
+		return 1
+	fi
 
 	if (set -o noclobber && echo $$>"$lockfile") 2>/dev/null; then
 		pushtrap "rm -f '$lockfile'"
@@ -351,7 +357,13 @@ mklock()
 # Remove a lock
 rmlock() {
 	TMPDIR="${TMPDIR-/tmp}"
-	local lockfile="$TMPDIR/clicraft-$1.lock"
+	local lockdir="$TMPDIR/clicraft.$USER"
+	local lockfile="$lockdir/$1.lock"
+	mkdir -p -m 0700 "$(dirname "$lockfile")"
+	if [[ "$(stat -Lc "%a %U" "$lockdir")" != "700 $USER" ]]; then
+		warn "Lock directory $lockdir does not have user/mode $USER/700"
+		return 1
+	fi
 
 	if [[ ! -f "$lockfile" ]]; then
 		warn "Lock $lockfile not found"
