@@ -58,7 +58,7 @@ doc/%.5: doc/%.5.txt
 
 doc/%.1.html: doc/%.1.txt
 	asciidoc ${ASCIIDOC_OPTS} -a toc -a icons -a max-width=960px -d manpage $<
-                                                                            
+
 doc/%.5.html: doc/%.5.txt                                                   
 	asciidoc ${ASCIIDOC_OPTS} -a toc -a icons -a max-width=960px -d manpage $<
 

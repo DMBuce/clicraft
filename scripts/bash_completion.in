@@ -27,7 +27,7 @@ _clicraft() {
 	local SERVER_DIR SERVER_NAME SERVER_JAR SERVER_URL START_COMMAND DOWNLOAD_COMMAND
 	. "$EXECDIR/defaults.sh"
 	. "$EXECDIR/functions.sh"
-	
+
 	if [[ -f "$CONFDIR/clicraft.conf" ]]; then
 	    . "$CONFDIR/clicraft.conf"
 	fi
