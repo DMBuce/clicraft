@@ -12,11 +12,11 @@ if status; then
 	return 1
 fi
 
-if [ ! -f "$SERVER_JAR" ]; then
+if [[ ! -f "$SERVER_JAR" ]]; then
 	action dl || return $?
 fi
 
-if [ ! -w "$SERVER_DIR" ]; then
+if [[ ! -w "$SERVER_DIR" ]]; then
 	err "No write permissions in $SERVER_DIR"
 	return 1
 fi

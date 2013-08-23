@@ -5,10 +5,10 @@ SERVER_DIR="${SERVER_DIR-@DEFAULT_SERVER_DIR@}"
 SERVER_NAME="${SERVER_NAME-minecraft}"
 
 MULTIPLEXER="${MULTIPLEXER-tmux}"
-if [ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]; then
+if [[ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]]; then
 	warn "Invalid multiplexer: $MULTIPLEXER"
 	MULTIPLEXER="$(which tmux 2>/dev/null || which screen 2>/dev/null)"
-	if [ "$MULTIPLEXER" != "" ]; then
+	if [[ "$MULTIPLEXER" != "" ]]; then
 		warn "Falling back to $MULTIPLEXER"
 	else
 		exit 1
@@ -16,7 +16,7 @@ if [ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]; then
 fi
 
 SERVER_TYPE="${SERVER_TYPE-minecraft}"
-if [ "$SERVER_TYPE" = "bukkit" ]; then
+if [[ "$SERVER_TYPE" = "bukkit" ]]; then
 	SERVER_JAR="${SERVER_JAR-$SERVER_DIR/craftbukkit.jar}"
 	SERVER_URL="${SERVER_URL-http://cbukk.it/craftbukkit.jar}"
 else
@@ -24,7 +24,7 @@ else
 	SERVER_URL="${SERVER_URL-https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar}"
 fi
 
-if [ -f "$CONFDIR/redb/$SERVER_TYPE.tab" ]; then
+if [[ -f "$CONFDIR/redb/$SERVER_TYPE.tab" ]]; then
 	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
 else
 	DB="$CONFDIR/redb/minecraft.tab"
@@ -34,7 +34,7 @@ START_COMMAND="${START_COMMAND-java -jar $SERVER_JAR nogui}"
 DOWNLOAD_COMMAND="${DOWNLOAD_COMMAND-curl -#L -o "$SERVER_JAR" "$SERVER_URL"}"
 
 TIMEOUT="${TIMEOUT-20}"
-if [ "$TIMEOUT" -ne "$TIMEOUT" ] 2>/dev/null; then
+if [[ "$TIMEOUT" -ne "$TIMEOUT" ]] 2>/dev/null; then
 	warn "Invalid timeout: $TIMEOUT"
 	warn "Falling back to 20"
 	TIMEOUT=20

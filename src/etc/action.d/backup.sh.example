@@ -18,7 +18,7 @@ BACKUP_FORMAT="${BACKUP_FORMAT-$WORLD-%Y%m%d-%H%M%S.zip}"
 # expand globs
 TARGETS=()
 for TARGET in "${BACKUP_TARGETS[@]}"; do
-	if [ "${TARGET:0:1}" = '/' ]; then
+	if [[ "${TARGET:0:1}" = '/' ]]; then
 		warn "Absolute path in BACKUP_TARGETS detected: $TARGET"
 		warn "Restoring this backup may fail"
 	fi
@@ -52,7 +52,7 @@ backup() {
 restore() {
 	local dir FILE
 
-	if [ "$1" = "" ]; then
+	if [[ "$1" = "" ]]; then
 		pushd "$BACKUP_DIR" >/dev/null
 		ls
 		popd "$BACKUP_DIR" >/dev/null

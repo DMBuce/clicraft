@@ -22,7 +22,7 @@ err() {
 sys_actionfile() {
 	local ACTION="$1"
 
-	if [ -f "$EXECDIR/action.d/$ACTION.sh" ]; then
+	if [[ -f "$EXECDIR/action.d/$ACTION.sh" ]]; then
 		echo "$EXECDIR/action.d/$ACTION.sh"
 	else
 		warn "Unknown action: $ACTION"
@@ -34,7 +34,7 @@ sys_actionfile() {
 local_actionfile() {
 	local ACTION="$1"
 
-	if [ -f "$CONFDIR/action.d/$ACTION.sh" ]; then
+	if [[ -f "$CONFDIR/action.d/$ACTION.sh" ]]; then
 		echo "$CONFDIR/action.d/$ACTION.sh"
 	else
 		warn "Unknown action: $ACTION"
@@ -59,7 +59,7 @@ sys_action() {
 	shift
 
 	local FILE="$(sys_actionfile "$ACTION")"
-	if [ "$FILE" != "" ]; then
+	if [[ "$FILE" != "" ]]; then
 		. "$FILE" "$@"
 	else
 		return 1
@@ -72,7 +72,7 @@ local_action() {
 	shift
 
 	local FILE="$(local_actionfile "$ACTION")"
-	if [ "$FILE" != "" ]; then
+	if [[ "$FILE" != "" ]]; then
 		. "$FILE" "$@"
 	else
 		return 1
@@ -85,7 +85,7 @@ action() {
 	shift
 
 	local FILE="$(actionfile "$ACTION")"
-	if [ "$FILE" != "" ]; then
+	if [[ "$FILE" != "" ]]; then
 		. "$FILE" "$@"
 	else
 		action help
@@ -117,17 +117,17 @@ usage() {
 	local FILE USAGELINE PRINTUSAGE line
 	USAGELINE="# Usage: clicraft $1"
 	FILE="$(actionfile "$1")"
-	if [ $? != 0 ]; then
+	if [[ $? != 0 ]]; then
 		action help
 		return 1
 	fi
 
 	while read line; do
-		if [ "${line#$USAGELINE}" != "$line" ]; then
+		if [[ "${line#$USAGELINE}" != "$line" ]]; then
 			PRINTUSAGE=TRUE
 		fi
 
-		if [ "$PRINTUSAGE" = 'TRUE' ]; then
+		if [[ "$PRINTUSAGE" = 'TRUE' ]]; then
 			[ "${line#'#'}" = "$line" ] && break
 			line="${line#'#'}"
 			msg "${line#' '}"
@@ -143,13 +143,13 @@ redb_lookup() {
 	KEYVAL="$(grep "^$KEY " "$DB")"
 	VALUE="${KEYVAL#$KEY }"
 
-	if [ "$VALUE" = "" ]; then
+	if [[ "$VALUE" = "" ]]; then
 		warn "Key not found in database: $KEY"
 		return 1
 	fi
 
 	# if given a prefix, prepend it to the regex after start-of-line
-	if [ "$PREFIX" != "" ] && [ "${VALUE:0:1}" = '^' ]; then
+	if [[ "$PREFIX" != "" && "${VALUE:0:1}" = '^' ]]; then
 		VALUE="^${PREFIX}${VALUE:1}"
 	fi
 
@@ -164,7 +164,7 @@ redb_insert() {
 	NEWVALUE="$*"
 	VALUE="$(redb_lookup "$KEY" 2>/dev/null)"
 
-	if [ "$VALUE" != "" ]; then
+	if [[ "$VALUE" != "" ]]; then
 		warn "Key already in database: $KEY"
 		return 1
 	fi
@@ -181,7 +181,7 @@ redb_update() {
 	VALUE="$(redb_lookup "$KEY")"
 	retval=$?
 
-	if [ "$retval" != 0 ]; then
+	if [[ "$retval" != 0 ]]; then
 		return $retval
 	fi
 
@@ -197,7 +197,7 @@ redb_delete() {
 	VALUE="$(redb_lookup "$KEY")"
 	retval=$?
 
-	if [ "$retval" != 0 ]; then
+	if [[ "$retval" != 0 ]]; then
 		return $retval
 	fi
 
@@ -302,7 +302,7 @@ serverprop() {
 	local NAMEVAL="$(grep "^$PROP=" "$SERVER_DIR/server.properties")"
 	local VALUE="${NAMEVAL#$PROP=}"
 
-	if [ "$VALUE" = "" ]; then
+	if [[ "$VALUE" = "" ]]; then
 		warn "Property \`$PROP' not defined in $SERVER_DIR/server.properties"
 		return 1
 	fi
@@ -385,12 +385,12 @@ serverlog() {
 	CONDITION="$1"
 	shift
 
-	if [ $# = 0 ]; then
+	if [[ $# = 0 ]]; then
 		warn "Usage: serverlog <condition> <command>"
 	fi
 
 	# make sure server.log exists, we're gonna need it
-	if [ ! -f "$SERVER_DIR/server.log" ]; then
+	if [[ ! -f "$SERVER_DIR/server.log" ]]; then
 		touch "$SERVER_DIR/server.log"
 	fi
 
@@ -402,7 +402,7 @@ serverlog() {
 	pushtrap "kill '$TIMERPID' 2>/dev/null"
 
 	# if CONDITION is an integer
-	if [ "$CONDITION" -eq "$CONDITION" ] 2>/dev/null; then
+	if [[ "$CONDITION" -eq "$CONDITION" ]] 2>/dev/null; then
 		# print server.log to stdout and quit after CONDITION lines
 		tail -fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" | {
 			head -n "$CONDITION"

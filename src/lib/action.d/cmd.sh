@@ -23,7 +23,7 @@ done
 
 CMD="${*#/}"
 
-if [ $# = 0 ]; then
+if [[ $# = 0 ]]; then
 	action help "$ACTION"
 	return 1
 fi
@@ -32,21 +32,21 @@ action status >/dev/null
 retval=$?
 
 # bail if server isn't running
-if [ "$retval" != 0 ]; then
+if [[ "$retval" != 0 ]]; then
 	return $retval
 fi
 
 RE_TIMESTAMP="$(redb_lookup timestamp)"
 RE_PATTERN="$(redb_lookup "cmd/${CMD%% *}" "$RE_TIMESTAMP" 2>/dev/null)"
 
-if [ "$RE_PATTERN" != "" ]; then
-	if [ "$VERBOSITY" != 0 ]; then
+if [[ "$RE_PATTERN" != "" ]]; then
+	if [[ "$VERBOSITY" != 0 ]]; then
 		serverlog "$RE_PATTERN" cmd "$CMD"
 	else
 		serverlog "$RE_PATTERN" cmd "$CMD" >/dev/null
 	fi
 else
-	if [ "$VERBOSITY" != 0 ]; then
+	if [[ "$VERBOSITY" != 0 ]]; then
 		# send command to the server and print server.log for 2 seconds
 		TIMEOUT=2 serverlog 1000 cmd "$CMD"
 	else

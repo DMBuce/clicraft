@@ -24,7 +24,7 @@ if ! MCEXPLORE=$(which mcexplore 2>/dev/null); then
 fi
 
 # download server jar if needed
-if [ ! -f "$SERVER_JAR" ]; then
+if [[ ! -f "$SERVER_JAR" ]]; then
 	action dl
 fi
 

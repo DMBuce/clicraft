@@ -43,9 +43,9 @@ conventions. In particular:
 
 . Quote variables whenever possible.
 . Use tabs for indentation and spaces for formatting.
-. Use posix-style test commands (`[ ... ]`), not extended test commands
-(`[[ ... ]]`).
-. Don't use the `[ ... ] && command` or `[ ... ] || command` constructs.
+. Use extended bash conditionals (`[[ ... ]]`), not posix-style test commands
+(`[ ... ]`).
+. Don't use the `[[ ... ]] && command` or `[[ ... ]] || command` constructs.
 Expand them to full `if` statements.
 . When opening new code blocks for +while+, +if+, or +for+ loops, place the
 subsequent +do+ or +then+ on the same line.
@@ -55,7 +55,7 @@ for i in {1..5}; do
 	echo "$i"
 done
 
-if [ -f "$file" ]; then
+if [[ -f "$file" ]]; then
 	cat "$file"
 fi
 
