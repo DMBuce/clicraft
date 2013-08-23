@@ -376,7 +376,7 @@ rmlock() {
 
 # Prints server.log, runs a command, and waits until it's safe to continue
 serverlog() {
-	local TIMERPID TAILPID CONDITION OLDTRAP retval
+	local TIMERPID TAILPID CONDITION retval
 
 	CONDITION="$1"
 	shift
