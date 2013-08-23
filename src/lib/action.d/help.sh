@@ -20,7 +20,7 @@ Usage: $PROG <action> [args]
 EOF
 }
 
-if [ $# != 0 ]; then
+if [[ $# != 0 ]]; then
 	usage "$1"
 else
 	__usage

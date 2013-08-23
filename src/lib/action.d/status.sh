@@ -9,7 +9,7 @@
 multiplex_status
 retval=$?
 
-if [ "$retval" = 0 ]; then
+if [[ "$retval" = 0 ]]; then
 	msg "$SERVER_NAME is running"
 	return 0
 else

@@ -26,10 +26,10 @@ edit_file_template() {
 
 	# if file exists, just edit it
 	# otherwise, create it from a template before editing
-	if [ -f "$FILE" ]; then
+	if [[ -f "$FILE" ]]; then
 		edit_file "$FILE"
 	else
-		if [ -f "$TEMPLATE" ]; then
+		if [[ -f "$TEMPLATE" ]]; then
 			sed "$SUBST" "$TEMPLATE" >>"$FILE"
 		else
 			warn "Template file $TEMPLATE not found"
@@ -38,7 +38,7 @@ edit_file_template() {
 		edit_file "$FILE"
 
 		# if any non-comment, non-whitespace changes were made
-		if [ -f "$TEMPLATE" ] && \
+		if [[ -f "$TEMPLATE" ]] && \
 		   diff -q <(grep "^[ 	]*[^ 	#]" "$FILE") \
 		           <(grep "^[ 	]*[^ 	#]" "$TEMPLATE" | sed "$SUBST") >/dev/null; then
 			warn "Aborting installation of $(basename "$FILE"): No changes made to template."
@@ -69,10 +69,10 @@ edit_action() {
 	fi
 }
 
-if [ "$1" = "" ]; then
+if [[ "$1" = "" ]]; then
 	# edit clicraft.conf
 	edit_file_template "$CONFDIR/clicraft-defaults.conf" "$CONFDIR/clicraft.conf"
-elif [ -f "$SERVER_DIR/$1" ]; then
+elif [[ -f "$SERVER_DIR/$1" ]]; then
 	edit_file "$SERVER_DIR/$1"
 else
 	edit_action "$1"
