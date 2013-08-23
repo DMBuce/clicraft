@@ -36,7 +36,14 @@ backup() {
 		save-all
 	fi
 
+	if ! mklock save; then
+		err "Could not lock the save state, is another clicraft process running?"
+		exit 1
+	fi
+
 	zip -r "$BACKUP_DIR/$(date "+$BACKUP_FORMAT")" "${TARGETS[@]}"
+
+	rmlock save
 
 	if status; then
 		save-on
