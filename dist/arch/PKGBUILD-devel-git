@@ -1,6 +1,10 @@
 # Maintainer: DMBuce <dmbuce@gmail.com>
 pkgname=clicraft-devel-git
-pkgver=20120706
+pkgver=0.0.6.38.ge9240e7
+pkgver() {
+  cd "$srcdir/$_gitname"
+  git describe --always | sed 's|-|.|g'
+}
 pkgrel=1
 pkgdesc="A command-line wrapper for a minecraft or bukkit server."
 arch=("any")
@@ -17,31 +21,16 @@ backup=("etc/clicraft/action.d/explore.sh"
         "etc/cron.d/clicraft"
         "etc/logrotate.d/clicraft")
 install="$pkgname.install"
-source=("$pkgname.install"
+source=("$pkgname::git://github.com/DMBuce/clicraft.git#branch=devel"
+        "$pkgname.install"
         "$pkgname.rc")
-md5sums=('631669f302dffa059b4bdc915374d3d6'
+md5sums=('SKIP'
+         '631669f302dffa059b4bdc915374d3d6'
          'dce883d9854859651b62b3477d0b5d4a')
-
-_gitname="clicraft"
-_gitroot="git://github.com/DMBuce/clicraft.git"
+_gitname="$pkgname"
 
 build() {
-  cd "$srcdir"
-  msg "Connecting to GIT server...."
-
-  if [[ -d "$_gitname" ]]; then
-    cd "$_gitname" && git pull origin
-    msg "The local files are updated."
-  else
-    git clone "$_gitroot" "$_gitname" --branch devel
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting build..."
-
-  rm -rf "$srcdir/$_gitname-build"
-  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build" --branch devel
-  cd "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname"
 
   autoconf
   ./configure --prefix=/usr \
@@ -54,7 +43,7 @@ build() {
 }
 
 package() {
-  cd "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname"
   make DESTDIR="$pkgdir" install
 
   install -Dm755 "$startdir/$pkgname.rc" "${pkgdir}/etc/rc.d/$pkgname"
