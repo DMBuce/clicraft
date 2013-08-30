@@ -1,29 +1,28 @@
 # Maintainer: DMBuce <dmbuce@gmail.com>
 pkgname=clicraft
 pkgver=0.0.6
-pkgrel=1
+pkgrel=2
 pkgdesc="A command-line wrapper for a minecraft or bukkit server."
 arch=("any")
 url="https://github.com/DMBuce/clicraft"
 license=('BSD')
 depends=("bash" "tmux" "curl" "java-runtime")
-makedepends=("git" "asciidoc" "tar")
+makedepends=("git" "asciidoc")
 #checkdepends=()
 optdepends=("c10t: for map.sh action script" "mcexplore: for explore.sh action script")
 backup=("etc/clicraft/action.d/explore.sh"
         "etc/clicraft/action.d/map.sh")
 install="$pkgname.install"
-source=("$pkgname-$pkgver.tar.gz::https://github.com/DMBuce/clicraft/tarball/$pkgver"
+source=("git+https://github.com/DMBuce/clicraft.git#tag=$pkgver"
         "$pkgname.install"
         "$pkgname.rc")
-md5sums=('4fdcbfd43e02e1537c5d10c1dbdde941'
+md5sums=('SKIP'
          '631669f302dffa059b4bdc915374d3d6'
          'dce883d9854859651b62b3477d0b5d4a')
-
-
+_gitname="$pkgname"
 
 build() {
-  cd "$srcdir/$(tar tf clicraft-0.0.6.tar.gz | head -1)"
+  cd "$srcdir/$_gitname"
 
   autoconf
   ./configure --prefix=/usr \
@@ -36,7 +35,7 @@ build() {
 }
 
 package() {
-  cd "$srcdir/$(tar tf clicraft-0.0.6.tar.gz | head -1)"
+  cd "$srcdir/$_gitname"
   make DESTDIR="$pkgdir" install
 
   install -Dm755 "$startdir/$pkgname.rc" "${pkgdir}/etc/rc.d/$pkgname"
