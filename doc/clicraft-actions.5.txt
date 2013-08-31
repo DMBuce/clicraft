@@ -77,6 +77,10 @@ or modified, and no new files should be created.
 *VERSION*::
 	Clicraft's version number.
 
+*TRAPSTACK*::
+	An array of commands to be run if clicraft exits abnormally. This variable
+	should not be directly manipulated.
+
 [[funcs]]
 Functions
 ---------
@@ -174,13 +178,16 @@ linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
 the <<vars,Variables>> section for a description of +CONFDIR+.
 
 *save-off*::
-	Run `/save-off` on the server and wait for it to finish.
+	If another process holds a "save" lock, do nothing and return nonzero.
+	Otherwise, run `/save-off` on the server and wait for it to finish.
 
 *save-on*::
-	Run `/save-on` on the server and wait for it to finish.
+	If another process holds a "save" lock, do nothing and return nonzero.
+	Otherwise, run `/save-on` on the server and wait for it to finish.
 
 *save-all*::
-	Run `/save-all` on the server and wait for it to finish.
+	If another process holds a "save" lock, do nothing and return nonzero.
+	Otherwise, run `/save-all` on the server and wait for it to finish.
 
 *list*::
 	Print a space-delimited list of logged in players to stdout.
@@ -200,6 +207,39 @@ the <<vars,Variables>> section for a description of +CONFDIR+.
 	Print the value of 'property' in +server.properties+ to stdout. If the
 	property cannot be found, print an error message to stderr and return
 	nonzero.
+
+*exithandler*::
+	Run the commands in +TRAPSTACK+.
++
+This function is used by clicraft internally, and should not be called by
+action scripts.
+
+*pushtrap* <command>::
+	Add a command to +TRAPSTACK+ for clicraft to run if it exits abnormally.
++
+Every `pushtrap` call should have a matching `poptrap` call to keep subsequent
+`poptrap` calls from failing.
+
+*poptrap* <command>::
+	Try to remove the last command added to +TRAPSTACK+. If it doesn't match
+	'command', `poptrap` will fail.
++
+Every `pushtrap` call should have a matching `poptrap` call to keep subsequent
+`poptrap` calls from failing.
+
+*mklock* <lockname>::
+	Try to create a lock identified by 'lockname'. Returns nonzero if the lock
+	is already held.
++
+`mklock` and `rmlock` call `pushtrap` and `poptrap` internally, so every
+`mklock` call should have a matching `rmlock` call.
+
+*rmlock* <lockname>::
+	Try to remove the lock identified by 'lockname'. Returns nonzero if the
+	lock isn't held by this clicraft process.
++
+`mklock` and `rmlock` call `pushtrap` and `poptrap` internally, so every
+`mklock` call should have a matching `rmlock` call.
 
 *serverlog* <condition> <command>::
 	Start printing +server.log+ to stdout, run 'command', and wait until
