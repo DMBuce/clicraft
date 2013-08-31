@@ -211,7 +211,7 @@ save-off() {
 	local RE_SAVE_OFF="$(redb_lookup cmd/save-off "$(redb_lookup timestamp)")"
 	mklock save || return $?
 	serverlog "$RE_SAVE_OFF" cmd 'save-off' >/dev/null
-	retval=$?
+	local retval=$?
 	rmlock save
 	return $retval
 }
@@ -221,7 +221,7 @@ save-on() {
 	local RE_SAVE_ON="$(redb_lookup cmd/save-on "$(redb_lookup timestamp)")"
 	mklock save || return $?
 	serverlog "$RE_SAVE_ON" cmd 'save-on' >/dev/null
-	retval=$?
+	local retval=$?
 	rmlock save
 	return $retval
 }
@@ -231,7 +231,9 @@ save-all() {
 	local RE_SAVE_ALL="$(redb_lookup cmd/save-all "$(redb_lookup timestamp)")"
 	mklock save || return $?
 	serverlog "$RE_SAVE_ALL" cmd 'save-all' >/dev/null
+	local retval=$?
 	rmlock save
+	return $retval
 }
 
 # Prints the list of connected players to stdout
