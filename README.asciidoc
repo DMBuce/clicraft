@@ -3,7 +3,7 @@ Clicraft ReadMe
 
 A command-line minecraft server wrapper.
 
-WARNING: This is *EXPERIMENTAL* software. Use at your own risk!
+WARNING: This is alpha software. Use at your own risk!
 
 Overview
 --------

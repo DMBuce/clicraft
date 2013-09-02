@@ -1,7 +1,7 @@
 Clicraft Install Guide
 ======================
 
-WARNING: This is *EXPERIMENTAL* software. Use at your own risk!
+WARNING: This is alpha software. Use at your own risk!
 
 Requirements
 ------------
