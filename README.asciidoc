@@ -1,6 +1,9 @@
 Clicraft ReadMe
 ===============
 
+IMPORTANT: The devel branch of clicraft is no longer maintained. Please use
+the master branch instead.
+
 A command-line minecraft server wrapper.
 
 WARNING: This is *EXPERIMENTAL* software. Use at your own risk!
