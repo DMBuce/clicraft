@@ -339,6 +339,7 @@ poptrap() {
 mklock()
 {
 	TMPDIR="${TMPDIR-/tmp}"
+	local USER="$(whoami)"
 	local lockdir="$TMPDIR/clicraft.$USER"
 	local lockfile="$lockdir/$1.lock"
 	mkdir -p -m 0700 "$(dirname "$lockfile")"
@@ -359,6 +360,7 @@ mklock()
 # Remove a lock
 rmlock() {
 	TMPDIR="${TMPDIR-/tmp}"
+	local USER="$(whoami)"
 	local lockdir="$TMPDIR/clicraft.$USER"
 	local lockfile="$lockdir/$1.lock"
 	mkdir -p -m 0700 "$(dirname "$lockfile")"
