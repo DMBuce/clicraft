@@ -10,27 +10,38 @@
 #    Restores world data.
 #
 
-WORLD=$(serverprop 'level-name')
-BACKUP_DIR="${BACKUP_DIR-$SERVER_DIR/backups}"
-BACKUP_TARGETS="${BACKUP_TARGETS-"$WORLD ${WORLD}_*"}"
-BACKUP_FORMAT="${BACKUP_FORMAT-$WORLD-%Y%m%d-%H%M%S.zip}"
+WORLD="$(serverprop 'level-name')"
+BACKUP_DIR="${BACKUP_DIR-"$SERVER_DIR/backups"}"
+BACKUP_FILE="${BACKUP_FILE-"$BACKUP_DIR/$WORLD-$(date +%Y%m%d-%H%M%S).zip"}"
+BACKUP_TARGETS="${BACKUP_TARGETS-"$WORLD $WORLD_*"}"
+BACKUP_COMMAND="${BACKUP_COMMAND-"zip -r $BACKUP_FILE $BACKUP_TARGETS"}"
+BACKUP_LIMIT="${BACKUP_LIMIT-7}"
 
-# expand globs
-TARGETS=()
-for TARGET in "${BACKUP_TARGETS[@]}"; do
-	if [[ "${TARGET:0:1}" = '/' ]]; then
-		warn "Absolute path in BACKUP_TARGETS detected: $TARGET"
-		warn "Restoring this backup may fail"
+# lists backups in order from oldest to newest
+list_backups() {
+	find "$BACKUP_DIR" -maxdepth 1 -type f | sort
+}
+
+# returns 0 if we think we have enough space for a new backup
+#
+# we guess the size of a new backup will be less than the size of the last
+# backup + 50MB
+enough_space() {
+	local DF DU
+	DF=$(stat -f -c "%a*%S" "$BACKUP_DIR")
+	DU=$(stat -c '%b*%B' "$1")
+	(( DF >= DU + 50*1024*1024 ))
+}
+
+prune_backups() {
+	if [[ "$BACKUP_LIMIT" != 0 ]]; then
+		list_backups | head -n -"$1" | xargs rm -v 2>/dev/null
 	fi
-	TARGETS=( "${TARGETS[@]}" $TARGET )
-done
-
-mkdir -p "$BACKUP_DIR"
+}
 
 backup() {
 	if ! mklock save; then
-		err "Could not lock the save state, is another clicraft process running?"
-		exit 1
+		warn "Could not lock the save state! Backup may be corrupt"
 	fi
 
 	if status; then
@@ -39,7 +50,20 @@ backup() {
 		cmd save-all
 	fi
 
-	zip -r "$BACKUP_DIR/$(date "+$BACKUP_FORMAT")" "${TARGETS[@]}"
+	mkdir -p "$BACKUP_DIR"
+
+	# if we don't have enough space to store a copy of the last backup + 50MB,
+	# prune old backups before taking the new backup
+	local lastbackup="$(list_backups | tail -1)"
+	if [[ -f "$lastbackup" ]] && enough_space "$lastbackup"; then
+		$BACKUP_COMMAND
+		prune_backups "$BACKUP_LIMIT"
+	else
+		prune_backups $((BACKUP_LIMIT - 1))
+		$BACKUP_COMMAND
+	fi
+	pwd
+	echo $BACKUP_COMMAND
 
 	if status; then
 		cmd save-on
@@ -53,9 +77,7 @@ restore() {
 	local dir FILE
 
 	if [[ "$1" = "" ]]; then
-		pushd "$BACKUP_DIR" >/dev/null
-		ls
-		popd "$BACKUP_DIR" >/dev/null
+		list_backups | grep -o '[^/]*$'
 	else
 		FILE="$1"
 		shift
