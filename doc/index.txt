@@ -53,10 +53,7 @@ related issues in the issue tracker.
 
 Source Code
 ~~~~~~~~~~~
-Clicraft source code is maintained in a
-link:{REPO}[GitHub repository] in two
-branches. The 'master' branch contains the latest stable release, while the
-'devel' branch contains unstable code for bugfixes and new features. To
+Clicraft source code is maintained link:{REPO}[on GitHub]. To
 install, refer to the link:install.html[Install Guide]. If you are interested
 in submitting code to clicraft, it is highly recommended you read the
 link:contribute.html[Contributors] page.
