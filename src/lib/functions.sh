@@ -94,12 +94,9 @@ action() {
 
 # Returns a list of available actions
 actions() {
-	local FILE
-	for FILE in \
-	  $(ls $CONFDIR/action.d/*.sh $EXECDIR/action.d/*.sh 2>/dev/null)
-	do
-		basename ${FILE%.sh}
-	done | sort -u
+	find "$CONFDIR/action.d" "$EXECDIR/action.d" \
+		-maxdepth 1 -type f -name \*.sh | \
+		sed 's|^.*/||; s|\.sh$||' | sort -u
 }
 
 # Returns 0 if the server is running, 1 otherwise
