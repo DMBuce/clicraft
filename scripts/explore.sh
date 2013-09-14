@@ -18,7 +18,7 @@ fi
 # try to find mcexplore executable
 if ! MCEXPLORE=$(which mcexplore 2>/dev/null); then
 	if ! MCEXPLORE=$(which mcexplore.py 2>/dev/null); then
-		err "Cannot find mcexplore not in PATH";
+		err "Cannot find mcexplore in PATH";
 		return 1
 	fi
 fi
