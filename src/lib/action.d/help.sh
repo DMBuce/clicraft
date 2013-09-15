@@ -8,10 +8,11 @@
 
 __usage() {
 	local ACTIONS=( $(actions) )
-	cat <<EOF
+	fmt <<EOF
 Usage: $PROG <action> [args]
 
    Performs some action for the minecraft server. <action> can be one of:
+
       ${ACTIONS[@]}
 
    To get usage for a particular action, run \`$PROG help <action>'.
