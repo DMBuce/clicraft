@@ -65,8 +65,16 @@ variables you wish to use in custom action scripts.
 	The url to download +SERVER_JAR+ from.
 +
 *Default*:
-+"https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"+
++"https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_server.%v.jar"+
 (but see +SERVER_TYPE+, below)
+
+
+**SERVER_VERSION=**"version"::
+	The server version. This will replace any instances of +%v+ in
+	+DOWNLOAD_COMMAND+. If set to "release" or "snapshot", the latest release
+	or snapshot version will be substituted instead.
++
+*Default*: +SERVER_VERSION="release"+
 
 
 **SERVER_TYPE=**"type"::

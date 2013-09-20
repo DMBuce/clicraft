@@ -40,7 +40,15 @@ SERVER_NAME="minecraft"
 # The location of the server jar on disk and on the web, respectively
 #
 SERVER_JAR="$SERVER_DIR/minecraft_server.jar"
-SERVER_URL="https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"
+SERVER_URL="https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_server.%v.jar"
+
+
+# SERVER_VERSION
+# The server version. This will replace any instances of '%v' in
+# DOWNLOAD_COMMAND. If set to 'release' or 'snapshot', the latest release or
+# snapshot version will be substituted instead.
+#
+SERVER_VERSION="release"
 
 
 # SERVER_TYPE
