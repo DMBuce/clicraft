@@ -31,6 +31,11 @@ if grep -q '%v' <<<"$DOWNLOAD_COMMAND"; then
 	VERSION="$SERVER_VERSION"
 	if [[ "$SERVER_VERSION" == 'snapshot' || "$SERVER_VERSION" == 'release' ]]; then
 		VERSION="$(versions_json | awk -F\" "/\"$SERVER_VERSION\":/ {print \$4}")"
+		if [[ "$VERSION" == "" ]]; then
+			err "Can't determine latest $SERVER_VERSION version."
+			return 1
+		fi
+
 		msg "Latest $SERVER_VERSION version is $VERSION"
 	fi
 	DOWNLOAD_COMMAND="${DOWNLOAD_COMMAND//'%v'/$VERSION}"
