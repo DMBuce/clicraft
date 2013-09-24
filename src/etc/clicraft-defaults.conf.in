@@ -43,6 +43,12 @@ SERVER_JAR="$SERVER_DIR/minecraft_server.jar"
 SERVER_URL="https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_server.%v.jar"
 
 
+# SERVER_LOG
+# The location of the server log file
+#
+SERVER_LOG="$SERVER_DIR/server.log"
+
+
 # SERVER_VERSION
 # The server version. This will replace any instances of '%v' in
 # DOWNLOAD_COMMAND. If set to 'release' or 'snapshot', the latest release or
@@ -80,9 +86,17 @@ STOP_CMD="stop"
 #
 DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"
 
+
 # TIMEOUT
 # The amount of time, in seconds, that clicraft will wait for critical
 # operations to finish.
 #
 TIMEOUT=20
+
+
+# CMD_STRIP_SLASH
+# Whether or not to strip the leading slash for commands passed to
+# `clicraft cmd`.
+CMD_STRIP_SLASH="true"
+
 
