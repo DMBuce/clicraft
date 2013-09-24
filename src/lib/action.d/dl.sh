@@ -53,3 +53,10 @@ fi
 
 $DOWNLOAD_COMMAND
 
+# restore server jar if download failed
+if [[ ! -f "$SERVER_JAR" ]]; then
+	msg "No $(basename $SERVER_JAR) after running \`$DOWNLOAD_COMMAND\'"
+	msg "Restoring server jar from $(basename $SERVER_JAR).ccback"
+	mv "$SERVER_JAR.ccback" "$SERVER_JAR"
+fi
+
