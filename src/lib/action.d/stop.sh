@@ -11,7 +11,7 @@ if ! status; then
 fi
 
 msg "Stopping $SERVER_NAME"
-action cmd "stop"
+action cmd "$STOP_CMD"
 
 for ((i=0; i<TIMEOUT; i++)); do
 	sleep 1

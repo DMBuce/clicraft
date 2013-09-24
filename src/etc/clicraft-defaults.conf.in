@@ -67,6 +67,12 @@ SERVER_TYPE="minecraft"
 START_COMMAND="java -jar $SERVER_JAR nogui"
 
 
+# STOP_CMD
+# The command to send to the server console to shut the server down.
+#
+STOP_CMD="stop"
+
+
 # DOWNLOAD_COMMAND
 # The command used to download or update the server jar. Running this
 # command should result in SERVER_URL being downloaded and saved to

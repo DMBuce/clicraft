@@ -109,6 +109,12 @@ whitespace and special characters.
 *Default*: +"java -jar $SERVER_JAR nogui"+
 
 
+**STOP_CMD=**"cmd"::
+	The command to send to the server console to shut the server down.
++
+*Default*: +"stop"+
+
+
 **DOWNLOAD_COMMAND=**"/path/to/command [options]"::
 	The command used to download or update the server jar. Running this
 	command should result in +SERVER_URL+ being downloaded and saved to
