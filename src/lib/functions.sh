@@ -391,7 +391,7 @@ rmlock() {
 #
 
 
-# Prints server.log, runs a command, and waits until it's safe to continue
+# Prints server log, runs a command, and waits until it's safe to continue
 serverlog() {
 	local TIMERPID TAILPID CONDITION retval
 
@@ -411,20 +411,20 @@ serverlog() {
 
 	# if CONDITION is an integer
 	if [[ "$CONDITION" -eq "$CONDITION" ]] 2>/dev/null; then
-		# print server.log to stdout and quit after CONDITION lines
-		tail -Fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" 2>/dev/null | {
+		# print server log to stdout and quit after CONDITION lines
+		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null | {
 			head -n "$CONDITION"
 			kill "$TIMERPID" 2>/dev/null
 		} &
 	else
 
-		# print server.log to stdout
-		tail -Fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" 2>/dev/null &
+		# print server log to stdout
+		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null &
 		TAILPID="$!"
 		pushtrap "kill '$TAILPID' 2>/dev/null"
 
-		# kill timeout process when we see CONDITION in server.log
-		tail -Fn0 --pid "$TIMERPID" "$SERVER_DIR/server.log" 2>/dev/null | {
+		# kill timeout process when we see CONDITION in server log
+		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null | {
 			egrep -ql "$CONDITION"
 			kill "$TAILPID" "$TIMERPID" 2>/dev/null
 		} &

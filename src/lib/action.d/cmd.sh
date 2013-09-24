@@ -47,7 +47,7 @@ if [[ "$RE_PATTERN" != "" ]]; then
 	fi
 else
 	if [[ "$VERBOSITY" != 0 ]]; then
-		# send command to the server and print server.log for 2 seconds
+		# send command to the server and print server log for 2 seconds
 		TIMEOUT=2 serverlog 1000 cmd "$CMD"
 	else
 		# send command to the server

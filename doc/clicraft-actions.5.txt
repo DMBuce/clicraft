@@ -242,7 +242,7 @@ Every `pushtrap` call should have a matching `poptrap` call to keep subsequent
 `mklock` call should have a matching `rmlock` call.
 
 *serverlog* <condition> <command>::
-	Start printing +server.log+ to stdout, run 'command', and wait until
+	Start printing +SERVER_LOG+ to stdout, run 'command', and wait until
 	'condition' is reached or +TIMEOUT+ seconds have passed before stopping
 	output and returning. If +TIMEOUT+ is reached, return nonzero. See
 	linkman:clicraft.conf[5] for a description of the +TIMEOUT+ option.

@@ -41,7 +41,7 @@ variables you wish to use in custom action scripts.
 	The directory that the server is launched from.
 	Clicraft switches to this directory before performing any action, so
 	this is the directory that your world data, server.properties, and
-	server.log (among other things) resides in. Most relative paths are taken
+	server log (among other things) resides in. Most relative paths are taken
 	with respect to this directory.
 +
 *Default*: +"{SERVER_DIR}"+
@@ -67,6 +67,12 @@ variables you wish to use in custom action scripts.
 *Default*:
 +"https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_server.%v.jar"+
 (but see +SERVER_TYPE+, below)
+
+
+**SERVER_LOG=**"/path/to/server.log"::
+	The location of the server log file
++
+*Default*: +"$SERVER_DIR/server.log"+
 
 
 **SERVER_VERSION=**"version"::

@@ -34,7 +34,7 @@ Actions
 	to broadcast a message to logged-in users, you could use `clicraft cmd say
 	Hello world` or `clicraft cmd /say Hello world`.
 +
-With +-v+ or +--verbose+, print server.log to stdout. If clicraft recognizes
+With +-v+ or +--verbose+, print +SERVER_LOG+ to stdout. If clicraft recognizes
 the command, it will attempt to print until the command finishes. Otherwise,
 it will print for 2 seconds.
 +
