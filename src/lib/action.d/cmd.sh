@@ -21,7 +21,18 @@ while [ "${1:0:1}" = '-' ]; do
 	shift
 done
 
-CMD="${*#/}"
+CMD="$*"
+case "$CMD_STRIP_SLASH" in
+  [Tt]rue|[Yy]es)
+	CMD="${CMD#/}"
+  ;;
+  [Ff]alse|[Nn]o)
+	: # do nothing
+  ;;
+  *)
+	warn "Unrecognized CMD_STRIP_SLASH value: $CMD_STRIP_SLASH"
+  ;;
+esac
 
 if [[ $# = 0 ]]; then
 	action help "$ACTION"

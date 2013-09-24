@@ -42,3 +42,5 @@ if [[ "$TIMEOUT" -ne "$TIMEOUT" ]] 2>/dev/null; then
 	TIMEOUT=20
 fi
 
+CMD_STRIP_SLASH="${CMD_STRIP_SLASH-true}"
+

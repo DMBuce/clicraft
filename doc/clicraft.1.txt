@@ -30,7 +30,8 @@ Actions
 	Sends 'command' to the server console. If clicraft recognizes 'command',
 	it will wait until the command finishes or +TIMEOUT+ seconds, whichever
 	comes first, before returning. If 'command' starts with a leading slash
-	(`/`), it will be stripped before being sent to the server console. Thus,
+	(`/`) and +CMD_STRIP_SLASH+ is set to +"true"+, it will be stripped before
+	being sent to the server console. Thus,
 	to broadcast a message to logged-in users, you could use `clicraft cmd say
 	Hello world` or `clicraft cmd /say Hello world`.
 +
