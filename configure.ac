@@ -48,6 +48,15 @@ AS_IF([test "x$with_c10t" = "xyes"],
       AC_SUBST([WITH_C10T], [no])
 )
 
+dnl --with-mmat
+AC_ARG_WITH([mmat],
+	AS_HELP_STRING([--with-mmat], [Include mmat helper script]))
+
+AS_IF([test "x$with_mmat" = "xyes"],
+      AC_SUBST([WITH_MMAT], [yes]),
+      AC_SUBST([WITH_MMAT], [no])
+)
+
 # Checks for programs.
 AC_PROG_INSTALL
 

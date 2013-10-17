@@ -7,6 +7,12 @@ endif
 ifeq ($(WITH_MCEXPLORE), yes)
 SCRIPTS_INSTALL := $(SCRIPTS_INSTALL) $(DESTDIR)$(CONFDIR)/action.d/explore.sh
 endif
+ifeq ($(WITH_MMAT), yes)
+SCRIPTS_INSTALL := $(SCRIPTS_INSTALL) $(DESTDIR)$(CONFDIR)/action.d/prune.sh \
+                                      $(DESTDIR)$(CONFDIR)/overworld-blocks.conf \
+                                      $(DESTDIR)$(CONFDIR)/nether-blocks.conf \
+                                      $(DESTDIR)$(CONFDIR)/end-blocks.conf
+endif
 
 
 
@@ -46,6 +52,8 @@ $(DESTDIR)$(sysconfdir)/logrotate.d/$(PROG): scripts/logrotate
 $(DESTDIR)$(sysconfdir)/cron.d/$(PROG): scripts/cron
 	$(INSTALL_DATA) $< $@
 
+$(DESTDIR)$(CONFDIR)/%-blocks.conf: scripts/%-blocks.conf
+	$(INSTALL_DATA) $< $@
 
 
 # phony targets
