@@ -1,0 +1,15 @@
+#!/bin/bash
+
+curl -s 'http://minecraft.gamepedia.com/Data_values/Block_IDs' | \
+sed -nr \
+'/<div id="mw-content-text"/,/<\/div>/ {
+	/<table/,/<\/table>/ {
+		s|<sup>.*</sup>||g
+		/^<td>/ {
+			s/<[^>]*>//g
+			/[G-Za-z]/ s/$/\n/
+			p
+		}
+	}
+}' "$@" | tr '\n' ' ' | sed -r 's/  +/\n/g'
+
