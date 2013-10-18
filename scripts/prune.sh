@@ -16,7 +16,7 @@ OVERWORLD_WHITELIST="${OVERWORLD_WHITELIST-$CONFDIR/overworld-blocks.conf}"
 NETHER_WHITELIST="${NETHER_WHITELIST-$CONFDIR/nether-blocks.conf}"
 END_WHITELIST="${END_WHITELIST-$CONFDIR/end-blocks.conf}"
 
-WORLD="$(serverprop level-name)"
+WORLD="$(serverprop level-name)" || return 1
 
 mmat() {
 	java -jar "$MMAT_JAR" "$@"
@@ -45,10 +45,11 @@ dimdir() {
 blocklist() {
 	local dim="$1"
 	local file="$(blockfile "$dim")"
-	sed -nr '/^[0-9]+ / s/ .*//p' "$file" | tr '\n' ',' | sed 's/,*$//'
+	sed -nr '/^[0-9]+\w|^[0-9]+$/ s/[^0-9].*//p' "$file" | tr '\n' ',' | sed 's/,*$//'
 }
 
 blockfile() {
+	local dim="$1"
 	local WHITELIST="${dim^^}_WHITELIST"
 	echo "${!WHITELIST}"
 }
