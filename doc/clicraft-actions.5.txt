@@ -203,6 +203,41 @@ the <<vars,Variables>> section for a description of +CONFDIR+.
 	Pardon banned 'target' on the server. 'target' can be a player or ip
 	address. Returns nonzero if the pardon was unsuccessful.
 
+*dimdir* <dimension>::
+	Print the directory for 'dimension' to stdout.
++
+If +level-name=world+ in +server.properties+, +pass:[`dimdir overworld`]+ will
+output +SERVER_DIR/world+. If +SERVER_TYPE+ is set to "minecraft",
++pass:[`dimdir nether`]+ and +pass:[`dimdir end`]+ will output
++SERVER_DIR/world/DIM-1+ and +SERVER_DIR/world/DIM1+, respectively, or
++SERVER_DIR/world_nether+ and +SERVER_DIR/world_the_end+ for other values of
++SERVER_TYPE+. For other values of 'dimension', +pass:[`dimdir foo`]+ will
+output +SERVER_DIR/world_foo+.
++
+This function might be better understood by examining example output from an
+installation where +level-name=world+ in +server.properties+ and +SERVER_DIR+
+is set to +/srv+ in linkman:clicraft.conf[5]:
++
+-----
+$ dimdir overworld
+/srv/world
+
+$ SERVER_TYPE=minecraft dimdir nether
+/srv/world/DIM-1
+
+$ SERVER_TYPE=minecraft dimdir end
+/srv/world/DIM1
+
+$ SERVER_TYPE=bukkit dimdir nether
+/srv/world_nether
+
+$ SERVER_TYPE=bukkit dimdir end
+/srv/world_the_end
+
+$ dimdir foo
+/srv/world_foo
+-----
+
 *serverprop* <property>::
 	Print the value of 'property' in +server.properties+ to stdout. If the
 	property cannot be found, print an error message to stderr and return

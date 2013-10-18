@@ -16,30 +16,8 @@ OVERWORLD_WHITELIST="${OVERWORLD_WHITELIST-$CONFDIR/overworld-blocks.conf}"
 NETHER_WHITELIST="${NETHER_WHITELIST-$CONFDIR/nether-blocks.conf}"
 END_WHITELIST="${END_WHITELIST-$CONFDIR/end-blocks.conf}"
 
-WORLD="$(serverprop level-name)" || return 1
-
 mmat() {
 	java -jar "$MMAT_JAR" "$@"
-}
-
-dimdir() {
-	local world dim
-	world="$1"
-	dim="$2"
-
-	if [[ "$dim" == overworld ]]; then
-		echo "$SERVER_DIR/$world"
-	elif [[ "$dim" == nether && "$SERVER_TYPE" == minecraft ]]; then
-		echo "$SERVER_DIR/$world/DIM-1"
-	elif [[ "$dim" == nether ]]; then
-		echo "$SERVER_DIR/$world"_nether
-	elif [[ "$dim" == end && "$SERVER_TYPE" == minecraft ]]; then
-		echo "$SERVER_DIR/$world/DIM1"
-	elif [[ "$dim" == end ]]; then
-		echo "$SERVER_DIR/$world"_the_end
-	else
-		echo "$SERVER_DIR/${world}_${dim}"
-	fi
 }
 
 blocklist() {
@@ -54,5 +32,5 @@ blockfile() {
 	echo "${!WHITELIST}"
 }
 
-mmat -w "$(dimdir "$WORLD" "$dim")" -d "$PRUNE_RADIUS" -p "$(blocklist "$dim")"
+mmat -w "$(dimdir "$dim")" -d "$PRUNE_RADIUS" -p "$(blocklist "$dim")"
 

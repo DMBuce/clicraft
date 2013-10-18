@@ -295,6 +295,26 @@ pardon() {
 	test "$(wc -w "$BANLIST" | cut -d ' ' -f 1)" -lt "$NUMBANS"
 }
 
+# Prints the directory corresponding to a dimension
+dimdir() {
+	local dim
+	dim="$1"
+
+	if [[ "$dim" == overworld ]]; then
+		echo "$SERVER_DIR/$world"
+	elif [[ "$dim" == nether && "$SERVER_TYPE" == minecraft ]]; then
+		echo "$SERVER_DIR/$world/DIM-1"
+	elif [[ "$dim" == nether ]]; then
+		echo "$SERVER_DIR/$world"_nether
+	elif [[ "$dim" == end && "$SERVER_TYPE" == minecraft ]]; then
+		echo "$SERVER_DIR/$world/DIM1"
+	elif [[ "$dim" == end ]]; then
+		echo "$SERVER_DIR/$world"_the_end
+	else
+		echo "$SERVER_DIR/${world}_${dim}"
+	fi
+}
+
 # Prints a value defined in server.properties
 serverprop() {
 	local PROP="$1"
