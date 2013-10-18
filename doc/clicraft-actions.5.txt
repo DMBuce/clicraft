@@ -214,6 +214,8 @@ output +SERVER_DIR/world+. If +SERVER_TYPE+ is set to "minecraft",
 +SERVER_TYPE+. For other values of 'dimension', +pass:[`dimdir foo`]+ will
 output +SERVER_DIR/world_foo+.
 +
+Returns nonzero if +level-name+ can't be found in +server.properties+.
++
 This function might be better understood by examining example output from an
 installation where +level-name=world+ in +server.properties+ and +SERVER_DIR+
 is set to +/srv+ in linkman:clicraft.conf[5]:

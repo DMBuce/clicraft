@@ -300,8 +300,9 @@ pardon() {
 
 # Prints the directory corresponding to a dimension
 dimdir() {
-	local dim
+	local dim world
 	dim="$1"
+	world="$(serverprop level-name)" || return 1
 
 	if [[ "$dim" == overworld ]]; then
 		echo "$SERVER_DIR/$world"
