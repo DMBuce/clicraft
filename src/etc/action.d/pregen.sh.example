@@ -1,0 +1,70 @@
+#!bash
+#
+# Usage: clicraft pregen <player> [radius] [x z]
+#
+#      Generates a world of size <radius> centered on (<x>, <z>) by teleporting
+#      <player> around.
+#
+
+PLAYER="$1"
+RADIUS="${2-"$PREGEN_RADIUS"}"
+RADIUS="${RADIUS:-500}"
+X="$3"
+Z="$4"
+VIEWDIST="$(( $(serverprop 'view-distance') * 16 ))"
+
+if [[ "$PLAYER" == "" ]]; then
+	usage "$ACTION"
+	return 1
+fi
+
+if ! [[ ( "$X" =~ ^-?[0-9]+$ && "$Z" =~ ^-?[0-9]+$ ) || \
+        ( "$X" == "" && "$Z" == "" ) ]]; then
+	warn "Invalid value for center: $X $Z"
+	return 1
+fi
+
+if [[ ! "$RADIUS" =~ ^[0-9]+$ ]]; then
+	err "Radius not a positive integer: $RADIUS"
+	return 1
+fi
+
+if [[ ! "$VIEWDIST" =~ ^[0-9]+$ ]]; then
+	err "Could not find valid view-distance in server.properties: $VIEWDIST"
+	return 1
+fi
+
+action status >/dev/null || return 1
+
+if ! list | grep -i "^$PLAYER$"; then
+	err "Player $PLAYER is not logged in"
+	return 1
+fi
+
+cmd "gamemode 1 $PLAYER"
+
+if [[ "$X" =~ ^-?[0-9]+$ && "$Z" =~ ^-?[0-9]+$ ]]; then
+	cmd "tp $PLAYER $X ~ $Z"
+else
+	msg "Using position of $PLAYER for center"
+fi
+
+cmd "tp $PLAYER ~-$RADIUS ~ ~-$RADIUS"
+sleep $TIMEOUT
+
+x=-$RADIUS
+while [[ $x -le $RADIUS ]]; do
+	z=-$RADIUS
+	while [[ $z -le $RADIUS ]]; do
+		cmd "tp $PLAYER ~ ~ ~$VIEWDIST"
+		sleep $TIMEOUT
+
+		z=$((z + $VIEWDIST))
+	done
+	cmd "tp $PLAYER ~$VIEWDIST ~ ~-$((2 * RADIUS))"
+	sleep $TIMEOUT
+	x=$((x + $VIEWDIST))
+done
+
+cmd "tp $PLAYER ~-$RADIUS ~ ~-$RADIUS"
+
