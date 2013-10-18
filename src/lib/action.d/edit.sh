@@ -73,7 +73,7 @@ edit_action() {
 
 file="$1"
 world="$(serverprop level-name 2>/dev/null)"
-vinbt="$(which vinbt 2>/dev/null)"
+vinbt="$(wickedwhich vinbt vinbt.sh 2>/dev/null)"
 if [[ "$file" = "" ]]; then
 	# edit clicraft.conf
 	edit_file_template "$CONFDIR/clicraft-defaults.conf" "$CONFDIR/clicraft.conf"

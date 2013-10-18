@@ -12,6 +12,9 @@ RADIUS="$(($1 / 16 + 1))"
 x="$2"
 z="$3"
 
+# try to find mcexplore executable
+MCEXPLORE="$(wickedwhich mcexplore mcexplore.py)" || return 1
+
 # validate args
 if [[ $# != 1 && $# != 3 ]]; then
 	action help explore2
@@ -25,14 +28,6 @@ fi
 if status; then
 	err "You cannot run this while $SERVER_NAME is running."
 	return 1
-fi
-
-# try to find mcexplore executable
-if ! MCEXPLORE=$(which mcexplore 2>/dev/null); then
-	if ! MCEXPLORE=$(which mcexplore.py 2>/dev/null); then
-		err "Cannot find mcexplore in PATH";
-		return 1
-	fi
 fi
 
 # download server jar if needed
