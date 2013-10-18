@@ -240,7 +240,10 @@ list() {
 	RE_PATTERN="$(redb_lookup "cmd/list" "$RE_TIMESTAMP")"
 
 	serverlog "$RE_PATTERN" cmd "list" | \
-		sed -nr "/$RE_PATTERN/ s/$RE_PATTERN//p"
+		sed -nr "2,$ {
+			s/$RE_PATTERN/\1/
+			p
+		}"
 }
 
 # Kicks a player from the server

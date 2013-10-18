@@ -4,7 +4,7 @@ cmd/me ^\[INFO\] \* CONSOLE
 cmd/save-off ^\[INFO\] CONSOLE: Disabled level saving\.\...m$
 cmd/save-on ^\[INFO\] CONSOLE: Enabled level saving\.\...m$
 cmd/save-all ^\[INFO\] CONSOLE: Save complete\...m$
-cmd/list ^[^:/]*$
+cmd/list ([^:/]*)..m$
 cmd/kick ^\[INFO\] (CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:|.* not found\...m)$
 cmd/kick/success ^\[INFO\] CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:$
 cmd/ban ^\[INFO\] CONSOLE: Banned player 

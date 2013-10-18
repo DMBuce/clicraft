@@ -2,7 +2,7 @@ cmd/tell ^\[INFO\] (You whisper to .*|That player cannot be found)$
 cmd/save-off ^\[INFO\] Turned off world auto-saving$
 cmd/save-on ^\[INFO\] Turned on world auto-saving$
 cmd/save-all ^\[INFO\] Saved the world$
-cmd/list ^[^:/]*$
+cmd/list ^\[INFO\] ([^/:]*)$
 cmd/kick ^\[INFO\] (Kicked [0-9a-zA-Z_]* from the game|That player cannot be found)$
 cmd/kick/success ^\[INFO\] Kicked [0-9a-zA-Z_]* from the game$
 cmd/ban ^\[INFO\] Banned player 
