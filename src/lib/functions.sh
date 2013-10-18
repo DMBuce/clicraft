@@ -332,6 +332,27 @@ serverprop() {
 	echo "$VALUE"
 }
 
+# Searches for programs in PATH, HOME/bin and SERVER_DIR
+wickedwhich() {
+	local dir exe PATHORIG
+	PATHORIG="$PATH"
+
+	for dir in "$HOME/bin" "$SERVER_DIR"; do
+		PATH="$PATH:$dir"
+	done
+
+	for exe in "$@"; do
+		if which "$exe" 2>/dev/null; then
+			PATH="$PATHORIG"
+			return 0
+		fi
+	done
+
+	warn "Could not find $1 in $PATH"
+	PATH="$PATHORIG"
+	return 1
+}
+
 # Run every command in the exit trap stack
 exithandler() {
 	local i

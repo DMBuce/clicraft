@@ -243,6 +243,11 @@ $ dimdir foo
 	property cannot be found, print an error message to stderr and return
 	nonzero.
 
+*wickedwhich* <prog> [progs ...]::
+	Search for executable 'prog' in +PATH+, +HOME/bin+, and +SERVER_DIR+. If
+	'prog' can't be found, search for any additional 'progs' in the same way.
+	If none can be found, return nonzero.
+
 *exithandler*::
 	Run the commands in +TRAPSTACK+.
 +
