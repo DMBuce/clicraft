@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# begin envsetup
 PROG="@PROG@"
 VERSION="@VERSION@"
 BUGREPORT="@BUGREPORT@"
@@ -17,6 +18,7 @@ fi
 . "$EXECDIR/functions.sh"
 . "$EXECDIR/defaults.sh"
 . "$EXECDIR/$MULTIPLEXER.sh"
+# end envsetup
 
 # run exithandler function on exit
 trap "exithandler" EXIT
