@@ -32,5 +32,6 @@ blockfile() {
 	echo "${!WHITELIST}"
 }
 
-mmat -w "$(dimdir "$dim")" -d "$PRUNE_RADIUS" -p "$(blocklist "$dim")"
+world="$(dimdir "$dim")" || return 1
+mmat -w "$world" -d "$PRUNE_RADIUS" -p "$(blocklist "$dim")"
 

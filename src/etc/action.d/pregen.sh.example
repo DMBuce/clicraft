@@ -11,7 +11,8 @@ RADIUS="${2-"$PREGEN_RADIUS"}"
 RADIUS="${RADIUS:-500}"
 X="$3"
 Z="$4"
-VIEWDIST="$(( $(serverprop 'view-distance') * 16 ))"
+viewdist="$(serverprop 'view-distance')" || return 1
+VIEWDIST="$(( viewdist * 16 ))"
 
 if [[ "$PLAYER" == "" ]]; then
 	usage "$ACTION"

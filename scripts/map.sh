@@ -18,7 +18,7 @@ if status; then
 fi
 
 MAP_DIR="$HOME/maps"
-LEVEL_NAME="$(serverprop 'level-name')"
+LEVEL_NAME="$(serverprop 'level-name')" || return 1
 FILE="$MAP_DIR/$LEVEL_NAME-$(date +%Y%m%d).png"
 
 mkdir -p "$MAP_DIR"
