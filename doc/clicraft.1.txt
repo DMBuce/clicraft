@@ -59,7 +59,11 @@ linkman:clicraft.conf[5].
 *edit* [file|action]::
 	Edit 'file' in the server directory.
 +
-If 'file' does not exist,
+If <file> does not exist and has a .dat extension, and if vinbt is installed,
+edit the first file of that name found anywhere within the world directory
+using vinbt.
++
+Otherwise,
 edit the action script for 'action' instead. When editing a new action or
 overriding a system action, clicraft will create a new user action using one
 of these templates:

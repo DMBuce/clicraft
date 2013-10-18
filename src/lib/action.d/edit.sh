@@ -2,7 +2,9 @@
 #
 # Usage: clicraft edit [file|action]
 #
-#    Edit <file> in the server directory. If <file> does not exist, edit the
+#    Edit <file> in the server directory. If <file> does not exist and has a
+#    .dat extension, and if vinbt is installed, edit the first file of that name
+#    found anywhere within the world directory using vinbt. Otherwise, edit the
 #    action script for <action> instead. If an action script for <action> does
 #    not exist, create it with a useful template.
 #
@@ -69,12 +71,22 @@ edit_action() {
 	fi
 }
 
-if [[ "$1" = "" ]]; then
+file="$1"
+world="$(serverprop level-name 2>/dev/null)"
+vinbt="$(which vinbt 2>/dev/null)"
+if [[ "$file" = "" ]]; then
 	# edit clicraft.conf
 	edit_file_template "$CONFDIR/clicraft-defaults.conf" "$CONFDIR/clicraft.conf"
-elif [[ -f "$SERVER_DIR/$1" ]]; then
-	edit_file "$SERVER_DIR/$1"
+elif [[ -f "$SERVER_DIR/$file" ]]; then
+	edit_file "$SERVER_DIR/$file"
+elif [[ "$file" =~ \.dat$ && "$world" != "" && "$vinbt" != "" ]]; then
+	nbtfile="$(find "$SERVER_DIR/$world" -name "$file" | head -n1)"
+	if [[ "$nbtfile" != "" ]]; then
+		vinbt "$nbtfile"
+	else
+		edit_action "$file"
+	fi
 else
-	edit_action "$1"
+	edit_action "$file"
 fi
 
