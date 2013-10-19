@@ -8,7 +8,7 @@
 #    <x> and <z> (spawn by default) using mcexplore.
 #
 
-RADIUS="$(($1 / 16 + 1))"
+SIZE="$(($1 / 16))"
 x="$2"
 z="$3"
 
@@ -17,7 +17,7 @@ MCEXPLORE="$(wickedwhich mcexplore mcexplore.py)" || return 1
 
 # validate args
 if [[ $# != 1 && $# != 3 ]]; then
-	action help explore2
+	action help explore
 	return 1
 elif ! [[ "$1" =~ ^[0-9]+$ && "$2" =~ ^-?[0-9]*$ && "$3" =~ ^-?[0-9]*$ ]]; then
 	err "Arguments must be integers"
@@ -36,8 +36,8 @@ if [[ ! -f "$SERVER_JAR" ]]; then
 fi
 
 if [[ "$x" != "" && "$z" != "" ]]; then
-	$MCEXPLORE -p "$SERVER_DIR" -c "$START_COMMAND" -x "$x" -z "$z" "$RADIUS"
+	$MCEXPLORE -p "$SERVER_DIR" -c "$START_COMMAND" -x "$x" -z "$z" "$SIZE"
 else
-	$MCEXPLORE -p "$SERVER_DIR" -c "$START_COMMAND" "$RADIUS"
+	$MCEXPLORE -p "$SERVER_DIR" -c "$START_COMMAND" "$SIZE"
 fi
 
