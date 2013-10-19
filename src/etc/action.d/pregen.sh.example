@@ -1,14 +1,13 @@
 #!bash
 #
-# Usage: clicraft pregen <player> [radius] [x z]
+# Usage: clicraft pregen <player> <size> [x z]
 #
-#      Generates a world of size <radius> centered on (<x>, <z>) by teleporting
-#      <player> around.
+#      Generates a world roughly <size> by <size> centered on coordinates
+#      <x> and <z> (spawn by default) by teleporting <player> around.
 #
 
 PLAYER="$1"
-RADIUS="${2-"$PREGEN_RADIUS"}"
-RADIUS="${RADIUS:-500}"
+SIZE="$2"
 X="$3"
 Z="$4"
 viewdist="$(serverprop 'view-distance')" || return 1
@@ -25,9 +24,11 @@ if ! [[ ( "$X" =~ ^-?[0-9]+$ && "$Z" =~ ^-?[0-9]+$ ) || \
 	return 1
 fi
 
-if [[ ! "$RADIUS" =~ ^[0-9]+$ ]]; then
-	err "Radius not a positive integer: $RADIUS"
+if [[ ! "$SIZE" =~ ^[0-9]+$ ]]; then
+	err "Size not a positive integer: $SIZE"
 	return 1
+else
+	RADIUS="$((SIZE / 2))"
 fi
 
 if [[ ! "$VIEWDIST" =~ ^[0-9]+$ ]]; then
