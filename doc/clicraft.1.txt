@@ -138,9 +138,7 @@ If no 'operation' or 'args' are supplied, they are read from stdin.
 	Evaluate 'command' within clicraft's environment.
 +
 If no 'command' is given, open an interactive bash session with an environment
-that mimics clicraft's, with the difference that the normal EXIT trap is not
-set. This can be remedied by running +pass:[`trap exithandler EXIT`]+ in the
-new shell.
+that mimics clicraft's.
 
 *start*::
 	Starts the server.
