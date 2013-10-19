@@ -133,10 +133,10 @@ whitespace and special characters.
 *Default*: +"20"+
 
 
-**CMD_STRIP_SLASH=**"true|false"::
-	Whether or not to strip the leading slash for commands passed to `clicraft cmd`.
+**CMD_LSTRIP=**"string"::
+	The string to strip from the beginning of commands passed to `clicraft cmd`.
 +
-*Default*: +"true"+
+*Default*: +"/"+
 
 
 See Also

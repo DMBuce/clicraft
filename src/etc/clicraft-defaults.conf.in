@@ -94,9 +94,8 @@ DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"
 TIMEOUT=20
 
 
-# CMD_STRIP_SLASH
-# Whether or not to strip the leading slash for commands passed to
-# `clicraft cmd`.
-CMD_STRIP_SLASH="true"
+# CMD_LSTRIP
+# Strip this string from the front of commands passed to `clicraft cmd`
+CMD_LSTRIP="/"
 
 
