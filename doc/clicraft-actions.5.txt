@@ -50,8 +50,9 @@ Variables
 	The name of this action. For an action script +foo.sh+ invoked with
 	+clicraft foo bar baz+, +$ACTION+ is +"foo"+.
 
-*SERVER_DIR, SERVER_NAME, SERVER_JAR, SERVER_URL*::
-*SERVER_TYPE, START_COMMAND, DOWNLOAD_COMMAND, TIMEOUT*::
+*MULTIPLEXER, SERVER_DIR, SERVER_NAME, SERVER_JAR, SERVER_URL, SERVER_LOG*::
+*SERVER_VERSION, SERVER_TYPE, START_COMMAND, STOP_CMD, DOWNLOAD_COMMAND*::
+*TIMEOUT, CMD_LSTRIP*::
 	Configuration options are stored in variables by the same name as the
 	option. For a description of these options and their default values, see
 	linkman:clicraft.conf[5].
