@@ -1,0 +1,110 @@
+#!bash
+# This is an example clicraft configuration file for starmade servers. The
+# format is bash, so configuration options take the form OPTION="value" (with
+# no whitespace between the equals sign (=) ).
+#
+# This file is sourced from within clicraft before the default values are set,
+# so you must take care to initialize any options that another option depends
+# on. For example, if you set SERVER_JAR=$SERVER_DIR/custom_server.jar without
+# setting SERVER_DIR first, clicraft will look for /custom_server.jar, which
+# is probably not what you want.
+#
+# You can include any extra variables you wish to use in custom action
+# scripts here. You can also embed shell logic without trouble; this behavior may
+# change in future versions, however.
+
+
+# MULTIPLEXER
+# The terminal multiplexer to use. Valid values are "tmux" and "screen".
+#
+MULTIPLEXER="tmux"
+
+
+# SERVER_DIR
+# The directory that the server is launched from.
+# This is the directory that your world data, server.properties, and server log
+# (among other things) resides in.
+#
+SERVER_DIR="@DEFAULT_SERVER_DIR@"
+
+
+# SERVER_NAME
+# An identifier for the server. This is the value used to set the multiplexer's
+# window and session names when starting the server. It is also used in some
+# informational messages.
+#
+SERVER_NAME="starmade"
+
+
+# SERVER_JAR, SERVER_URL
+# The location of the server jar on disk and on the web, respectively
+#
+SERVER_JAR="$SERVER_DIR/StarMade/StarMade.jar"
+SERVER_URL="http://files.star-made.org/StarMade-Starter.jar"
+
+
+# SERVER_LOG
+# The location of the server log file
+#
+SERVER_LOG="$SERVER_DIR/StarMade/logs/log.txt.0"
+
+
+# SERVER_VERSION
+# The server version. This will replace any instances of '%v' in
+# DOWNLOAD_COMMAND. If set to 'release' or 'snapshot', the latest release or
+# snapshot version will be substituted instead.
+#
+SERVER_VERSION="release"
+
+
+# SERVER_TYPE
+# If this option is set to "bukkit", SERVER_JAR and SERVER_URL will take on
+# default values such that the server uses Bukkit Recommended Builds, instead
+# of the vanilla minecraft jar. That is, they will have these default values:
+#SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
+#SERVER_URL="http://cbukk.it/craftbukkit.jar"
+#
+SERVER_TYPE="starmade"
+
+
+# START_COMMAND
+# The command that should be used to launch the server.
+#
+START_COMMAND="$SERVER_DIR/StarMade/StarMade-dedicated-server-linux.sh"
+
+
+# STOP_CMD
+# The command to send to the server console to shut the server down.
+#
+STOP_CMD="/shutdown 0"
+
+
+# DOWNLOAD_COMMAND
+# The command used to download or update the server jar. Running this
+# command should result in SERVER_URL being downloaded and saved to
+# SERVER_JAR.
+#
+
+# this is a hack, but it's the best we have for now
+mkdir -p "$(dirname "$SERVER_JAR")"
+update_starmade() {
+	curl -#L -o "$SERVER_DIR/StarMade-Starter.jar" "$SERVER_URL"
+	java -jar "$SERVER_DIR/StarMade-Starter.jar" -nogui
+	#chmod +x "$SERVER_DIR/StarMade/StarMade-dedicated-server-linux.sh"
+	#[[ ! -f "$SERVER_JAR" ]] && mv "$SERVER_JAR.ccback" "$SERVER_JAR"
+}
+
+DOWNLOAD_COMMAND="update_starmade"
+
+# TIMEOUT
+# The amount of time, in seconds, that clicraft will wait for critical
+# operations to finish.
+#
+TIMEOUT=20
+
+
+# CMD_LSTRIP
+# Strip this string from the front of commands passed to `clicraft cmd`
+CMD_LSTRIP=""
+
+

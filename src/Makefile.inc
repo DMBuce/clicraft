@@ -3,6 +3,7 @@ SRC_EXECFILES := src/lib/functions.sh src/lib/defaults.sh \
                  src/lib/tmux.sh src/lib/screen.sh \
                  $(wildcard src/lib/action.d/*.sh)
 SRC_CONFFILES := src/etc/clicraft-defaults.conf \
+                 src/etc/clicraft-starmade.conf \
                  $(wildcard src/etc/action.d/*.sh.example) \
                  $(wildcard src/etc/redb/*.tab)
 
@@ -22,7 +23,8 @@ DIST        := $(DIST) src
 DISTCLEAN   := $(DISTCLEAN) \
                src/bin/clicraft \
                src/lib/defaults.sh \
-               src/etc/clicraft-defaults.conf
+               src/etc/clicraft-defaults.conf \
+               src/etc/clicraft-starmade.conf
 
 INSTALLDIRS := $(INSTALLDIRS) \
                $(DESTDIR)${bindir} \

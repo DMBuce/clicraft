@@ -10,6 +10,7 @@ scripts/cron
 scripts/logrotate
 src/bin/clicraft
 src/etc/clicraft-defaults.conf
+src/etc/clicraft-starmade.conf
 src/lib/defaults.sh
 
 # distro build artifacts
