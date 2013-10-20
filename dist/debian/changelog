@@ -1,3 +1,9 @@
+clicraft (0.0.8-1) lucid; urgency=low
+
+  * New upstream release
+
+ -- D.M. Buce <dmbuce@gmail.com>  Sat, 19 Oct 2013 21:29:09 -0500
+
 clicraft (0.0.7-1) lucid; urgency=low
 
   * New upstream release
