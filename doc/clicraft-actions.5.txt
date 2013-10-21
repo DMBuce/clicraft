@@ -307,7 +307,7 @@ internally by `clicraft edit` and are documented in linkman:clicraft[1].
 See Also
 --------
 
-linkman:clicraft-examples[1], linkman:clicraft[5], linkman:clicraft.conf[5]
+linkman:clicraft-examples[1], linkman:clicraft[1], linkman:clicraft.conf[5]
 
 include::footer.txt[]
 
