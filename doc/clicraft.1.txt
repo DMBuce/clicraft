@@ -85,14 +85,12 @@ When no 'file' or 'action' is present, edit linkman:clicraft.conf[5].
 This usage of clicraft launches `EDITOR` to edit files, or linkman:vi[1] if
 the `EDITOR` variable is not defined in your environment.
 
-*explore* <size> [args]::
-	Generates a rectangle of land of a given 'size' using
-	linkman:mcexplore[1]. By default, 'size' is measured in chunks. Any
-	additional 'args' get passed to `mcexplore` or `mcexplore.py`, which must
-	be in your `PATH`. For valid 'args', see `mcexplore --help`.
+*explore* <size> [x z]::
+	Generates a world roughly 'size' by 'size' centered on coordinates
+	'x' and 'z' (spawn by default) using linkman:mcexplore[1].
 +
 Using this action is equivalent to running
-+mcexplore -p SERVER_DIR -c START_COMMAND 'size' ['args']+.
++mcexplore -p SERVER_DIR -c START_COMMAND -x 'x' -z 'z' 'size'+.
 For information regarding `SERVER_DIR` and `START_COMMAND`, see
 linkman:clicraft.conf[5].
 +
