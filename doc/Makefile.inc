@@ -1,9 +1,10 @@
-MAN1PAGES := doc/clicraft.1
+MAN1PAGES := doc/clicraft.1 doc/clicraft-examples.1
 MAN5PAGES := doc/clicraft.conf.5 doc/clicraft-actions.5
 MANPAGES  := $(MAN1PAGES) $(MAN5PAGES)
 MAN1PAGES_INSTALL := $(MAN1PAGES:doc/%=$(DESTDIR)$(man1dir)/%)
 MAN5PAGES_INSTALL := $(MAN5PAGES:doc/%=$(DESTDIR)$(man5dir)/%)
-TXTFILES  := doc/clicraft.1.txt doc/clicraft.conf.5.txt doc/clicraft-actions.5.txt \
+TXTFILES  := doc/clicraft.1.txt doc/clicraft-examples.1.txt \
+             doc/clicraft.conf.5.txt doc/clicraft-actions.5.txt \
              doc/index.txt doc/install.txt doc/contribute.txt
 HTMLPAGES := $(TXTFILES:.txt=.html)
 
