@@ -17,9 +17,8 @@ sys-actions() {
 
 # print list of example actions
 example-actions() {
-	( find scripts -maxdepth 1 -name \*.sh
-	find src/etc/action.d -maxdepth 1 -name \*.sh.example ) | \
-		sed 's|\.example$||; s|\.sh||; s|.*/||;'
+	find src/etc/action.d -maxdepth 1 -name \*.sh.example | \
+		sed 's|\.sh\.example$||; s|.*/||;'
 }
 
 # print list of functions
@@ -45,11 +44,11 @@ for action in $(sys-actions); do
 		err "$action.sh not documented in clicraft.1.txt"
 done
 
-## check if example actions are documented in clicraft-examples.1
-#for action in $(example-actions); do
-#	grep -q "^\*$action\*" doc/clicraft-examples.1.txt || \
-#		err "$action.sh.example not documented in clicraft-examples.1.txt"
-#done
+# check if example actions are documented in clicraft-examples.1
+for action in $(example-actions | grep -v '^action'); do
+	grep -q "^\*$action\*" doc/clicraft-examples.1.txt || \
+		err "$action.sh.example not documented in clicraft-examples.1.txt"
+done
 
 # check if functions are documented in clicraft-actions.5
 for fn in $(fns); do
