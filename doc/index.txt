@@ -42,6 +42,7 @@ what's on your system.
 
 * linkman:clicraft[1]
 * linkman:clicraft.conf[5]
+* linkman:clicraft-examples[1]
 * linkman:clicraft-actions[5]
 
 Development
