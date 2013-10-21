@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# Usage: clicraft blocks
+#
+#    Scrape the Minecraft Wiki for valid block ids and print them in a
+#    human-readable format usable as a whitelist for `clicraft prune`.
+#
 
 curl -s 'http://minecraft.gamepedia.com/Data_values/Block_IDs' | \
 sed -nr \
