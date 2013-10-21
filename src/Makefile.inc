@@ -4,6 +4,7 @@ SRC_EXECFILES := src/lib/functions.sh src/lib/defaults.sh \
                  $(wildcard src/lib/action.d/*.sh)
 SRC_CONFFILES := src/etc/clicraft-defaults.conf \
                  src/etc/clicraft-starmade.conf \
+                 $(wildcard src/etc/*-blocks.conf) \
                  $(wildcard src/etc/action.d/*.sh.example) \
                  $(wildcard src/etc/redb/*.tab)
 
@@ -52,6 +53,9 @@ $(DESTDIR)$(CONFDIR)/%: src/etc/%
 	$(INSTALL_DATA) $< $@
 
 $(DESTDIR)$(CONFDIR)/action.d/%.sh.example: src/etc/action.d/%.sh.example
+	$(INSTALL_DATA) $< $@
+
+$(DESTDIR)$(CONFDIR)/%-blocks.conf: src/etc/%-blocks.conf
 	$(INSTALL_DATA) $< $@
 
 

@@ -30,33 +30,6 @@ AS_IF([test "x$enable_shortdirs" = "xyes"],
       AC_SUBST([DEFAULT_SERVER_DIR], [$localstatedir/lib/$PROG])
 )
 
-dnl --with-mcexplore
-AC_ARG_WITH([mcexplore],
-	AS_HELP_STRING([--with-mcexplore], [Include mcexplore helper script]))
-
-AS_IF([test "x$with_mcexplore" = "xyes"],
-      AC_SUBST([WITH_MCEXPLORE], [yes]),
-      AC_SUBST([WITH_MCEXPLORE], [no])
-)
-
-dnl --with-c10t
-AC_ARG_WITH([c10t],
-	AS_HELP_STRING([--with-c10t], [Include c10t helper script]))
-
-AS_IF([test "x$with_c10t" = "xyes"],
-      AC_SUBST([WITH_C10T], [yes]),
-      AC_SUBST([WITH_C10T], [no])
-)
-
-dnl --with-mmat
-AC_ARG_WITH([mmat],
-	AS_HELP_STRING([--with-mmat], [Include mmat helper script]))
-
-AS_IF([test "x$with_mmat" = "xyes"],
-      AC_SUBST([WITH_MMAT], [yes]),
-      AC_SUBST([WITH_MMAT], [no])
-)
-
 # Checks for programs.
 AC_PROG_INSTALL
 
