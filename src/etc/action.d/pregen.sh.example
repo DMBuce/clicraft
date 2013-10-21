@@ -2,8 +2,8 @@
 #
 # Usage: clicraft pregen <player> <size> [x z]
 #
-#      Generates a world roughly <size> by <size> centered on coordinates
-#      <x> and <z> (spawn by default) by teleporting <player> around.
+#    Generates a world roughly <size> by <size> centered on coordinates
+#    <x> and <z> (spawn by default) by teleporting <player> around.
 #
 
 PLAYER="$1"
