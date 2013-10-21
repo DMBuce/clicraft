@@ -35,10 +35,43 @@ Actions
 -------
 *backup*::
 	Backs up world data.
++
+This action has these linkman:clicraft.conf[5] options:
++
+*BACKUP_DIR*="/path/to/directory":::
+	The directory to place the backup in. Defaults to +"$SERVER_DIR/backups"+.
++
+*BACKUP_FILE*="/path/to/file":::
+	The file to back up to. Defaults to +"$BACKUP_DIR/'world'-'timestamp'.zip"+
+	where 'world' is the value of +level-name+ in +server.properties+ and
+	'timestamp' is the current date and time in YYYYMMDD-HHMMSS format.
++
+*BACKUP_TARGETS*="file [file2 ...]":::
+	A space-delimited list of the files and directories to include in the
+	backup. Defaults to +"'world' 'world'$$_$$*"+, where 'world' is the value of
+	+level-name+ in +server.properties+.
++
+*BACKUP_COMMAND*="command [args]":::
+	The command to run to make the backup. Defaults to +"zip -r $BACKUP_FILE
+	$BACKUP_TARGETS"+.
++
+*BACKUP_LIMIT*="number":::
+	The number of backups to keep before removing old backups. Set to +0+ to
+	keep backups indefinitely. Defaults to +7+.
+
++
+When removing old backups past the +BACKUP_LIMIT+, this action sorts all files
+in +BACKUP_DIR+ by filename and removes them until +BACKUP_LIMIT+ is
+satisfied. You must therefore take care to set +BACKUP_FILE+ so that old files
+are sorted before new ones.
 
 *blocks*::
 	Scrape the Minecraft Wiki for valid block ids and print them in a
 	human-readable format usable as a whitelist for `clicraft prune`.
++
+This action displays block data in three or more space-delimited columns. The
+first is the decimal block id. The second is the hexadecimal block id. The
+remaining columns represet the block's name.
 
 *explore* <size> [x z]::
 	Generates a world roughly 'size' by 'size' centered on coordinates
@@ -68,10 +101,39 @@ created.
 
 *prune* [dim]::
 	Prunes the map using mmat. Valid values for 'dim' are overworld,
-	nether, or end.
+	nether, or end. If no 'dim' is provided, the overworld is pruned.
++
+This action has these linkman:clicraft.conf[5] options:
++
+*MMAT_JAR*="/path/to/mmat.jar":::
+	The mmat.jar file. Defaults to +"$SERVER_DIR/mmat.jar"+.
++
+*PRUNE_RADIUS*="chunks":::
+	The radius, in chunks, of data to preserver surrounding whitelisted
+	blocks. Defaults to +15+.
++
+*OVERWORLD_WHITELIST*="/path/to/file":::
+	The file that defines what blocks to preserve when pruning the overworld.
+	Each line in the file should start with a block id followed by a
+	whitespace character. Lines not following this format are ignored.
+	Defaults to +"$CONFDIR/overworld-blocks.conf"+
++
+*NETHER_WHITELIST*="/path/to/file":::
+	The file that defines what blocks to preserve when pruning the nether.
+	Each line in the file should start with a block id followed by a
+	whitespace character. Lines not following this format are ignored.
+	Defaults to +"$CONFDIR/nether-blocks.conf"+
++
+*END_WHITELIST*="/path/to/file":::
+	The file that defines what blocks to preserve when pruning the end.
+	Each line in the file should start with a block id followed by a
+	whitespace character. Lines not following this format are ignored.
+	Defaults to +"$CONFDIR/end-blocks.conf"+
 
 *restore* [file.zip] [files]::
-	Restores world data.
+	Restores world data by extracting 'files' from 'file.zip'. If 'files' is
+	not provided, all files are extracted from 'file.zip'. With no
+	arguments, print a list of files that can be restored from.
 +
 This action is implemented in +$CONFDIR/action.d/backup.sh.example+, and must
 be installed manually. See linkman:clicraft-actions[5] for the value of
