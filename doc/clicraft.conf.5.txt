@@ -142,7 +142,7 @@ whitespace and special characters.
 See Also
 --------
 
-linkman:clicraft[1], linkman:clicraft-actions[5]
+linkman:clicraft[1], linkman:clicraft-examples[1], linkman:clicraft-actions[5]
 
 include::footer.txt[]
 

@@ -298,21 +298,16 @@ line.
 Examples
 --------
 
-These example action scripts can be found in +$CONFDIR/action.d/+:
-
-* backup.sh.example
-* action.sh.example
-* action-override.sh.example
-
-The first example is a simple script for backing up the world directory.
-The last two example scripts are used internally by the edit action to create
-new action scripts. You can use them as templates by invoking
-+clicraft edit 'action'+.
+Example action scripts can be found in +$CONFDIR/action.d/+ with a
++.sh.example+ file extension. They can be viewed, edited and installed with
+`clicraft edit`. Their usage is documented in linkman:clicraft-examples[1],
+except for action.sh.example and action-override.sh.example, which are used
+internally by `clicraft edit` and are documented in linkman:clicraft[1].
 
 See Also
 --------
 
-linkman:clicraft[5], linkman:clicraft.conf[5]
+linkman:clicraft-examples[1], linkman:clicraft[5], linkman:clicraft.conf[5]
 
 include::footer.txt[]
 

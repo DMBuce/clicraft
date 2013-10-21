@@ -85,35 +85,9 @@ When no 'file' or 'action' is present, edit linkman:clicraft.conf[5].
 This usage of clicraft launches `EDITOR` to edit files, or linkman:vi[1] if
 the `EDITOR` variable is not defined in your environment.
 
-*explore* <size> [x z]::
-	Generates a world roughly 'size' by 'size' centered on coordinates
-	'x' and 'z' (spawn by default) using linkman:mcexplore[1].
-+
-Using this action is equivalent to running
-+mcexplore -p SERVER_DIR -c START_COMMAND -x 'x' -z 'z' 'size'+.
-For information regarding `SERVER_DIR` and `START_COMMAND`, see
-linkman:clicraft.conf[5].
-+
-NOTE: This action is only available if clicraft was built using
-`--with-mcexplore`.
-
 *help* [action]::
 	Displays usage information for 'action'. If no 'action' is given, clicraft
 	usage is displayed instead.
-
-*map* [args]::
-	Maps the world using linkman:c10t[1]. Any additional 'args' get passed to
-	`c10t`, which must be in your `PATH`. For valid 'args', see `c10t --help`.
-+
-With a default install of minecraft, using this action is equivalent to
-running +c10t -w SERVER_DIR/'world' -o $HOME/maps/'world'-'date'.png ['args']+,
-where +'date'+ is today's
-date in YYYY-MM-DD format and +'world'+ is the value of +level-name+ in
-+server.properties+. For information regarding `SERVER_DIR`, see
-linkman:clicraft.conf[5]. If the `$HOME/maps` directory does not exist, it is
-created.
-+
-NOTE: This action is only available if clicraft was built using `--with-c10t`.
 
 *redb* [operation] [args]::
 	Manipulate the regex database. Exact usage depends on 'operation':
@@ -171,12 +145,8 @@ clicraft cmd save-on::
 clicraft edit server.properties::
 	Edit the server properties file.
 
-clicraft explore 10 20 -x 500 -z 500::
-	Generate a 160x320 region (10 by 20 chunks) centered on (x=500, z=500).
-
-clicraft map -R 250 -r 270::
-	Generate a map centered on spawn out to a radius of 250 chunks, and rotate
-	it 270 degrees.
+clicraft edit level.dat::
+	Edit the server's level.dat file.
 
 Configuration
 -------------
@@ -187,8 +157,8 @@ linkman:clicraft-actions[5] for writing custom action scripts.
 See Also
 --------
 
-linkman:clicraft.conf[5], linkman:clicraft-actions[5], linkman:tmux[1],
-linkman:screen[1], linkman:mcexplore[1], linkman:c10t[1]
+linkman:clicraft.conf[5], linkman:clicraft-actions[5],
+linkman:clicraft-examples[1], linkman:tmux[1], linkman:screen[1]
 
 include::footer.txt[]
 
