@@ -69,9 +69,9 @@ are sorted before new ones.
 	Scrape the Minecraft Wiki for valid block ids and print them in a
 	human-readable format usable as a whitelist for `clicraft prune`.
 +
-This action displays block data in three or more space-delimited columns. The
+This action displays block data in three or more space-delimited fields. The
 first is the decimal block id. The second is the hexadecimal block id. The
-remaining columns represet the block's name.
+remaining fields represet the block's name.
 
 *explore* <size> [x z]::
 	Generates a world roughly 'size' by 'size' centered on coordinates
