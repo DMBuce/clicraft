@@ -2,7 +2,8 @@
 #
 # Usage: clicraft dl [version]
 #
-#    Downloads the server jar file.
+#    Downloads version <version> of the server jar file. If <version> is
+#    "release" or "snapshot", the latest release or snapshot version is used.
 #
 
 SERVER_VERSION="${1-$SERVER_VERSION}"

@@ -47,13 +47,22 @@ See linkman:clicraft.conf[5] for a description of the +TIMEOUT+ or
 	session that the server is running in. All normal multiplexer key-bindings
 	(like `Ctrl-b d` or `Ctrl-a d` to detach) should work.
 
-*dl*::
-	Downloads the server jar file. The jar file is downloaded from
-	`SERVER_URL` and saved to location `SERVER_JAR`. If `SERVER_JAR` already
-	exists, it is backed up to `SERVER_JAR.ccback` before being overwritten.
+*dl* [version]::
+	Downloads version 'version' of the server jar file. If 'version' is
+	+release+ or +snapshot+, the latest release or snapshot version is used.
+	If no 'version' is supplied on the command line, use `SERVER_VERSION`
+	instead.
 +
-For information regarding `SERVER_URL` and `SERVER_JAR`, see
-linkman:clicraft.conf[5].
+The jar file is downloaded from `SERVER_URL` and saved to location
+`SERVER_JAR` using `DOWNLOAD_COMMAND`. Any instances of the string +%v+ in
+`DOWNLOAD_COMMAND` are substituted with 'version'.
++
+If `SERVER_JAR` already
+exists, it is backed up to `SERVER_JAR.ccback` before being overwritten, and
+restored from `SERVER_JAR.ccback` if the download fails.
++
+For information regarding `SERVER_VERSION`, `SERVER_URL`, `SERVER_JAR`, and
+`DOWNLOAD_COMMAND`. see linkman:clicraft.conf[5].
 
 *edit* [file|action]::
 	Edit 'file' in the server directory.
