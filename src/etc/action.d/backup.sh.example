@@ -7,7 +7,9 @@
 
 # Usage: clicraft restore [file.zip] [files]
 #
-#    Restores world data.
+#    Restores world data by extracting 'files' from 'file.zip'. If 'files' is
+#    not provided, all files are extracted from 'file.zip'. With no
+#    arguments, print a list of files that can be restored from.
 #
 
 WORLD="$(serverprop 'level-name')"
