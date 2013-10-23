@@ -67,7 +67,8 @@ For information regarding `SERVER_VERSION`, `SERVER_URL`, `SERVER_JAR`, and
 *edit* [file|action]::
 	Edit 'file' in the server directory.
 +
-If <file> does not exist and has a .dat extension, and if vinbt is installed,
+If <file> does not exist and has a .dat extension, and if linkman:vinbt[1]
+is installed,
 edit the first file of that name found anywhere within the world directory
 using vinbt.
 +
@@ -158,7 +159,8 @@ See Also
 --------
 
 linkman:clicraft.conf[5], linkman:clicraft-actions[5],
-linkman:clicraft-examples[1], linkman:tmux[1], linkman:screen[1]
+linkman:clicraft-examples[1], linkman:tmux[1], linkman:screen[1],
+linkman:vinbt[1]
 
 include::footer.txt[]
 
