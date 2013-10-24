@@ -11,6 +11,8 @@ AC_SUBST([VERSION],   [$PACKAGE_VERSION])
 AC_SUBST([BUGREPORT], [$PACKAGE_BUGREPORT])
 AC_SUBST([URL],       [http://dmbuce.github.com/clicraft/])
 
+AC_SUBST([BINDIR],    [$bindir])
+
 dnl --enable-shortdirs
 AC_ARG_ENABLE([shortdirs],
 	AS_HELP_STRING([--enable-shortdirs], [Use short paths for installation directories]))
