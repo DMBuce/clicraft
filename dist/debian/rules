@@ -13,5 +13,5 @@
 	dh  $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- --libexecdir=/usr/lib --with-c10t --with-mcexplore
+	dh_auto_configure -- --libexecdir=/usr/lib
 

@@ -38,8 +38,10 @@ Clicraft needs these programs in order to successfully run:
 
 Clicraft has several optional features with these additional dependencies:
 
-* link:https://gist.github.com/854679[mcexplore] if installed using `--with-mcexplore`
-* link:http://toolchain.eu/project/c10t[c10t] if installed using `--with-c10t`
+* link:https://https://github.com/DMBuce/mcexplore[mcexplore]
+* link:http://toolchain.eu/project/c10t[c10t]
+* link:https://github.com/hwei/Minecraft-Map-Auto-Trim[mmat]
+* link:http://dmbuce.github.io/norbert/[norbert]
 
 [[quick]]
 Quick Install
@@ -151,12 +153,7 @@ Then, you can configure clicraft to be installed to that directory using
 		--sysconfdir=$HOME/clicraft/etc \
 		--libexecdir=$HOME/clicraft/lib \
 		--localstatedir=$HOME/clicraft/srv \
-		--enable-shortdirs \
-		--with-c10t --with-mcexplore
-
-You can leave out the `--with-c10t` and/or `--with-mcexplore` options if you
-don't intend to use the +map+ and/or +explore+ actions, respectively. For more
-information on these actions, refer to the linkman:clicraft[1] man page.
+		--enable-shortdirs
 
 Finally, you can install clicraft with
 
@@ -180,12 +177,7 @@ As a regular, unprivileged user (NOT root), run
 	$ ./configure --prefix=/usr/local \
 		--sysconfdir=/usr/local/etc \
 		--libexecdir=/usr/local/lib \
-		--localstatedir=/var/local \
-		--with-c10t --with-mcexplore
-
-You can leave out the `--with-c10t` and/or `--with-mcexplore` options if you
-don't intend to use the +map+ and/or +explore+ actions, respectively. For more
-information on these actions, refer to the linkman:clicraft[1] man page.
+		--localstatedir=/var/local
 
 Clicraft's Makefile supports the `DESTDIR` make variable, so you can stage the
 installation. To do this, choose a staging directory that you have write
