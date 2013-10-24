@@ -50,10 +50,6 @@ CONFDIR    = @CONFDIR@
 EXECDIR    = @EXECDIR@
 SERVER_DIR = @DEFAULT_SERVER_DIR@
 
-WITH_MCEXPLORE = @WITH_MCEXPLORE@
-WITH_C10T      = @WITH_C10T@
-WITH_MMAT      = @WITH_MMAT@
-
 # controls actual build
 include Makefile.inc
 

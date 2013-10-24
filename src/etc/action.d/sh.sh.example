@@ -15,7 +15,7 @@ else
 	# open new shell
 	bash --init-file <(echo '[[ -f ~/.bashrc ]] && . ~/.bashrc'
 	                   echo "export PS1='clicraft> '"
-	                   sed -nr '/^PROG=/,/^trap/ p' "$0"
+	                   sed -nr '/^PROG=/,/^trap/ p' "$BINDIR/$PROG"
 	                   echo "ACTION=$ACTION")
 fi
 
