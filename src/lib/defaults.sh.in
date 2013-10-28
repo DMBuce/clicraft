@@ -17,7 +17,7 @@ fi
 
 SERVER_TYPE="${SERVER_TYPE-minecraft}"
 SERVER_VERSION="${SERVER_VERSION-release}"
-SERVER_LOG="${SERVER_LOG-$SERVER_DIR/server.log}"
+SERVER_LOG="${SERVER_LOG-$SERVER_DIR/logs/latest.log}"
 if [[ "$SERVER_TYPE" = "bukkit" ]]; then
 	SERVER_JAR="${SERVER_JAR-$SERVER_DIR/craftbukkit.jar}"
 	SERVER_URL="${SERVER_URL-http://cbukk.it/craftbukkit.jar}"

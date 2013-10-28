@@ -46,7 +46,7 @@ SERVER_URL="https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_se
 # SERVER_LOG
 # The location of the server log file
 #
-SERVER_LOG="$SERVER_DIR/server.log"
+SERVER_LOG="$SERVER_DIR/logs/latest.log"
 
 
 # SERVER_VERSION

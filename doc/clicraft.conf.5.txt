@@ -72,7 +72,7 @@ variables you wish to use in custom action scripts.
 **SERVER_LOG=**"/path/to/server.log"::
 	The location of the server log file
 +
-*Default*: +"$SERVER_DIR/server.log"+
+*Default*: +"$SERVER_DIR/logs/latest.log"+
 
 
 **SERVER_VERSION=**"version"::
