@@ -17,6 +17,7 @@ fi
 
 . "$EXECDIR/functions.sh"
 . "$EXECDIR/defaults.sh"
+. "$EXECDIR/validate.sh"
 . "$EXECDIR/$MULTIPLEXER.sh"
 
 # run exithandler function on exit

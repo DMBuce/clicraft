@@ -5,15 +5,6 @@ SERVER_DIR="${SERVER_DIR-@DEFAULT_SERVER_DIR@}"
 SERVER_NAME="${SERVER_NAME-minecraft}"
 
 MULTIPLEXER="${MULTIPLEXER-tmux}"
-if [[ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]]; then
-	warn "Invalid multiplexer: $MULTIPLEXER"
-	MULTIPLEXER="$(which tmux 2>/dev/null || which screen 2>/dev/null)"
-	if [[ "$MULTIPLEXER" != "" ]]; then
-		warn "Falling back to $MULTIPLEXER"
-	else
-		exit 1
-	fi
-fi
 
 SERVER_TYPE="${SERVER_TYPE-minecraft}"
 SERVER_VERSION="${SERVER_VERSION-release}"
@@ -26,34 +17,16 @@ else
 	SERVER_URL="${SERVER_URL-https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_server.%v.jar}"
 fi
 
-if [[ -f "$CONFDIR/redb/$SERVER_TYPE.tab" ]]; then
-	DB="$CONFDIR/redb/$SERVER_TYPE.tab"
-else
-	DB="$CONFDIR/redb/minecraft.tab"
-fi
+DB="$CONFDIR/redb/$SERVER_TYPE.tab"
 
 START_COMMAND="${START_COMMAND-java -jar $SERVER_JAR nogui}"
 STOP_CMD="${STOP_CMD-stop}"
 DOWNLOAD_COMMAND="${DOWNLOAD_COMMAND-curl -#L -o "$SERVER_JAR" "$SERVER_URL"}"
 
 TIMEOUT="${TIMEOUT-20}"
-if [[ ! "$TIMEOUT" =~ ^[+-]?[0-9]+$ ]]; then
-	warn "Invalid timeout: $TIMEOUT"
-	warn "Falling back to 20"
-	TIMEOUT=20
-fi
-
 START_TIMEOUT="${START_TIMEOUT-$TIMEOUT}"
 STOP_TIMEOUT="${STOP_TIMEOUT-$TIMEOUT}"
 CMD_TIMEOUT="${CMD_TIMEOUT-$TIMEOUT}"
-for timeout in START_TIMEOUT STOP_TIMEOUT CMD_TIMEOUT; do
-	if [[ ! "${!timeout}" =~ ^[+-]?[0-9]+$ ]]; then
-		warn "Invalid timeout: ${!timeout}"
-		warn "Falling back to $TIMEOUT"
-		declare "$timeout=$TIMEOUT"
-	fi
-done
-unset timeout
 
 CMD_LSTRIP="${CMD_LSTRIP-/}"
 
