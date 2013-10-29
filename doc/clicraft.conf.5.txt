@@ -133,6 +133,27 @@ whitespace and special characters.
 *Default*: +"20"+
 
 
+**START_TIMEOUT=**"seconds"::
+	The amount of time, in seconds, that clicraft will wait for the server to
+	start up.
++
+*Default*: +$TIMEOUT+
+
+
+**STOP_TIMEOUT=**"seconds"::
+	The amount of time, in seconds, that clicraft will wait for the server to
+	shut down.
++
+*Default*: +$TIMEOUT+
+
+
+**CMD_TIMEOUT=**"seconds"::
+	The amount of time, in seconds, that clicraft will wait for a command to
+	finish when using `clicraft cmd`.
++
+*Default*: +$TIMEOUT+
+
+
 **CMD_LSTRIP=**"string"::
 	The string to strip from the beginning of commands passed to `clicraft cmd`.
 +

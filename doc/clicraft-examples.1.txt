@@ -98,6 +98,12 @@ created.
 *pregen* <player> <size> [x z]::
 	Generates a world roughly 'size' by 'size' centered on coordinates
 	'x' and 'z' (spawn by default) by teleporting 'player' around.
++
+This action has these linkman:clicraft.conf[5] options:
++
+*PREGEN_TIMEOUT*="seconds":::
+	The amount of time, in seconds, that clicraft will wait between teleports.
+	Defaults to +$TIMEOUT+.
 
 *prune* [dim]::
 	Prunes the map using mmat. Valid values for 'dim' are overworld,
