@@ -43,5 +43,17 @@ if [[ ! "$TIMEOUT" =~ ^[+-]?[0-9]+$ ]]; then
 	TIMEOUT=20
 fi
 
+START_TIMEOUT="${START_TIMEOUT-$TIMEOUT}"
+STOP_TIMEOUT="${STOP_TIMEOUT-$TIMEOUT}"
+CMD_TIMEOUT="${CMD_TIMEOUT-$TIMEOUT}"
+for timeout in START_TIMEOUT STOP_TIMEOUT CMD_TIMEOUT; do
+	if [[ ! "${!timeout}" =~ ^[+-]?[0-9]+$ ]]; then
+		warn "Invalid timeout: ${!timeout}"
+		warn "Falling back to $TIMEOUT"
+		declare "$timeout=$TIMEOUT"
+	fi
+done
+unset timeout
+
 CMD_LSTRIP="${CMD_LSTRIP-/}"
 

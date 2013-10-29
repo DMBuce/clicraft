@@ -41,14 +41,14 @@ RE_PATTERN="$(redb_lookup "cmd/${CMD%% *}" "$RE_TIMESTAMP" 2>/dev/null)"
 
 if [[ "$RE_PATTERN" != "" ]]; then
 	if [[ "$VERBOSITY" != 0 ]]; then
-		serverlog "$RE_PATTERN" cmd "$CMD"
+		TIMEOUT=$CMD_TIMEOUT serverlog "$RE_PATTERN" cmd "$CMD"
 	else
-		serverlog "$RE_PATTERN" cmd "$CMD" >/dev/null
+		TIMEOUT=$CMD_TIMEOUT serverlog "$RE_PATTERN" cmd "$CMD" >/dev/null
 	fi
 else
 	if [[ "$VERBOSITY" != 0 ]]; then
 		# send command to the server and print server log for 2 seconds
-		TIMEOUT=2 serverlog 1000 cmd "$CMD"
+		TIMEOUT=$CMD_TIMEOUT serverlog 1000 cmd "$CMD"
 	else
 		# send command to the server
 		cmd "$CMD"

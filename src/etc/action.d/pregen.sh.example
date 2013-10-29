@@ -12,6 +12,13 @@ X="$3"
 Z="$4"
 viewdist="$(serverprop 'view-distance')" || return 1
 VIEWDIST="$(( viewdist * 16 ))"
+PREGEN_TIMEOUT="${PREGEN_TIMEOUT-$TIMEOUT}"
+
+if [[ ! "$PREGEN_TIMEOUT" =~ ^[+-]?[0-9]+$ ]]; then
+	warn "Invalid timeout: $PREGEN_TIMEOUT"
+	warn "Falling back to $TIMEOUT"
+	PREGEN_TIMEOUT=$TIMEOUT
+fi
 
 if [[ "$PLAYER" == "" ]]; then
 	usage "$ACTION"
@@ -52,19 +59,19 @@ else
 fi
 
 cmd "tp $PLAYER ~-$RADIUS ~ ~-$RADIUS"
-sleep $TIMEOUT
+sleep $PREGEN_TIMEOUT
 
 x=-$RADIUS
 while [[ $x -le $RADIUS ]]; do
 	z=-$RADIUS
 	while [[ $z -le $RADIUS ]]; do
 		cmd "tp $PLAYER ~ ~ ~$VIEWDIST"
-		sleep $TIMEOUT
+		sleep $PREGEN_TIMEOUT
 
 		z=$((z + $VIEWDIST))
 	done
 	cmd "tp $PLAYER ~$VIEWDIST ~ ~-$((2 * RADIUS))"
-	sleep $TIMEOUT
+	sleep $PREGEN_TIMEOUT
 	x=$((x + $VIEWDIST))
 done
 

@@ -23,7 +23,7 @@ fi
 
 msg "Starting $SERVER_NAME"
 
-serverlog "$RE_START" multiplex_start >/dev/null
+TIMEOUT=$START_TIMEOUT serverlog "$RE_START" multiplex_start >/dev/null
 
 if ! status; then
 	err "$SERVER_NAME failed to start"
