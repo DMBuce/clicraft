@@ -298,6 +298,24 @@ pardon() {
 	test "$(wc -w "$BANLIST" | cut -d ' ' -f 1)" -lt "$NUMBANS"
 }
 
+# Converts a string to something useable as a variable name
+str2var() {
+	local str
+	case "$2" in
+	  'upper') str="${1^^}" ;;
+	  'lower') str="${1,,}" ;;
+	  *)       str="$1" ;;
+	esac
+
+	echo "${str//[^a-zA-Z0-9_]/_}"
+}
+
+# Prints the value of the variable corresponding to a string
+str2val() {
+	local var="$(str2var "$@")"
+	echo "${!var}"
+}
+
 # Prints the directory corresponding to a dimension
 dimdir() {
 	local dim world
