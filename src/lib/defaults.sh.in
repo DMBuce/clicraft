@@ -37,7 +37,7 @@ STOP_CMD="${STOP_CMD-stop}"
 DOWNLOAD_COMMAND="${DOWNLOAD_COMMAND-curl -#L -o "$SERVER_JAR" "$SERVER_URL"}"
 
 TIMEOUT="${TIMEOUT-20}"
-if [[ "$TIMEOUT" -ne "$TIMEOUT" ]] 2>/dev/null; then
+if [[ ! "$TIMEOUT" =~ ^[+-]?[0-9]+$ ]]; then
 	warn "Invalid timeout: $TIMEOUT"
 	warn "Falling back to 20"
 	TIMEOUT=20
