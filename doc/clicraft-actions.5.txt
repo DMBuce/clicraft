@@ -144,8 +144,9 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 
 *redb_lookup* <key> [prefix]::
 	Look up 'key' in the regex database and print the corresponding value
-	to stdout. If the value of 'key' has a leading start-of-line character
-	(+\^+) and 'prefix' is given, insert 'prefix' after +^+ before printing.
+	to stdout. If the value of 'key' has two leading start-of-line characters
+	(+\^^+) and 'prefix' is given, insert 'prefix' in place of the second +^+
+	before printing.
 	If a regex for 'key' does not exist, print an error message to stderr and
 	return nonzero.
 +

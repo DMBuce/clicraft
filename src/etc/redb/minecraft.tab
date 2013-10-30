@@ -1,23 +1,23 @@
-cmd/tell ^\[Server thread\/INFO\]: (You whisper to .*|That player cannot be found)$
-cmd/save-off ^\[Server thread\/INFO\]: Turned off world auto-saving$
-cmd/save-on ^\[Server thread\/INFO\]: Turned on world auto-saving$
-cmd/save-all ^\[Server thread\/INFO\]: Saved the world$
-cmd/list ^\[Server thread\/INFO\]: ([^/:]*)$
-cmd/kick ^\[Server thread\/INFO\]: (Kicked [0-9a-zA-Z_]* from the game|That player cannot be found)$
-cmd/kick/success ^\[Server thread\/INFO\]: Kicked [0-9a-zA-Z_]* from the game$
-cmd/ban ^\[Server thread\/INFO\]: Banned player 
-cmd/ban-ip ^\[Server thread\/INFO\]: (Banned IP address .*|You have entered an invalid IP address or a player that is not online)$
-cmd/pardon ^\[Server thread\/INFO\]: Unbanned player 
-cmd/pardon-ip ^\[Server thread\/INFO\]: (Unbanned IP address .*|You have entered an invalid IP address)$
-cmd/op ^\[Server thread\/INFO\]: Opped 
-cmd/deop ^\[Server thread\/INFO\]: De-opped 
-cmd/tp ^\[Server thread\/INFO\]: (Teleported [0-9a-zA-Z_]* to [0-9a-zA-Z_,]*|That player cannot be found|You must specify which player you wish to perform this action on\.)$
-cmd/give ^\[Server thread\/INFO\]: (Given .*|That player cannot be found|'.*' is not a valid number)$
-cmd/time ^\[Server thread\/INFO\]: ('.*' is not a valid number|Added -?[0-9]* to the time|Set the time to -?[0-9]*)$
-cmd/toggledownfall ^\[Server thread\/INFO\]: Toggled downfall$
-cmd/xp ^\[Server thread\/INFO\]: (Given 10 experience to .*|You must specify which player you wish to perform this action on\.|'.*' is not a valid number|That player cannot be found)$
-cmd/banlist ^\[Server thread\/INFO\]:[^:]*$
-cmd/whitelist ^\[Server thread\/INFO\]: ((Added|Removed) .* (to|from) the whitelist|Turned (on|off) the whitelist|Reloaded the whitelist)$
-start/start ^\[Server thread\/INFO\]: Done \([0-9.]+s\)! For help, type "help" or "\?"$
+cmd/tell ^^\[Server thread\/INFO\]: (You whisper to .*|That player cannot be found)$
+cmd/save-off ^^\[Server thread\/INFO\]: Turned off world auto-saving$
+cmd/save-on ^^\[Server thread\/INFO\]: Turned on world auto-saving$
+cmd/save-all ^^\[Server thread\/INFO\]: Saved the world$
+cmd/list ^^\[Server thread\/INFO\]: ([^/:]*)$
+cmd/kick ^^\[Server thread\/INFO\]: (Kicked [0-9a-zA-Z_]* from the game|That player cannot be found)$
+cmd/kick/success ^^\[Server thread\/INFO\]: Kicked [0-9a-zA-Z_]* from the game$
+cmd/ban ^^\[Server thread\/INFO\]: Banned player 
+cmd/ban-ip ^^\[Server thread\/INFO\]: (Banned IP address .*|You have entered an invalid IP address or a player that is not online)$
+cmd/pardon ^^\[Server thread\/INFO\]: Unbanned player 
+cmd/pardon-ip ^^\[Server thread\/INFO\]: (Unbanned IP address .*|You have entered an invalid IP address)$
+cmd/op ^^\[Server thread\/INFO\]: Opped 
+cmd/deop ^^\[Server thread\/INFO\]: De-opped 
+cmd/tp ^^\[Server thread\/INFO\]: (Teleported [0-9a-zA-Z_]* to [0-9a-zA-Z_,]*|That player cannot be found|You must specify which player you wish to perform this action on\.)$
+cmd/give ^^\[Server thread\/INFO\]: (Given .*|That player cannot be found|'.*' is not a valid number)$
+cmd/time ^^\[Server thread\/INFO\]: ('.*' is not a valid number|Added -?[0-9]* to the time|Set the time to -?[0-9]*)$
+cmd/toggledownfall ^^\[Server thread\/INFO\]: Toggled downfall$
+cmd/xp ^^\[Server thread\/INFO\]: (Given 10 experience to .*|You must specify which player you wish to perform this action on\.|'.*' is not a valid number|That player cannot be found)$
+cmd/banlist ^^\[Server thread\/INFO\]:[^:]*$
+cmd/whitelist ^^\[Server thread\/INFO\]: ((Added|Removed) .* (to|from) the whitelist|Turned (on|off) the whitelist|Reloaded the whitelist)$
+start/start ^^\[Server thread\/INFO\]: Done \([0-9.]+s\)! For help, type "help" or "\?"$
 ip-address [0-9]{1,3}(\.[0-9]{1,3}){3}
 timestamp \[[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\] 

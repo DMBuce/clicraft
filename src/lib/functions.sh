@@ -146,8 +146,8 @@ redb_lookup() {
 	fi
 
 	# if given a prefix, prepend it to the regex after start-of-line
-	if [[ "$PREFIX" != "" && "${VALUE:0:1}" = '^' ]]; then
-		VALUE="^${PREFIX}${VALUE:1}"
+	if [[ "$PREFIX" != "" && "${VALUE:0:2}" = '^^' ]]; then
+		VALUE="^${PREFIX}${VALUE:2}"
 	fi
 
 	echo "$VALUE"
