@@ -36,7 +36,7 @@ if [[ "$retval" != 0 ]]; then
 	return $retval
 fi
 
-RE_PATTERN="$(str2val "RE_${CMD%% *}")"
+RE_PATTERN="$(str2val "RE_${CMD%% *}" upper)"
 
 if [[ "$RE_PATTERN" != "" ]]; then
 	if [[ "$VERBOSITY" != 0 ]]; then

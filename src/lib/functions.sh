@@ -259,7 +259,7 @@ ban() {
 		CMD='ban'
 	fi
 
-	RE_PATTERN="$(str2val RE_$CMD)"
+	RE_PATTERN="$(str2val RE_$CMD upper)"
 
 	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null
 }
@@ -277,7 +277,7 @@ pardon() {
 		BANLIST="$SERVER_DIR/banned-players.txt"
 	fi
 
-	RE_PATTERN="$(str2val RE_$CMD)"
+	RE_PATTERN="$(str2val RE_$CMD upper)"
 	NUMBANS="$(wc -w "$BANLIST" | cut -d ' ' -f 1)"
 
 	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null
