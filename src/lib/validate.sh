@@ -29,3 +29,7 @@ for timeout in START_TIMEOUT STOP_TIMEOUT CMD_TIMEOUT; do
 done
 unset timeout
 
+if [[ "$RE_START" = "" ]]; then
+	warn "Key not found in database: start"
+fi
+
