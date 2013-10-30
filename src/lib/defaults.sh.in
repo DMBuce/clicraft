@@ -32,7 +32,7 @@ CMD_LSTRIP="${CMD_LSTRIP-/}"
 
 # expose redb as RE_* variables
 RE_TIMESTAMP=$(redb_lookup 'timestamp')
-while IFS='\n' read keyval; do
+while IFS='\n' read -r keyval; do
 	key="${keyval%% *}"
 	value="${keyval#$key }"
 	# if given a prefix, prepend it to the regex after start-of-line
