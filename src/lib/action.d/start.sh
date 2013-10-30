@@ -5,8 +5,6 @@
 #    Starts the server.
 #
 
-local RE_START="$(redb_lookup start/start "$(redb_lookup timestamp)")"
-
 if status; then
 	err "$SERVER_NAME is already running"
 	return 1

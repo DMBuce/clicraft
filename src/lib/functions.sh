@@ -205,7 +205,6 @@ redb_delete() {
 
 # Safely runs /save-off on the server
 save-off() {
-	local RE_SAVE_OFF="$(redb_lookup cmd/save-off "$(redb_lookup timestamp)")"
 	mklock save || return $?
 	serverlog "$RE_SAVE_OFF" cmd 'save-off' >/dev/null
 	local retval=$?
@@ -215,7 +214,6 @@ save-off() {
 
 # Safely runs /save-on on the server
 save-on() {
-	local RE_SAVE_ON="$(redb_lookup cmd/save-on "$(redb_lookup timestamp)")"
 	mklock save || return $?
 	serverlog "$RE_SAVE_ON" cmd 'save-on' >/dev/null
 	local retval=$?
@@ -225,7 +223,6 @@ save-on() {
 
 # Safely runs /save-all on the server
 save-all() {
-	local RE_SAVE_ALL="$(redb_lookup cmd/save-all "$(redb_lookup timestamp)")"
 	mklock save || return $?
 	serverlog "$RE_SAVE_ALL" cmd 'save-all' >/dev/null
 	local retval=$?
@@ -235,54 +232,44 @@ save-all() {
 
 # Prints the list of connected players to stdout
 list() {
-	local RE_TIMESTAMP RE_PATTERN
-	RE_TIMESTAMP="$(redb_lookup timestamp)"
-	RE_PATTERN="$(redb_lookup "cmd/list" "$RE_TIMESTAMP")"
-
-	serverlog "$RE_PATTERN" cmd "list" | \
+	serverlog "$RE_LIST" cmd "list" | \
 		sed -nr "2,$ {
-			s/$RE_PATTERN/\1/
+			s/$RE_LIST/\1/
 			p
 		}"
 }
 
 # Kicks a player from the server
 kick() {
-	local RE_TIMESTAMP RE_PATTERN OUTPUT PLAYER
+	local OUTPUT PLAYER
 	PLAYER="$1"
-	RE_TIMESTAMP="$(redb_lookup timestamp)"
-	RE_PATTERN="$(redb_lookup "cmd/kick" "$RE_TIMESTAMP")"
-	RE_SUCCESS="$(redb_lookup "cmd/kick/success" "$RE_TIMESTAMP")"
 
-	OUTPUT="$(serverlog "$RE_PATTERN" cmd "kick $PLAYER")"
-	egrep -q "$RE_SUCCESS" <<<"$OUTPUT"
+	OUTPUT="$(serverlog "$RE_KICK" cmd "kick $PLAYER")"
+	egrep -q "$RE_KICK_SUCCESS" <<<"$OUTPUT"
 }
 
 # Bans a player or ip from the server
 ban() {
-	local PLAYER RE_TIMESTAMP RE_PATTERN RE_IP CMD
+	local PLAYER CMD RE_PATTERN
 	PLAYER="$1"
-	RE_IP="$(redb_lookup ip-address)"
 
-	if egrep -q "$RE_IP" <<<"$PLAYER"; then
+	if egrep -q "$RE_IPADDR" <<<"$PLAYER"; then
 		CMD='ban-ip'
 	else
 		CMD='ban'
 	fi
 
-	RE_TIMESTAMP="$(redb_lookup timestamp)"
-	RE_PATTERN="$(redb_lookup "cmd/$CMD" "$RE_TIMESTAMP")"
+	RE_PATTERN="$(str2val RE_$CMD)"
 
 	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null
 }
 
 # Pardons a banned player or ip
 pardon() {
-	local PLAYER RE_TIMESTAMP RE_PATTERN RE_IP CMD BANLIST NUMBANS
+	local PLAYER RE_PATTERN CMD BANLIST NUMBANS
 	PLAYER="$1"
-	RE_IP="$(redb_lookup ip-address)"
 
-	if egrep -q "$RE_IP" <<<"$PLAYER"; then
+	if egrep -q "$RE_IPADDR" <<<"$PLAYER"; then
 		CMD='pardon-ip'
 		BANLIST="$SERVER_DIR/banned-ips.txt"
 	else
@@ -290,8 +277,7 @@ pardon() {
 		BANLIST="$SERVER_DIR/banned-players.txt"
 	fi
 
-	RE_TIMESTAMP="$(redb_lookup timestamp)"
-	RE_PATTERN="$(redb_lookup "cmd/$CMD" "$RE_TIMESTAMP")"
+	RE_PATTERN="$(str2val RE_$CMD)"
 	NUMBANS="$(wc -w "$BANLIST" | cut -d ' ' -f 1)"
 
 	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null

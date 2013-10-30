@@ -36,8 +36,7 @@ if [[ "$retval" != 0 ]]; then
 	return $retval
 fi
 
-RE_TIMESTAMP="$(redb_lookup timestamp)"
-RE_PATTERN="$(redb_lookup "cmd/${CMD%% *}" "$RE_TIMESTAMP" 2>/dev/null)"
+RE_PATTERN="$(str2val "RE_${CMD%% *}")"
 
 if [[ "$RE_PATTERN" != "" ]]; then
 	if [[ "$VERBOSITY" != 0 ]]; then

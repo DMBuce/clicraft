@@ -1,29 +1,29 @@
-cmd/say ^^\[INFO\] ..35;1m\[Server\] 
-cmd/tell ^^\[INFO\] (\[CONSOLE->|There's no player by that name online\.)
-cmd/me ^^\[INFO\] \* CONSOLE 
-cmd/save-off ^^\[INFO\] CONSOLE: Disabled level saving\.\...m$
-cmd/save-on ^^\[INFO\] CONSOLE: Enabled level saving\.\...m$
-cmd/save-all ^^\[INFO\] CONSOLE: Save complete\...m$
-cmd/list ([^:/]*)..m$
-cmd/kick ^^\[INFO\] (CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:|.* not found\...m)$
-cmd/kick/success ^^\[INFO\] CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:$
-cmd/ban ^^\[INFO\] CONSOLE: Banned player 
-cmd/ban-ip ^^\[INFO\] CONSOLE: Banned IP Address 
-cmd/pardon ^^\[INFO\] CONSOLE: Pardoned 
-cmd/pardon-ip ^^\[INFO\] CONSOLE: Pardoned ip 
-cmd/op ^^\[INFO\] CONSOLE: Opped 
-cmd/deop ^^\[INFO\] De-opped 
-cmd/tp ^^\[INFO\] (CONSOLE: Teleported [0-9a-zA-Z_]* to [0-9a-zA-Z_,]*|Can't find user .*\. No tp\.|Please provide a player!)..m$
-cmd/give ^^\[INFO\] (CONSOLE: Gave [0-9a-zA-Z_]* some [0-9]* \(.*\)|Can't find user .*|There's no item called .*)..m$
-cmd/time ^^\[INFO\] CONSOLE: (Added ?[0-9]* to time|Set time to ?[0-9]*)..m$
-cmd/gamemode ^^\[INFO\] (CONSOLE: Set [0-9a-zA-Z_]*'s game mode to .*|Can't find user .*|There is no game mode with id .*)..m$
-cmd/toggledownfall ^^\[INFO\] CONSOLE: Toggling downfall (on|off) for world '.*'..m$
-cmd/xp ^^\[INFO\] (CONSOLE: Given [0-9]* exp to [0-9a-zA-Z_]*..m|Can't find user, was one provided\?)$
-cmd/banlist ^^\[INFO\][^:]*$
-cmd/whitelist ^^\[INFO\] (CONSOLE: (Added|Removed) .* (to|from) white-list|CONSOLE: Turned (on|off) white-listing|CONSOLE: Reloaded white-list from file|White-listed players: .*)..m$
-cmd/plugins ^^\[INFO\] Plugins \([0-9]*\): 
-cmd/reload ^^\[INFO\] ..32;1mReload complete\...m$
-cmd/version ^^\[INFO\] This server is running 
-start/start ^^\[INFO\] Done \([0-9.]+s\)! For help, type "help" or "\?"$
-ip-address [0-9]{1,3}(\.[0-9]{1,3}){3}
+say ^^\[INFO\] ..35;1m\[Server\] 
+tell ^^\[INFO\] (\[CONSOLE->|There's no player by that name online\.)
+me ^^\[INFO\] \* CONSOLE 
+save-off ^^\[INFO\] CONSOLE: Disabled level saving\.\...m$
+save-on ^^\[INFO\] CONSOLE: Enabled level saving\.\...m$
+save-all ^^\[INFO\] CONSOLE: Save complete\...m$
+list ([^:/]*)..m$
+kick ^^\[INFO\] (CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:|.* not found\...m)$
+kick/success ^^\[INFO\] CONSOLE: Kicked player [0-9a-zA-Z_]*\. With reason:$
+ban ^^\[INFO\] CONSOLE: Banned player 
+ban-ip ^^\[INFO\] CONSOLE: Banned IP Address 
+pardon ^^\[INFO\] CONSOLE: Pardoned 
+pardon-ip ^^\[INFO\] CONSOLE: Pardoned ip 
+op ^^\[INFO\] CONSOLE: Opped 
+deop ^^\[INFO\] De-opped 
+tp ^^\[INFO\] (CONSOLE: Teleported [0-9a-zA-Z_]* to [0-9a-zA-Z_,]*|Can't find user .*\. No tp\.|Please provide a player!)..m$
+give ^^\[INFO\] (CONSOLE: Gave [0-9a-zA-Z_]* some [0-9]* \(.*\)|Can't find user .*|There's no item called .*)..m$
+time ^^\[INFO\] CONSOLE: (Added ?[0-9]* to time|Set time to ?[0-9]*)..m$
+gamemode ^^\[INFO\] (CONSOLE: Set [0-9a-zA-Z_]*'s game mode to .*|Can't find user .*|There is no game mode with id .*)..m$
+toggledownfall ^^\[INFO\] CONSOLE: Toggling downfall (on|off) for world '.*'..m$
+xp ^^\[INFO\] (CONSOLE: Given [0-9]* exp to [0-9a-zA-Z_]*..m|Can't find user, was one provided\?)$
+banlist ^^\[INFO\][^:]*$
+whitelist ^^\[INFO\] (CONSOLE: (Added|Removed) .* (to|from) white-list|CONSOLE: Turned (on|off) white-listing|CONSOLE: Reloaded white-list from file|White-listed players: .*)..m$
+plugins ^^\[INFO\] Plugins \([0-9]*\): 
+reload ^^\[INFO\] ..32;1mReload complete\...m$
+version ^^\[INFO\] This server is running 
+start ^^\[INFO\] Done \([0-9.]+s\)! For help, type "help" or "\?"$
+ipaddr [0-9]{1,3}(\.[0-9]{1,3}){3}
 timestamp [0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} 
