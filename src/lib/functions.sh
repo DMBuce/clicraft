@@ -124,8 +124,8 @@ usage() {
 			PRINTUSAGE=TRUE
 		fi
 
-		if [[ "$PRINTUSAGE" = 'TRUE' ]]; then
-			[ "${line#'#'}" = "$line" ] && break
+		if [[ "$PRINTUSAGE" == 'TRUE' ]]; then
+			[[ "${line#'#'}" == "$line" ]] && break
 			line="${line#'#'}"
 			msg "${line#' '}"
 		fi
@@ -140,13 +140,13 @@ redb_lookup() {
 	KEYVAL="$(grep "^$KEY " "$REDB")"
 	VALUE="${KEYVAL#$KEY }"
 
-	if [[ "$VALUE" = "" ]]; then
+	if [[ "$VALUE" == "" ]]; then
 		warn "Key not found in database: %s" "$KEY"
 		return 1
 	fi
 
 	# if given a prefix, prepend it to the regex after start-of-line
-	if [[ "$PREFIX" != "" && "${VALUE:0:2}" = '^^' ]]; then
+	if [[ "$PREFIX" != "" && "${VALUE:0:2}" == '^^' ]]; then
 		VALUE="^${PREFIX}${VALUE:2}"
 	fi
 
@@ -329,7 +329,7 @@ serverprop() {
 	local NAMEVAL="$(grep "^$PROP=" "$SERVER_DIR/server.properties")"
 	local VALUE="${NAMEVAL#$PROP=}"
 
-	if [[ "$VALUE" = "" ]]; then
+	if [[ "$VALUE" == "" ]]; then
 		warn "Property \`%s' not defined in %s" "$PROP" "$SERVER_DIR/server.properties"
 		return 1
 	fi
@@ -447,7 +447,7 @@ serverlog() {
 	CONDITION="$1"
 	shift
 
-	if [[ $# = 0 ]]; then
+	if [[ $# == 0 ]]; then
 		warn "Usage: serverlog <condition> <command>"
 	fi
 

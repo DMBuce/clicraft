@@ -20,14 +20,14 @@ while IFS='\n' read -r keyval; do
 	key="${keyval%% *}"
 	value="${keyval#$key }"
 	# if given a prefix, prepend it to the regex after start-of-line
-	if [[ "${value:0:2}" = '^^' ]]; then
+	if [[ "${value:0:2}" == '^^' ]]; then
 		value="^${RE_TIMESTAMP}${value:2}"
 	fi
 	declare "$(str2var "RE_$key" upper)=$value"
 done < "$REDB"
 unset keyval key value
 
-if [[ "$RE_START" = "" ]]; then
+if [[ "$RE_START" == "" ]]; then
 	warn "Key not found in database: %s" "start"
 fi
 

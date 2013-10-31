@@ -78,7 +78,7 @@ backup() {
 restore() {
 	local dir FILE
 
-	if [[ "$1" = "" ]]; then
+	if [[ "$1" == "" ]]; then
 		list_backups | grep -o '[^/]*$'
 	else
 		FILE="$1"

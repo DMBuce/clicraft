@@ -24,7 +24,7 @@ fi
 trap "exithandler" EXIT
 
 # bail if we're root
-if [[ "$(id -u)" = "0" ]]; then
+if [[ "$(id -u)" == "0" ]]; then
 	err "You cannot run this program as %s" "root"
 	exit 1
 fi
