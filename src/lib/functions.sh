@@ -137,7 +137,7 @@ redb_lookup() {
 	local KEY PREFIX KEYVAL VALUE
 	KEY="$1"
 	PREFIX="$2"
-	KEYVAL="$(grep "^$KEY " "$DB")"
+	KEYVAL="$(grep "^$KEY " "$REDB")"
 	VALUE="${KEYVAL#$KEY }"
 
 	if [[ "$VALUE" = "" ]]; then
@@ -166,7 +166,7 @@ redb_insert() {
 		return 1
 	fi
 
-	echo "$KEY $NEWVALUE" >>"$DB"
+	echo "$KEY $NEWVALUE" >>"$REDB"
 }
 
 # Update a regex in the db
@@ -184,7 +184,7 @@ redb_update() {
 
 	KEY="${KEY//\//\\/}"
 	NEWVALUE="${NEWVALUE//\//\\/}"
-	sed -i "/^$KEY / s/ .*/ $NEWVALUE/" "$DB"
+	sed -i "/^$KEY / s/ .*/ $NEWVALUE/" "$REDB"
 }
 
 # Remove a regex from the db
@@ -200,7 +200,7 @@ redb_delete() {
 
 	KEY="${KEY//\//\\/}"
 	NEWVALUE="${NEWVALUE//\//\\/}"
-	sed -i "/^$KEY / d" "$DB"
+	sed -i "/^$KEY / d" "$REDB"
 }
 
 # Safely runs /save-off on the server

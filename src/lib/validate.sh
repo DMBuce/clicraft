@@ -8,10 +8,10 @@ if [[ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]]; then
 	fi
 fi
 
-if [[ ! -f "$DB" ]]; then
+if [[ ! -f "$REDB" ]]; then
 	warn "Can't find redb for $SERVER_TYPE"
 	warn "Falling back to minecraft.tab"
-	DB="$CONFDIR/redb/minecraft.tab"
+	REDB="$CONFDIR/redb/minecraft.tab"
 fi
 
 # expose redb as RE_* variables
@@ -24,7 +24,7 @@ while IFS='\n' read -r keyval; do
 		value="^${RE_TIMESTAMP}${value:2}"
 	fi
 	declare "$(str2var "RE_$key" upper)=$value"
-done < "$DB"
+done < "$REDB"
 unset keyval key value
 
 if [[ "$RE_START" = "" ]]; then
