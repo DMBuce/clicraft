@@ -24,7 +24,6 @@ DIST        := $(DIST) src
 DISTCLEAN   := $(DISTCLEAN) \
                src/bin/clicraft \
                src/lib/defaults.sh \
-               src/lib/validate.sh \
                src/etc/clicraft-defaults.conf \
                src/etc/clicraft-starmade.conf
 
