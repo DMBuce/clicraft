@@ -6,11 +6,11 @@
 #
 
 if ! status; then
-	err "$SERVER_NAME is not running"
+	err "%s is not running" "$SERVER_NAME"
 	return 1
 fi
 
-msg "Stopping $SERVER_NAME"
+msg "Stopping %s" "$SERVER_NAME"
 action cmd "$STOP_CMD"
 
 for ((i=0; i<STOP_TIMEOUT; i++)); do

@@ -10,10 +10,10 @@ multiplex_status
 retval=$?
 
 if [[ "$retval" = 0 ]]; then
-	msg "$SERVER_NAME is running"
+	msg "%s is running" "$SERVER_NAME"
 	return 0
 else
-	warn "$SERVER_NAME is not running"
+	warn "%s is not running" "$SERVER_NAME"
 	return 1
 fi
 

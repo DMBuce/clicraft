@@ -25,7 +25,7 @@ sys_actionfile() {
 	if [[ -f "$EXECDIR/action.d/$ACTION.sh" ]]; then
 		echo "$EXECDIR/action.d/$ACTION.sh"
 	else
-		warn "Unknown action: $ACTION"
+		warn "Unknown action: %s" "$ACTION"
 		return 1
 	fi
 }
@@ -37,7 +37,7 @@ local_actionfile() {
 	if [[ -f "$CONFDIR/action.d/$ACTION.sh" ]]; then
 		echo "$CONFDIR/action.d/$ACTION.sh"
 	else
-		warn "Unknown action: $ACTION"
+		warn "Unknown action: %s" "$ACTION"
 		return 1
 	fi
 }
@@ -141,7 +141,7 @@ redb_lookup() {
 	VALUE="${KEYVAL#$KEY }"
 
 	if [[ "$VALUE" = "" ]]; then
-		warn "Key not found in database: $KEY"
+		warn "Key not found in database: %s" "$KEY"
 		return 1
 	fi
 
@@ -162,7 +162,7 @@ redb_insert() {
 	VALUE="$(redb_lookup "$KEY" 2>/dev/null)"
 
 	if [[ "$VALUE" != "" ]]; then
-		warn "Key already in database: $KEY"
+		warn "Key already in database: %s" "$KEY"
 		return 1
 	fi
 
@@ -330,7 +330,7 @@ serverprop() {
 	local VALUE="${NAMEVAL#$PROP=}"
 
 	if [[ "$VALUE" = "" ]]; then
-		warn "Property \`$PROP' not defined in $SERVER_DIR/server.properties"
+		warn "Property \`%s' not defined in %s" "$PROP" "$SERVER_DIR/server.properties"
 		return 1
 	fi
 
@@ -353,7 +353,7 @@ wickedwhich() {
 		fi
 	done
 
-	warn "Could not find $1 in $PATH"
+	warn "Could not find %s in %s" "$1" "$PATH"
 	PATH="$PATHORIG"
 	return 1
 }
@@ -375,7 +375,7 @@ pushtrap() {
 # Pop last command from exit trap stack
 poptrap() {
 	if [[ "${TRAPSTACK[${#TRAPSTACK[@]}-1]}" != "$1" ]]; then
-		warn "Attempt to remove last exit trap failed: $1"
+		warn "Attempt to remove last exit trap failed: %s" "$1"
 		return 1
 	fi
 	unset TRAPSTACK[${#TRAPSTACK[@]}-1]
@@ -390,7 +390,7 @@ mklock()
 	local lockfile="$lockdir/$1.lock"
 	mkdir -p -m 0700 "$(dirname "$lockfile")"
 	if [[ "$(stat -Lc "%a %U" "$lockdir")" != "700 $USER" ]]; then
-		warn "Lock directory $lockdir does not have user/mode $USER/700"
+		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$USER" "700"
 		return 1
 	fi
 
@@ -399,7 +399,7 @@ mklock()
 		return 0
 	fi
 
-	warn "Lock $lockfile held by pid $(<"$lockfile")"
+	warn "Lock %s held by pid %s" "$lockfile" "$(<"$lockfile")"
 	return 1
 }
 
@@ -411,14 +411,14 @@ rmlock() {
 	local lockfile="$lockdir/$1.lock"
 	mkdir -p -m 0700 "$(dirname "$lockfile")"
 	if [[ "$(stat -Lc "%a %U" "$lockdir")" != "700 $USER" ]]; then
-		warn "Lock directory $lockdir does not have user/mode $USER/700"
+		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$USER" "700"
 		return 1
 	fi
 
 	if [[ ! -f "$lockfile" ]]; then
-		warn "Lock $lockfile not found"
+		warn "Lock %s not found" "$lockfile"
 	elif [[ "$(<"$lockfile")" != $$ ]]; then
-		warn "Lock $lockfile held by pid $(<"$lockfile")"
+		warn "Lock %s held by pid %s" "$lockfile" "$(<"$lockfile")"
 		return 1
 	fi
 

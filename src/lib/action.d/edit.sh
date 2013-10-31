@@ -34,7 +34,7 @@ edit_file_template() {
 		if [[ -f "$TEMPLATE" ]]; then
 			sed "$SUBST" "$TEMPLATE" >>"$FILE"
 		else
-			warn "Template file $TEMPLATE not found"
+			warn "Template file %s not found" "$TEMPLATE"
 		fi
 
 		edit_file "$FILE"
@@ -43,10 +43,10 @@ edit_file_template() {
 		if [[ -f "$TEMPLATE" ]] && \
 		   diff -q <(grep "^[ 	]*[^ 	#]" "$FILE") \
 		           <(grep "^[ 	]*[^ 	#]" "$TEMPLATE" | sed "$SUBST") >/dev/null; then
-			warn "Aborting installation of $(basename "$FILE"): No changes made to template."
+			warn "Aborting installation of %s: No changes made to template." "$(basename "$FILE")"
 			rm "$FILE"
 		else
-			msg "New file $(basename "$FILE") successfully installed."
+			msg "New file %s successfully installed." "$(basename "$FILE")"
 		fi
 	fi
 }

@@ -13,7 +13,7 @@ C10T="$(wickedwhich c10t)" || return 1
 
 # abort with an error if the server is already running
 if status; then
-	err "You cannot run this while $SERVER_NAME is running."
+	err "You cannot run this while %s is running." "$SERVER_NAME"
 	return 1
 fi
 

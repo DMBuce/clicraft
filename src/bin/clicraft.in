@@ -25,7 +25,7 @@ trap "exithandler" EXIT
 
 # bail if we're root
 if [[ "$(id -u)" = "0" ]]; then
-	err "You cannot run this program as root"
+	err "You cannot run this program as %s" "root"
 	exit 1
 fi
 
@@ -37,7 +37,7 @@ mkdir -p "$SERVER_DIR" 2>/dev/null
 cd "$SERVER_DIR" 2>/dev/null
 retval="$?"
 if [[ "$retval" != 0 ]]; then
-	err "Could not change to directory $SERVER_DIR"
+	err "Could not change to directory %s" "$SERVER_DIR"
 	exit "$retval"
 fi
 

@@ -1,16 +1,16 @@
 if [[ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]]; then
-	warn "Invalid multiplexer: $MULTIPLEXER"
+	warn "Invalid multiplexer: %s" "$MULTIPLEXER"
 	MULTIPLEXER="$(which tmux 2>/dev/null || which screen 2>/dev/null)"
 	if [[ "$MULTIPLEXER" != "" ]]; then
-		warn "Falling back to $MULTIPLEXER"
+		warn "Falling back to %s" "$MULTIPLEXER"
 	else
 		exit 1
 	fi
 fi
 
 if [[ ! -f "$REDB" ]]; then
-	warn "Can't find redb for $SERVER_TYPE"
-	warn "Falling back to minecraft.tab"
+	warn "Can't find redb for %s" "$SERVER_TYPE"
+	warn "Falling back to %s" "minecraft.tab"
 	REDB="$CONFDIR/redb/minecraft.tab"
 fi
 
@@ -28,19 +28,19 @@ done < "$REDB"
 unset keyval key value
 
 if [[ "$RE_START" = "" ]]; then
-	warn "Key not found in database: start"
+	warn "Key not found in database: %s" "start"
 fi
 
 if [[ ! "$TIMEOUT" =~ ^[+-]?[0-9]+$ ]]; then
-	warn "Invalid timeout: $TIMEOUT"
-	warn "Falling back to 20"
+	warn "Invalid timeout: %s" "$TIMEOUT"
+	warn "Falling back to %d" "20"
 	TIMEOUT=20
 fi
 
 for timeout in START_TIMEOUT STOP_TIMEOUT CMD_TIMEOUT; do
 	if [[ ! "${!timeout}" =~ ^[+-]?[0-9]+$ ]]; then
-		warn "Invalid timeout: ${!timeout}"
-		warn "Falling back to $TIMEOUT"
+		warn "Invalid timeout: %s" "${!timeout}"
+		warn "Falling back to %d" "$TIMEOUT"
 		declare "$timeout=$TIMEOUT"
 	fi
 done
