@@ -52,7 +52,7 @@ Variables
 
 *MULTIPLEXER, SERVER_DIR, SERVER_NAME, SERVER_JAR, SERVER_URL, SERVER_LOG*::
 *SERVER_VERSION, SERVER_TYPE, START_COMMAND, STOP_CMD, DOWNLOAD_COMMAND*::
-*TIMEOUT, CMD_LSTRIP*::
+*TIMEOUT, START_TIMEOUT, STOP_TIMEOUT, CMD_TIMEOUT, CMD_LSTRIP, REDB*::
 	Configuration options are stored in variables by the same name as the
 	option. For a description of these options and their default values, see
 	linkman:clicraft.conf[5].
