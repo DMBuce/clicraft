@@ -160,6 +160,12 @@ whitespace and special characters.
 *Default*: +"/"+
 
 
+**REDB=**"/path/to/regex/database.tab"::
+	The location of the regex database.
++
+*Default*: +"{CONFDIR}/redb/$SERVER_TYPE.tab"+
+
+
 See Also
 --------
 
