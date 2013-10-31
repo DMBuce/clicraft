@@ -234,7 +234,7 @@ kick() {
 	PLAYER="$1"
 
 	OUTPUT="$(serverlog "$RE_KICK" cmd "kick $PLAYER")"
-	egrep -q "$RE_KICK_SUCCESS" <<<"$OUTPUT"
+	[[ "$OUTPUT" =~ $RE_KICK_SUCCESS ]]
 }
 
 # Bans a player or ip from the server
@@ -242,7 +242,7 @@ ban() {
 	local PLAYER CMD RE_PATTERN
 	PLAYER="$1"
 
-	if egrep -q "$RE_IPADDR" <<<"$PLAYER"; then
+	if [[ "$PLAYER" =~ $RE_IPADDR ]]; then
 		CMD='ban-ip'
 	else
 		CMD='ban'
@@ -258,7 +258,7 @@ pardon() {
 	local PLAYER RE_PATTERN CMD BANLIST NUMBANS
 	PLAYER="$1"
 
-	if egrep -q "$RE_IPADDR" <<<"$PLAYER"; then
+	if [[ "$PLAYER" =~ $RE_IPADDR ]]; then
 		CMD='pardon-ip'
 		BANLIST="$SERVER_DIR/banned-ips.txt"
 	else
