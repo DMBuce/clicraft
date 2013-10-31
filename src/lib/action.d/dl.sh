@@ -28,7 +28,7 @@ if [[ ! -w "$JAR_DIR" ]]; then
 fi
 
 # substitute version
-if grep -q '%v' <<<"$DOWNLOAD_COMMAND"; then
+if [[ "$DOWNLOAD_COMMAND" == *%v* ]]; then
 	VERSION="$SERVER_VERSION"
 	if [[ "$SERVER_VERSION" == 'snapshot' || "$SERVER_VERSION" == 'release' ]]; then
 		VERSION="$(versions_json | awk -F\" "/\"$SERVER_VERSION\":/ {print \$4}")"
