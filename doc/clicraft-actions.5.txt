@@ -205,6 +205,16 @@ the <<vars,Variables>> section for a description of +CONFDIR+.
 	Pardon banned 'target' on the server. 'target' can be a player or ip
 	address. Returns nonzero if the pardon was unsuccessful.
 
+*str2var* <string> [case]::
+	Prints a variable name corresponding to 'string' to stdout. Special
+	characters in 'string' not suitable for variable names are changed to
+	underscores (+_+). If 'case' is "upper" or "lower", alphabetical
+	characters are changed to the respective case.
+
+*str2val* <string> [case]::
+	Prints the value of the variable corresponding to 'string' to stdout. The
+	variable to use is determined using +pass:[`str2var 'string' ['case']`]+.
+
 *dimdir* <dimension>::
 	Print the directory for 'dimension' to stdout.
 +
