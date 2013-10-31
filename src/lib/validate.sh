@@ -14,6 +14,23 @@ if [[ ! -f "$DB" ]]; then
 	DB="$CONFDIR/redb/minecraft.tab"
 fi
 
+# expose redb as RE_* variables
+RE_TIMESTAMP=$(redb_lookup 'timestamp')
+while IFS='\n' read -r keyval; do
+	key="${keyval%% *}"
+	value="${keyval#$key }"
+	# if given a prefix, prepend it to the regex after start-of-line
+	if [[ "${value:0:2}" = '^^' ]]; then
+		value="^${RE_TIMESTAMP}${value:2}"
+	fi
+	declare "$(str2var "RE_$key" upper)=$value"
+done < "$DB"
+unset keyval key value
+
+if [[ "$RE_START" = "" ]]; then
+	warn "Key not found in database: start"
+fi
+
 if [[ ! "$TIMEOUT" =~ ^[+-]?[0-9]+$ ]]; then
 	warn "Invalid timeout: $TIMEOUT"
 	warn "Falling back to 20"
@@ -28,8 +45,4 @@ for timeout in START_TIMEOUT STOP_TIMEOUT CMD_TIMEOUT; do
 	fi
 done
 unset timeout
-
-if [[ "$RE_START" = "" ]]; then
-	warn "Key not found in database: start"
-fi
 
