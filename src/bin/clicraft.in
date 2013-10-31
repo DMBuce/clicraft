@@ -34,9 +34,7 @@ fi
 mkdir -p "$SERVER_DIR" 2>/dev/null
 
 # bail if we can't cd
-cd "$SERVER_DIR" 2>/dev/null
-retval="$?"
-if [[ "$retval" != 0 ]]; then
+if ! cd "$SERVER_DIR" 2>/dev/null; then
 	err "Could not change to directory %s" "$SERVER_DIR"
 	exit "$retval"
 fi

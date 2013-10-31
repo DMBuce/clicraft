@@ -6,10 +6,7 @@
 #    is not running, returns a nonzero exit status.
 #
 
-multiplex_status
-retval=$?
-
-if [[ "$retval" == 0 ]]; then
+if multiplex_status; then
 	msg "%s is running" "$SERVER_NAME"
 	return 0
 else

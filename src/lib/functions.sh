@@ -113,8 +113,7 @@ cmd() {
 usage() {
 	local FILE USAGELINE PRINTUSAGE line
 	USAGELINE="# Usage: clicraft $1"
-	FILE="$(actionfile "$1")"
-	if [[ $? != 0 ]]; then
+	if ! FILE="$(actionfile "$1")"; then
 		action help
 		return 1
 	fi
@@ -175,12 +174,7 @@ redb_update() {
 	KEY="$1"
 	shift
 	NEWVALUE="$*"
-	VALUE="$(redb_lookup "$KEY")"
-	retval=$?
-
-	if [[ "$retval" != 0 ]]; then
-		return $retval
-	fi
+	VALUE="$(redb_lookup "$KEY")" || return $?
 
 	KEY="${KEY//\//\\/}"
 	NEWVALUE="${NEWVALUE//\//\\/}"
@@ -191,12 +185,7 @@ redb_update() {
 redb_delete() {
 	local KEY VALUE
 	KEY="$1"
-	VALUE="$(redb_lookup "$KEY")"
-	retval=$?
-
-	if [[ "$retval" != 0 ]]; then
-		return $retval
-	fi
+	VALUE="$(redb_lookup "$KEY")" || return $?
 
 	KEY="${KEY//\//\\/}"
 	NEWVALUE="${NEWVALUE//\//\\/}"

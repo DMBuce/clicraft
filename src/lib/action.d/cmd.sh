@@ -28,13 +28,8 @@ if [[ $# == 0 ]]; then
 	return 1
 fi
 
-action status >/dev/null
-retval=$?
-
 # bail if server isn't running
-if [[ "$retval" != 0 ]]; then
-	return $retval
-fi
+action status >/dev/null || return $?
 
 RE_PATTERN="$(str2val "RE_${CMD%% *}" upper)"
 
