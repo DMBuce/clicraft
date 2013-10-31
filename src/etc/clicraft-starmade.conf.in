@@ -97,10 +97,31 @@ update_starmade() {
 DOWNLOAD_COMMAND="update_starmade"
 
 # TIMEOUT
-# The amount of time, in seconds, that clicraft will wait for critical
+# The amount of time, in seconds, that clicraft will wait for certain internal
 # operations to finish.
 #
 TIMEOUT=20
+
+
+# START_TIMEOUT
+# The amount of time, in seconds, that clicraft will wait for the server to
+# start up.
+#
+START_TIMEOUT=$TIMEOUT
+
+
+# STOP_TIMEOUT
+# The amount of time, in seconds, that clicraft will wait for the server to
+# shut down.
+#
+STOP_TIMEOUT=$TIMEOUT
+
+
+# CMD_TIMEOUT
+# The amount of time, in seconds, that clicraft will wait for a command to finish
+# when using `clicraft cmd`
+#
+CMD_TIMEOUT=$TIMEOUT
 
 
 # CMD_LSTRIP
