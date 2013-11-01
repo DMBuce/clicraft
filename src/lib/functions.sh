@@ -448,7 +448,7 @@ serverlog() {
 	pushtrap "kill '$TIMERPID' 2>/dev/null"
 
 	# if CONDITION is an integer
-	if [[ "$CONDITION" =~ ^\+?[0-9]+$ ]]; then
+	if [[ "$CONDITION" =~ ^[+]?[0-9]+$ ]]; then
 		# print server log to stdout and quit after CONDITION lines
 		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null | {
 			head -n "$CONDITION"

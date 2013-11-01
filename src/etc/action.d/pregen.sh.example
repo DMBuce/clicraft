@@ -25,20 +25,20 @@ if [[ "$PLAYER" == "" ]]; then
 	return 1
 fi
 
-if ! [[ ( "$X" =~ ^-?[0-9]+$ && "$Z" =~ ^-?[0-9]+$ ) || \
+if ! [[ ( "$X" =~ ^[+-]?[0-9]+$ && "$Z" =~ ^[+-]?[0-9]+$ ) || \
         ( "$X" == "" && "$Z" == "" ) ]]; then
 	warn "Invalid value for center: %s %s" "$X" "$Z"
 	return 1
 fi
 
-if [[ ! "$SIZE" =~ ^[0-9]+$ ]]; then
+if [[ ! "$SIZE" =~ ^[+]?[0-9]+$ ]]; then
 	err "Size not a positive integer: %s" "$SIZE"
 	return 1
 else
 	RADIUS="$((SIZE / 2))"
 fi
 
-if [[ ! "$VIEWDIST" =~ ^[0-9]+$ ]]; then
+if [[ ! "$VIEWDIST" =~ ^[+]?[0-9]+$ ]]; then
 	err "Could not find valid %s in %s: %s" "view-distance" "server.properties" "$VIEWDIST"
 	return 1
 fi
@@ -52,7 +52,7 @@ fi
 
 cmd "gamemode 1 $PLAYER"
 
-if [[ "$X" =~ ^-?[0-9]+$ && "$Z" =~ ^-?[0-9]+$ ]]; then
+if [[ "$X" =~ ^[+-]?[0-9]+$ && "$Z" =~ ^[+-]?[0-9]+$ ]]; then
 	cmd "tp $PLAYER $X ~ $Z"
 else
 	msg "Using position of %s for center" "$PLAYER"
