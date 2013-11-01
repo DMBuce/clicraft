@@ -95,7 +95,7 @@ action() {
 # Returns a list of available actions
 actions() {
 	find "$CONFDIR/action.d" "$EXECDIR/action.d" \
-		-maxdepth 1 -type f -name \*.sh | \
+		-maxdepth 1 ! -type d -name \*.sh | \
 		sed 's|^.*/||; s|\.sh$||' | sort -u
 }
 
