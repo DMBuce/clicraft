@@ -31,7 +31,7 @@ fi
 if [[ "$DOWNLOAD_COMMAND" == *%v* ]]; then
 	VERSION="$SERVER_VERSION"
 	if [[ "$SERVER_VERSION" == 'snapshot' || "$SERVER_VERSION" == 'release' ]]; then
-		VERSION="$(versions_json | awk -F\" "/\"$SERVER_VERSION\":/ {print \$4}")"
+		VERSION="$(versions_json | grep "\"$SERVER_VERSION\":" | cut -d\" -f4)"
 		if [[ "$VERSION" == "" ]]; then
 			err "Can't determine latest %s version." "$SERVER_VERSION"
 			return 1
