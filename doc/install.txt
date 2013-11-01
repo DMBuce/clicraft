@@ -32,9 +32,10 @@ Runtime Dependencies
 Clicraft needs these programs in order to successfully run:
 
 * link:http://www.gnu.org/software/bash/[bash] 3.2.25 or greater
-* link:http://tmux.sourceforge.net/[tmux] version 1.4 or greater
+* link:http://tmux.sourceforge.net/[tmux] version 1.4 or greater, or link:https://www.gnu.org/software/screen/[screen] version 4.00.03 or greater
+* grep, find, and sed
 * A working java implementation
-* link:http://curl.haxx.se/[curl] or another download utility
+* link:http://curl.haxx.se/[curl] or link:http://www.gnu.org/software/wget/wget.html[wget]
 
 Clicraft has several optional features with these additional dependencies:
 

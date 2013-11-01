@@ -10,8 +10,9 @@ Overview
 Clicraft is a command-line wrapper for operation and administration of a
 minecraft-compatible server. It is written in
 http://www.gnu.org/software/bash/[bash] and uses
-http://tmux.sourceforge.net/[tmux] to daemonize and communicate with the
-server process.
+http://tmux.sourceforge.net/[tmux] or
+link:https://www.gnu.org/software/screen/[screen] to daemonize and communicate
+with the server process.
 
 Clicraft strives to be simple, robust, and useful. With it, you can:
 
