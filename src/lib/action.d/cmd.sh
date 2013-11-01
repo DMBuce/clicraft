@@ -8,7 +8,7 @@
 VERBOSITY=0
 
 # parse options
-while [[ "${1:0:1}" == '-' ]]; do
+while [[ "$1" == -* ]]; do
 	case "$1" in
 	  "-q"|"--quiet")   VERBOSITY=0 ;;
 	  "-v"|"--verbose") VERBOSITY+=1 ;;

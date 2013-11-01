@@ -20,8 +20,8 @@ while IFS='\n' read -r keyval; do
 	key="${keyval%% *}"
 	value="${keyval#$key }"
 	# if given a prefix, prepend it to the regex after start-of-line
-	if [[ "${value:0:2}" == '^^' ]]; then
-		value="^${RE_TIMESTAMP}${value:2}"
+	if [[ "$value" == '^^'* ]]; then
+		value="^${RE_TIMESTAMP}${value#'^^'}"
 	fi
 	declare "$(str2var "RE_$key" upper)=$value"
 done < "$REDB"

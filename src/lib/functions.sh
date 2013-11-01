@@ -119,12 +119,12 @@ usage() {
 	fi
 
 	while read line; do
-		if [[ "${line#$USAGELINE}" != "$line" ]]; then
+		if [[ "$line" == $USAGELINE* ]]; then
 			PRINTUSAGE=TRUE
 		fi
 
 		if [[ "$PRINTUSAGE" == 'TRUE' ]]; then
-			[[ "${line#'#'}" == "$line" ]] && break
+			[[ "$line" != '#'* ]] && break
 			line="${line#'#'}"
 			msg "${line#' '}"
 		fi
@@ -145,8 +145,8 @@ redb_lookup() {
 	fi
 
 	# if given a prefix, prepend it to the regex after start-of-line
-	if [[ "$PREFIX" != "" && "${VALUE:0:2}" == '^^' ]]; then
-		VALUE="^${PREFIX}${VALUE:2}"
+	if [[ "$PREFIX" != "" && "$VALUE" == '^^'* ]]; then
+		VALUE="^${PREFIX}${VALUE#'^^'}"
 	fi
 
 	echo "$VALUE"
@@ -448,7 +448,7 @@ serverlog() {
 	pushtrap "kill '$TIMERPID' 2>/dev/null"
 
 	# if CONDITION is an integer
-	if [[ "$CONDITION" -eq "$CONDITION" ]] 2>/dev/null; then
+	if [[ "$CONDITION" =~ ^\+?[0-9]+$ ]]; then
 		# print server log to stdout and quit after CONDITION lines
 		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null | {
 			head -n "$CONDITION"

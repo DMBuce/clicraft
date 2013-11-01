@@ -79,7 +79,7 @@ if [[ "$file" == "" ]]; then
 	edit_file_template "$CONFDIR/clicraft-defaults.conf" "$CONFDIR/clicraft.conf"
 elif [[ -f "$SERVER_DIR/$file" ]]; then
 	edit_file "$SERVER_DIR/$file"
-elif [[ "$file" =~ \.dat$ && "$world" != "" && "$vinbt" != "" ]]; then
+elif [[ "$file" == *.dat && "$world" != "" && "$vinbt" != "" ]]; then
 	nbtfile="$(find "$SERVER_DIR/$world" -name "$file" | head -n1)"
 	if [[ "$nbtfile" != "" ]]; then
 		vinbt "$nbtfile"
