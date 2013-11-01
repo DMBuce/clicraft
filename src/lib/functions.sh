@@ -267,10 +267,10 @@ pardon() {
 	fi
 
 	RE_PATTERN="$(str2val RE_$CMD upper)"
-	NUMBANS="$(wc -w "$BANLIST" | cut -d ' ' -f 1)"
+	NUMBANS="$(wc -w <"$BANLIST")"
 
 	serverlog "$RE_PATTERN" cmd "$CMD $PLAYER" >/dev/null
-	test "$(wc -w "$BANLIST" | cut -d ' ' -f 1)" -lt "$NUMBANS"
+	test "$(wc -w <"$BANLIST")" -lt "$NUMBANS"
 }
 
 # Converts a string to something useable as a variable name
