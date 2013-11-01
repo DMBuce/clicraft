@@ -45,7 +45,7 @@ fi
 
 action status >/dev/null || return 1
 
-if ! list | grep -i "( |^)$PLAYER($| )"; then
+if ! list | egrep -i "( |^)$PLAYER($| )"; then
 	err "Player %s is not logged in" "$PLAYER"
 	return 1
 fi
