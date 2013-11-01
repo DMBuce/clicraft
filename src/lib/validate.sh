@@ -1,6 +1,6 @@
 if [[ ! -f "$EXECDIR/$MULTIPLEXER.sh" ]]; then
 	warn "Invalid multiplexer: %s" "$MULTIPLEXER"
-	MULTIPLEXER="$(which tmux 2>/dev/null || which screen 2>/dev/null)"
+	MULTIPLEXER="$(command -v tmux || command -v screen)"
 	if [[ "$MULTIPLEXER" != "" ]]; then
 		warn "Falling back to %s" "$MULTIPLEXER"
 	else

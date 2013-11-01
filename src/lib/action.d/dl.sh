@@ -11,9 +11,9 @@ SERVER_VERSION="${1-$SERVER_VERSION}"
 # dump versions.json to stdout
 versions_json() {
 	local version_url='http://s3.amazonaws.com/Minecraft.Download/versions/versions.json'
-	if which curl &>/dev/null; then
+	if command -v curl >/dev/null; then
 		curl -sL "$version_url"
-	elif which wget &>/dev/null; then
+	elif command -v wget >/dev/null; then
 		wget -q -O- "$version_url"
 	else
 		err "Can't find %s or %s, unable to download %s" "curl" "wget" "versions.json"

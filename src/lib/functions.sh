@@ -336,7 +336,7 @@ wickedwhich() {
 	done
 
 	for exe in "$@"; do
-		if which "$exe" 2>/dev/null; then
+		if command -v "$exe"; then
 			PATH="$PATHORIG"
 			return 0
 		fi
