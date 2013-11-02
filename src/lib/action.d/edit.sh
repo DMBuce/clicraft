@@ -82,7 +82,7 @@ elif [[ -f "$SERVER_DIR/$file" ]]; then
 elif [[ "$file" == *.dat && "$world" != "" && "$vinbt" != "" ]]; then
 	nbtfile="$(find "$SERVER_DIR/$world" -name "$file" | head -n1)"
 	if [[ "$nbtfile" != "" ]]; then
-		vinbt "$nbtfile"
+		$vinbt "$nbtfile"
 	else
 		edit_action "$file"
 	fi
