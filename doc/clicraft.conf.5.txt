@@ -161,7 +161,15 @@ whitespace and special characters.
 
 
 **REDB=**"/path/to/regex/database.tab"::
-	The location of the regex database.
+	The location of the regex database. Each line of this file should consist
+	of a key followed by a space followed by an extended regular expression.
+	Any occurences of a slash (+/+) in the regular expression should be
+	escaped with a backslash (+\+).
++
+In addition, a regular expression which begins with two start-of-line anchors
+(+^^+) may have special meaning. Typically, this sequence of characters will
+be replaced with +^'timestamp'+, where 'timestamp' is the value of the
+timestamp database entry.
 +
 *Default*: +"{CONFDIR}/redb/$SERVER_TYPE.tab"+
 
