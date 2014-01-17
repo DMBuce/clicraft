@@ -149,6 +149,39 @@ be installed manually. See linkman:clicraft-actions[5] for the value of
 	Evaluate 'command' within clicraft's environment. If no 'command' is given,
 	open an interactive bash session with an environment that mimics clicraft's.
 
+*sync* [target]::
+	Synchronizes 'target' using rsync. If no 'target' is given, synchronizes
+	all targets in +SYNC_TARGETS+.
++
+The names of the linkman:clicraft.conf[5] options available to this action
+depend on the targets you will be syncing. The options below are described
+using an example 'foo' target.
++
+*SYNC_TARGETS*=( "list" "of" "targets" ):::
+	The list of targets to sync if no target is supplied on the command line.
++
+*SYNC_FOO_OPTS*="--rsync-options":::
+	The options to pass to rsync when syncing target 'foo'.
++
+*SYNC_FOO_SRCS*=( "list" "of" "source" "files" "and" "directories" ):::
+	A list of the files and directories to sync for target 'foo'.
++
+*SYNC_FOO_DEST*="/path/to/directory":::
+	The directory to put +SYNC_FOO_SRCS+ in when syncing target 'foo'.
++
+*SYNC_FOO_TYPE*="push"|"pull"|"local":::
+	The method used to sync target 'foo'. Valid values are +"push"+ (update
+	the remote host from local sources), +"pull"+ (update the local host from
+	remote sources), or +"local"+ (update the local host from local sources).
++
+*SYNC_FOO_HOST*="host":::
+	The remote hostname or ip address to use when syncing target 'foo'. This
+	option is not used if +SYNC_FOO_TYPE+ is +"local"+.
++
+*SYNC_FOO_USER*="user":::
+	The user to use on the remote host when syncing target 'foo'. This option
+	is not used if +SYNC_FOO_TYPE+ is +"local"+.
+
 Examples
 --------
 
