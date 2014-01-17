@@ -167,8 +167,8 @@ whitespace and special characters.
 	escaped with a backslash (+\+).
 +
 In addition, a regular expression which begins with two start-of-line anchors
-(+^^+) may have special meaning. Typically, this sequence of characters will
-be replaced with +^'timestamp'+, where 'timestamp' is the value of the
+(+\^\^+) may have special meaning. Typically, this sequence of characters will
+be replaced with +\^'timestamp'+, where 'timestamp' is the value of the
 timestamp database entry.
 +
 *Default*: +"{CONFDIR}/redb/$SERVER_TYPE.tab"+
