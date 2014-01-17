@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# Usage: clicraft sync [target]
+#
+#    Synchronizes <target> using rsync. If no <target> is given, synchronizes
+#    all targets in SYNC_TARGETS.
+#
+
+main() {
+	local src
+	local TARGET="$1"
+	local SYNC_TYPE="$(str2val "SYNC_${TARGET}_TYPE" upper)"
+	local SYNC_USER="$(str2val "SYNC_${TARGET}_USER" upper)"
+	local SYNC_HOST="$(str2val "SYNC_${TARGET}_HOST" upper)"
+	local SYNC_DEST="$(str2val "SYNC_${TARGET}_DEST" upper)"
+	local SYNC_OPTS="$(str2val "SYNC_${TARGET}_OPTS" upper)"
+	local SYNC_SRCS="$(str2var "SYNC_${TARGET}_SRCS" upper)[@]"
+	SYNC_SRCS=("${!SYNC_SRCS}")
+
+	validate_options "$TARGET" || return $?
+
+	if [[ "$SYNC_TYPE" == pull ]]; then
+		for src in "${SYNC_SRCS[@]}"; do
+			rsync $SYNC_OPTS "$SYNC_USER@$SYNC_HOST:${src%/}" "${SYNC_DEST%/}"
+		done
+	elif [[ "$SYNC_TYPE" == push ]]; then
+		for src in "${SYNC_SRCS[@]}"; do
+			rsync $SYNC_OPTS "${src%/}" "$SYNC_USER@$SYNC_HOST:${SYNC_DEST%/}"
+		done
+	elif [[ "$SYNC_TYPE" == local ]]; then
+		for src in "${SYNC_SRCS[@]}"; do
+			rsync $SYNC_OPTS "${src%/}" "${SYNC_DEST%/}"
+		done
+	else
+		err "Sync type not valid: %s" "$SYNC_TYPE"
+		return 1
+	fi
+}
+
+validate_options() {
+	local TARGET="$1"
+	retval=0
+	if [[ "$SYNC_TYPE" != 'local' ]]; then
+		if [[ "$SYNC_USER" == "" ]]; then
+			err "No user found for sync target %s" "$TARGET"
+			retval=1
+		fi
+		if [[ "$SYNC_HOST" == "" ]]; then
+			err "No host found for sync target %s" "$TARGET"
+			retval=1
+		fi
+	fi
+
+	if [[ "$SYNC_DEST" == "" ]]; then
+		err "No destination found for sync target %s" "$TARGET"
+		retval=1
+	elif [[ "$SYNC_TYPE" == 'pull' ]]; then
+		if [[ ! -e "$SYNC_DEST" ]]; then
+			warn "Sync destination not found: %s" "$SYNC_DEST"
+		fi
+	fi
+
+	if [[ "${#SYNC_SRCS[@]}" == 0 ]]; then
+		err "No sources found for sync target %s" "$TARGET"
+		retval=1
+	elif [[ "$SYNC_TYPE" == 'push' ]]; then
+		for src in "${SYNC_SRCS[@]}"; do
+			if [[ ! -e "$src" ]]; then
+				warn "Sync source not found: %s" "$src"
+			fi
+		done
+	fi
+
+	return $retval
+}
+
+if [[ "$1" == "" ]]; then
+	for target in "${SYNC_TARGETS[@]}"; do
+		action "$ACTION" "$target"
+	done
+else
+	main "$1"
+fi
+
