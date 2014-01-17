@@ -371,8 +371,7 @@ poptrap() {
 }
 
 # Create a lock
-mklock()
-{
+mklock() {
 	TMPDIR="${TMPDIR-/tmp}"
 	local USER="$(whoami)"
 	local lockdir="$TMPDIR/clicraft.$USER"
