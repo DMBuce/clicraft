@@ -36,7 +36,7 @@ mkdir -p "$SERVER_DIR" 2>/dev/null
 # bail if we can't cd
 if ! cd "$SERVER_DIR" 2>/dev/null; then
 	err "Could not change to directory %s" "$SERVER_DIR"
-	exit "$retval"
+	exit 1
 fi
 
 case "$1" in
