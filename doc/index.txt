@@ -106,7 +106,7 @@ link:contribute.html[Contributors] page.
 
 Copyright
 ---------
-Clicraft is Copyright (C) 2011-2013 DMBuce <dmbuce@gmail.com>
+Clicraft is Copyright (C) 2011-2014 DMBuce <dmbuce@gmail.com>
 and is distributed under a BSD License.
 
 /////
