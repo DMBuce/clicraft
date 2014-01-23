@@ -94,17 +94,23 @@ or modified, and no new files should be created.
 Functions
 ---------
 
-*msg* <message>::
-	Print a formatted informational message to stdout. 'message' can be split
-	into multiple arguments.
+*msg* <message> [argument] ...::
+	Print a formatted informational message to stdout. 'message' is a format
+	string composed of plain characters, character escape sequences, and
+	format specifications for additional 'arguments', as described for
+	`printf` under the *SHELL BUILTIN COMMANDS* section of linkman:bash[1].
 
-*warn* <message>::
-	Print a formatted warning message to stderr. 'message' can be split into
-	multiple arguments.
+*warn* <message> [argument] ...::
+	Print a formatted warning message to stderr. 'message' is a format
+	string composed of plain characters, character escape sequences, and
+	format specifications for additional 'arguments', as described for
+	`printf` under the *SHELL BUILTIN COMMANDS* section of linkman:bash[1].
 
-*err* <message>::
-	Print a formatted error message to stderr. 'message' can be split into
-	multiple arguments.
+*err* <message> [argument] ...::
+	Print a formatted error message to stderr. 'message' is a format
+	string composed of plain characters, character escape sequences, and
+	format specifications for additional 'arguments', as described for
+	`printf` under the *SHELL BUILTIN COMMANDS* section of linkman:bash[1].
 
 *actionfile* <action>:: 
 	Print the location of the action script for 'action'. If a system
