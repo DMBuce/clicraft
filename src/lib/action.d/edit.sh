@@ -43,10 +43,10 @@ edit_file_template() {
 		if [[ -f "$TEMPLATE" ]] && \
 		   diff -q <(grep "^[ 	]*[^ 	#]" "$FILE") \
 		           <(grep "^[ 	]*[^ 	#]" "$TEMPLATE" | sed "$SUBST") >/dev/null; then
-			warn "Aborting installation of %s: No changes made to template." "$(basename "$FILE")"
+			warn "Aborting installation of %s: No changes made to template." "${FILE##*/}"
 			rm "$FILE"
 		else
-			msg "New file %s successfully installed." "$(basename "$FILE")"
+			msg "New file %s successfully installed." "${FILE##*/}"
 		fi
 	fi
 }

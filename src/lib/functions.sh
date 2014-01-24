@@ -381,7 +381,7 @@ mklock() {
 	TMPDIR="${TMPDIR-/tmp}"
 	local lockdir="$TMPDIR/clicraft.$EUID"
 	local lockfile="$lockdir/$1.lock"
-	mkdir -p -m 0700 "$(dirname "$lockfile")"
+	mkdir -p -m 0700 "$lockdir"
 	if [[ "$(stat -Lc "%a %u" "$lockdir")" != "700 $EUID" ]]; then
 		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$(id -un)" "700"
 		return 1
@@ -401,7 +401,7 @@ rmlock() {
 	TMPDIR="${TMPDIR-/tmp}"
 	local lockdir="$TMPDIR/clicraft.$EUID"
 	local lockfile="$lockdir/$1.lock"
-	mkdir -p -m 0700 "$(dirname "$lockfile")"
+	mkdir -p -m 0700 "$lockdir"
 	if [[ "$(stat -Lc "%a %u" "$lockdir")" != "700 $EUID" ]]; then
 		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$(id -un)" "700"
 		return 1

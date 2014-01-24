@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start from project base
-cd $(dirname $0)/..
+cd ${0%/*/*}
 
 # Prints an error to stderr
 err() {
