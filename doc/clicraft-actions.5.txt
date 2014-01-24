@@ -71,6 +71,15 @@ occurs if they are not set in clicraft.conf.
 	any leading occurences of +"^^"+ replaced with the value of the
 	+timestamp+ database entry.
 
+*BINDIR*::
+	The directory where the clicraft script is stored. If you need to refer to
+	the clicraft script directly, you should use +$BINDIR/clicraft+ instead of
+	+$0+, since the latter will not work if clicraft was called using a
+	relative path (e.g. +./bin/clicraft+).
++
+In addition, the +action()+ function should be preferred over calling clicraft
+directly (e.g. +action foo+ over +$BINDIR/clicraft foo+).
+
 *CONFDIR*::
 	The directory where clicraft stores its configuration files. This is where
 	linkman:clicraft.conf[5] is located. User action scripts are located in
