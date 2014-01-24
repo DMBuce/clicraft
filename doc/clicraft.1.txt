@@ -28,7 +28,7 @@ Actions
 
 *cmd* [-v|--verbose] [-q|--quiet] <command>::
 	Sends 'command' to the server console. If clicraft recognizes 'command',
-	it will wait until the command finishes or +TIMEOUT+ seconds, whichever
+	it will wait until the command finishes or +CMD_TIMEOUT+ seconds, whichever
 	comes first, before returning. Any leading occurences of +CMD_LSTRIP+ are
 	removed from the beginning of 'command' before being sent to the server
 	console.
@@ -39,8 +39,8 @@ it will print for 2 seconds.
 +
 With +-q+ or +--quiet+, suppress +-v+ output.
 +
-See linkman:clicraft.conf[5] for a description of the +TIMEOUT+ or
-+CMD_LSTRIP+ options.
+See linkman:clicraft.conf[5] for a description of the +CMD_TIMEOUT+,
++CMD_LSTRIP+, or +SERVER_LOG+ options.
 
 *console*::
 	Attach to the server console. This places you in the multiplexer shell
@@ -116,12 +116,6 @@ If no 'operation' or 'args' are supplied, they are read from stdin.
 
 *restart*::
 	Restarts the server.
-
-*sh* [command]::
-	Evaluate 'command' within clicraft's environment.
-+
-If no 'command' is given, open an interactive bash session with an environment
-that mimics clicraft's.
 
 *start*::
 	Starts the server.
