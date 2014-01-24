@@ -14,7 +14,7 @@ $CONFDIR/action.d/'action'.sh, {EXECDIR}/action.d/'action'.sh
 Description
 -----------
 
-linkman:Clicraft[1] provides a way to extend functionality through 'action scripts',
+linkman:clicraft[1] provides a way to extend functionality through 'action scripts',
 which are bash scripts that get called by clicraft in a modified environment.
 To create an action script, simply set your +EDITOR+ variable and use
 clicraft's edit action. For instance:
@@ -228,7 +228,7 @@ option.
 
 *str2val* <string> [case]::
 	Prints the value of the variable corresponding to 'string' to stdout. The
-	variable to use is determined using +pass:[`str2var 'string' ['case']`]+.
+	variable to use is determined using +pass:[`str2var 'string' ['case'\]`]+.
 
 *dimdir* <dimension>::
 	Print the directory for 'dimension' to stdout.
@@ -300,7 +300,7 @@ Every `pushtrap` call should have a matching `poptrap` call to keep subsequent
 	Try to create a lock identified by 'lockname'. Returns nonzero if the lock
 	is already held.
 +
-Lock files are stored in +$TMPDIR/clicraft.'user'+, where 'user' the login
+Lock files are stored in +$TMPDIR/clicraft.'user'+, where 'user' is the login
 name of clicraft's effective user id. If +$TMPDIR+ is unset or empty, +/tmp+
 is used instead.
 +
@@ -311,7 +311,7 @@ is used instead.
 	Try to remove the lock identified by 'lockname'. Returns nonzero if the
 	lock isn't held by this clicraft process.
 +
-Lock files are stored in +$TMPDIR/clicraft.'user'+, where 'user' the login
+Lock files are stored in +$TMPDIR/clicraft.'user'+, where 'user' is the login
 name of clicraft's effective user id. If +$TMPDIR+ is unset or empty, +/tmp+
 is used instead.
 +
