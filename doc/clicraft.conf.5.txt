@@ -7,13 +7,23 @@ clicraft.conf - clicraft server wrapper configuration file
 
 Synopsis
 --------
-{CONFDIR}/clicraft.conf
+$CONFDIR/clicraft.conf
 
 Description
 -----------
-Configuration options for clicraft are stored in +{CONFDIR}/clicraft.conf+.
-The format is bash, so configuration options take the form +OPTION="value"+
-(with no whitespace between the equals sign (`=`) ).
+Clicraft's main configuration file is +clicraft.conf+, which is stored in one
+of three directories. In order of preference:
+
+* $XDG_CONFIG_HOME/clicraft
+* ~/.config/clicraft
+* {CONFDIR}
+
+Clicraft searches these directories and uses the first one it finds. That
+directory is referred to as +$CONFDIR+. If +$CONFDIR+ is empty, clicraft
+populates it with default config files from {CONFDIR}.
+
+The format for +clicraft.conf+ is bash, so configuration options take the form
++OPTION="value"+ (with no whitespace between the equals sign (`=`) ).
 
 This file is sourced from within clicraft before the default values are set,
 so you must take care to initialize any options that another option depends
@@ -23,7 +33,7 @@ is probably not what you want.
 
 An example default file is located at +{CONFDIR}/clicraft-defaults.conf+. It
 is fairly well-commented, so it may be easiest to simply copy it to
-+{CONFDIR}/clicraft.conf+ and follow the directions inside for customization.
++$CONFDIR/clicraft.conf+ and follow the directions inside for customization.
 
 Options
 -------
@@ -171,7 +181,7 @@ In addition, a regular expression which begins with two start-of-line anchors
 be replaced with +\^'timestamp'+, where 'timestamp' is the value of the
 timestamp database entry.
 +
-*Default*: +"{CONFDIR}/redb/$SERVER_TYPE.tab"+
+*Default*: +"$CONFDIR/redb/$SERVER_TYPE.tab"+
 
 
 See Also

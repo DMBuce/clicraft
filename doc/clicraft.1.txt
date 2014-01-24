@@ -77,9 +77,11 @@ edit the action script for 'action' instead. When editing a new action or
 overriding a system action, clicraft will create a new user action using one
 of these templates:
 +
-* {CONFDIR}/action.d/action.sh.example
-* {CONFDIR}/action.d/action-override.sh.example
+* $CONFDIR/action.d/action.sh.example
+* $CONFDIR/action.d/action-override.sh.example
 
++
+See linkman:clicraft.conf[5] for a description of +$CONFDIR+
 +
 When no 'file' or 'action' is present, edit linkman:clicraft.conf[5].
 +

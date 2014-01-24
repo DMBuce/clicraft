@@ -7,7 +7,7 @@ clicraft-examples - example clicraft action scripts
 
 Synopsis
 --------
-{CONFDIR}/action.d/'action'.sh.example, 'clicraft' <action> [args]
+$CONFDIR/action.d/'action'.sh.example, 'clicraft' <action> [args]
 
 Description
 -----------
@@ -29,7 +29,7 @@ An action script created using either of the two methods above will get
 executed when running +clicraft backup+.
 
 For more info on action scripts or for the value of +$CONFDIR+, see
-linkman:clicraft-actions[5].
+linkman:clicraft.conf[5].
 
 Actions
 -------
@@ -142,8 +142,8 @@ This action has these linkman:clicraft.conf[5] options:
 	arguments, print a list of files that can be restored from.
 +
 This action is implemented in +$CONFDIR/action.d/backup.sh.example+, and must
-be installed manually. See linkman:clicraft-actions[5] for the value of
-+CONFDIR+.
+be installed manually. See linkman:clicraft.conf[5] for a description of
++$CONFDIR+.
 
 *sh* [command]::
 	Evaluate 'command' within clicraft's environment. If no 'command' is given,

@@ -9,7 +9,7 @@ clicraft-actions - clicraft shell hooks a.k.a "action scripts"
 Synopsis
 --------
 
-{CONFDIR}/action.d/'action'.sh, {EXECDIR}/action.d/'action'.sh
+$CONFDIR/action.d/'action'.sh, {EXECDIR}/action.d/'action'.sh
 
 Description
 -----------
@@ -25,8 +25,8 @@ An action script created in this way will get executed when running
 +clicraft foo ['args']+.
 
 Alternately, you can accomplish the same thing by writing a script with
-filename +foo.sh+ and placing it in +$CONFDIR/action.d+. See the
-<<vars,Variables>> section for the value of +$CONFDIR+.
+filename +foo.sh+ and placing it in +$CONFDIR/action.d+. See
+linkman:clicraft.conf[5] for a description of +$CONFDIR+.
 
 There are also action
 scripts in +$EXECDIR/action.d+, but these are system action scripts and may be
@@ -71,10 +71,11 @@ occurs if they are not set in clicraft.conf.
 	any leading occurences of +"^^"+ replaced with the value of the
 	+timestamp+ database entry.
 
-*CONFDIR*={CONFDIR}::
+*CONFDIR*::
 	The directory where clicraft stores its configuration files. This is where
 	linkman:clicraft.conf[5] is located. User action scripts are located in
-	this directory under +$CONFDIR/action.d+.
+	this directory under +$CONFDIR/action.d+. See linkman:clicraft.conf[5] for
+	a description of how the value of +$CONFDIR+ is determined.
 
 *EXECDIR*={EXECDIR}::
 	The directory for scripts used internally by clicraft. System action
@@ -165,16 +166,16 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 	return nonzero.
 +
 The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
-the <<vars,Variables>> section for a description of +CONFDIR+.
+linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
+option.
 
 *redb_insert* <key> <value>::
 	Insert a new 'key' and 'value' into the regex database. If a regex for
 	'key' already exists, print an error message to stderr and return nonzero.
 +
 The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
-the <<vars,Variables>> section for a description of +CONFDIR+.
+linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
+option.
 
 *redb_update* <key> <value>::
 	Change the value for 'key' to 'value' in the regex database. If a regex
@@ -182,16 +183,16 @@ the <<vars,Variables>> section for a description of +CONFDIR+.
 	nonzero.
 +
 The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
-the <<vars,Variables>> section for a description of +CONFDIR+.
+linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
+option.
 
 *redb_delete* <key>::
 	Delete the regex for 'key' from the regex database. If a regex for 'key'
 	does not exist, print an error message to stderr and return nonzero.
 +
 The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of the +SERVER_TYPE+ option, and
-the <<vars,Variables>> section for a description of +CONFDIR+.
+linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
+option.
 
 *save-off*::
 	If another process holds a "save" lock, do nothing and return nonzero.
