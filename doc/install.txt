@@ -39,6 +39,7 @@ Clicraft needs these programs in order to successfully run:
 
 Clicraft has several optional features with these additional dependencies:
 
+* link:http://rsync.samba.org/[rsync]
 * link:https://https://github.com/DMBuce/mcexplore[mcexplore]
 * link:http://toolchain.eu/project/c10t[c10t]
 * link:https://github.com/hwei/Minecraft-Map-Auto-Trim[mmat]
@@ -75,9 +76,9 @@ distributions that packages are available for.
 	link:https://wiki.archlinux.org/index.php/AUR[this ArchWiki page].
 
 *Debian, Ubuntu* (dpkg/apt deb)::
-	A .deb package of the latest version should be available on the GitHub
-	link:https://github.com/DMBuce/clicraft/downloads[downloads page].
-	You can install it with +dpkg -i clicraft_*_all.deb+.
+	Debian packages are unavailable since GitHub's deprecation of project
+	downloads. You can try to create one yourself using +make deb+, then
+	install it with +dpkg -i clicraft_*_all.deb+.
 
 *RHEL, CentOS* (yum/rpm)::
 	Clicraft is currently not available in rpm format, but it just so happens
