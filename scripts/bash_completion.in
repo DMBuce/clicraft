@@ -24,6 +24,13 @@ _clicraft() {
 	CONFDIR="@CONFDIR@"
 	EXECDIR="@EXECDIR@"
 
+	# use user config if the right dir exists
+	if [[ -d "$XDG_CONFIG_HOME/clicraft" ]]; then
+		CONFDIR="$XDG_CONFIG_HOME/clicraft"
+	elif [[ -d "$HOME/.config/clicraft" ]]; then
+		CONFDIR="$HOME/.config/clicraft"
+	fi
+
 	local SERVER_DIR SERVER_NAME SERVER_JAR SERVER_URL START_COMMAND DOWNLOAD_COMMAND
 	. "$EXECDIR/defaults.sh"
 	. "$EXECDIR/functions.sh"
