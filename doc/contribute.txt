@@ -66,8 +66,10 @@ opening brace on the same line as the function declaration.
 +
 -----
 msg() {
-	local mesg=$1; shift
-	printf "${mesg}\n" "$@"
+	local mesg=$1
+	shift
+
+	printf -- "${mesg}\n" "$@"
 }
 -----
 
