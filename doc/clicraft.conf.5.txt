@@ -133,7 +133,7 @@ whitespace and special characters.
 The shell expands this option twice, so care must be taken to protect
 whitespace and special characters.
 +
-*Default*: +"curl -#L -o $SERVER_JAR $SERVER_URL"+
+*Default*: +"curl -#fL -o $SERVER_JAR $SERVER_URL"+
 
 
 **TIMEOUT=**"seconds"::

@@ -55,8 +55,8 @@ fi
 $DOWNLOAD_COMMAND
 
 # restore server jar if download failed
-if [[ ! -f "$SERVER_JAR" ]]; then
-	msg "No %s after running \`%s\'" "$(basename $SERVER_JAR)" "$DOWNLOAD_COMMAND"
+if [[ "$?" != 0 || ! -f "$SERVER_JAR" ]]; then
+	msg "Download failed: %s" "$DOWNLOAD_COMMAND"
 	msg "Restoring server jar from %s" "$(basename $SERVER_JAR).ccback"
 	mv "$SERVER_JAR.ccback" "$SERVER_JAR"
 fi

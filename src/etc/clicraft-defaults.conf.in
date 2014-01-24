@@ -84,7 +84,7 @@ STOP_CMD="stop"
 # command should result in SERVER_URL being downloaded and saved to
 # SERVER_JAR.
 #
-DOWNLOAD_COMMAND="curl -#L -o $SERVER_JAR $SERVER_URL"
+DOWNLOAD_COMMAND="curl -#fL -o $SERVER_JAR $SERVER_URL"
 
 
 # TIMEOUT
