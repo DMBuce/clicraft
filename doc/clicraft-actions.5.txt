@@ -300,9 +300,8 @@ Every `pushtrap` call should have a matching `poptrap` call to keep subsequent
 	Try to create a lock identified by 'lockname'. Returns nonzero if the lock
 	is already held.
 +
-Lock files are stored in +$TMPDIR/clicraft.'user'+, where 'user' is the login
-name of clicraft's effective user id. If +$TMPDIR+ is unset or empty, +/tmp+
-is used instead.
+Lock files are stored in +$TMPDIR/clicraft.$EUID+. If +$TMPDIR+ is unset or
+empty, +/tmp+ is used instead.
 +
 `mklock` and `rmlock` call `pushtrap` and `poptrap` internally, so every
 `mklock` call should have a matching `rmlock` call.
@@ -311,9 +310,8 @@ is used instead.
 	Try to remove the lock identified by 'lockname'. Returns nonzero if the
 	lock isn't held by this clicraft process.
 +
-Lock files are stored in +$TMPDIR/clicraft.'user'+, where 'user' is the login
-name of clicraft's effective user id. If +$TMPDIR+ is unset or empty, +/tmp+
-is used instead.
+Lock files are stored in +$TMPDIR/clicraft.'user'+. If +$TMPDIR+ is unset or
+empty, +/tmp+ is used instead.
 +
 `mklock` and `rmlock` call `pushtrap` and `poptrap` internally, so every
 `mklock` call should have a matching `rmlock` call.

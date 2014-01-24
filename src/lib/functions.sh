@@ -379,12 +379,11 @@ poptrap() {
 # Create a lock
 mklock() {
 	TMPDIR="${TMPDIR-/tmp}"
-	local USER="$(whoami)"
-	local lockdir="$TMPDIR/clicraft.$USER"
+	local lockdir="$TMPDIR/clicraft.$EUID"
 	local lockfile="$lockdir/$1.lock"
 	mkdir -p -m 0700 "$(dirname "$lockfile")"
-	if [[ "$(stat -Lc "%a %U" "$lockdir")" != "700 $USER" ]]; then
-		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$USER" "700"
+	if [[ "$(stat -Lc "%a %u" "$lockdir")" != "700 $EUID" ]]; then
+		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$(id -un)" "700"
 		return 1
 	fi
 
@@ -400,12 +399,11 @@ mklock() {
 # Remove a lock
 rmlock() {
 	TMPDIR="${TMPDIR-/tmp}"
-	local USER="$(whoami)"
-	local lockdir="$TMPDIR/clicraft.$USER"
+	local lockdir="$TMPDIR/clicraft.$EUID"
 	local lockfile="$lockdir/$1.lock"
 	mkdir -p -m 0700 "$(dirname "$lockfile")"
-	if [[ "$(stat -Lc "%a %U" "$lockdir")" != "700 $USER" ]]; then
-		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$USER" "700"
+	if [[ "$(stat -Lc "%a %u" "$lockdir")" != "700 $EUID" ]]; then
+		warn "Lock directory %s does not have user/mode %s/%d" "$lockdir" "$(id -un)" "700"
 		return 1
 	fi
 
