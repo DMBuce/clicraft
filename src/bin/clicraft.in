@@ -11,6 +11,22 @@ BINDIR="@BINDIR@"
 CONFDIR="@CONFDIR@"
 EXECDIR="@EXECDIR@"
 
+# use user config if the right dir exists
+if [[ -d "$XDG_CONFIG_HOME/clicraft" ]]; then
+	CONFDIR="$XDG_CONFIG_HOME/clicraft"
+elif [[ -d "$HOME/.config/clicraft" ]]; then
+	CONFDIR="$HOME/.config/clicraft"
+fi
+
+# copy system config to user config if it's empty
+conffiles=( $(shopt -s nullglob; echo "$CONFDIR"/*) )
+if [[ "${#conffiles[@]}" == 0 ]]; then
+	if ! cp -R "@CONFDIR@"/{*.conf,action.d,redb} "$CONFDIR"; then
+		warn "Could not create default config in %s" "$CONFDIR"
+	fi
+fi
+unset conffiles
+
 if [[ -f "$CONFDIR/clicraft.conf" ]]; then
 	. "$CONFDIR/clicraft.conf"
 fi
