@@ -36,6 +36,7 @@ man9dir       = $(mandir)/man9
 manext        = .1
 srcdir        = @srcdir@
 
+SED             = @SED@
 INSTALL         = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_DATA    = @INSTALL_DATA@

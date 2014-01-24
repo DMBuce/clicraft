@@ -33,7 +33,8 @@ $(DESTDIR)$(sysconfdir)/logrotate.d/$(PROG): scripts/logrotate
 # install crontab
 
 $(DESTDIR)$(sysconfdir)/cron.d/$(PROG): scripts/cron
-	$(INSTALL_DATA) $< $@
+	$(SED) -e 's|$${exec_prefix}|$(exec_prefix)|g' \
+		< $< > $@
 
 
 # phony targets
