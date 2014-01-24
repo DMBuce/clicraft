@@ -87,10 +87,10 @@ variables you wish to use in custom action scripts.
 
 **SERVER_VERSION=**"version"::
 	The server version. This will replace any instances of +%v+ in
-	+DOWNLOAD_COMMAND+. If set to "release" or "snapshot", the latest release
-	or snapshot version will be substituted instead.
+	+DOWNLOAD_COMMAND+. If set to "release" or "snapshot", the latest
+	Minecraft release or snapshot version will be substituted instead.
 +
-*Default*: +SERVER_VERSION="release"+
+*Default*: +"release"+
 
 
 **SERVER_TYPE=**"type"::
@@ -107,7 +107,7 @@ SERVER_JAR="$SERVER_DIR/craftbukkit.jar"
 SERVER_URL="http://cbukk.it/craftbukkit.jar"
 -----
 +
-*Default*: "minecraft"
+*Default*: +"minecraft"+
 
 
 **START_COMMAND=**"/path/to/command [options]"::

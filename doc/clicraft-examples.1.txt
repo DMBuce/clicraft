@@ -11,7 +11,7 @@ $CONFDIR/action.d/'action'.sh.example, 'clicraft' <action> [args]
 
 Description
 -----------
-linkman:Clicraft[1] provides example action scripts that can be used and
+linkman:clicraft[1] provides example action scripts that can be used and
 modified to extend clicraft's functionality. To install or edit one of these
 scripts, simply set your +EDITOR+ variable and use clicraft's edit action. For
 instance:
