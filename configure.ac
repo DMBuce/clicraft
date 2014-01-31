@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.59])
-AC_INIT([clicraft], [0.0.8], [https://github.com/DMBuce/clicraft/issues], [clicraft])
+AC_INIT([clicraft], [0.0.9], [https://github.com/DMBuce/clicraft/issues], [clicraft])
 
 dnl package info
 AC_SUBST([PACKAGE],   [$PACKAGE_NAME])
