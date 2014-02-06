@@ -434,7 +434,7 @@ rmlock() {
 
 # Prints server log, runs a command, and waits until it's safe to continue
 serverlog() {
-	local TIMERPID TAILPID CONDITION retval
+	local TIMERPID CONDITION retval
 
 	CONDITION="$1"
 	shift
@@ -458,16 +458,10 @@ serverlog() {
 			kill "$TIMERPID" 2>/dev/null
 		} &
 	else
-
-		# print server log to stdout
-		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null &
-		TAILPID="$!"
-		pushtrap "kill '$TAILPID' 2>/dev/null"
-
-		# kill timeout process when we see CONDITION in server log
+		# print server log to stdout until we see CONDITION in server log
 		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null | {
-			egrep -ql "$CONDITION"
-			kill "$TAILPID" "$TIMERPID" 2>/dev/null
+			sed -rn "1,/$CONDITION/ p; /$CONDITION/ q"
+			kill "$TIMERPID" 2>/dev/null
 		} &
 	fi
 
@@ -476,12 +470,11 @@ serverlog() {
 
 	# wait until the backgrounded timeout process exits
 	{
-		wait "$TAILPID" "$TIMERPID"
+		wait "$TIMERPID"
 	} &>/dev/null
 	retval=$?
 
 	# clear the traps we set earlier
-	poptrap "kill '$TAILPID' 2>/dev/null" 2>/dev/null
 	poptrap "kill '$TIMERPID' 2>/dev/null"
 
 	# return inverted return value of wait
