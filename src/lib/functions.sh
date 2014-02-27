@@ -16,8 +16,8 @@ sys_actionfile() {
 local_actionfile() {
 	local ACTION="$1"
 
-	if [[ -f "$CONFDIR/action.d/$ACTION.sh" ]]; then
-		echo "$CONFDIR/action.d/$ACTION.sh"
+	if [[ -f "$CLICRAFT_CONFIG/action.d/$ACTION.sh" ]]; then
+		echo "$CLICRAFT_CONFIG/action.d/$ACTION.sh"
 	else
 		warn "Unknown action: %s" "$ACTION"
 		return 1
@@ -76,7 +76,7 @@ action() {
 
 # Returns a list of available actions
 actions() {
-	find "$CONFDIR/action.d" "$EXECDIR/action.d" \
+	find "$CLICRAFT_CONFIG/action.d" "$EXECDIR/action.d" \
 		-maxdepth 1 ! -type d -name \*.sh | \
 		sed 's|^.*/||; s|\.sh$||' | sort -u
 }

@@ -17,7 +17,7 @@ else
 	SERVER_URL="${SERVER_URL-https://s3.amazonaws.com/Minecraft.Download/versions/%v/minecraft_server.%v.jar}"
 fi
 
-REDB="${REDB-$CONFDIR/redb/$SERVER_TYPE.tab}"
+REDB="${REDB-$CLICRAFT_CONFIG/redb/$SERVER_TYPE.tab}"
 
 START_COMMAND="${START_COMMAND-java -jar $SERVER_JAR nogui}"
 STOP_CMD="${STOP_CMD-stop}"

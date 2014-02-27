@@ -132,6 +132,6 @@ CMD_LSTRIP=""
 # REDB
 # The location of the regex database
 #
-REDB="$CONFDIR/redb/$SERVER_TYPE.tab"
+REDB="$CLICRAFT_CONFIG/redb/$SERVER_TYPE.tab"
 
 

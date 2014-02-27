@@ -58,13 +58,13 @@ edit_action() {
 	if ACTIONFILE="$(local_actionfile "$ACTION" 2>/dev/null)"; then
 		edit_file "$ACTIONFILE"
 	else
-		ACTIONFILE="$CONFDIR/action.d/$ACTION.sh"
+		ACTIONFILE="$CLICRAFT_CONFIG/action.d/$ACTION.sh"
 
 		# figure out which template to use
 		if sys_actionfile "$ACTION" &>/dev/null; then
-			TEMPLATE="$CONFDIR/action.d/action-override.sh.example"
+			TEMPLATE="$CLICRAFT_CONFIG/action.d/action-override.sh.example"
 		else
-			TEMPLATE="$CONFDIR/action.d/action.sh.example"
+			TEMPLATE="$CLICRAFT_CONFIG/action.d/action.sh.example"
 		fi
 
 		edit_file_template "$TEMPLATE" "$ACTIONFILE" "s/\$ACTION/$ACTION/g"
@@ -76,7 +76,7 @@ world="$(serverprop level-name 2>/dev/null)"
 vinbt="$(wickedwhich vinbt vinbt.sh 2>/dev/null)"
 if [[ "$file" == "" ]]; then
 	# edit clicraft.conf
-	edit_file_template "$CONFDIR/clicraft-defaults.conf" "$CONFDIR/clicraft.conf"
+	edit_file_template "$CLICRAFT_CONFIG/clicraft-defaults.conf" "$CLICRAFT_CONFIG/clicraft.conf"
 elif [[ -f "$SERVER_DIR/$file" ]]; then
 	edit_file "$SERVER_DIR/$file"
 elif [[ "$file" == *.dat && "$world" != "" && "$vinbt" != "" ]]; then

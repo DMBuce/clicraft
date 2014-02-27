@@ -11,7 +11,7 @@ fi
 if [[ ! -f "$REDB" ]]; then
 	warn "Can't find redb for %s" "$SERVER_TYPE"
 	warn "Falling back to %s" "minecraft.tab"
-	REDB="$CONFDIR/redb/minecraft.tab"
+	REDB="$CLICRAFT_CONFIG/redb/minecraft.tab"
 fi
 
 # expose redb as RE_* variables

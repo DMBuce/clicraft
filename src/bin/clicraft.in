@@ -9,6 +9,7 @@ prefix="@prefix@"
 exec_prefix="@exec_prefix@"
 BINDIR="@BINDIR@"
 EXECDIR="@EXECDIR@"
+CONFDIR="@CONFDIR@"
 
 . "$EXECDIR/bootstrap.sh"
 
@@ -41,7 +42,7 @@ elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}" ]]; then
 elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft" ]]; then
 	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft"
 else
-	CLICRAFT_CONFIG="@CONFDIR@"
+	CLICRAFT_CONFIG="$CONFDIR"
 fi
 
 # canonicalize path
@@ -49,17 +50,16 @@ if [[ "$CLICRAFT_CONFIG" != /* ]]; then
 	CLICRAFT_CONFIG="$PWD/${CLICRAFT_CONFIG#./}"
 fi
 export CLICRAFT_CONFIG
-CONFDIR="$CLICRAFT_CONFIG"
 
 # copy system config if current config is empty
-if [[ -z "$(shopt -s nullglob; echo "$CONFDIR"/*)" ]]; then
-	if ! cp -R "@CONFDIR@"/{*.conf,action.d,redb} "$CONFDIR"; then
-		warn "Could not create default config in %s" "$CONFDIR"
+if [[ -z "$(shopt -s nullglob; echo "$CLICRAFT_CONFIG"/*)" ]]; then
+	if ! cp -R "$CONFDIR"/{*.conf,action.d,redb} "$CLICRAFT_CONFIG"; then
+		warn "Could not create default config in %s" "$CLICRAFT_CONFIG"
 	fi
 fi
 
-if [[ -f "$CONFDIR/clicraft.conf" ]]; then
-	. "$CONFDIR/clicraft.conf"
+if [[ -f "$CLICRAFT_CONFIG/clicraft.conf" ]]; then
+	. "$CLICRAFT_CONFIG/clicraft.conf"
 fi
 
 . "$EXECDIR/functions.sh"
