@@ -8,17 +8,45 @@ URL="@URL@"
 prefix="@prefix@"
 exec_prefix="@exec_prefix@"
 BINDIR="@BINDIR@"
-CONFDIR="@CONFDIR@"
 EXECDIR="@EXECDIR@"
 
-# use user config if the right dir exists
-if [[ -d "$XDG_CONFIG_HOME/clicraft" ]]; then
-	CONFDIR="$XDG_CONFIG_HOME/clicraft"
-elif [[ -d "$HOME/.config/clicraft" ]]; then
-	CONFDIR="$HOME/.config/clicraft"
+. "$EXECDIR/bootstrap.sh"
+
+# parse options
+while [[ "$1" == -* ]]; do
+	case "$1" in
+	  --config=*)  CLICRAFT_CONFIG="${1#*=}" ;;
+	  -c|--config) shift; CLICRAFT_CONFIG="$1" ;;
+	  --)          shift; break ;;
+	  *)           err "Unknown option: %s" "$1"; exit 1 ;;
+	esac
+	shift
+done
+
+# find correct config to use
+if [[ -n "$CLICRAFT_CONFIG" ]]; then
+	if [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG" ]]; then
+		CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG"
+	elif [[ ! -d "$CLICRAFT_CONFIG" ]]; then
+		err "Could not find configuration directory: %s" "$CLICRAFT_CONFIG"
+		exit 1
+	fi
+elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}" ]]; then
+	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}"
+elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft" ]]; then
+	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft"
+else
+	CLICRAFT_CONFIG="@CONFDIR@"
 fi
 
-# copy system config to user config if it's empty
+# canonicalize path
+if [[ "$CLICRAFT_CONFIG" != /* ]]; then
+	CLICRAFT_CONFIG="$PWD/${CLICRAFT_CONFIG#./}"
+fi
+export CLICRAFT_CONFIG
+CONFDIR="$CLICRAFT_CONFIG"
+
+# copy system config if current config is empty
 conffiles=( $(shopt -s nullglob; echo "$CONFDIR"/*) )
 if [[ "${#conffiles[@]}" == 0 ]]; then
 	if ! cp -R "@CONFDIR@"/{*.conf,action.d,redb} "$CONFDIR"; then
