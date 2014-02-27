@@ -15,12 +15,13 @@ EXECDIR="@EXECDIR@"
 # parse options
 while [[ "$1" == -* ]]; do
 	case "$1" in
-	  --config=*)  CLICRAFT_CONFIG="${1#*=}" ;;
-	  -c|--config) shift; CLICRAFT_CONFIG="$1" ;;
-	  --help|-h)   set -- help; break ;;
-	  --version)   set -- version; break ;;
-	  --)          shift; break ;;
-	  *)           err "Unknown option: %s" "$1"; set -- help; break ;;
+	  --config=*)   CLICRAFT_CONFIG="${1#*=}" ;;
+	  -c|--config)  shift; CLICRAFT_CONFIG="$1" ;;
+	  -h|--help)    set -- help; break ;;
+	  -V|--version) set -- version; break ;;
+	  -x|--xtrace)  XTRACE+=1; ((XTRACE>1)) && set -x ;;
+	  --)           shift; break ;;
+	  *)            err "Unknown option: %s" "$1"; set -- help; break ;;
 	esac
 	shift
 done
@@ -90,6 +91,10 @@ case "$1" in
 	action help
   ;;
   *)
+	if (( XTRACE )); then
+		set -x
+		unset XTRACE
+	fi
 	action "$@"
   ;;
 esac
