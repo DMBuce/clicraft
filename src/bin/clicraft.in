@@ -17,8 +17,10 @@ while [[ "$1" == -* ]]; do
 	case "$1" in
 	  --config=*)  CLICRAFT_CONFIG="${1#*=}" ;;
 	  -c|--config) shift; CLICRAFT_CONFIG="$1" ;;
+	  --help|-h)   set -- help; break ;;
+	  --version)   set -- version; break ;;
 	  --)          shift; break ;;
-	  *)           err "Unknown option: %s" "$1"; exit 1 ;;
+	  *)           err "Unknown option: %s" "$1"; set -- help; break ;;
 	esac
 	shift
 done
@@ -84,13 +86,6 @@ if ! cd "$SERVER_DIR" 2>/dev/null; then
 fi
 
 case "$1" in
-  "--version")
-	action version "$@"
-  ;;
-  "--help"|"-h")
-	shift
-	action help "$@"
-  ;;
   "")
 	action help
   ;;
