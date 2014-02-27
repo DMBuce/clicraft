@@ -13,17 +13,20 @@ Description
 -----------
 linkman:clicraft[1] provides example action scripts that can be used and
 modified to extend clicraft's functionality. To install or edit one of these
-scripts, simply set your +EDITOR+ variable and use clicraft's edit action. For
-instance:
-
-	EDITOR=nano clicraft edit backup
-
-Alternately, you can install these scripts manually by copying the
+scripts, copy the
 relevant .sh.example script in +$CONFDIR/action.d+ to a file with a .sh
 extension. For example:
 
 	cd $CONFDIR/action.d
 	cp backup.sh.example backup.sh
+
+Alternately, you can symlink to the .sh.example. Using this method, future
+updates to example action scripts will be reflected in the actions that
+clicraft uses, but any customizations you make to the scripts will be lost
+when you update.
+
+	cd $CONFDIR/action.d
+	ln -s backup.sh.example backup.sh
 
 An action script created using either of the two methods above will get
 executed when running +clicraft backup+.
@@ -141,9 +144,8 @@ This action has these linkman:clicraft.conf[5] options:
 	not provided, all files are extracted from 'file.zip'. With no
 	arguments, print a list of files that can be restored from.
 +
-This action is implemented in +$CONFDIR/action.d/backup.sh.example+, and must
-be installed manually. See linkman:clicraft.conf[5] for a description of
-+$CONFDIR+.
+This action is implemented in +$CONFDIR/action.d/backup.sh.example+.
+See linkman:clicraft.conf[5] for a description of +$CONFDIR+.
 
 *sh* [command]::
 	Evaluate 'command' within clicraft's environment. If no 'command' is given,
