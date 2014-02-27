@@ -7,7 +7,7 @@ clicraft - command-line minecraft server wrapper
 
 Synopsis
 --------
-'clicraft' <action> [args]
+'clicraft' [options] <action> [args]
 
 Description
 -----------
@@ -22,6 +22,28 @@ implemented with action scripts, which can be provided by the clicraft package
 or written by the user. For more information on writing action scripts, see
 linkman:clicraft-actions[5]. The actions that ship with a typical clicraft
 install are described below.
+
+Options
+-------
+
+*-c*, *--config*=<config>::
+	Use 'config' as the configuration directory. For other methods of setting
+	this directory, see linkman:clicraft.conf[5].
+
+*-h*, *--help*::
+	Display this help message and exit.
+
+*-V*, *--version*::
+	Output version information and exit.
+
+*-x*, *--xtrace*::
+	Print all bash commands run by 'action' to stdout. This is accomplished by
+	setting bash's +xtrace+ option, and is mainly useful for debugging actions
+	scripts. See linkman:clicraft-actions[5] for more information on action
+	scripts.
++
+If this option is passed multiple times, +xtrace+ is set as soon as the second
+option is encountered, which can be useful for debugging clicraft itself.
 
 Actions
 -------

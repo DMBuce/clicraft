@@ -21,9 +21,9 @@ Usage: $PROG [options] <action> [args]
 
       -h, --help              Display this help message and exit.
 
-      -V, --version           Display the version and exit.
+      -V, --version           Output version information and exit.
 
-      -x, --xtrace            Set bash's xtrace option for debugging.
+      -x, --xtrace            Print all bash commands run by <action>.
 
    To get usage for a particular action, run '$PROG help <action>'. For
    bug reports, use <$BUGREPORT>.
