@@ -24,3 +24,11 @@ err() {
 	printf -- "${mesg}\n" "$@" >&2
 }
 
+shortopts() {
+	local c opts
+	for c in $(fold -w1 <<< "${1#-}"); do
+		opts+=(-$c)
+	done
+	printf -- "${opts[@]}"
+}
+

@@ -20,11 +20,13 @@ while [[ "$1" == -* ]]; do
 	  -h|--help)    set -- help; break ;;
 	  -V|--version) set -- version; break ;;
 	  -x|--xtrace)  XTRACE+=1; ((XTRACE>1)) && set -x ;;
+	  -[^-]*)       opt="$1"; shift; set -- $(shortopts "$opt") "$@"; continue ;;
 	  --)           shift; break ;;
 	  *)            err "Unknown option: %s" "$1"; set -- help; break ;;
 	esac
 	shift
 done
+unset opt
 
 # find correct config to use
 if [[ -n "$CLICRAFT_CONFIG" ]]; then
