@@ -52,13 +52,11 @@ export CLICRAFT_CONFIG
 CONFDIR="$CLICRAFT_CONFIG"
 
 # copy system config if current config is empty
-conffiles=( $(shopt -s nullglob; echo "$CONFDIR"/*) )
-if [[ "${#conffiles[@]}" == 0 ]]; then
+if [[ -z "$(shopt -s nullglob; echo "$CONFDIR"/*)" ]]; then
 	if ! cp -R "@CONFDIR@"/{*.conf,action.d,redb} "$CONFDIR"; then
 		warn "Could not create default config in %s" "$CONFDIR"
 	fi
 fi
-unset conffiles
 
 if [[ -f "$CONFDIR/clicraft.conf" ]]; then
 	. "$CONFDIR/clicraft.conf"
