@@ -23,7 +23,7 @@ example-actions() {
 
 # print list of functions
 fns() {
-	grep -o '[^ =]*()' src/lib/functions.sh | sed 's/()$//'
+	grep -oh '[^ =]*()' src/lib/{bootstrap,functions}.sh | sed 's/()$//'
 }
 
 # print list of options
