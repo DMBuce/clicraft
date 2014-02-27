@@ -7,17 +7,17 @@ clicraft-examples - example clicraft action scripts
 
 Synopsis
 --------
-$CONFDIR/action.d/'action'.sh.example, 'clicraft' <action> [args]
+$CLICRAFT_CONFIG/action.d/'action'.sh.example, 'clicraft' <action> [args]
 
 Description
 -----------
 linkman:clicraft[1] provides example action scripts that can be used and
 modified to extend clicraft's functionality. To install or edit one of these
 scripts, copy the
-relevant .sh.example script in +$CONFDIR/action.d+ to a file with a .sh
+relevant .sh.example script in +$CLICRAFT_CONFIG/action.d+ to a file with a .sh
 extension. For example:
 
-	cd $CONFDIR/action.d
+	cd $CLICRAFT_CONFIG/action.d
 	cp backup.sh.example backup.sh
 
 Alternately, you can symlink to the .sh.example. Using this method, future
@@ -25,13 +25,13 @@ updates to example action scripts will be reflected in the actions that
 clicraft uses, but any customizations you make to the scripts will be lost
 when you update.
 
-	cd $CONFDIR/action.d
+	cd $CLICRAFT_CONFIG/action.d
 	ln -s backup.sh.example backup.sh
 
 An action script created using either of the two methods above will get
 executed when running +clicraft backup+.
 
-For more info on action scripts or for the value of +$CONFDIR+, see
+For more info on action scripts or for the value of +$CLICRAFT_CONFIG+, see
 linkman:clicraft.conf[5].
 
 Actions
@@ -125,27 +125,27 @@ This action has these linkman:clicraft.conf[5] options:
 	The file that defines what blocks to preserve when pruning the overworld.
 	Each line in the file should start with a block id followed by a
 	whitespace character. Lines not following this format are ignored.
-	Defaults to +"$CONFDIR/overworld-blocks.conf"+
+	Defaults to +"$CLICRAFT_CONFIG/overworld-blocks.conf"+
 +
 *NETHER_WHITELIST*="/path/to/file":::
 	The file that defines what blocks to preserve when pruning the nether.
 	Each line in the file should start with a block id followed by a
 	whitespace character. Lines not following this format are ignored.
-	Defaults to +"$CONFDIR/nether-blocks.conf"+
+	Defaults to +"$CLICRAFT_CONFIG/nether-blocks.conf"+
 +
 *END_WHITELIST*="/path/to/file":::
 	The file that defines what blocks to preserve when pruning the end.
 	Each line in the file should start with a block id followed by a
 	whitespace character. Lines not following this format are ignored.
-	Defaults to +"$CONFDIR/end-blocks.conf"+
+	Defaults to +"$CLICRAFT_CONFIG/end-blocks.conf"+
 
 *restore* [file.zip] [files]::
 	Restores world data by extracting 'files' from 'file.zip'. If 'files' is
 	not provided, all files are extracted from 'file.zip'. With no
 	arguments, print a list of files that can be restored from.
 +
-This action is implemented in +$CONFDIR/action.d/backup.sh.example+.
-See linkman:clicraft.conf[5] for a description of +$CONFDIR+.
+This action is implemented in +$CLICRAFT_CONFIG/action.d/backup.sh.example+.
+See linkman:clicraft.conf[5] for a description of +$CLICRAFT_CONFIG+.
 
 *sh* [command]::
 	Evaluate 'command' within clicraft's environment. If no 'command' is given,

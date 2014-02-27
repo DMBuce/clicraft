@@ -7,20 +7,25 @@ clicraft.conf - clicraft server wrapper configuration file
 
 Synopsis
 --------
-$CONFDIR/clicraft.conf
+$CLICRAFT_CONFIG/clicraft.conf
 
 Description
 -----------
-Clicraft's main configuration file is +clicraft.conf+, which is stored in one
-of three directories. In order of preference:
+Clicraft's main configuration file is +clicraft.conf+, which is stored in a
+directory referred to as +$CLICRAFT_CONFIG+. This directory can be specified
+through several different methods. In order of preference:
 
-* $XDG_CONFIG_HOME/clicraft
-* ~/.config/clicraft
+* The argument to the +--config+ command line option
+* The +$CLICRAFT_CONFIG+ environment variable
+* +$XDG_CONFIG_HOME/foo+, where 'foo' is how clicraft was invoked
+* +$XDG_CONFIG_HOME/clicraft+
 * {CONFDIR}
 
-Clicraft searches these directories and uses the first one it finds. That
-directory is referred to as +$CONFDIR+. If +$CONFDIR+ is empty, clicraft
-populates it with default config files from {CONFDIR}.
+If +$XDG_CONFIG_HOME+ is not set in your environment, clicraft uses
++~/.config+ instead. Clicraft searches the directories above and uses the
+first one it finds for +$CLICRAFT_CONFIG+. If +$CLICRAFT_CONFIG+ is empty and
+was not given by the +--config+ option or +$CLICRAFT_CONFIG+ environment
+variable, clicraft populates it with default config files from {CONFDIR}.
 
 The format for +clicraft.conf+ is bash, so configuration options take the form
 +OPTION="value"+ (with no whitespace between the equals sign (`=`) ).
@@ -31,9 +36,9 @@ on. For example, if you set `SERVER_JAR=$SERVER_DIR/custom_server.jar` without
 setting +SERVER_DIR+ first, clicraft will look for +/custom_server.jar+, which
 is probably not what you want.
 
-An example default file is located at +{CONFDIR}/clicraft-defaults.conf+. It
+An example default file is located at +$CLICRAFT_CONFIG/clicraft-defaults.conf+. It
 is fairly well-commented, so it may be easiest to simply copy it to
-+$CONFDIR/clicraft.conf+ and follow the directions inside for customization.
++$CLICRAFT_CONFIG/clicraft.conf+ and follow the directions inside for customization.
 
 Options
 -------
@@ -181,7 +186,7 @@ In addition, a regular expression which begins with two start-of-line anchors
 be replaced with +^'timestamp'+, where 'timestamp' is the value of the
 timestamp database entry.
 +
-*Default*: +"$CONFDIR/redb/$SERVER_TYPE.tab"+
+*Default*: +"$CLICRAFT_CONFIG/redb/$SERVER_TYPE.tab"+
 
 
 See Also

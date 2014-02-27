@@ -9,7 +9,7 @@ clicraft-actions - clicraft shell hooks a.k.a "action scripts"
 Synopsis
 --------
 
-$CONFDIR/action.d/'action'.sh, {EXECDIR}/action.d/'action'.sh
+$CLICRAFT_CONFIG/action.d/'action'.sh, {EXECDIR}/action.d/'action'.sh
 
 Description
 -----------
@@ -25,8 +25,8 @@ An action script created in this way will get executed when running
 +clicraft foo ['args']+.
 
 Alternately, you can accomplish the same thing by writing a script with
-filename +foo.sh+ and placing it in +$CONFDIR/action.d+. See
-linkman:clicraft.conf[5] for a description of +$CONFDIR+.
+filename +foo.sh+ and placing it in +$CLICRAFT_CONFIG/action.d+. See
+linkman:clicraft.conf[5] for a description of +$CLICRAFT_CONFIG+.
 
 There are also action
 scripts in +$EXECDIR/action.d+, but these are system action scripts and may be
@@ -80,11 +80,14 @@ occurs if they are not set in clicraft.conf.
 In addition, the +action()+ function should be preferred over calling clicraft
 directly (e.g. +action foo+ over +$BINDIR/clicraft foo+).
 
-*CONFDIR*::
+*CLICRAFT_CONFIG*::
 	The directory where clicraft stores its configuration files. This is where
 	linkman:clicraft.conf[5] is located. User action scripts are located in
-	this directory under +$CONFDIR/action.d+. See linkman:clicraft.conf[5] for
-	a description of how the value of +$CONFDIR+ is determined.
+	this directory under +$CLICRAFT_CONFIG/action.d+. See linkman:clicraft.conf[5] for
+	a description of how the value of +$CLICRAFT_CONFIG+ is determined.
+
+*CONFDIR*::
+	The default value for +$CLICRAFT_CONFIG+.
 
 *EXECDIR*={EXECDIR}::
 	The directory for scripts used internally by clicraft. System action
@@ -174,34 +177,30 @@ Using this function is similar to running +. 'action'.sh ['args']+.
 	If a regex for 'key' does not exist, print an error message to stderr and
 	return nonzero.
 +
-The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
-option.
+The location of the regex database is configured by the +REDB+ option in
+linkman:clicraft.conf[5].
 
 *redb_insert* <key> <value>::
 	Insert a new 'key' and 'value' into the regex database. If a regex for
 	'key' already exists, print an error message to stderr and return nonzero.
 +
-The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
-option.
+The location of the regex database is configured by the +REDB+ option in
+linkman:clicraft.conf[5].
 
 *redb_update* <key> <value>::
 	Change the value for 'key' to 'value' in the regex database. If a regex
 	for 'key' does not exist, print an error message to stderr and return
 	nonzero.
 +
-The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
-option.
+The location of the regex database is configured by the +REDB+ option in
+linkman:clicraft.conf[5].
 
 *redb_delete* <key>::
 	Delete the regex for 'key' from the regex database. If a regex for 'key'
 	does not exist, print an error message to stderr and return nonzero.
 +
-The regex database is located at +$CONFDIR/redb/$SERVER_TYPE.tab+. See
-linkman:clicraft.conf[5] for a description of +$CONFDIR+ or the +SERVER_TYPE+
-option.
+The location of the regex database is configured by the +REDB+ option in
+linkman:clicraft.conf[5].
 
 *save-off*::
 	If another process holds a "save" lock, do nothing and return nonzero.
@@ -339,7 +338,7 @@ line.
 Examples
 --------
 
-Example action scripts can be found in +$CONFDIR/action.d/+ with a
+Example action scripts can be found in +$CLICRAFT_CONFIG/action.d/+ with a
 +.sh.example+ file extension. They can be viewed, edited and installed with
 `clicraft edit`. Their usage is documented in linkman:clicraft-examples[1],
 except for action.sh.example and action-override.sh.example, which are used
