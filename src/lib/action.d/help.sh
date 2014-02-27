@@ -25,7 +25,7 @@ Usage: $PROG [options] <action> [args]
 
       -x, --xtrace            Set bash's xtrace option for debugging.
 
-   To get usage for a particular action, run \`$PROG help <action>'. For
+   To get usage for a particular action, run '$PROG help <action>'. For
    bug reports, use <$BUGREPORT>.
 
 EOF

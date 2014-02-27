@@ -5,7 +5,7 @@
 #
 # Usage: clicraft $ACTION
 #
-#    Overrides the default `clicraft $ACTION' with custom functionality.
+#    Overrides the default 'clicraft $ACTION' with custom functionality.
 #
 
 # TODO: stuff before system "$ACTION" action script

@@ -301,7 +301,7 @@ serverprop() {
 	local VALUE="${NAMEVAL#$PROP=}"
 
 	if [[ "$VALUE" == "" ]]; then
-		warn "Property \`%s' not defined in %s" "$PROP" "$SERVER_DIR/server.properties"
+		warn "Property '%s' not defined in %s" "$PROP" "$SERVER_DIR/server.properties"
 		return 1
 	fi
 
