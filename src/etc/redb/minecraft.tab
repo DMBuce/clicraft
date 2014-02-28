@@ -1,23 +1,54 @@
-tell ^^\[Server thread\/INFO\]: (You whisper to .*|That player cannot be found)$
-save-off ^^\[Server thread\/INFO\]: Turned off world auto-saving$
-save-on ^^\[Server thread\/INFO\]: Turned on world auto-saving$
-save-all ^^\[Server thread\/INFO\]: Saved the world$
-list ^^\[Server thread\/INFO\]: ([^/:]*)$
-kick ^^\[Server thread\/INFO\]: (Kicked [0-9a-zA-Z_]* from the game|That player cannot be found)$
-kick/success ^^\[Server thread\/INFO\]: Kicked [0-9a-zA-Z_]* from the game$
-ban ^^\[Server thread\/INFO\]: Banned player 
-ban-ip ^^\[Server thread\/INFO\]: (Banned IP address .*|You have entered an invalid IP address or a player that is not online)$
-pardon ^^\[Server thread\/INFO\]: Unbanned player 
-pardon-ip ^^\[Server thread\/INFO\]: (Unbanned IP address .*|You have entered an invalid IP address)$
-op ^^\[Server thread\/INFO\]: Opped 
-deop ^^\[Server thread\/INFO\]: De-opped 
-tp ^^\[Server thread\/INFO\]: (Teleported [0-9a-zA-Z_]* to [0-9a-zA-Z_,]*|That player cannot be found|You must specify which player you wish to perform this action on\.)$
-give ^^\[Server thread\/INFO\]: (Given .*|That player cannot be found|'.*' is not a valid number)$
-time ^^\[Server thread\/INFO\]: ('.*' is not a valid number|Added -?[0-9]* to the time|Set the time to -?[0-9]*)$
-toggledownfall ^^\[Server thread\/INFO\]: Toggled downfall$
-xp ^^\[Server thread\/INFO\]: (Given 10 experience to .*|You must specify which player you wish to perform this action on\.|'.*' is not a valid number|That player cannot be found)$
-banlist ^^\[Server thread\/INFO\]:[^:]*$
-whitelist ^^\[Server thread\/INFO\]: ((Added|Removed) .* (to|from) the whitelist|Turned (on|off) the whitelist|Reloaded the whitelist)$
-start ^^\[Server thread\/INFO\]: Done \([0-9.]+s\)! For help, type "help" or "\?"$
+achievement ^^\[Server thread\/INFO\]: (\/achievement give <stat_name> \[player\]|Unknown achievement or statistic '.*'|Successfully given all achievements to .*|Successfully given .* the stat .*|Player .* does not have the stat .*)
+ban-ip ^^\[Server thread\/INFO\]: (You have entered an invalid IP address or a player that is not online|Banned IP address .*|Banned IP address .* belonging to .*|\/ban-ip <address\|name> \[reason \.\.\.\])
+banlist ^^\[Server thread\/INFO\]: ([^:]*|\/banlist [ips|players])$
+ban ^^\[Server thread\/INFO\]: (Banned player .*|\/ban <name> \[reason \.\.\.\])
+clear ^^\[Server thread\/INFO\]: (\/clear <player> \[item\] \[data\]|Cleared the inventory of .*, removing [0-9]* items|Could not clear the inventory of .*, no items to remove)
+debug ^^\[Server thread\/INFO\]: (Started debug profiling|Stopped debug profiling after [0-9.]* seconds \([0-9]* ticks\)|Can't stop profiling when we haven't started yet!|\/debug <start\|stop>)
+defaultgamemode ^^\[Server thread\/INFO\]: (\/defaultgamemode <mode>|The world's default game mode is now .*)
+deop ^^\[Server thread\/INFO\]: (De-opped .*|\/deop <player>)
+difficulty ^^\[Server thread\/INFO\]: (\/difficulty <new difficulty>|Set game difficulty to .*)
+effect ^^\[Server thread\/INFO\]: (\/effect <player> <effect> \[seconds\] \[amplifier\]|There is no such mob effect with ID [0-9]*|Given .* \(ID [0-9]*\) \* [0-9]* to .* for [0-9]* seconds|Took .* from .*|Took all effects from .*|Couldn't take .* from .* as they do not have the effect|Couldn't take any effects from .* as they do not have any)
+enchant ^^\[Server thread\/INFO\]: (\/enchant <player> <enchantment ID> \[level\]|There is no such enchantment with ID [0-9]*|The target doesn't hold an item|The selected enchantment can't be added to the target item|.* can't be combined with .*|Enchanting succeeded)
+gamemode ^^\[Server thread\/INFO\]: (Set own game mode to .*|Set .*'s game mode to .*|\/gamemode <mode> \[player\])
+gamerule ^^\[Server thread\/INFO\]: (\/gamerule <rule name> <value> OR \/gamerule <rule name>|Game rule has been updated|No game rule called '.*' is available)
+give ^^\[Server thread\/INFO\]: (\/give <player> <item> \[amount\] \[data\] \[dataTag\]|There is no such item with ID [0-9]*|Given .* \* [0-9]* to .*|Data tag parsing failed: .*)
+help ^^\[Server thread\/INFO\]: (--- Showing help page [0-9]* of [0-9]* \(\/help <page>\) ---|Tip: Use the <tab> key while typing a command to auto-complete the command or its arguments|\/help \[page\|command name\])
 ipaddr [0-9]{1,3}(\.[0-9]{1,3}){3}
+kick ^^\[Server thread\/INFO\]: (Kicked .* from the game|Kicked .* from the game: '.*'|\/kick <player> \[reason \.\.\.\])
+kick/success ^^\[Server thread\/INFO\]: Kicked [0-9a-zA-Z_]* from the game
+kill ^^\[Server thread\/INFO\]: (Ouch! That looked like it hurt)
+list ^^\[Server thread\/INFO\]: ([^/:]*)$
+me ^^\[Server thread\/INFO\]: (\/me <action \.\.\.>)
+msg ^^\[Server thread\/INFO\]: (\/tell <player> <private message \.\.\.>|You can't send a private message to yourself!|You whisper to .*: .*|.* whispers to you: .*)
+op ^^\[Server thread\/INFO\]: (Opped .*|\/op <player>)
+pardon-ip ^^\[Server thread\/INFO\]: (You have entered an invalid IP address|Unbanned IP address .*|\/pardon-ip <address>)
+pardon ^^\[Server thread\/INFO\]: (Unbanned player .*|\/pardon <name>)
+playsound ^^\[Server thread\/INFO\]: (\/playsound <sound> <player> \[x\] \[y\] \[z\] \[volume\] \[pitch\] \[minimumVolume\]|Played sound '.*' to .*|Player .* is too far away to hear the sound)
+publish ^^\[Server thread\/INFO\]: (Local game hosted on port .*|Unable to host local game)
+save-all ^^\[Server thread\/INFO\]: (Saved the world|Saving failed: .*)
+save-off ^^\[Server thread\/INFO\]: (Saving is already turned off\.|Turned off world auto-saving)
+save-on ^^\[Server thread\/INFO\]: (Saving is already turned on\.|Turned on world auto-saving)
+say ^^\[Server thread\/INFO\]: (\/say <message \.\.\.>)
+scoreboard ^^\[Server thread\/INFO\]: (\/scoreboard <objectives\|players\|teams>|No team was found by the name '.*'|No objective was found by the name '.*'|The objective '.*' is read-only and cannot be set|\/scoreboard objectives <list\|add\|remove\|setdisplay>|\/scoreboard objectives setdisplay <slot> \[objective\]|No such display slot '.*'|Cleared objective display slot '.*'|Set the display objective in slot '.*' to '.*'|\/scoreboard objectives add <name> <criteriaType> \[display name \.\.\.\]|Invalid objective criteria type '.*'|An objective with the name '.*' already exists|The name '.*' is too long for an objective, it can be at most [0-9]* characters long|The display name '.*' is too long for an objective, it can be at most [0-9]* characters long|Added new objective '.*' successfully|\/scoreboard objectives remove <name>|Removed objective '.*' successfully|Showing [0-9]* objective\(s\) on scoreboard:|- .*: displays as '.*' and is type '.*'|There are no objectives on the scoreboard|\/scoreboard players <set\|add\|remove\|reset\|list>|Set score of .* for player .* to [0-9]*|\/scoreboard players set <player> <objective> <score>|\/scoreboard players add <player> <objective> <count>|\/scoreboard players remove <player> <objective> <count>|\/scoreboard players reset <player>|Reset all scores of player .*|\/scoreboard players list \[name\]|Showing [0-9]* tracked players on the scoreboard:|There are no tracked players on the scoreboard|Showing [0-9]* tracked objective\(s\) for .*:|- .*: [0-9]* \(.*\)|Player .* has no scores recorded|\/scoreboard teams <list\|add\|remove\|empty\|join\|leave\|option>|\/scoreboard teams add <name> \[display name \.\.\.\]|A team with the name '.*' already exists|The name '.*' is too long for a team, it can be at most [0-9]* characters long|The display name '.*' is too long for a team, it can be at most [0-9]* characters long|Added new team '.*' successfully|\/scoreboard teams list \[name\]|Showing [0-9]* teams on the scoreboard:|- .*: '.*' has [0-9]* players|There are no teams registered on the scoreboard|Showing [0-9]* player\(s\) in team .*:|- .*: [0-9]* \(.*\)|Team .* has no players|\/scoreboard teams empty|Team .* is already empty, cannot remove nonexistant players|Removed all [0-9]* player\(s\) from team .*|\/scoreboard teams remove <name>|Removed team .*|\/scoreboard teams join <team> \[player\]|Added [0-9]* player\(s\) to team .*: .*|Could not add [0-9]* player\(s\) to team .*: .*|\/scoreboard teams leave \[player\]|Removed [0-9]* player\(s\) from their teams: .*|Could not remove [0-9]* player\(s\) from their teams: .*|You are not in a team|\/scoreboard teams option <team> <friendlyfire\|color\|seeFriendlyInvisibles> <value>|Valid values for option .* are: .*|Set option .* for team .* to .*)
+seed ^^\[Server thread\/INFO\]: (Seed: .*)
+? ^^\[Server thread\/INFO\]: (--- Showing help page [0-9]* of [0-9]* \(\/help <page>\) ---|Tip: Use the <tab> key while typing a command to auto-complete the command or its arguments|\/help \[page\|command name\])
+setblock ^^\[Server thread\/INFO\]: (\/setblock <x> <y> <z> <TileName> \[dataValue\] \[oldBlockHandling\] \[dataTag\]|Block placed|Unable to place block|Data tag parsing failed: .*|Cannot place block outside of the world|There is no such block with ID\/name .*|The block couldn't be placed)
+setidletimeout ^^\[Server thread\/INFO\]: (\/setidletimeout <Minutes until kick>|Successfully set the idle timeout to [0-9]* minutes\.)
+setworldspawn ^^\[Server thread\/INFO\]: (\/setworldspawn OR \/setworldspawn <x> <y> <z>|Set the world spawn point to \([0-9]*, [0-9]*, [0-9]*\))
+spawnpoint ^^\[Server thread\/INFO\]: (\/spawnpoint OR \/spawnpoint <player> OR \/spawnpoint <player> <x> <y> <z>|Set .*'s spawn point to \([0-9]*, [0-9]*, [0-9]*\))
+spreadplayers ^^\[Server thread\/INFO\]: (\/spreadplayers <x> <z> <spreadDistance> <maxRange> <respectTeams true\|false> <player \.\.\.>|Spreading .* teams .* blocks around .*,.* \(min .* blocks apart\)|Spreading .* players .* blocks around .*,.* \(min .* blocks apart\)|Successfully spread .* teams around .*,.*|Successfully spread .* players around .*,.*|\(Average distance between teams is .* blocks apart after .* iterations\)|\(Average distance between players is .* blocks apart after .* iterations\)|Could not spread .* teams around .*,.* \(too many players for space - try using spread of at most .*\)|Could not spread .* players around .*,.* \(too many players for space - try using spread of at most .*\))
+start ^^\[Server thread\/INFO\]: Done \([0-9.]+s\)! For help, type "help" or "\?"$
+stop ^^\[Server thread\/INFO\]: (Stopping the server)
+summon ^^\[Server thread\/INFO\]: (\/summon <EntityName> \[x\] \[y\] \[z\] \[dataTag\]|Object successfully summoned|Unable to summon object|Data tag parsing failed: .*|Cannot summon the object out of the world)
+tellraw ^^\[Server thread\/INFO\]: (\/tellraw <player> <raw json message>|Invalid json: .*)
+tell ^^\[Server thread\/INFO\]: (\/tell <player> <private message \.\.\.>|You can't send a private message to yourself!|You whisper to .*: .*|.* whispers to you: .*)
+testforblock ^^\[Server thread\/INFO\]: (\/testforblock <x> <y> <z> <TileName> \[dataValue\] \[dataTag\]|The block at [0-9]*,[0-9]*,[0-9]* is .* \(expected: .*\)\.|The block at [0-9]*,[0-9]*,[0-9]* had the data value of .* \(expected: .*\)\.|The block at [0-9]*,[0-9]*,[0-9]* did not have the required NBT keys\.|The block at [0-9]*,[0-9]*,[0-9]* is not a tile entity and cannot support tag matching\.|Successfully found the block at [0-9]*,[0-9]*,[0-9]*\.|Cannot test for block outside of the world)
+testfor ^^\[Server thread\/INFO\]: (\/testfor <player>|\/testfor is only usable by commandblocks with analog output)
+time ^^\[Server thread\/INFO\]: (\/time <set\|add> <value>|Added [0-9]* to the time|Set the time to [0-9]*)
 timestamp \[[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\] 
+toggledownfall ^^\[Server thread\/INFO\]: (Toggled downfall)
+tp ^^\[Server thread\/INFO\]: (Teleported .* to .*|Teleported .* to [0-9.]*,[0-9.]*,[0-9.]*|\/tp \[target player\] <destination player> OR \/tp \[target player\] <x> <y> <z>|Unable to teleport because players are not in the same dimension)
+weather ^^\[Server thread\/INFO\]: (\/weather <clear\|rain\|thunder> \[duration in seconds\]|Changing to clear weather|Changing to rainy weather|Changing to rain and thunder)
+whitelist ^^\[Server thread\/INFO\]: ([^:]*|Turned on the whitelist|Turned off the whitelist|Reloaded the whitelist|Added .* to the whitelist|\/whitelist add <player>|Removed .* from the whitelist|\/whitelist remove <player>|\/whitelist <on\|off\|list\|add\|remove\|reload>)
+w ^^\[Server thread\/INFO\]: (\/tell <player> <private message \.\.\.>|You can't send a private message to yourself!|You whisper to .*: .*|.* whispers to you: .*)
+xp ^^\[Server thread\/INFO\]: (Cannot give player negative experience points|Given [0-9]* experience to .*|Given [0-9]* levels to .*|Taken [0-9]* levels from .*|\/xp <amount> \[player\] OR \/xp <amount>L \[player\])
