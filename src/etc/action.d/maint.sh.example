@@ -1,0 +1,105 @@
+#!bash
+#
+# Usage: clicraft maint
+#
+#    Do clicraft developer things. Not useful for most users.
+#
+
+langfile=assets/minecraft/lang/en_US.lang
+
+if [[ ! -f "$SERVER_JAR" ]]; then
+	action dl
+fi
+
+jar xf "$SERVER_JAR" "$langfile"
+
+declare -A cmds
+
+commands() {
+	sed -nr '/^commands\..*=\// {
+		s|^commands\.([^.=]*)[^=]*=/([^ ]*).*|\2 \1|
+		p
+	}' "$langfile" | sort -u
+}
+
+while read cmd key; do
+	cmds[$cmd]=$key
+done < <(commands)
+
+{
+
+# print non-cmd regexes
+echo 'kick/success ^^\[Server thread\/INFO\]: Kicked [0-9a-zA-Z_]* from the game
+start ^^\[Server thread\/INFO\]: Done \([0-9.]+s\)! For help, type "help" or "\?"$
+ipaddr [0-9]{1,3}(\.[0-9]{1,3}){3}
+timestamp \[[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\] '
+
+for cmd in ${!cmds[@]}; do
+	echo -n "$cmd ^^\\[Server thread\\/INFO\\]: ("
+	sed -nr '
+	# massage data before "real" processing
+
+	# re-label things for the appropriate commands
+	s/save\.enabled/save-on/;
+	s/save\.disabled/save-off/;
+
+	# remove output strings that are always followed by more output
+	/Saving\.\.\.$/ d
+
+	# format remaining data
+	/^commands\.'"${cmds[$cmd]}"'[.=]/ {
+		s|^[^=]*=||
+
+		# escape special chars from the shell
+		#s|["$]|\\&|g
+
+		# escape special chars from regex engine
+		s/[][()|/?.*+]/\\&/g
+
+		# convert dos to unix
+		s/'"$(echo -e '\r')"'//
+
+		# replace the following formatting sequences
+		#     %1$d
+		#     %1$s
+		#     %2$d
+		#     %\.2f
+		#     %2$s
+		#     %3$d
+		#     %3$s
+		#     %4$s
+		#     %5$d
+		#     %d
+		#     %s
+		s|%([0-9]\$)?d|[0-9]*|g
+		s|%([0-9]\$)?s|.*|g
+		s|%(\\\.[0-9])?f|[0-9.]*|g
+
+		# remove usage lines with no args
+		/^\\\/'"$cmd"'$/ d
+		## insert "Usage: " before command usage lines
+		#/^\\\/'"$cmd"'/ s/^/Usage: &/
+
+		p
+	}' "$langfile" | tr '\n' '|' | sed 's/|$/)/'
+	echo
+done | sed -r '
+	# post-processing
+
+	# aliases
+	/^help / {
+		p; s/help/?/
+	}
+	/^tell / {
+		p; s/tell/msg/
+		p; s/msg/w/
+	}
+
+	# last output line of these commands arent in langfile
+	/^list / s|: .*|: ([^/:]*)$|
+	/^banlist / s/: .*/: ([^:]*|\\\/banlist \[ips\|players\])$/
+	/^whitelist / s/There are [^|]* whitelisted players:/[^:]*/
+'
+
+} | sort
+
