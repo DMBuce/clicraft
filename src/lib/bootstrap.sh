@@ -25,10 +25,9 @@ err() {
 }
 
 shortopts() {
-	local c opts
+	local c
 	for c in $(fold -w1 <<< "${1#-}"); do
-		opts+=(-$c)
+		printf -- "-$c "
 	done
-	printf -- "${opts[@]}"
 }
 
