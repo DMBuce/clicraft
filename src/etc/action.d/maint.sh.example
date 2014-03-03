@@ -29,8 +29,8 @@ done < <(commands)
 {
 
 # print non-cmd regexes
-echo 'kick/success ^^\[Server thread\/INFO\]: Kicked [0-9a-zA-Z_]* from the game
-start ^^\[Server thread\/INFO\]: Done \([0-9.]+s\)! For help, type "help" or "\?"$
+echo 'kick/success ^^\[Server thread\/INFO\]: (Kicked [0-9a-zA-Z_]* from the game)
+start ^^\[Server thread\/INFO\]: (Done \([0-9.]+s\)! For help, type "help" or "\?")$
 ipaddr [0-9]{1,3}(\.[0-9]{1,3}){3}
 timestamp \[[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\] '
 
@@ -88,6 +88,7 @@ done | sed -r '
 
 	# aliases
 	/^help / {
+		s/.*/help 8/
 		p; s/help/?/
 	}
 	/^tell / {
@@ -97,8 +98,8 @@ done | sed -r '
 
 	# last output line of these commands arent in langfile
 	/^list / s|: .*|: ([^/:]*)$|
-	/^banlist / s/: .*/: ([^:]*|\\\/banlist \[ips\|players\])$/
-	/^whitelist / s/There are [^|]* whitelisted players:/[^:]*/
+	/^banlist / s/There are [^|]*\|[^|]*/[^:]*$/
+	/^whitelist / s/There are [^|]* whitelisted players:/[^:]*$/
 '
 
 } | sort
