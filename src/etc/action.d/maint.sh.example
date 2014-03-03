@@ -57,7 +57,7 @@ for cmd in ${!cmds[@]}; do
 		s/[][()|/?.*+]/\\&/g
 
 		# convert dos to unix
-		s/'"$(echo -e '\r')"'//
+		s/'$'\r''//
 
 		# replace the following formatting sequences
 		#     %1$d
