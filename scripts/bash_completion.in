@@ -19,27 +19,50 @@ _clicraft_help() {
 
 _clicraft() {
 	local prefix exec_prefix CONFDIR EXECDIR
-	prefix=@prefix@
-	exec_prefix=@exec_prefix@
-	CONFDIR="@CONFDIR@"
+	prefix="@prefix@"
+	exec_prefix="@exec_prefix@"
 	EXECDIR="@EXECDIR@"
+	CONFDIR="@CONFDIR@"
 
-	# use user config if the right dir exists
-	if [[ -d "$XDG_CONFIG_HOME/clicraft" ]]; then
-		CONFDIR="$XDG_CONFIG_HOME/clicraft"
-	elif [[ -d "$HOME/.config/clicraft" ]]; then
-		CONFDIR="$HOME/.config/clicraft"
+	. "$EXECDIR/bootstrap.sh"
+
+	# find correct config to use
+	if [[ -n "$CLICRAFT_CONFIG" && -d "$CLICRAFT_CONFIG" ]]; then
+		if [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG" ]]; then
+			CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG"
+		fi
+	elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}" ]]; then
+		CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}"
+	elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft" ]]; then
+		CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft"
+	else
+		CLICRAFT_CONFIG="$CONFDIR"
 	fi
 
-	local SERVER_DIR SERVER_NAME SERVER_JAR SERVER_URL START_COMMAND DOWNLOAD_COMMAND
-	. "$EXECDIR/defaults.sh"
+	# use system config if current config is empty
+	if [[ -z "$(shopt -s nullglob; echo "$CLICRAFT_CONFIG"/*)" ]]; then
+		CLICRAFT_CONFIG="$CONFDIR"
+	fi
+
+	# canonicalize path
+	if [[ "$CLICRAFT_CONFIG" != /* ]]; then
+		CLICRAFT_CONFIG="$PWD/${CLICRAFT_CONFIG#./}"
+	fi
+
+	local CMD_LSTRIP CMD_TIMEOUT DOWNLOAD_COMMAND MULTIPLEXER REDB \
+		SERVER_DIR SERVER_JAR SERVER_LOG SERVER_NAME SERVER_TYPE SERVER_URL \
+		SERVER_VERSION START_COMMAND START_TIMEOUT STOP_CMD STOP_TIMEOUT \
+		TIMEOUT
+	if [[ -f "$CLICRAFT_CONFIG/clicraft.conf" ]]; then
+		. "$CLICRAFT_CONFIG/clicraft.conf"
+	fi
+
 	. "$EXECDIR/functions.sh"
+	. "$EXECDIR/defaults.sh"
+	. "$EXECDIR/validate.sh"
+	. "$EXECDIR/$MULTIPLEXER.sh"
 
-	if [[ -f "$CONFDIR/clicraft.conf" ]]; then
-	    . "$CONFDIR/clicraft.conf"
-	fi
-
-	local cur prev
+	local cur prev action
 	COMPREPLY=()
 	cur="${COMP_WORDS[COMP_CWORD]}"
 	prev="${COMP_WORDS[COMP_CWORD-1]}"
