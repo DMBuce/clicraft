@@ -95,6 +95,12 @@ done | sed -r '
 		p; s/tell/msg/
 		p; s/msg/w/
 	}
+	/^me / {
+		s/\(/&\\* Server .*|/
+	}
+	/^say / {
+		s/\(/&\\[Server\\] .*|/
+	}
 
 	# last output line of these commands arent in langfile
 	/^list / s|: .*|: ([^/:]*)$|
