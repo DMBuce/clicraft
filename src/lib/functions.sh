@@ -436,7 +436,7 @@ serverlog() {
 	else
 		# print server log to stdout until we see CONDITION in server log
 		tail -Fn0 --pid "$TIMERPID" "$SERVER_LOG" 2>/dev/null | {
-			sed -rn "1,/$CONDITION/ p; /$CONDITION/ q"
+			sed -r "/$CONDITION/ q"
 			kill "$TIMERPID" 2>/dev/null
 		} &
 	fi
