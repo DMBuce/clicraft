@@ -27,7 +27,7 @@ _clicraft() {
 	. "$EXECDIR/bootstrap.sh"
 
 	# find correct config to use
-	if [[ -n "$CLICRAFT_CONFIG" && -d "$CLICRAFT_CONFIG" ]]; then
+	if [[ -n "$CLICRAFT_CONFIG" ]]; then
 		if [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG" ]]; then
 			CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG"
 		fi
