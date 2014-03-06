@@ -20,7 +20,7 @@ The 'action' is an action to perform on the server, such as starting it,
 stopping it, or sending a command to the server console. Actions are
 implemented with action scripts, which can be provided by the clicraft package
 or written by the user. For more information on writing action scripts, see
-linkman:clicraft-actions[5]. The actions that ship with a typical clicraft
+linkman:clicraft-actions[5]. The actions that ship with a default clicraft
 install are described below.
 
 Options
@@ -37,7 +37,8 @@ Options
 	Output version information and exit.
 
 *-x*, *--xtrace*::
-	Print all bash commands run by 'action' to stdout. This is accomplished by
+	Print all expanded bash commands run by 'action' to stdout. This is
+	accomplished by
 	setting bash's +xtrace+ option, and is mainly useful for debugging actions
 	scripts. See linkman:clicraft-actions[5] for more information on action
 	scripts.
@@ -57,7 +58,7 @@ Actions
 +
 With +-v+ or +--verbose+, print +SERVER_LOG+ to stdout. If clicraft recognizes
 the command, it will attempt to print until the command finishes. Otherwise,
-it will print for 2 seconds.
+it will print for +CMD_TIMEOUT+ seconds.
 +
 With +-q+ or +--quiet+, suppress +-v+ output.
 +
@@ -89,7 +90,7 @@ For information regarding `SERVER_VERSION`, `SERVER_URL`, `SERVER_JAR`, and
 *edit* [file|action]::
 	Edit 'file' in the server directory.
 +
-If <file> does not exist and has a .dat extension, and if linkman:vinbt[1]
+If 'file' does not exist and has a .dat extension, and if linkman:vinbt[1]
 is installed,
 edit the first file of that name found anywhere within the world directory
 using vinbt.
@@ -99,8 +100,8 @@ edit the action script for 'action' instead. When editing a new action or
 overriding a system action, clicraft will create a new user action using one
 of these templates:
 +
-* $CLICRAFT_CONFIG/action.d/action.sh.example
-* $CLICRAFT_CONFIG/action.d/action-override.sh.example
+* +$CLICRAFT_CONFIG/action.d/action.sh.example+
+* +$CLICRAFT_CONFIG/action.d/action-override.sh.example+
 
 +
 See linkman:clicraft.conf[5] for a description of +$CLICRAFT_CONFIG+.

@@ -7,12 +7,12 @@ clicraft-examples - example clicraft action scripts
 
 Synopsis
 --------
-$CLICRAFT_CONFIG/action.d/'action'.sh.example, 'clicraft' <action> [args]
+'clicraft' <action> [args]
 
 Description
 -----------
 linkman:clicraft[1] provides example action scripts that can be used and
-modified to extend clicraft's functionality. To install or edit one of these
+modified to extend clicraft's functionality. To install one of these
 scripts, copy the
 relevant .sh.example script in +$CLICRAFT_CONFIG/action.d+ to a file with a .sh
 extension. For example:

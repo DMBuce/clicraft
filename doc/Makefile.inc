@@ -27,6 +27,7 @@ UNINSTALL := $(UNINSTALL) \
 ASCIIDOC_OPTS=-f doc/asciidoc.conf \
 	-a CONFDIR=$(CONFDIR) \
 	-a EXECDIR=$(EXECDIR) \
+	-a BINDIR=$(BINDIR) \
 	-a SERVER_DIR=$(SERVER_DIR) \
 	-a BUGREPORT=$(BUGREPORT) \
 	-a URL=$(URL) \
