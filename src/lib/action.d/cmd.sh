@@ -1,22 +1,32 @@
 #!bash
 #
-# Usage: clicraft cmd [-q|-v] <command>
+# Usage: clicraft cmd [options] <command>
 #
 #    Sends <command> to the server console.
+#
+#    Options:
+#
+#       -q, --quiet     Suppress the output of <command>. This is the default.
+#       -v, --verbose   Print the output of <command> to stdout.
 #
 
 VERBOSITY=0
 
+# normalize options
+if ! validopts "qv" "quiet" "verbose" -- "$@"; then
+	action help "$ACTION"
+	return 1
+else
+	set -- "${RETVAL[@]}"
+fi
+unset RETVAL
+
 # parse options
 while [[ "$1" == -* ]]; do
 	case "$1" in
-	  "-q"|"--quiet")   VERBOSITY=0 ;;
-	  "-v"|"--verbose") VERBOSITY+=1 ;;
-	  "--") break ;;
-	  *)
-		action help "$ACTION"
-		return 1
-	  ;;
+	  -q|--quiet)   VERBOSITY=0 ;;
+	  -v|--verbose) VERBOSITY+=1 ;;
+	  --)           shift; break ;;
 	esac
 	shift
 done

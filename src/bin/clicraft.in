@@ -13,21 +13,26 @@ CONFDIR="@CONFDIR@"
 
 . "$EXECDIR/bootstrap.sh"
 
+# normalize options
+if ! validopts "c:hVx" "config:" "help" "version" "xtrace" -- "$@"; then
+	set -- help
+else
+	set -- "${RETVAL[@]}"
+fi
+unset RETVAL
+
 # parse options
+XTRACE=0
 while [[ "$1" == -* ]]; do
 	case "$1" in
-	  --config=*)   CLICRAFT_CONFIG="${1#*=}" ;;
 	  -c|--config)  shift; CLICRAFT_CONFIG="$1" ;;
+	  -x|--xtrace)  XTRACE+=1; ((XTRACE>1)) && set -x ;;
 	  -h|--help)    set -- help; break ;;
 	  -V|--version) set -- version; break ;;
-	  -x|--xtrace)  XTRACE+=1; ((XTRACE>1)) && set -x ;;
-	  -[^-]*)       opt="$1"; shift; set -- $(shortopts "$opt") "$@"; continue ;;
 	  --)           shift; break ;;
-	  *)            err "Unknown option: %s" "$1"; set -- help; break ;;
 	esac
 	shift
 done
-unset opt
 
 # find correct config to use
 if [[ -n "$CLICRAFT_CONFIG" ]]; then
