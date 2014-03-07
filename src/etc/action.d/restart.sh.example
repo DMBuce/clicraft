@@ -1,0 +1,54 @@
+#!bash
+#
+# Usage: clicraft restart [options]
+#
+#    Restarts the server.
+#
+#    Options:
+#
+#       -c, --if-crashed   Do nothing if the server is running.
+#       -e, --if-empty     Do nothing if there are players online.
+#       -w, --warn         Broadcast a warning in chat first.
+#
+
+# normalize options
+shortopts="cew"
+longopts=("if-crashed" "if-empty" "warn")
+if ! validopts "$shortopts" "${longopts[@]}" -- "$@"; then
+	action help "$ACTION"
+	return 1
+else
+	set -- "${RETVAL[@]}"
+fi
+unset RETVAL
+unset shortopts
+unset longopts
+
+# parse options
+IF_CRASHED=0
+IF_EMPTY=0
+WARN=0
+while [[ "$1" == -* ]]; do
+	case "$1" in
+	  -c|--if-crashed) IF_CRASHED=1 ;;
+	  -e|--if-empty)   IF_EMPTY=1 ;;
+	  -w|--warn)       WARN=1 ;;
+	  --)              shift; break ;;
+	esac
+	shift
+done
+
+if (( IF_CRASHED )) && lsof -i ":$(serverprop server-port)" >/dev/null; then
+	return
+fi
+
+if (( IF_EMPTY )) && [[ "$(list | wc -w)" != 0 ]]; then
+	return
+fi
+
+if (( WARN )); then
+	sys_action restart --warn
+else
+	sys_action restart
+fi
+
