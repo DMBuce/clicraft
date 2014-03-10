@@ -27,8 +27,8 @@ unset longopts
 WARN=0
 while [[ "$1" == -* ]]; do
 	case "$1" in
-	  -w|--warn)       WARN=1 ;;
-	  --)              shift; break ;;
+	  -w|--warn) WARN=1 ;;
+	  --)        shift; break ;;
 	esac
 	shift
 done

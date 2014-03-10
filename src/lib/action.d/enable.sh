@@ -29,9 +29,9 @@ unset longopts
 SYMLINK=1
 while [[ "$1" == -* ]]; do
 	case "$1" in
-	  -c|--copy)       SYMLINK=0 ;;
-	  -s|--symlink)    SYMLINK=1 ;;
-	  --)              shift; break ;;
+	  -c|--copy)    SYMLINK=0 ;;
+	  -s|--symlink) SYMLINK=1 ;;
+	  --)           shift; break ;;
 	esac
 	shift
 done
