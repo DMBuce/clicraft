@@ -38,8 +38,16 @@ while [[ "$1" == -* ]]; do
 	shift
 done
 
-if (( IF_CRASHED )) && lsof -i ":$(serverprop server-port)" >/dev/null; then
-	return
+if (( IF_CRASHED )); then
+	port="$(serverprop server-port)" || return 1
+	address="@$(serverprop server-ip 2>/dev/null)"
+	if [[ "$address" == '@' ]]; then
+		address=
+	fi
+
+	if && lsof -i "$address:$port" >/dev/null; then
+		return
+	fi
 fi
 
 if (( IF_EMPTY )) && [[ "$(list | wc -w)" != 0 ]]; then
