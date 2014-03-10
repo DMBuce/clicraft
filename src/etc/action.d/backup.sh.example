@@ -12,7 +12,7 @@
 #    arguments, print a list of files that can be restored from.
 #
 
-WORLD="$(serverprop 'level-name')"
+WORLD="$(serverprop 'level-name')" || return 1
 BACKUP_DIR="${BACKUP_DIR-"$SERVER_DIR/backups"}"
 BACKUP_FILE="${BACKUP_FILE-"$BACKUP_DIR/$WORLD-$(date +%Y%m%d-%H%M%S).zip"}"
 BACKUP_TARGETS="${BACKUP_TARGETS-"$WORLD $WORLD_*"}"

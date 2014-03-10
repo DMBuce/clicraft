@@ -300,7 +300,7 @@ serverprop() {
 	local NAMEVAL="$(grep "^$PROP=" "$SERVER_DIR/server.properties")"
 	local VALUE="${NAMEVAL#$PROP=}"
 
-	if [[ "$VALUE" == "" ]]; then
+	if [[ "$NAMEVAL" == "" ]]; then
 		warn "Property '%s' not defined in %s" "$PROP" "$SERVER_DIR/server.properties"
 		return 1
 	fi
