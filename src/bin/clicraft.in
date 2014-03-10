@@ -14,7 +14,7 @@ CONFDIR="@CONFDIR@"
 . "$EXECDIR/bootstrap.sh"
 
 # normalize options
-if ! validopts "c:hVx" "config:" "help" "version" "xtrace" -- "$@"; then
+if ! validopts "c:xhV" "config:" "xtrace" "help" "version" -- "$@"; then
 	set -- help
 else
 	set -- "${RETVAL[@]}"

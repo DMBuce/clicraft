@@ -30,12 +30,6 @@ Options
 	Use 'config' as the configuration directory. For other methods of setting
 	this directory, see linkman:clicraft.conf[5].
 
-*-h*, *--help*::
-	Display this help message and exit.
-
-*-V*, *--version*::
-	Output version information and exit.
-
 *-x*, *--xtrace*::
 	Print all expanded bash commands run by 'action' to stdout. This is
 	accomplished by
@@ -45,6 +39,12 @@ Options
 +
 If this option is passed multiple times, +xtrace+ is set as soon as the second
 option is encountered, which can be useful for debugging clicraft itself.
+
+*-h*, *--help*::
+	Display this help message and exit.
+
+*-V*, *--version*::
+	Output version information and exit.
 
 Actions
 -------
