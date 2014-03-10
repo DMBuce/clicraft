@@ -2,7 +2,7 @@
 #
 # Usage: clicraft disable <action>.
 #
-#    Disables user <action> script.
+#    Disables an <action> script created by the user.
 #
 
 action="${1%.sh}"

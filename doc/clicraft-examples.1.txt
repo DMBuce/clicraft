@@ -139,6 +139,24 @@ This action has these linkman:clicraft.conf[5] options:
 	whitespace character. Lines not following this format are ignored.
 	Defaults to +"$CLICRAFT_CONFIG/end-blocks.conf"+
 
+*restart* [options]::
+	Restarts the server. This action script overrides clicraft's default
+	restart script to provide additional functionality through the options
+	described below.
++
+Command line options:
++
+*-c, --if-crashed*:::
+	Do nothing if the server is running. This option requires +lsof+ in order
+	to work correctly.
++
+*-e, --if-empty*:::
+	Do nothing if there are players online. This options requires that the +list+
+	entry in the regex database is configured correctly.
++
+*-w, --warn*:::
+	This option is the same as the one documented in linkman:clicraft[1].
+
 *restore* [file.zip] [files]::
 	Restores world data by extracting 'files' from 'file.zip'. If 'files' is
 	not provided, all files are extracted from 'file.zip'. With no

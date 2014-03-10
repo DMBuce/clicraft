@@ -88,28 +88,42 @@ For information regarding `SERVER_VERSION`, `SERVER_URL`, `SERVER_JAR`, and
 `DOWNLOAD_COMMAND`. see linkman:clicraft.conf[5].
 
 *edit* [file|action]::
-	Edit 'file' in the server directory.
+	Without 'file' or 'action', edit clicraft.conf. If 'file' exists in the
+	server directory, edit it. If vinbt is installed, 'file' has a +.dat+
+	extension, and it exists in the world directory, edit 'file' with vinbt.
+	Otherwise, edit the action script for 'action'. If the script does not
+	already exist, create it with one of these templates:
 +
-If 'file' does not exist and has a .dat extension, and if linkman:vinbt[1]
-is installed,
-edit the first file of that name found anywhere within the world directory
-using vinbt.
-+
-Otherwise,
-edit the action script for 'action' instead. When editing a new action or
-overriding a system action, clicraft will create a new user action using one
-of these templates:
-+
+* +$CLICRAFT_CONFIG/action.d/'action'.sh.example+
 * +$CLICRAFT_CONFIG/action.d/action.sh.example+
 * +$CLICRAFT_CONFIG/action.d/action-override.sh.example+
 
 +
 See linkman:clicraft.conf[5] for a description of +$CLICRAFT_CONFIG+.
 +
-When no 'file' or 'action' is present, edit linkman:clicraft.conf[5].
+If the file is empty after editing, clicraft will delete it.
 +
-This usage of clicraft launches `EDITOR` to edit files, or linkman:vi[1] if
-the `EDITOR` variable is not defined in your environment.
+This command launches +EDITOR+ to edit files, or linkman:vi[1] if the +EDITOR+
+variable is not defined in your environment.
+
+*enable* [options] <action> [name]::
+	Enables one of the example actions documented in
+	linkman:clicraft-examples[1]. If 'name' is given, the new action script is
+	enabled with that name.
++
+Command line options:
++
+*-c, --copy*:::
+	Copy the example action script. This ensures any local
+	changes you make to the script are not overwritten when upgrading clicraft.
++
+*-s, --symlink*:::
+	Symlink the example action script. This is the default, and ensures that
+	changes in functionality are reflected in the enabled script when
+	upgrading clicraft.
+
+*disable* <action>::
+	Disables an 'action' script created by the user.
 
 *help* [action]::
 	Displays usage information for 'action'. If no 'action' is given, clicraft
@@ -137,8 +151,9 @@ the `EDITOR` variable is not defined in your environment.
 +
 If no 'operation' or 'args' are supplied, they are read from stdin.
 
-*restart*::
-	Restarts the server.
+*restart* [-w|--warn]::
+	Restarts the server. With +--warn+, clicraft broadcasts a message in chat
+	for 15 seconds to warn players that the server is being restarted.
 
 *start*::
 	Starts the server.

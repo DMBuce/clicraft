@@ -2,14 +2,13 @@
 #
 # Usage: clicraft enable [options] <action> [name]
 #
-#    Enables the example <action>. If <name> is given, the new action script
-#    is installed using that name.
+#    Enables example <action>. If <name> is given, the new action script
+#    is enabled with that name.
 #
 #    Options:
 #
-#       -c, --copy      Install with a copy of the example action script.
-#       -s, --symlink   Install using a symlink to the example action script.
-#                       This is the default.
+#       -c, --copy      Copy the example action script.
+#       -s, --symlink   Symlink the example action script. This is the default.
 #
 
 # normalize options
