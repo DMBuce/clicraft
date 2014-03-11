@@ -51,7 +51,7 @@ if (( SYMLINK )); then
 		rm "$CLICRAFT_CONFIG/action.d/$name.sh"
 	fi
 
-	echo ln -s "$action.sh.example" "$CLICRAFT_CONFIG/action.d/$name.sh"
+	msg "%s" "ln -s '$action.sh.example' '$CLICRAFT_CONFIG/action.d/$name.sh'"
 	ln -s "$action.sh.example" "$CLICRAFT_CONFIG/action.d/$name.sh"
 else
 	if [[ -h "$CLICRAFT_CONFIG/action.d/$name.sh" ]]; then
@@ -60,7 +60,7 @@ else
 		return 0
 	fi
 
-	echo cp "$CLICRAFT_CONFIG/action.d/$action.sh.example" "$CLICRAFT_CONFIG/action.d/$name.sh"
+	msg "%s" "cp '$CLICRAFT_CONFIG/action.d/$action.sh.example' '$CLICRAFT_CONFIG/action.d/$name.sh'"
 	cp "$CLICRAFT_CONFIG/action.d/$action.sh.example" "$CLICRAFT_CONFIG/action.d/$name.sh"
 fi
 
