@@ -12,27 +12,23 @@ Synopsis
 Description
 -----------
 linkman:clicraft[1] provides example action scripts that can be used and
-modified to extend clicraft's functionality. To install one of these
-scripts, copy the
-relevant .sh.example script in +$CLICRAFT_CONFIG/action.d+ to a file with a .sh
-extension. For example:
+modified to extend clicraft's functionality. To set up one of these scripts,
+use the +clicraft enable+ command:
 
-	cd $CLICRAFT_CONFIG/action.d
-	cp backup.sh.example backup.sh
+	clicraft enable backup
 
-Alternately, you can symlink to the .sh.example. Using this method, future
-updates to example action scripts will be reflected in the actions that
-clicraft uses, but any customizations you make to the scripts will be lost
-when you update.
+This will set up a symlink to the action script so that it's visible to
+clicraft. If you installed clicraft by compiling it instead of through your
+system's package manager, and if you also plan on editing the script, it's
+recommended to use the +--copy+ flag when enabling it so that your changes
+aren't overwritten the next time you upgrade.
 
-	cd $CLICRAFT_CONFIG/action.d
-	ln -s backup.sh.example backup.sh
+	clicraft enable --copy backup
 
 An action script created using either of the two methods above will get
 executed when running +clicraft backup+.
 
-For more info on action scripts or for the value of +$CLICRAFT_CONFIG+, see
-linkman:clicraft.conf[5].
+For more info on action scripts, see linkman:clicraft.conf[5].
 
 Actions
 -------
