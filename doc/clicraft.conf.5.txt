@@ -23,9 +23,8 @@ through several different methods. In order of preference:
 
 If +$XDG_CONFIG_HOME+ is not set in your environment, clicraft uses
 +~/.config+ instead. Clicraft searches the directories above and uses the
-first one it finds for +$CLICRAFT_CONFIG+. If +$CLICRAFT_CONFIG+ is empty and
-was not given by the +--config+ option or +$CLICRAFT_CONFIG+ environment
-variable, clicraft populates it with default config files from +{CONFDIR}+.
+first one it finds for +$CLICRAFT_CONFIG+. If the +$CLICRAFT_CONFIG+ directory
+is empty, clicraft populates it with default config files from +{CONFDIR}+.
 
 The format for +clicraft.conf+ is bash, so configuration options take the form
 +OPTION="value"+ (with no whitespace on either side of the equals sign (`=`)).
