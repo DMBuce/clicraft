@@ -1,6 +1,6 @@
 #!bash
 #
-# Usage: clicraft maint
+# Usage: clicraft maint [redb|cmd|all]
 #
 #    Do clicraft developer things. Not useful for most users.
 #
@@ -26,87 +26,139 @@ while read cmd key; do
 	cmds[$cmd]=$key
 done < <(commands)
 
-{
+case "$1" in
+  redb)
+	{
 
-# print non-cmd regexes
-echo 'kick/success ^^\[Server thread\/INFO\]: (Kicked [0-9a-zA-Z_]* from the game)
+	# print non-cmd regexes
+	echo 'kick/success ^^\[Server thread\/INFO\]: (Kicked [0-9a-zA-Z_]* from the game)
 start ^^\[Server thread\/INFO\]: (Done \([0-9.]+s\)! For help, type "help" or "\?")$
 ipaddr [0-9]{1,3}(\.[0-9]{1,3}){3}
 timestamp \[[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\] '
 
-for cmd in ${!cmds[@]}; do
-	echo -n "$cmd ^^\\[Server thread\\/INFO\\]: ("
-	sed -nr '
-	# massage data before "real" processing
+	for cmd in ${!cmds[@]}; do
+		echo -n "$cmd ^^\\[Server thread\\/INFO\\]: ("
+		sed -nr '
+		# massage data before "real" processing
 
-	# re-label things for the appropriate commands
-	s/save\.enabled/save-on/;
-	s/save\.disabled/save-off/;
+		# re-label things for the appropriate commands
+		s/save\.enabled/save-on/;
+		s/save\.disabled/save-off/;
 
-	# remove output strings that are always followed by more output
-	/Saving\.\.\.$/ d
+		# remove output strings that are always followed by more output
+		/Saving\.\.\.$/ d
 
-	# format remaining data
-	/^commands\.'"${cmds[$cmd]}"'[.=]/ {
-		s|^[^=]*=||
+		# format remaining data
+		/^commands\.'"${cmds[$cmd]}"'[.=]/ {
+			s|^[^=]*=||
 
-		# escape special chars from the shell
-		#s|["$]|\\&|g
+			# escape special chars from the shell
+			#s|["$]|\\&|g
 
-		# escape special chars from regex engine
-		s/[][()|/?.*+]/\\&/g
+			# escape special chars from regex engine
+			s/[][()|/?.*+]/\\&/g
 
-		# convert dos to unix
-		s/'$'\r''//
+			# convert dos to unix
+			s/'$'\r''//
 
-		# replace the following formatting sequences
-		#     %1$d
-		#     %1$s
-		#     %2$d
-		#     %\.2f
-		#     %2$s
-		#     %3$d
-		#     %3$s
-		#     %4$s
-		#     %5$d
-		#     %d
-		#     %s
-		s|%([0-9]\$)?d|[0-9]*|g
-		s|%([0-9]\$)?s|.*|g
-		s|%(\\\.[0-9])?f|[0-9.]*|g
+			# replace the following formatting sequences
+			#     %1$d
+			#     %1$s
+			#     %2$d
+			#     %\.2f
+			#     %2$s
+			#     %3$d
+			#     %3$s
+			#     %4$s
+			#     %5$d
+			#     %d
+			#     %s
+			s|%([0-9]\$)?d|[0-9]*|g
+			s|%([0-9]\$)?s|.*|g
+			s|%(\\\.[0-9])?f|[0-9.]*|g
 
-		# remove usage lines with no args
-		/^\\\/'"$cmd"'$/ d
-		## insert "Usage: " before command usage lines
-		#/^\\\/'"$cmd"'/ s/^/Usage: &/
+			# remove usage lines with no args
+			/^\\\/'"$cmd"'$/ d
+			## insert "Usage: " before command usage lines
+			#/^\\\/'"$cmd"'/ s/^/Usage: &/
 
-		p
-	}' "$langfile" | tr '\n' '|' | sed 's/|$/)/'
-	echo
-done | sed -r '
-	# post-processing
+			p
+		}' "$langfile" | tr '\n' '|' | sed 's/|$/)/'
+		echo
+	done | sed -r '
+		# post-processing
 
-	# aliases
-	/^help / {
-		s/.*/help 8/
-		p; s/help/?/
-	}
-	/^tell / {
-		p; s/tell/msg/
-		p; s/msg/w/
-	}
-	/^me / {
-		s/\(/&\\* Server .*|/
-	}
-	/^say / {
-		s/\(/&\\[Server\\] .*|/
-	}
+		# aliases
+		/^help / {
+			s/.*/help 8/
+			p; s/help/?/
+		}
+		/^tell / {
+			p; s/tell/msg/
+			p; s/msg/w/
+		}
+		/^me / {
+			s/\(/&\\* Server .*|/
+		}
+		/^say / {
+			s/\(/&\\[Server\\] .*|/
+		}
 
-	# last output line of these commands arent in langfile
-	/^list / s|: .*|: ([^/:]*)$|
-	/^banlist / s/There are [^|]*\|[^|]*/[^:]*$/
-	/^whitelist / s/There are [^|]* whitelisted players:/[^:]*$/
-'
+		# last output line of these commands arent in langfile
+		/^list / s|: .*|: ([^/:]*)$|
+		/^banlist / s/There are [^|]*\|[^|]*/[^:]*$/
+		/^whitelist / s/There are [^|]* whitelisted players:/[^:]*$/
+	'
 
-} | sort
+	} | sort
+  ;;
+  cmd)
+cat <<EOF
+#!bash
+#
+# Usage: clicraft cmd
+#
+#    This action shouldn't be used directly. Disable it with \`clicraft
+#    disable cmd\`.
+#
+
+EOF
+	for cmd in ${!cmds[@]}; do
+		usagelines=()
+		while read usage; do
+			usagelines+=("$usage")
+		done < <(sed -rn "
+			/^commands.${cmds[$cmd]}\..*usage/ {
+				#s/$cmd( |$)/$cmd [options]\1/g
+				s/[^=]*=\//clicraft /
+				s/ OR \//\nclicraft /g
+				#s/ \[--\]($|\n)/\1/g
+				p
+			}
+		" "$langfile")
+		echo "# Usage: ${usagelines[0]}"
+		unset usagelines[0]
+		for usage in "${usagelines[@]}"; do
+			echo "#        $usage"
+		done
+		cat <<EOF
+#
+#    Sends the $cmd command to the server console.
+#
+
+EOF
+	done
+	cat <<EOF
+sys_action cmd -v "\$ACTION" "\$@"
+
+EOF
+  ;;
+  all)
+	cd - &>/dev/null
+	cd "$(git rev-parse --show-toplevel)"
+	action maint redb >src/etc/redb/minecraft.tab
+	action maint cmd  >src/etc/action.d/cmd.sh.example
+  ;;
+  "") action help "$ACTION" ;;
+esac
 
