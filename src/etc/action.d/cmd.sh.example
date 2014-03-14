@@ -1,0 +1,271 @@
+#!bash
+#
+# Usage: clicraft cmd
+#
+#    This action shouldn't be used directly. Disable it with `clicraft
+#    disable cmd`.
+#
+
+# Usage: clicraft kill
+#
+#    Sends the kill command to the server console.
+#
+
+# Usage: clicraft say <message ...>
+#
+#    Sends the say command to the server console.
+#
+
+# Usage: clicraft time <set|add> <value>
+#
+#    Sends the time command to the server console.
+#
+
+# Usage: clicraft scoreboard <objectives|players|teams>
+#        clicraft scoreboard objectives <list|add|remove|setdisplay>
+#        clicraft scoreboard objectives setdisplay <slot> [objective]
+#        clicraft scoreboard objectives add <name> <criteriaType> [display name ...]
+#        clicraft scoreboard objectives remove <name>
+#        clicraft scoreboard players <set|add|remove|reset|list>
+#        clicraft scoreboard players set <player> <objective> <score>
+#        clicraft scoreboard players add <player> <objective> <count>
+#        clicraft scoreboard players remove <player> <objective> <count>
+#        clicraft scoreboard players reset <player>
+#        clicraft scoreboard players list [name]
+#        clicraft scoreboard teams <list|add|remove|empty|join|leave|option>
+#        clicraft scoreboard teams add <name> [display name ...]
+#        clicraft scoreboard teams list [name]
+#        clicraft scoreboard teams empty
+#        clicraft scoreboard teams remove <name>
+#        clicraft scoreboard teams join <team> [player]
+#        clicraft scoreboard teams leave [player]
+#        clicraft scoreboard teams option <team> <friendlyfire|color|seeFriendlyInvisibles> <value>
+#
+#    Sends the scoreboard command to the server console.
+#
+
+# Usage: clicraft stop
+#
+#    Sends the stop command to the server console.
+#
+
+# Usage: clicraft effect <player> <effect> [seconds] [amplifier]
+#
+#    Sends the effect command to the server console.
+#
+
+# Usage: clicraft ban <name> [reason ...]
+#
+#    Sends the ban command to the server console.
+#
+
+# Usage: clicraft op <player>
+#
+#    Sends the op command to the server console.
+#
+
+# Usage: clicraft pardon <name>
+#
+#    Sends the pardon command to the server console.
+#
+
+# Usage: clicraft save-all
+#
+#    Sends the save-all command to the server console.
+#
+
+# Usage: clicraft whitelist add <player>
+#        clicraft whitelist remove <player>
+#        clicraft whitelist <on|off|list|add|remove|reload>
+#
+#    Sends the whitelist command to the server console.
+#
+
+# Usage: clicraft weather <clear|rain|thunder> [duration in seconds]
+#
+#    Sends the weather command to the server console.
+#
+
+# Usage: clicraft setidletimeout <Minutes until kick>
+#
+#    Sends the setidletimeout command to the server console.
+#
+
+# Usage: clicraft seed
+#
+#    Sends the seed command to the server console.
+#
+
+# Usage: clicraft save-off
+#
+#    Sends the save-off command to the server console.
+#
+
+# Usage: clicraft ban-ip <address|name> [reason ...]
+#
+#    Sends the ban-ip command to the server console.
+#
+
+# Usage: clicraft xp <amount> [player]
+#        clicraft xp <amount>L [player]
+#
+#    Sends the xp command to the server console.
+#
+
+# Usage: clicraft list
+#
+#    Sends the list command to the server console.
+#
+
+# Usage: clicraft tell <player> <private message ...>
+#
+#    Sends the tell command to the server console.
+#
+
+# Usage: clicraft kick <player> [reason ...]
+#
+#    Sends the kick command to the server console.
+#
+
+# Usage: clicraft spreadplayers <x> <z> <spreadDistance> <maxRange> <respectTeams true|false> <player ...>
+#
+#    Sends the spreadplayers command to the server console.
+#
+
+# Usage: clicraft spawnpoint
+#        clicraft spawnpoint <player>
+#        clicraft spawnpoint <player> <x> <y> <z>
+#
+#    Sends the spawnpoint command to the server console.
+#
+
+# Usage: clicraft debug <start|stop>
+#
+#    Sends the debug command to the server console.
+#
+
+# Usage: clicraft help [page|command name]
+#
+#    Sends the help command to the server console.
+#
+
+# Usage: clicraft save-on
+#
+#    Sends the save-on command to the server console.
+#
+
+# Usage: clicraft achievement give <stat_name> [player]
+#
+#    Sends the achievement command to the server console.
+#
+
+# Usage: clicraft tellraw <player> <raw json message>
+#
+#    Sends the tellraw command to the server console.
+#
+
+# Usage: clicraft setworldspawn
+#        clicraft setworldspawn <x> <y> <z>
+#
+#    Sends the setworldspawn command to the server console.
+#
+
+# Usage: clicraft publish
+#
+#    Sends the publish command to the server console.
+#
+
+# Usage: clicraft tp [target player] <destination player>
+#        clicraft tp [target player] <x> <y> <z>
+#
+#    Sends the tp command to the server console.
+#
+
+# Usage: clicraft gamerule <rule name> <value>
+#        clicraft gamerule <rule name>
+#
+#    Sends the gamerule command to the server console.
+#
+
+# Usage: clicraft banlist [ips|players]
+#
+#    Sends the banlist command to the server console.
+#
+
+# Usage: clicraft me <action ...>
+#
+#    Sends the me command to the server console.
+#
+
+# Usage: clicraft playsound <sound> <player> [x] [y] [z] [volume] [pitch] [minimumVolume]
+#
+#    Sends the playsound command to the server console.
+#
+
+# Usage: clicraft give <player> <item> [amount] [data] [dataTag]
+#
+#    Sends the give command to the server console.
+#
+
+# Usage: clicraft gamemode <mode> [player]
+#
+#    Sends the gamemode command to the server console.
+#
+
+# Usage: clicraft defaultgamemode <mode>
+#
+#    Sends the defaultgamemode command to the server console.
+#
+
+# Usage: clicraft testfor <player>
+#
+#    Sends the testfor command to the server console.
+#
+
+# Usage: clicraft summon <EntityName> [x] [y] [z] [dataTag]
+#
+#    Sends the summon command to the server console.
+#
+
+# Usage: clicraft pardon-ip <address>
+#
+#    Sends the pardon-ip command to the server console.
+#
+
+# Usage: clicraft toggledownfall
+#
+#    Sends the toggledownfall command to the server console.
+#
+
+# Usage: clicraft setblock <x> <y> <z> <TileName> [dataValue] [oldBlockHandling] [dataTag]
+#
+#    Sends the setblock command to the server console.
+#
+
+# Usage: clicraft enchant <player> <enchantment ID> [level]
+#
+#    Sends the enchant command to the server console.
+#
+
+# Usage: clicraft difficulty <new difficulty>
+#
+#    Sends the difficulty command to the server console.
+#
+
+# Usage: clicraft testforblock <x> <y> <z> <TileName> [dataValue] [dataTag]
+#
+#    Sends the testforblock command to the server console.
+#
+
+# Usage: clicraft deop <player>
+#
+#    Sends the deop command to the server console.
+#
+
+# Usage: clicraft clear <player> [item] [data]
+#
+#    Sends the clear command to the server console.
+#
+
+sys_action cmd -v "$ACTION" "$@"
+
