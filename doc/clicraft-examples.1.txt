@@ -72,6 +72,13 @@ This action displays block data in three or more space-delimited fields. The
 first is the decimal block id. The second is the hexadecimal block id. The
 remaining fields represet the block's name.
 
+*cmd*::
+	This action script shouldn't be used directly. Instead, it should be used
+	via a symlink pointing to it. If such a symlink was created with e.g.
+	+clicraft enable cmd foo+, the command +clicraft foo ...+ is equivalent to
+	+clicraft cmd -v foo ...+. The purpose of this is to make it simpler to
+	send the +foo+ command to the console.
+
 *explore* <size> [x z]::
 	Generates a world roughly 'size' by 'size' centered on coordinates
 	'x' and 'z' (spawn by default) using linkman:mcexplore[1].
