@@ -36,16 +36,20 @@ done
 
 # find correct config to use
 if [[ -n "$CLICRAFT_CONFIG" ]]; then
-	if [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG" ]]; then
-		CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/$CLICRAFT_CONFIG"
-	elif [[ ! -d "$CLICRAFT_CONFIG" ]]; then
-		err "Could not find configuration directory: %s" "$CLICRAFT_CONFIG"
-		exit 1
+	if [[ ! -d "$CLICRAFT_CONFIG" ]]; then
+		if [[ "$CLICRAFT_CONFIG" != */* \
+			&& -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft/$CLICRAFT_CONFIG" ]]
+		then
+			CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft/$CLICRAFT_CONFIG"
+		else
+			err "Could not find configuration directory: %s" "$CLICRAFT_CONFIG"
+			exit 1
+		fi
 	fi
-elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}" ]]; then
-	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/${0##*/}"
-elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft" ]]; then
-	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft"
+elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft/${0##*/}" ]]; then
+	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft/${0##*/}"
+elif [[ -d "${XDG_CONFIG_HOME-$HOME/.config}/clicraft/default" ]]; then
+	CLICRAFT_CONFIG="${XDG_CONFIG_HOME-$HOME/.config}/clicraft/default"
 else
 	CLICRAFT_CONFIG="$CONFDIR"
 fi

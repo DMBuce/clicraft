@@ -17,8 +17,8 @@ through several different methods. In order of preference:
 
 * The argument to the +--config+ command line option
 * The +$CLICRAFT_CONFIG+ environment variable
-* +$XDG_CONFIG_HOME/foo+, where 'foo' is how clicraft was invoked
-* +$XDG_CONFIG_HOME/clicraft+
+* +$XDG_CONFIG_HOME/clicraft/foo+, where 'foo' is how clicraft was invoked
+* +$XDG_CONFIG_HOME/clicraft/default+
 * +{CONFDIR}+
 
 If +$XDG_CONFIG_HOME+ is not set in your environment, clicraft uses
