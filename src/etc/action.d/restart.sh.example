@@ -45,7 +45,7 @@ if (( IF_CRASHED )); then
 		address=
 	fi
 
-	if && lsof -i "$address:$port" >/dev/null; then
+	if lsof -i "$address:$port" >/dev/null; then
 		return
 	fi
 fi
