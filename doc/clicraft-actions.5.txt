@@ -1,3 +1,4 @@
+// a2x: --no-xmllint
 clicraft-actions(5)
 ===================
 
@@ -236,17 +237,17 @@ linkman:clicraft.conf[5].
 
 *str2val* <string> [case]::
 	Prints the value of the variable corresponding to 'string' to stdout. The
-	variable to use is determined using +pass:[`str2var 'string' ['case'\]`]+.
+	variable to use is determined using +\`str2var 'string' ['case']\`+.
 
 *dimdir* <dimension>::
 	Print the directory for 'dimension' to stdout.
 +
-If +level-name=world+ in +server.properties+, +pass:[`dimdir overworld`]+ will
+If +level-name=world+ in +server.properties+, +\`dimdir overworld\`+ will
 output +SERVER_DIR/world+. If +SERVER_TYPE+ is set to "minecraft",
-+pass:[`dimdir nether`]+ and +pass:[`dimdir end`]+ will output
++\`dimdir nether\`+ and +\`dimdir end\`+ will output
 +SERVER_DIR/world/DIM-1+ and +SERVER_DIR/world/DIM1+, respectively, or
 +SERVER_DIR/world_nether+ and +SERVER_DIR/world_the_end+ for other values of
-+SERVER_TYPE+. For other values of 'dimension', +pass:[`dimdir foo`]+ will
++SERVER_TYPE+. For other values of 'dimension', +\`dimdir foo\`+ will
 output +SERVER_DIR/world_foo+.
 +
 Returns nonzero if +level-name+ can't be found in +server.properties+.
