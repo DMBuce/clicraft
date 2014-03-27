@@ -1,4 +1,3 @@
-// a2x: --no-xmllint
 clicraft-examples(1)
 ====================
 
