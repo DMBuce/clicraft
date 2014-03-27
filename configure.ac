@@ -34,7 +34,6 @@ AS_IF([test "x$enable_shortdirs" = "xyes"],
 
 # Checks for programs.
 AC_PROG_INSTALL
-AC_PROG_SED
 
 AC_CONFIG_FILES([
 Makefile
