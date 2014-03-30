@@ -1,4 +1,7 @@
 
+%define dist %(/usr/lib/rpm/redhat/dist.sh)
+%define rhel %(/usr/lib/rpm/redhat/dist.sh --distnum)
+
 Name:       clicraft
 Version:    0.0.11
 Release:    1%{?dist}
@@ -15,8 +18,6 @@ BuildRequires: asciidoc, autoconf, libxslt-devel, docbook-style-xsl, redhat-rpm-
 
 %description
 A command-line wrapper for a minecraft or bukkit server.
-
-%define rhel %(/usr/lib/rpm/redhat/dist.sh --distnum)
 
 %prep
 %setup -q
