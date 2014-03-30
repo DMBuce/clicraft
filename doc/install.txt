@@ -76,15 +76,14 @@ distributions that packages are available for.
 	link:https://wiki.archlinux.org/index.php/AUR[this ArchWiki page].
 
 *Debian, Ubuntu* (dpkg/apt deb)::
-	Debian packages are unavailable since GitHub's deprecation of project
-	downloads. You can try to create one yourself using +make deb+, then
-	install it with +dpkg -i clicraft_*_all.deb+.
+	A .deb for clicraft can be created in the dist/ directory using
+	+autoconf && ./configure && make deb+. It can then be installed with
+	+dpkg -i+.
 
 *RHEL, CentOS* (yum/rpm)::
-	Clicraft is currently not available in rpm format, but it just so happens
-	that the developer knows how to write spec files for building rpms. If you
-	are interested in installing clicraft on a RHEL-based distribution, please
-	file a feature request, and I'll do my best to accomodate you.
+	An rpm for clicraft can be created in the dist/ directory using
+	+autoconf && ./configure && make rpm+. It can then be installed with
+	+rpm -i+ or +yum localinstall+.
 
 *Other Distributions*::
 	If your distribution is not listed above, a package is unfortunately not
