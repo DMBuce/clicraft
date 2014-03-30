@@ -34,7 +34,8 @@ dist/rpmbuild/SOURCES/$(PROG)-$(VERSION)-src.tar.gz: dist/$(PROG)-$(VERSION).tar
 	cp $< $@
 
 dist/rpmbuild/SPECS/clicraft.spec: dist/rhel/clicraft.spec
-	cp $< $@
+	sed "/^Release:/ s/ .*%/ `git describe | sed 's/[^-]*//; s/-/r/; s/-/./; s/^$$/1/'`%/" \
+		$< > $@
 
 # sudo apt-get install autoconf make devscripts asciidoc
 .PHONY: deb
