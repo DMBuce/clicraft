@@ -37,7 +37,6 @@ AC_PROG_INSTALL
 
 AC_CONFIG_FILES([
 Makefile
-dist/rhel/clicraft.spec
 src/bin/clicraft
 src/lib/defaults.sh
 src/etc/clicraft-defaults.conf

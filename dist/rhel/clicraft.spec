@@ -3,7 +3,7 @@
 %define rhel %(/usr/lib/rpm/redhat/dist.sh --distnum)
 
 Name:       clicraft
-Version:    @VERSION@
+Version:    0.0.11
 Release:    1%{?dist}
 BuildArch:  noarch
 Summary:    A command-line wrapper for a minecraft or bukkit server.
