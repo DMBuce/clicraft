@@ -23,12 +23,9 @@ A command-line wrapper for a minecraft or bukkit server.
 %setup -q
 
 %build
-sed -i 's/^AC_PROG_SED$/AC_SUBST([SED], [sed])/' configure.ac
 %if %{rhel} == 5
 sed -i 's/--no-xmllint//' doc/Makefile.inc
 %endif
-sed -ir 's/pass:\[`\([^`]*\)`\]/\\`\1\\`/g' doc/clicraft-actions.5.txt
-autoconf
 ./configure --prefix=/usr \
             --sysconfdir=%{_sysconfdir} \
             --localstatedir=/var \
