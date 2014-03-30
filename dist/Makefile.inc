@@ -10,14 +10,18 @@ RPMDIRS    := dist/rpmbuild/BUILD \
               dist/rpmbuild/SRPMS
 
 .PHONY: dist
-dist:
+dist: dist/$(PROG)-$(VERSION).tar.gz
+
+dist/$(PROG)-$(VERSION).tar.gz: dist/$(PROG)-$(VERSION)
+	cd dist && tar czf $(PROG)-$(VERSION).tar.gz $(PROG)-$(VERSION)
+
+dist/$(PROG)-$(VERSION):
 	autoconf
 	rm -rf dist/$(PROG)-$(VERSION)
 	mkdir dist/$(PROG)-$(VERSION)
 	cp -r $(DIST) dist/$(PROG)-$(VERSION)
 	rm -f dist/$(PROG)-$(VERSION)/debian/post*
 	sed -i '/include dist\/Makefile.inc/d' dist/$(PROG)-$(VERSION)/Makefile.inc
-	cd dist && tar czf $(PROG)-$(VERSION).tar.gz $(PROG)-$(VERSION)
 
 .PHONY: distclean
 distclean: clean
@@ -34,7 +38,7 @@ dist/rpmbuild/SPECS/clicraft.spec: dist/rhel/clicraft.spec
 
 # sudo apt-get install autoconf make devscripts asciidoc
 .PHONY: deb
-deb: dist debchange dist/$(PROG)_$(VERSION).orig.tar.gz
+deb: debchange dist/$(PROG)_$(VERSION).orig.tar.gz
 	cd dist/$(PROG)-$(VERSION) && dpkg-buildpackage
 
 .PHONY: debchange
@@ -45,11 +49,13 @@ debchange:
 		&& grep `git describe | sed 's/-/-r/; s/-/./2'` debian/changelog
 
 .PHONY: rpm
-rpm: dist rpmdirs dist/rpmbuild/SPECS/clicraft.spec dist/rpmbuild/SOURCES/$(PROG)-$(VERSION)-src.tar.gz
+rpm: rpmdirs dist/rpmbuild/SPECS/clicraft.spec dist/rpmbuild/SOURCES/$(PROG)-$(VERSION)-src.tar.gz
 	rpmbuild -ba \
 		--define "_query_all_fmt %{name}-%{version}-%{release}.%{arch}" \
 		--define "_topdir $(PWD)/dist/rpmbuild" \
 		dist/rpmbuild/SPECS/clicraft.spec
+	mv dist/rpmbuild/RPMS/noarch/$(PROG)-$(VERSION)-*.noarch.rpm dist/
+	mv dist/rpmbuild/SRPMS/$(PROG)-$(VERSION)-*.src.rpm dist/
 
 .PHONY: rpmdirs
 rpmdirs: $(RPMDIRS)
