@@ -5,6 +5,7 @@ autom4te.cache/
 config.log
 config.status
 configure
+dist/rhel/clicraft.spec
 scripts/bash_completion
 scripts/cron
 scripts/logrotate
