@@ -1,8 +1,11 @@
 DIST       := $(DIST) dist/debian
 MAINTCLEAN := $(MAINTCLEAN) \
+              dist/$(PROG)-$(VERSION) dist/$(PROG)-$(VERSION).tar.gz \
               dist/$(PROG)_$(VERSION)-*_all.deb dist/$(PROG)_$(VERSION).orig.tar.gz \
               dist/$(PROG)_$(VERSION)-*.debian.tar.gz dist/$(PROG)_$(VERSION)-*.dsc \
-              dist/$(PROG)_$(VERSION)-*.changes
+              dist/$(PROG)_$(VERSION)-*.changes \
+              dist/$(PROG)-$(VERSION)-*.rpm \
+              dist/rpmbuild
 RPMDIRS    := dist/rpmbuild/BUILD \
               dist/rpmbuild/RPMS \
               dist/rpmbuild/SOURCES \

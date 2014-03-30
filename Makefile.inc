@@ -8,7 +8,7 @@ UNINSTALL   :=
 DIST        := configure install-sh Makefile.in Makefile.inc \
                INSTALL LICENSE README.asciidoc
 DISTCLEAN   := Makefile config.log config.status
-MAINTCLEAN  := autom4te.cache $(PROG)-$(VERSION) $(PROG)-$(VERSION).tar.gz
+MAINTCLEAN  := autom4te.cache
 
 .PHONY: all
 all: targets
