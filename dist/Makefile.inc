@@ -48,9 +48,9 @@ deb: debchange dist/$(PROG)_$(VERSION).orig.tar.gz
 .PHONY: debchange
 debchange:
 	cd dist \
-		&& grep `git describe | sed 's/-/-r/; s/-/./2'` debian/changelog \
-		|| debchange -v `git describe | sed 's/-/-r/; s/-/./2'` \
-		&& grep `git describe | sed 's/-/-r/; s/-/./2'` debian/changelog
+		&& grep `git describe | sed 's/-/-r/; s/-/./2; s/^[^-]*$$/&-1/'` debian/changelog \
+		|| debchange -v `git describe | sed 's/-/-r/; s/-/./2; s/^[^-]*$$/&-1/'` \
+		&& grep `git describe | sed 's/-/-r/; s/-/./2; s/^[^-]*$$/&-1/'` debian/changelog
 
 .PHONY: rpm
 rpm: rpmdirs dist/rpmbuild/SPECS/clicraft.spec dist/rpmbuild/SOURCES/$(PROG)-$(VERSION)-src.tar.gz
