@@ -242,10 +242,10 @@ pardon() {
 
 	if [[ "$PLAYER" =~ $RE_IPADDR ]]; then
 		CMD='pardon-ip'
-		BANLIST="$SERVER_DIR/banned-ips.txt"
+		BANLIST="$SERVER_DIR/banned-ips.json"
 	else
 		CMD='pardon'
-		BANLIST="$SERVER_DIR/banned-players.txt"
+		BANLIST="$SERVER_DIR/banned-players.json"
 	fi
 
 	RE_PATTERN="$(str2val RE_$CMD upper)"

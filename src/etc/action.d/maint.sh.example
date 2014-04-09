@@ -133,6 +133,7 @@ EOF
 				s/[^=]*=\//clicraft /
 				s/ OR \//\nclicraft /g
 				#s/ \[--\]($|\n)/\1/g
+				s/$//
 				p
 			}
 		" "$langfile")
