@@ -21,11 +21,11 @@ Clicraft strives to be simple, robust, and useful. With it, you can:
 Documentation
 -------------
 The full documentation for clicraft is kept in AsciiDoc format under the doc/ directory in the source distribution.
-It can be viewed at <https://DMBuce.github.com/clicraft>.
+It can be viewed at <https://DMBuce.github.io/clicraft>.
 
 Basic documentation can be found in these files:
 
-* INSTALL - Basic installation instructions. For full instructions, refer to <https://DMBuce.github.com/clicraft/install.html>
+* INSTALL - Basic installation instructions. For full instructions, refer to <https://DMBuce.github.io/clicraft/install.html>
 * LICENSE - Terms and conditions
 * README  - This document
 
